@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXORIA - Premium Interior Design</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --royal-gold: #D4A574;
+            --deep-navy: #1A1B23;
+            --charcoal: #2C2D35;
+            --cream: #F8F6F0;
+            --warm-white: #FEFCF7;
+            --accent-brown: #8B6914;
+            --text-light: #6B7280;
+            --text-dark: #1F2937;
+            --royal-purple: #4A2C7A;
+            --deep-emerald: #1B4B36;
+            --rich-burgundy: #722F37;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(254, 252, 247, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+        }
+        
+        .header.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--deep-navy);
+            text-decoration: none;
+            letter-spacing: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            color: var(--royal-gold);
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--royal-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--royal-gold);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .cta-btn {
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23D4A574" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .hero-text {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-subtitle {
+            color: var(--royal-gold);
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 400;
+            color: var(--deep-navy);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            font-family: 'Crimson Text', serif;
+            font-weight: 400;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--deep-navy);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--deep-navy);
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(212, 165, 116, 0.4);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--deep-navy);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+        }
+        
+        .hero-img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease;
+        }
+        
+        .hero-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            padding: 8rem 0;
+            background: var(--warm-white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+        
+        .section-subtitle {
+            color: var(--royal-gold);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--deep-navy);
+            margin-bottom: 2rem;
+        }
+        
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 6rem;
+        }
+        
+        .step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .step.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .step-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            background: rgba(254, 252, 247, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--deep-navy);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .step-number {
+            font-size: 5rem;
+            font-weight: 200;
+            color: var(--royal-gold);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+            position: absolute;
+            top: -30px;
+            left: 0;
+            z-index: -1;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .step-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1rem;
+            max-width: 90%;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .step-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            height: 400px;
+        }
+        
+        .step-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .step-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .step-img:first-child {
+            grid-row: 1 / 3;
+        }
+        
+        /* Featured Work Section */
+        .featured-work {
+            padding: 8rem 0;
+            background: var(--cream);
+        }
+        
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .work-item {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+        
+        .work-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .work-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .work-item:hover .work-img {
+            transform: scale(1.1);
+        }
+        
+        .work-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 3rem 2rem 2rem;
+            transform: translateY(100px);
+            transition: all 0.5s ease;
+        }
+        
+        .work-item:hover .work-overlay {
+            transform: translateY(0);
+        }
+        
+        .work-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .work-category {
+            color: var(--royal-gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Enhanced Reviews Section */
+        .reviews {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--royal-purple) 50%, var(--deep-emerald) 100%);
+            padding: 8rem 0;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .reviews::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(74, 44, 122, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(27, 75, 54, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .reviews-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .reviews-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            animation: fadeInLeft 1s ease-out;
+        }
+        
+        .reviews-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 3rem;
+            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, var(--royal-gold) 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInLeft 1s ease-out 0.2s both;
+        }
+        
+        .reviews-btn {
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInLeft 1s ease-out 0.4s both;
+        }
+        
+        .reviews-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .reviews-btn:hover::before {
+            left: 100%;
+        }
+        
+        .reviews-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
+        }
+        
+        .reviews-slider {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.3s both;
+        }
+        
+        .reviews-cards {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s ease;
+            overflow: visible;
+        }
+        
+        .review-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(254, 252, 247, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            min-width: 350px;
+            color: var(--text-dark);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+        }
+        
+        .review-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--accent-brown), var(--royal-purple));
+        }
+        
+        .review-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(254, 252, 247, 0.95) 100%);
+        }
+        
+        .reviewer-name {
+            color: var(--royal-gold);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stars {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stars i {
+            color: #FFD700;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+        
+        .review-card:hover .stars i {
+            transform: scale(1.1);
+        }
+        
+        .review-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+        }
+        
+        .review-text {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .reviews-navigation {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .nav-btn {
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+        
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--royal-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            opacity: 1;
+            color: var(--royal-gold);
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn:hover::after {
+            width: 100%;
+        }
+        
+        .nav-btn.active {
+            opacity: 1;
+            color: var(--royal-gold);
+        }
+        
+        .nav-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, rgba(212, 165, 116, 0.5), transparent);
+        }
+        
+        /* Enhanced Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--charcoal) 50%, var(--rich-burgundy) 100%);
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(114, 47, 55, 0.1) 0%, transparent 50%),
+                        linear-gradient(45deg, transparent 30%, rgba(212, 165, 116, 0.03) 50%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-section {
+            animation: fadeInUp 0.8s ease-out;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .footer-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--royal-gold);
+            background: linear-gradient(135deg, var(--royal-gold) 0%, #f4d03f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 500;
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: all 0.3s ease;
+            font-family: 'Crimson Text', serif;
+            position: relative;
+        }
+        
+        .footer-section a {
+            display: inline-block;
+            padding: 0.2rem 0;
+        }
+        
+        .footer-section a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--royal-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--royal-gold);
+            transform: translateX(5px);
+        }
+        
+        .footer-section a:hover::after {
+            width: 100%;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .social-link:hover::before {
+            left: 100%;
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(135deg, white, var(--cream));
+            color: var(--deep-navy);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 165, 116, 0.3);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 2;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        }
+        
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: calc(200px + 100%) 0;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 3rem;
+            }
+            
+            .reviews-title {
+                font-size: 3.2rem;
+            }
+            
+            .step-content h3 {
+                font-size: 1.8rem;
+            }
+            
+            .step-images {
+                order: -1;
+                height: 400px;
+            }
+            
+            .step-content {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 4rem;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .reviews-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-img {
+                height: 400px;
+            }
+            
+            .steps {
+                gap: 4rem;
+            }
+            
+            .section-header {
+                margin-bottom: 4rem;
+            }
+            
+            .step-images {
+                height: 350px;
+            }
+            
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .reviews-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .review-card {
+                min-width: 300px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .reviews-title {
+                font-size: 2rem;
+            }
+            
+            .step-images {
+                height: 300px;
+                grid-template-columns: 1fr;
+            }
+            
+            .step-img:first-child {
+                grid-row: auto;
+            }
+            
+            .step-content h3 {
+                font-size: 1.6rem;
+            }
+            
+            .step-content p {
+                max-width: 100%;
+                font-size: 0.95rem;
+                line-height: 1.7;
+                margin-bottom: 1rem;
+                background: rgba(254, 252, 247, 0.8);
+                padding: 0.5rem;
+                border-radius: 5px;
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+                border: 1px solid rgba(212, 165, 116, 0.1);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+            }
+            
+            .step-content {
+                position: relative;
+                z-index: 2;
+            }
+            
+            .step-number {
+                font-size: 4rem;
+                top: -20px;
+            }
+            
+            .step-content::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(254, 252, 247, 0.7);
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+                border-radius: 15px;
+                z-index: -1;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#" class="logo">LUXORIA</a>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">Portfolio</a></li>
+                <li><a href="#" class="nav-link">Services</a></li>
+                <li><a href="#" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="cta-btn">Get Started</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-subtitle">Premium Interior Design</p>
+                <h1 class="hero-title">Transform Your Space Into Art</h1>
+                <p class="hero-description">
+                    Experience luxury living with our bespoke interior design solutions. 
+                    We create sophisticated spaces that reflect your unique style and elevate your lifestyle.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">Start Your Project</button>
+                    <button class="btn-secondary">View Portfolio</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" alt="Luxury Interior" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">How Luxoria Works</p>
+                <h2 class="section-title">Your Journey to Perfect Design</h2>
+                <p class="section-description">
+                    Our streamlined process ensures every detail is perfect, 
+                    from initial consultation to final installation.
+                </p>
+            </div>
+            
+            <div class="steps">
+                <div class="step" data-step="1">
+                    <div class="step-content">
+                        <div class="step-number">01</div>
+                        <h3>Match with our talented designers and get inspired</h3>
+                        <p>Take a style quiz to help us get to know you a little bit better, then choose your interior designer from our personalized recommendations. With over 10 years of experience and nearly 1 million designs, our expert team will help you turn your vision into reality.</p>
+                    </div>
+                    <div class="step-images">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=800&fit=crop" alt="Design Consultation" class="step-img">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&h=300&fit=crop" alt="Designer Meeting" class="step-img">
+                        <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?w=400&h=300&fit=crop" alt="Style Selection" class="step-img">
+                    </div>
+                </div>
+                
+                <div class="step" data-step="2">
+                    <div class="step-content">
+                        <div class="step-number">02</div>
+                        <h3>Partner with your designer to create a home you love</h3>
+                        <p>Great design doesn't happen alone. Let your designer guide you to solutions that meet your functional needs and products that suit your unique style. See it come to life with a 3D rendering of the design in your actual space.</p>
+                    </div>
+                    <div class="step-images">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=800&fit=crop" alt="Design Process" class="step-img">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="3D Rendering" class="step-img">
+                        <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=400&h=300&fit=crop" alt="Material Selection" class="step-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-work">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Featured Projects</p>
+                <h2 class="section-title">Exceptional Designs</h2>
+                <p class="section-description">
+                    Discover our portfolio of luxury interiors that showcase 
+                    our commitment to excellence and attention to detail.
+                </p>
+            </div>
+            
+            <div class="work-grid">
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=800&fit=crop" alt="Modern Living Room" class="work-img">
+                    <div class="work-overlay">
+                        <h3 class="work-title">Modern Minimalist Living</h3>
+                        <p class="work-category">Residential • Living Room</p>
+                    </div>
+                </div>
+                
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=800&fit=crop" alt="Luxury Bedroom" class="work-img">
+                    <div class="work-overlay">
+                        <h3 class="work-title">Serene Master Suite</h3>
+                        <p class="work-category">Residential • Bedroom</p>
+                    </div>
+                </div>
+                
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=800&fit=crop" alt="Executive Office" class="work-img">
+                    <div class="work-overlay">
+                        <h3 class="work-title">Executive Office Design</h3>
+                        <p class="work-category">Commercial • Office</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section class="reviews">
+        <div class="container">
+            <div class="reviews-content">
+                <div class="reviews-text">
+                    <p class="reviews-label">REVIEWS</p>
+                    <h2 class="reviews-title">Over 100,000<br>designs completed<br>for happy clients.</h2>
+                    <button class="reviews-btn">SEE ALL REVIEWS</button>
+                </div>
+                
+                <div class="reviews-slider">
+                    <div class="reviews-cards" id="reviewsCards">
+                        <div class="review-card">
+                            <p class="reviewer-name">by Shaniece</p>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="review-title">Another Masterpiece</h3>
+                            <p class="review-text">This was my second time working with the same designer with Havenly. She understands what we like more than we even understand it. I wouldn't change anything from beginning to end, the process was stellar. The level of detail of the designs and the items chosen compared to my vision are an absolute match. I will always work with Havenly for my design needs.</p>
+                        </div>
+                        
+                        <div class="review-card">
+                            <p class="reviewer-name">by Pam</p>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="review-title">Amazing experience!!</h3>
+                            <p class="review-text">The entire process was seamless and fun. The designer incorporated new and existing furniture pieces, recommended changing the floorplan/layout to maximize the functionality of the space and chose beautiful accent pieces that I adore. I'm very pleased with the final result.</p>
+                        </div>
+                        
+                        <div class="review-card">
+                            <p class="reviewer-name">by Blaine</p>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="review-title">What a lifesaver!</h3>
+                            <p class="review-text">Havenly saved me! I worked with Kaylee to design an entire small house in less than 1 month. It was fun, efficient and the house looks like it is out of a catalog. Thank you so much!</p>
+                        </div>
+                        
+                        <div class="review-card">
+                            <p class="reviewer-name">by Liz</p>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="review-title">Best investment!</h3>
+                            <p class="review-text">Buying my first home was overwhelming, but I found the best designer to help me create the perfect space. The process was smooth and I have ideas for years to come. Thank you for having a professional team that made this such my favorite part.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reviews-navigation">
+                        <button class="nav-btn prev-btn" id="prevBtn">PREV</button>
+                        <div class="nav-line"></div>
+                        <button class="nav-btn next-btn" id="nextBtn">NEXT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Luxoria</h3>
+                    <p>Creating exceptional interior spaces that inspire and elevate your lifestyle. Experience the pinnacle of luxury design with our expert team.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p><a href="#">Residential Design</a></p>
+                    <p><a href="#">Commercial Spaces</a></p>
+                    <p><a href="#">3D Visualization</a></p>
+                    <p><a href="#">Project Management</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Our Team</a></p>
+                    <p><a href="#">Careers</a></p>
+                    <p><a href="#">Press</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>+91 98765 43210</p>
+                    <p>hello@luxoria.com</p>
+                    <p> Brigade Road, Bangalore - 560025</p>
+                    <p> Mon-Sat: 9:00 AM - 7:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Luxoria. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe step elements
+        document.querySelectorAll('.step').forEach(step => {
+            observer.observe(step);
+        });
+
+        // Enhanced animation observer for reviews and footer sections
+        const enhancedObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0s';
+                    entry.target.style.animationFillMode = 'both';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Observe reviews and footer sections
+        document.querySelectorAll('.reviews-label, .reviews-title, .reviews-btn, .reviews-slider, .footer-section').forEach(element => {
+            enhancedObserver.observe(element);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced image hover effects
+        document.querySelectorAll('.work-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+                this.style.transition = 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Enhanced button click animations with ripple effect
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.4);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    animation: ripple 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    z-index: 1000;
+                `;
+                
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 800);
+            });
+        });
+
+        // Enhanced ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                from {
+                    transform: scale(0);
+                    opacity: 0.8;
+                }
+                to {
+                    transform: scale(2.5);
+                    opacity: 0;
+                }
+            }
+            
+            button {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Enhanced parallax effect
+        let ticking = false;
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const reviews = document.querySelector('.reviews');
+            const footer = document.querySelector('.footer');
+            
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+            
+            if (reviews && scrolled > reviews.offsetTop - window.innerHeight) {
+                const reviewsOffset = scrolled - (reviews.offsetTop - window.innerHeight);
+                reviews.style.transform = `translateY(${reviewsOffset * -0.1}px)`;
+            }
+            
+            if (footer && scrolled > footer.offsetTop - window.innerHeight) {
+                const footerOffset = scrolled - (footer.offsetTop - window.innerHeight);
+                footer.style.transform = `translateY(${footerOffset * -0.05}px)`;
+            }
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Enhanced image lazy loading with staggered fade in
+        const images = document.querySelectorAll('img');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '0';
+                    img.style.transform = 'translateY(30px)';
+                    img.style.transition = `all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s`;
+                    
+                    img.onload = () => {
+                        img.style.opacity = '1';
+                        img.style.transform = 'translateY(0)';
+                    };
+                    
+                    if (img.complete) {
+                        img.style.opacity = '1';
+                        img.style.transform = 'translateY(0)';
+                    }
+                    
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+
+        // Enhanced reviews slider functionality
+        let currentSlide = 0;
+        const reviewsCards = document.getElementById('reviewsCards');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const totalCards = document.querySelectorAll('.review-card').length;
+        const cardsPerView = window.innerWidth > 768 ? 3 : 1;
+        const maxSlide = Math.max(0, totalCards - cardsPerView);
+
+        function updateSlider() {
+            const translateX = currentSlide * -(100 / cardsPerView);
+            reviewsCards.style.transform = `translateX(${translateX}%)`;
+            reviewsCards.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            
+            // Update button states with enhanced styling
+            prevBtn.classList.toggle('active', currentSlide > 0);
+            nextBtn.classList.toggle('active', currentSlide < maxSlide);
+            
+            // Add scale animation to visible cards
+            document.querySelectorAll('.review-card').forEach((card, index) => {
+                const isVisible = index >= currentSlide && index < currentSlide + cardsPerView;
+                card.style.transform = isVisible ? 'scale(1)' : 'scale(0.95)';
+                card.style.opacity = isVisible ? '1' : '0.7';
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < maxSlide) {
+                currentSlide++;
+                updateSlider();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlider();
+            }
+        });
+
+        // Enhanced auto-play with pause on hover
+        let autoPlayInterval;
+        
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                if (currentSlide < maxSlide) {
+                    currentSlide++;
+                } else {
+                    currentSlide = 0;
+                }
+                updateSlider();
+            }, 6000);
+        }
+        
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+        
+        // Pause auto-play on hover
+        reviewsCards.addEventListener('mouseenter', stopAutoPlay);
+        reviewsCards.addEventListener('mouseleave', startAutoPlay);
+        
+        // Initialize slider and start auto-play
+        updateSlider();
+        startAutoPlay();
+
+        // Enhanced social links animation
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.15) rotate(5deg)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+            });
+        });
+
+        // Add floating animation to review cards
+        document.querySelectorAll('.review-card').forEach((card, index) => {
+            card.style.animation = `float 6s ease-in-out ${index * 0.5}s infinite`;
+        });
+
+        // Add floating keyframes
+        const floatStyle = document.createElement('style');
+        floatStyle.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(floatStyle);
+    </script>
+</body>
+</html>
+              
