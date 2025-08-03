@@ -938,8 +938,7 @@
             transform: scale(1.2);
         }
         
-        /* Footer - Responsive */
-        .footer {
+     .footer {
             background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 50%, var(--cream) 100%);
             color: var(--text-dark);
             padding: 4rem 0 0;
@@ -1007,10 +1006,11 @@
             font-style: italic;
         }
         
+        /* Plain Footer Content - No Cards */
         .footer-content {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 3rem;
             margin-bottom: 3rem;
             position: relative;
             z-index: 2;
@@ -1018,19 +1018,7 @@
         
         .footer-section {
             text-align: center;
-            padding: 1.5rem;
-            background: rgba(254, 252, 247, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(212, 165, 116, 0.1);
-        }
-        
-        .footer-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            background: rgba(254, 252, 247, 0.95);
+            /* Removed all card styling */
         }
         
         .footer-section h3 {
@@ -1100,8 +1088,9 @@
         }
         
         .social-link {
-            width: 45px;
-            height: 45px;
+            width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
             background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
             border-radius: 50%;
             display: flex;
@@ -1191,6 +1180,42 @@
         
         .footer-links a:hover::after {
             width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 576px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+                text-align: left;
+            }
+            
+            .footer-section h3::after {
+                left: 0;
+                transform: none;
+            }
+            
+            .contact-item {
+                justify-content: flex-start;
+            }
+            
+            .social-links {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .footer-bottom-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
         }
         
         /* Animations */
@@ -1874,15 +1899,16 @@
         </div>
     </section>
 
-    <footer class="footer">
+   <footer class="footer">
         <div class="footer-top">
             <div class="container">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-  <img src="stanwyck.png" alt="Logo Icon" class="logo-icon" />
-  <div class="logo-text">
-    STAN<span class="logoa">WYCK</span>
-  </div>
+                        <img src="stanwyck.png" alt="Logo Icon" class="logo-icon" />
+                        <div class="logo-text">
+                            STAN<span class="logoa">WYCK</span>
+                        </div>
+                    </a>
                     <p class="footer-tagline">Creating exceptional interior spaces that inspire and elevate your lifestyle. Experience the pinnacle of luxury design.</p>
                 </div>
                 
