@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXORIA - Premium Interior Design</title>
+    <title>STAN WYCK - Premium Interior Design</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
@@ -36,7 +36,7 @@
             overflow-x: hidden;
         }
         
-        /* Header */
+        /* Header - Responsive */
         .header {
             position: fixed;
             top: 0;
@@ -63,19 +63,52 @@
             padding: 0 2rem;
         }
         
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--deep-navy);
-            text-decoration: none;
-            letter-spacing: 3px;
-            transition: all 0.3s ease;
-        }
+     .logo {
+    display: flex;
+    flex-direction: column; /* Stack image over text */
+    align-items: center;    /* Center both */
+    text-decoration: none;
+    gap: 0.3rem;
+}
+
+.logo-icon {
+    height: 50px; /* Adjust as needed */
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; /* Slightly smaller than image for balance */
+    font-weight: 500;
+    color: var(--deep-navy);
+    letter-spacing: 3px;
+    transition: all 0.3s ease;
+    display: flex;
+    gap: 0.2rem;
+}
+
+.logo-text .logoa {
+    font-weight: 1000;
+    color: var(--royal-gold);
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+}
+
+
         
         .logo:hover {
             color: var(--royal-gold);
             transform: scale(1.05);
+        }
+        
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--deep-navy);
+            z-index: 1001;
         }
         
         .nav-links {
@@ -134,14 +167,17 @@
             box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
         }
         
-        /* Hero Section */
+        /* Hero Section - Responsive */
         .hero {
-            height: 100vh;
+            height: auto;
+            min-height: 100vh;
             background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 100%);
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
+            margin-top: 40px;
+            padding: 6rem 0 4rem;
         }
         
         .hero::before {
@@ -160,14 +196,14 @@
             margin: 0 auto;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
             align-items: center;
-            height: 100%;
         }
         
         .hero-text {
             animation: fadeInUp 1s ease-out;
+            text-align: center;
         }
         
         .hero-subtitle {
@@ -182,32 +218,37 @@
         
         .hero-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4.5rem;
+            font-size: 3rem;
             font-weight: 400;
             color: var(--deep-navy);
             line-height: 1.1;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             letter-spacing: -1px;
         }
         
         .hero-description {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-light);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             line-height: 1.8;
             font-family: 'Crimson Text', serif;
             font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .hero-buttons {
             display: flex;
             gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         .btn-primary {
             background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
             color: white;
-            padding: 1rem 2.5rem;
+            padding: 1rem 2rem;
             border: none;
             border-radius: 50px;
             font-weight: 500;
@@ -222,7 +263,7 @@
         .btn-secondary {
             background: transparent;
             color: var(--deep-navy);
-            padding: 1rem 2.5rem;
+            padding: 1rem 2rem;
             border: 2px solid var(--deep-navy);
             border-radius: 50px;
             font-weight: 500;
@@ -248,11 +289,14 @@
         .hero-image {
             position: relative;
             animation: fadeInRight 1s ease-out;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .hero-img {
             width: 100%;
-            height: 600px;
+            height: auto;
+            max-height: 500px;
             object-fit: cover;
             border-radius: 20px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
@@ -264,9 +308,9 @@
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
         }
         
-        /* How It Works Section */
+        /* How It Works Section - Responsive */
         .how-it-works {
-            padding: 8rem 0;
+            padding: 5rem 0;
             background: var(--warm-white);
             position: relative;
             overflow: hidden;
@@ -280,7 +324,7 @@
         
         .section-header {
             text-align: center;
-            margin-bottom: 6rem;
+            margin-bottom: 4rem;
         }
         
         .section-subtitle {
@@ -295,14 +339,14 @@
         
         .section-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 400;
             color: var(--deep-navy);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
         
         .section-description {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-light);
             max-width: 600px;
             margin: 0 auto;
@@ -313,13 +357,13 @@
         .steps {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 6rem;
+            gap: 4rem;
         }
         
         .step {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             align-items: center;
             opacity: 0;
             transform: translateY(50px);
@@ -339,18 +383,19 @@
             backdrop-filter: blur(10px);
             border-radius: 15px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            order: 2;
         }
         
         .step-content h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--deep-navy);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             font-weight: 500;
         }
         
         .step-number {
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: 200;
             color: var(--royal-gold);
             opacity: 0.3;
@@ -365,21 +410,21 @@
         .step-content p {
             color: var(--text-light);
             line-height: 1.8;
-            font-size: 1rem;
-            max-width: 90%;
+            font-size: 0.95rem;
             font-family: 'Crimson Text', serif;
         }
         
         .step-images {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 1rem;
-            height: 400px;
+            height: auto;
+            order: 1;
         }
         
         .step-img {
             width: 100%;
-            height: 100%;
+            height: 300px;
             object-fit: cover;
             border-radius: 15px;
             transition: all 0.3s ease;
@@ -391,26 +436,22 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .step-img:first-child {
-            grid-row: 1 / 3;
-        }
-        
-        /* Featured Work Section */
+        /* Featured Work Section - Responsive */
         .featured-work {
-            padding: 8rem 0;
+            padding: 5rem 0;
             background: var(--cream);
         }
         
         .work-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
-            margin-top: 4rem;
+            margin-top: 3rem;
         }
         
         .work-item {
             position: relative;
-            height: 500px;
+            height: 400px;
             border-radius: 20px;
             overflow: hidden;
             cursor: pointer;
@@ -440,7 +481,7 @@
             right: 0;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
             color: white;
-            padding: 3rem 2rem 2rem;
+            padding: 2rem 1.5rem;
             transform: translateY(100px);
             transition: all 0.5s ease;
         }
@@ -451,24 +492,24 @@
         
         .work-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
             font-weight: 500;
         }
         
         .work-category {
             color: var(--royal-gold);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-family: 'Montserrat', sans-serif;
         }
         
-        /* Enhanced Reviews Section */
+        /* Reviews Section - Responsive */
         .reviews {
-            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--royal-purple) 50%, var(--deep-emerald) 100%);
-            padding: 8rem 0;
-            color: white;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 50%, var(--cream) 100%);
+            padding: 5rem 0;
+            color: var(--text-dark);
             overflow: hidden;
             position: relative;
         }
@@ -480,51 +521,172 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 40%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(74, 44, 122, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 80%, rgba(27, 75, 54, 0.1) 0%, transparent 50%);
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(212, 165, 116, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 40%, rgba(212, 165, 116, 0.02) 50%, transparent 60%);
             pointer-events: none;
+        }
+        
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .reviews-subtitle {
+            color: var(--royal-gold);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .reviews-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--accent-brown));
+        }
+        
+        .reviews-main-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--deep-navy);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        
+        .reviews-description {
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+        }
+        
+        .reviews-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.2rem;
+            background: rgba(254, 252, 247, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(212, 165, 116, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--royal-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .reviews-content {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
             align-items: center;
             position: relative;
             z-index: 2;
         }
         
+        .reviews-text {
+            text-align: center;
+        }
+        
         .reviews-label {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-            font-weight: 400;
+            color: var(--royal-gold);
+            font-size: 0.85rem;
+            font-weight: 500;
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             font-family: 'Montserrat', sans-serif;
-            animation: fadeInLeft 1s ease-out;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .reviews-label::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--royal-gold);
         }
         
         .reviews-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
+            font-size: 2.2rem;
             font-weight: 400;
             line-height: 1.1;
-            margin-bottom: 3rem;
-            color: white;
-            background: linear-gradient(135deg, #ffffff 0%, var(--royal-gold) 50%, #ffffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInLeft 1s ease-out 0.2s both;
+            margin-bottom: 1.5rem;
+            color: var(--deep-navy);
+        }
+        
+        .reviews-title .highlight {
+            color: var(--royal-gold);
+            font-style: italic;
+        }
+        
+        .reviews-text-description {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-family: 'Crimson Text', serif;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .reviews-btn {
             background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
             color: white;
             border: none;
-            padding: 1rem 2.5rem;
+            padding: 1rem 2rem;
             border-radius: 50px;
             font-weight: 500;
             cursor: pointer;
@@ -535,7 +697,7 @@
             font-family: 'Montserrat', sans-serif;
             position: relative;
             overflow: hidden;
-            animation: fadeInLeft 1s ease-out 0.4s both;
+            display: inline-block;
         }
         
         .reviews-btn::before {
@@ -554,72 +716,124 @@
         }
         
         .reviews-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
         }
         
         .reviews-slider {
-            position: relative;
-            animation: fadeInRight 1s ease-out 0.3s both;
-        }
-        
-        .reviews-cards {
-            display: flex;
-            gap: 2rem;
-            transition: transform 0.5s ease;
-            overflow: visible;
-        }
-        
-        .review-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(254, 252, 247, 0.9) 100%);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 2.5rem;
-            min-width: 350px;
-            color: var(--text-dark);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(212, 165, 116, 0.2);
-        }
-        
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 1rem;
+}
+
+.reviews-cards {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: visible;
+}
+
+.review-card {
+    background: linear-gradient(135deg, var(--warm-white) 0%, rgba(248, 246, 240, 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2rem;
+    min-width: 300px;
+    flex: 0 0 auto;
+    color: var(--text-dark);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(212, 165, 116, 0.15);
+}
         .review-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--royal-gold), var(--accent-brown), var(--royal-purple));
+            height: 4px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--accent-brown));
+        }
+        
+        .review-card::after {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 6rem;
+            color: rgba(212, 165, 116, 0.1);
+            font-weight: 700;
+            line-height: 1;
+            z-index: 1;
         }
         
         .review-card:hover {
             transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(254, 252, 247, 0.95) 100%);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(212, 165, 116, 0.3);
+        }
+        
+        .reviewer-info {
+            flex: 1;
         }
         
         .reviewer-name {
-            color: var(--royal-gold);
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
+            color: var(--deep-navy);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
             font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        }
+        
+        .reviewer-location {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
         }
         
         .stars {
             display: flex;
             gap: 0.3rem;
             margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
         
         .stars i {
             color: #FFD700;
             font-size: 1rem;
             transition: transform 0.2s ease;
+            filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
         }
         
         .review-card:hover .stars i {
@@ -628,80 +842,110 @@
         
         .review-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 500;
             color: var(--deep-navy);
             margin-bottom: 1rem;
+            line-height: 1.3;
+            position: relative;
+            z-index: 2;
         }
         
         .review-text {
             color: var(--text-light);
-            line-height: 1.7;
+            line-height: 1.8;
             font-size: 0.95rem;
             font-family: 'Crimson Text', serif;
+            position: relative;
+            z-index: 2;
         }
         
         .reviews-navigation {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            justify-content: center;
+            gap: 1.5rem;
             margin-top: 3rem;
+            position: relative;
+            z-index: 2;
         }
         
         .nav-btn {
-            background: transparent;
-            color: white;
-            border: none;
-            font-size: 0.9rem;
+            background: var(--warm-white);
+            color: var(--deep-navy);
+            border: 2px solid var(--royal-gold);
+            font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 2px;
             cursor: pointer;
             transition: all 0.3s ease;
-            opacity: 0.7;
             font-family: 'Montserrat', sans-serif;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-transform: uppercase;
             position: relative;
-            padding: 0.5rem 1rem;
+            overflow: hidden;
         }
         
-        .nav-btn::after {
+        .nav-btn::before {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .nav-btn:hover::before {
             left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--royal-gold);
-            transition: width 0.3s ease;
         }
         
         .nav-btn:hover {
-            opacity: 1;
-            color: var(--royal-gold);
-            transform: translateY(-2px);
-        }
-        
-        .nav-btn:hover::after {
-            width: 100%;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
         }
         
         .nav-btn.active {
-            opacity: 1;
-            color: var(--royal-gold);
-        }
-        
-        .nav-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, rgba(212, 165, 116, 0.5), transparent);
-        }
-        
-        /* Enhanced Footer */
-        .footer {
-            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--charcoal) 50%, var(--rich-burgundy) 100%);
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
             color: white;
-            padding: 4rem 0 2rem;
+        }
+        
+        .nav-dots {
+            display: flex;
+            gap: 0.8rem;
+        }
+        
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(212, 165, 116, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: var(--royal-gold);
+            transform: scale(1.3);
+        }
+        
+        .nav-dot:hover {
+            background: var(--royal-gold);
+            transform: scale(1.2);
+        }
+        
+        /* Footer - Responsive */
+        .footer {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 50%, var(--cream) 100%);
+            color: var(--text-dark);
+            padding: 4rem 0 0;
             position: relative;
             overflow: hidden;
+            border-top: 3px solid var(--royal-gold);
         }
         
         .footer::before {
@@ -711,66 +955,114 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 20%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(114, 47, 55, 0.1) 0%, transparent 50%),
-                        linear-gradient(45deg, transparent 30%, rgba(212, 165, 116, 0.03) 50%, transparent 70%);
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(212, 165, 116, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 40%, rgba(212, 165, 116, 0.02) 50%, transparent 60%);
             pointer-events: none;
+        }
+        
+        .footer-top {
+            position: relative;
+            z-index: 2;
+            padding-bottom: 3rem;
+        }
+        
+        .footer-brand {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--accent-brown));
+        }
+        
+        .footer-tagline {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-style: italic;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             margin-bottom: 3rem;
             position: relative;
             z-index: 2;
         }
         
         .footer-section {
-            animation: fadeInUp 0.8s ease-out;
-            transition: transform 0.3s ease;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(254, 252, 247, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 165, 116, 0.1);
         }
         
         .footer-section:hover {
             transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: rgba(254, 252, 247, 0.95);
         }
         
         .footer-section h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-bottom: 1.5rem;
-            color: var(--royal-gold);
-            background: linear-gradient(135deg, var(--royal-gold) 0%, #f4d03f 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--deep-navy);
             font-weight: 500;
+            position: relative;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 2px;
+            background: var(--royal-gold);
         }
         
         .footer-section p,
         .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-light);
             text-decoration: none;
             line-height: 1.8;
             transition: all 0.3s ease;
             font-family: 'Crimson Text', serif;
-            position: relative;
-        }
-        
-        .footer-section a {
-            display: inline-block;
-            padding: 0.2rem 0;
-        }
-        
-        .footer-section a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--royal-gold);
-            transition: width 0.3s ease;
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+            display: block;
         }
         
         .footer-section a:hover {
@@ -778,14 +1070,33 @@
             transform: translateX(5px);
         }
         
-        .footer-section a:hover::after {
-            width: 100%;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            padding: 0.6rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(212, 165, 116, 0.1);
+        }
+        
+        .contact-item i {
+            color: var(--royal-gold);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
         }
         
         .social-links {
             display: flex;
             gap: 1rem;
-            margin-top: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
         }
         
         .social-link {
@@ -799,6 +1110,8 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            color: white;
         }
         
         .social-link::before {
@@ -808,7 +1121,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s;
         }
         
@@ -817,24 +1130,70 @@
         }
         
         .social-link:hover {
-            background: linear-gradient(135deg, white, var(--cream));
-            color: var(--deep-navy);
+            background: var(--deep-navy);
             transform: translateY(-8px) scale(1.1);
             box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
         }
         
         .footer-bottom {
-            border-top: 1px solid rgba(212, 165, 116, 0.3);
-            padding-top: 2rem;
+            background: var(--deep-navy);
+            padding: 1.5rem 0;
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
             position: relative;
             z-index: 2;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
         }
         
-        /* Enhanced Animations */
+        .footer-bottom-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--royal-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--royal-gold);
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -868,183 +1227,421 @@
             }
         }
         
-        @keyframes shimmer {
-            0% {
-                background-position: -200px 0;
-            }
-            100% {
-                background-position: calc(200px + 100%) 0;
-            }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
         
-        /* Responsive Design */
-        @media (max-width: 1024px) {
+        /* Responsive Design - Media Queries */
+        @media (min-width: 576px) {
             .hero-title {
                 font-size: 3.5rem;
             }
             
             .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .reviews-main-title {
                 font-size: 3rem;
+            }
+            
+            .work-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .step-images {
+                grid-template-columns: 1fr 1fr;
+                height: 300px;
+            }
+            
+            .step-img:first-child {
+                grid-row: 1 / 3;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Tablet adjustments */
+@media (max-width: 768px) {
+    .reviews-slider {
+        padding: 0 0.75rem;
+    }
+    
+    .review-card {
+        min-width: 280px;
+        padding: 1.8rem;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+    .reviews-slider {
+        padding: 0 1rem;
+    }
+    
+    .reviews-cards {
+        gap: 1rem;
+    }
+    
+    .review-card {
+        min-width: 260px; /* Fixed smaller width */
+        max-width: 260px;
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+    
+    .review-card:hover {
+        transform: translateY(-8px) scale(1.01);
+    }
+    
+    .reviewer-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .review-header {
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .reviewer-name {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .reviewer-location {
+        font-size: 0.75rem;
+    }
+    
+    .stars {
+        margin-bottom: 1rem;
+        gap: 0.2rem;
+    }
+    
+    .stars i {
+        font-size: 0.85rem;
+    }
+    
+    .review-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.2;
+    }
+    
+    .review-text {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+    
+    .review-card::after {
+        font-size: 3.5rem;
+        top: 0.5rem;
+        right: 0.75rem;
+    }
+    
+    .reviews-navigation {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+        border-radius: 25px;
+    }
+    
+    .nav-dots {
+        order: -1; /* Move dots above buttons */
+    }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+    .reviews-slider {
+        padding: 0 0.5rem;
+    }
+    
+    .review-card {
+        min-width: 240px; /* Even smaller for very small screens */
+        max-width: 240px;
+        padding: 1.25rem;
+        border-radius: 12px;
+    }
+    
+    .reviewer-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .review-title {
+        font-size: 1rem;
+    }
+    
+    .review-text {
+        font-size: 0.75rem;
+    }
+    
+    .review-card::after {
+        font-size: 3rem;
+        top: 0.25rem;
+        right: 0.5rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .reviews-slider {
+        padding: 0 0.25rem;
+    }
+    
+    .review-card {
+        min-width: 220px;
+        max-width: 220px;
+        padding: 1rem;
+    }
+    
+    .reviewer-name {
+        font-size: 0.85rem;
+    }
+    
+    .reviewer-location {
+        font-size: 0.7rem;
+    }
+    
+    .review-title {
+        font-size: 0.95rem;
+    }
+    
+    .review-text {
+        font-size: 0.7rem;
+    }
+}
+        @media (min-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+                padding-top: 0;
+            }
+            
+            .hero-text {
+                text-align: left;
+            }
+            
+            .hero-description {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+            
+            .hero-img {
+                max-height: 600px;
+            }
+            
+            .step {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+            
+            .step-content {
+                order: 0;
+            }
+            
+            .step:nth-child(even) .step-content {
+                order: 1;
+            }
+            
+            .step:nth-child(even) .step-images {
+                order: 0;
+            }
+            
+            .reviews-text {
+                text-align: left;
+            }
+            
+            .reviews-label::after {
+                left: 0;
+                transform: none;
+            }
+            
+            .reviews-title {
+                font-size: 2.8rem;
+            }
+            
+            .reviews-text-description {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .work-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .section-title {
+                font-size: 3.2rem;
+            }
+            
+            .reviews-main-title {
+                font-size: 3.5rem;
             }
             
             .reviews-title {
                 font-size: 3.2rem;
             }
             
-            .step-content h3 {
-                font-size: 1.8rem;
-            }
-            
-            .step-images {
-                order: -1;
-                height: 400px;
-            }
-            
-            .step-content {
-                padding: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding-top: 4rem;
-            }
-            
-            .hero-title {
-                font-size: 2.8rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .reviews-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .hero-img {
-                height: 400px;
-            }
-            
-            .steps {
-                gap: 4rem;
-            }
-            
-            .section-header {
-                margin-bottom: 4rem;
+            .reviews-content {
+                grid-template-columns: 1fr 2fr;
             }
             
             .step-images {
                 height: 350px;
             }
-            
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .reviews-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .review-card {
-                min-width: 300px;
-            }
         }
         
-        @media (max-width: 600px) {
+        @media (min-width: 1200px) {
             .hero-title {
-                font-size: 2.2rem;
+                font-size: 4.5rem;
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 3.5rem;
+            }
+            
+            .reviews-main-title {
+                font-size: 4rem;
             }
             
             .reviews-title {
-                font-size: 2rem;
+                font-size: 3.5rem;
             }
             
             .step-images {
-                height: 300px;
-                grid-template-columns: 1fr;
-            }
-            
-            .step-img:first-child {
-                grid-row: auto;
-            }
-            
-            .step-content h3 {
-                font-size: 1.6rem;
-            }
-            
-            .step-content p {
-                max-width: 100%;
-                font-size: 0.95rem;
-                line-height: 1.7;
-                margin-bottom: 1rem;
-                background: rgba(254, 252, 247, 0.8);
-                padding: 0.5rem;
-                border-radius: 5px;
-                backdrop-filter: blur(5px);
-                -webkit-backdrop-filter: blur(5px);
-                border: 1px solid rgba(212, 165, 116, 0.1);
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-                text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
-            }
-            
-            .step-content {
-                position: relative;
-                z-index: 2;
-            }
-            
-            .step-number {
-                font-size: 4rem;
-                top: -20px;
-            }
-            
-            .step-content::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(254, 252, 247, 0.7);
-                backdrop-filter: blur(5px);
-                -webkit-backdrop-filter: blur(5px);
-                border-radius: 15px;
-                z-index: -1;
+                height: 400px;
             }
         }
-
         
+        /* Mobile Navigation */
+        @media (max-width: 991px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: rgba(254, 252, 247, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                transition: right 0.4s ease;
+                z-index: 1000;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .cta-btn {
+                display: none;
+            }
+            
+            .nav-cta-mobile {
+                display: block;
+                margin-top: 2rem;
+            }
+        }
+        
+        /* Mobile Menu Animation */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Fix for duplicate button */
+        .nav-cta-mobile {
+            display: none;
+        }
+        
+        @media (max-width: 991px) {
+            .nav-cta-mobile {
+                display: block;
+                margin-top: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
     <header class="header" id="header">
         <nav class="nav">
-            <a href="#" class="logo">LUXORIA</a>
-            <ul class="nav-links">
+          <a href="#" class="logo">
+  <img src="stanwyck.png" alt="Logo Icon" class="logo-icon" />
+  <div class="logo-text">
+    STAN<span class="logoa">WYCK</span>
+  </div>
+</a>
+
+<div> <span> <a href=""></a></span></div>
+
+
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#" class="nav-link">Home</a></li>
                 <li><a href="#" class="nav-link">Portfolio</a></li>
                 <li><a href="#" class="nav-link">Services</a></li>
                 <li><a href="#" class="nav-link">About</a></li>
                 <li><a href="#" class="nav-link">Contact</a></li>
+                <li class="nav-cta-mobile">
+                    <button class="cta-btn">Get Started</button>
+                </li>
             </ul>
+            
             <button class="cta-btn">Get Started</button>
         </nav>
     </header>
+    
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
     <section class="hero">
         <div class="hero-content">
@@ -1069,7 +1666,7 @@
     <section class="how-it-works" id="how-it-works">
         <div class="container">
             <div class="section-header">
-                <p class="section-subtitle">How Luxoria Works</p>
+                <p class="section-subtitle">How STANWYCK Works</p>
                 <h2 class="section-title">Your Journey to Perfect Design</h2>
                 <p class="section-description">
                     Our streamlined process ensures every detail is perfect, 
@@ -1146,19 +1743,53 @@
         </div>
     </section>
 
-   <section class="reviews">
+    <section class="reviews">
         <div class="container">
+            <div class="reviews-header">
+                <p class="reviews-subtitle">CLIENT TESTIMONIALS</p>
+                <h2 class="reviews-main-title">What Our Clients Say</h2>
+                <p class="reviews-description">
+                    Discover why homeowners and businesses trust STANWYCK to transform 
+                    their spaces into works of art. Every review tells a story of excellence.
+                </p>
+                
+                <div class="reviews-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">100K+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4.9</span>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                </div>
+            </div>
+            
             <div class="reviews-content">
                 <div class="reviews-text">
-                    <p class="reviews-label">REVIEWS</p>
-                    <h2 class="reviews-title">Over 100,000<br>designs completed<br>for happy clients.</h2>
-                    <button class="reviews-btn">SEE ALL REVIEWS</button>
+                    <p class="reviews-label">TESTIMONIALS</p>
+                    <h3 class="reviews-title">Transforming <span class="highlight">dreams</span><br>into reality, one<br>space at a time.</h3>
+                    <p class="reviews-text-description">
+                        Our commitment to excellence has earned us the trust of discerning clients 
+                        who value quality, creativity, and attention to detail.
+                    </p>
+                    <button class="reviews-btn">VIEW ALL REVIEWS</button>
                 </div>
                 
                 <div class="reviews-slider">
                     <div class="reviews-cards" id="reviewsCards">
                         <div class="review-card">
-                            <p class="reviewer-name">by Shaniece</p>
+                            <div class="review-header">
+                                <div class="reviewer-avatar">S</div>
+                                <div class="reviewer-info">
+                                    <p class="reviewer-name">Shaniece Williams</p>
+                                    <p class="reviewer-location">Mumbai, India</p>
+                                </div>
+                            </div>
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1166,12 +1797,18 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <h3 class="review-title">Another Masterpiece</h3>
-                            <p class="review-text">This was my second time working with the same designer with Havenly. She understands what we like more than we even understand it. I wouldn't change anything from beginning to end, the process was stellar. The level of detail of the designs and the items chosen compared to my vision are an absolute match. I will always work with Havenly for my design needs.</p>
+                            <h4 class="review-title">Another Masterpiece</h4>
+                            <p class="review-text">This was my second time working with the same designer with Luxoria. She understands what we like more than we even understand it. I wouldn't change anything from beginning to end, the process was stellar.</p>
                         </div>
                         
                         <div class="review-card">
-                            <p class="reviewer-name">by Pam</p>
+                            <div class="review-header">
+                                <div class="reviewer-avatar">P</div>
+                                <div class="reviewer-info">
+                                    <p class="reviewer-name">Pam Rodriguez</p>
+                                    <p class="reviewer-location">Delhi, India</p>
+                                </div>
+                            </div>
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1179,12 +1816,18 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <h3 class="review-title">Amazing experience!!</h3>
-                            <p class="review-text">The entire process was seamless and fun. The designer incorporated new and existing furniture pieces, recommended changing the floorplan/layout to maximize the functionality of the space and chose beautiful accent pieces that I adore. I'm very pleased with the final result.</p>
+                            <h4 class="review-title">Amazing Experience!</h4>
+                            <p class="review-text">The entire process was seamless and fun. The designer incorporated new and existing furniture pieces, recommended changing the floorplan to maximize functionality.</p>
                         </div>
                         
                         <div class="review-card">
-                            <p class="reviewer-name">by Blaine</p>
+                            <div class="review-header">
+                                <div class="reviewer-avatar">B</div>
+                                <div class="reviewer-info">
+                                    <p class="reviewer-name">Blaine Thompson</p>
+                                    <p class="reviewer-location">Bangalore, India</p>
+                                </div>
+                            </div>
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1192,12 +1835,18 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <h3 class="review-title">What a lifesaver!</h3>
-                            <p class="review-text">Havenly saved me! I worked with Kaylee to design an entire small house in less than 1 month. It was fun, efficient and the house looks like it is out of a catalog. Thank you so much!</p>
+                            <h4 class="review-title">What a Lifesaver!</h4>
+                            <p class="review-text">Luxoria saved me! I worked with their team to design an entire house in less than 1 month. It was fun, efficient and the house looks like it's straight out of a luxury catalog.</p>
                         </div>
                         
                         <div class="review-card">
-                            <p class="reviewer-name">by Liz</p>
+                            <div class="review-header">
+                                <div class="reviewer-avatar">L</div>
+                                <div class="reviewer-info">
+                                    <p class="reviewer-name">Liz Chen</p>
+                                    <p class="reviewer-location">Hyderabad, India</p>
+                                </div>
+                            </div>
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1205,67 +1854,125 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <h3 class="review-title">Best investment!</h3>
-                            <p class="review-text">Buying my first home was overwhelming, but I found the best designer to help me create the perfect space. The process was smooth and I have ideas for years to come. Thank you for having a professional team that made this such my favorite part.</p>
+                            <h4 class="review-title">Best Investment!</h4>
+                            <p class="review-text">Buying my first home was overwhelming, but I found the best designer to help me create the perfect space. The process was smooth and I have design ideas for years to come.</p>
                         </div>
                     </div>
                     
                     <div class="reviews-navigation">
-                        <button class="nav-btn prev-btn" id="prevBtn">PREV</button>
-                        <div class="nav-line"></div>
-                        <button class="nav-btn next-btn" id="nextBtn">NEXT</button>
+                        <button class="nav-btn prev-btn" id="prevBtn">← PREVIOUS</button>
+                        <div class="nav-dots">
+                            <span class="nav-dot active"></span>
+                            <span class="nav-dot"></span>
+                            <span class="nav-dot"></span>
+                            <span class="nav-dot"></span>
+                        </div>
+                        <button class="nav-btn next-btn" id="nextBtn">NEXT →</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-  <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Luxoria</h3>
-                    <p>Creating exceptional interior spaces that inspire and elevate your lifestyle. Experience the pinnacle of luxury design with our expert team.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+  <img src="stanwyck.png" alt="Logo Icon" class="logo-icon" />
+  <div class="logo-text">
+    STAN<span class="logoa">WYCK</span>
+  </div>
+                    <p class="footer-tagline">Creating exceptional interior spaces that inspire and elevate your lifestyle. Experience the pinnacle of luxury design.</p>
+                </div>
+                
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Our Services</h3>
+                        <a href="#">Residential Design</a>
+                        <a href="#">Commercial Spaces</a>
+                        <a href="#">3D Visualization</a>
+                        <a href="#">Project Management</a>
+                        <a href="#">Custom Furniture</a>
+                        <a href="#">Color Consultation</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <a href="#">About Luxoria</a>
+                        <a href="#">Our Portfolio</a>
+                        <a href="#">Design Team</a>
+                        <a href="#">Client Stories</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Press & Media</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Get In Touch</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@luxoria.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Brigade Road, Bangalore</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Sat: 9:00 AM - 7:00 PM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <p>Stay connected for design inspiration and latest updates</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <p><a href="#">Residential Design</a></p>
-                    <p><a href="#">Commercial Spaces</a></p>
-                    <p><a href="#">3D Visualization</a></p>
-                    <p><a href="#">Project Management</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <p><a href="#">About Us</a></p>
-                    <p><a href="#">Our Team</a></p>
-                    <p><a href="#">Careers</a></p>
-                    <p><a href="#">Press</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p>+91 98765 43210</p>
-                    <p>hello@luxoria.com</p>
-                    <p> Brigade Road, Bangalore - 560025</p>
-                    <p> Mon-Sat: 9:00 AM - 7:00 PM</p>
-                </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Luxoria. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Luxoria. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Sitemap</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // Mobile Navigation
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        });
+        
+        mobileMenuOverlay.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
@@ -1320,221 +2027,161 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                }
-            });
-        });
-
-        // Enhanced image hover effects
-        document.querySelectorAll('.work-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
-                this.style.transition = 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Enhanced button click animations with ripple effect
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.cssText = `
-                    position: absolute;
-                    width: ${size}px;
-                    height: ${size}px;
-                    left: ${x}px;
-                    top: ${y}px;
-                    background: rgba(255, 255, 255, 0.4);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    animation: ripple 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                    z-index: 1000;
-                `;
-                
-                this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 800);
-            });
-        });
-
-        // Enhanced ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                from {
-                    transform: scale(0);
-                    opacity: 0.8;
-                }
-                to {
-                    transform: scale(2.5);
-                    opacity: 0;
-                }
-            }
-            
-            button {
-                position: relative;
-                overflow: hidden;
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Enhanced parallax effect
-        let ticking = false;
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const reviews = document.querySelector('.reviews');
-            const footer = document.querySelector('.footer');
-            
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-            
-            if (reviews && scrolled > reviews.offsetTop - window.innerHeight) {
-                const reviewsOffset = scrolled - (reviews.offsetTop - window.innerHeight);
-                reviews.style.transform = `translateY(${reviewsOffset * -0.1}px)`;
-            }
-            
-            if (footer && scrolled > footer.offsetTop - window.innerHeight) {
-                const footerOffset = scrolled - (footer.offsetTop - window.innerHeight);
-                footer.style.transform = `translateY(${footerOffset * -0.05}px)`;
-            }
-            
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        });
-
-        // Enhanced image lazy loading with staggered fade in
-        const images = document.querySelectorAll('img');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.style.opacity = '0';
-                    img.style.transform = 'translateY(30px)';
-                    img.style.transition = `all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s`;
                     
-                    img.onload = () => {
-                        img.style.opacity = '1';
-                        img.style.transform = 'translateY(0)';
-                    };
-                    
-                    if (img.complete) {
-                        img.style.opacity = '1';
-                        img.style.transform = 'translateY(0)';
-                    }
-                    
-                    observer.unobserve(img);
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 }
             });
         });
-
-        images.forEach(img => imageObserver.observe(img));
 
         // Enhanced reviews slider functionality
         let currentSlide = 0;
         const reviewsCards = document.getElementById('reviewsCards');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const totalCards = document.querySelectorAll('.review-card').length;
-        const cardsPerView = window.innerWidth > 768 ? 3 : 1;
-        const maxSlide = Math.max(0, totalCards - cardsPerView);
-
-        function updateSlider() {
-            const translateX = currentSlide * -(100 / cardsPerView);
-            reviewsCards.style.transform = `translateX(${translateX}%)`;
-            reviewsCards.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            
-            // Update button states with enhanced styling
-            prevBtn.classList.toggle('active', currentSlide > 0);
-            nextBtn.classList.toggle('active', currentSlide < maxSlide);
-            
-            // Add scale animation to visible cards
-            document.querySelectorAll('.review-card').forEach((card, index) => {
-                const isVisible = index >= currentSlide && index < currentSlide + cardsPerView;
-                card.style.transform = isVisible ? 'scale(1)' : 'scale(0.95)';
-                card.style.opacity = isVisible ? '1' : '0.7';
-            });
-        }
-
-        nextBtn.addEventListener('click', () => {
-            if (currentSlide < maxSlide) {
-                currentSlide++;
-                updateSlider();
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlider();
-            }
-        });
-
-        // Enhanced auto-play with pause on hover
-        let autoPlayInterval;
+        const dots = document.querySelectorAll('.nav-dot');
         
-        function startAutoPlay() {
-            autoPlayInterval = setInterval(() => {
-                if (currentSlide < maxSlide) {
-                    currentSlide++;
-                } else {
-                    currentSlide = 0;
+        function initializeReviewsSlider() {
+            const totalCards = document.querySelectorAll('.review-card').length;
+            const cardsPerView = window.innerWidth > 768 ? 3 : 1;
+            const maxSlide = Math.max(0, totalCards - cardsPerView);
+
+            function updateSlider() {
+                if (!reviewsCards) return;
+                
+                const translateX = currentSlide * -(100 / cardsPerView);
+                reviewsCards.style.transform = `translateX(${translateX}%)`;
+                reviewsCards.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                
+                // Update dots if they exist
+                if (dots.length > 0) {
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentSlide);
+                    });
+                }
+                
+                // Update button states
+                if (prevBtn) prevBtn.classList.toggle('active', currentSlide > 0);
+                if (nextBtn) nextBtn.classList.toggle('active', currentSlide < maxSlide);
+            }
+
+            // Next button functionality
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    if (currentSlide < maxSlide) {
+                        currentSlide++;
+                        updateSlider();
+                    }
+                });
+            }
+
+            // Previous button functionality
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        updateSlider();
+                    }
+                });
+            }
+
+            // Dot navigation
+            if (dots.length > 0) {
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentSlide = index;
+                        updateSlider();
+                    });
+                });
+            }
+
+            // Auto-play functionality
+            let autoPlayInterval;
+            
+            function startAutoPlay() {
+                autoPlayInterval = setInterval(() => {
+                    if (currentSlide < maxSlide) {
+                        currentSlide++;
+                    } else {
+                        currentSlide = 0;
+                    }
+                    updateSlider();
+                }, 5000);
+            }
+            
+            function stopAutoPlay() {
+                clearInterval(autoPlayInterval);
+            }
+            
+            // Pause auto-play on hover
+            if (reviewsCards) {
+                reviewsCards.addEventListener('mouseenter', stopAutoPlay);
+                reviewsCards.addEventListener('mouseleave', startAutoPlay);
+            }
+            
+            // Initialize slider
+            updateSlider();
+            startAutoPlay();
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                const newCardsPerView = window.innerWidth > 768 ? 3 : 1;
+                const newMaxSlide = Math.max(0, totalCards - newCardsPerView);
+                
+                if (currentSlide > newMaxSlide) {
+                    currentSlide = newMaxSlide;
                 }
                 updateSlider();
-            }, 6000);
+            });
         }
         
-        function stopAutoPlay() {
-            clearInterval(autoPlayInterval);
-        }
-        
-        // Pause auto-play on hover
-        reviewsCards.addEventListener('mouseenter', stopAutoPlay);
-        reviewsCards.addEventListener('mouseleave', startAutoPlay);
-        
-        // Initialize slider and start auto-play
-        updateSlider();
-        startAutoPlay();
-
-        // Enhanced social links animation
-        document.querySelectorAll('.social-link').forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.15) rotate(5deg)';
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeReviewsSlider();
+            
+            // Add floating animation to review cards
+            document.querySelectorAll('.review-card').forEach((card, index) => {
+                card.style.animation = `float 6s ease-in-out ${index * 0.5}s infinite`;
             });
             
-            link.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+            // Stats counter animation
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
             });
-        });
-
-        // Add floating animation to review cards
-        document.querySelectorAll('.review-card').forEach((card, index) => {
-            card.style.animation = `float 6s ease-in-out ${index * 0.5}s infinite`;
-        });
-
-        // Add floating keyframes
-        const floatStyle = document.createElement('style');
-        floatStyle.textContent = `
-            @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-10px); }
+            
+            const statsSection = document.querySelector('.reviews-stats');
+            if (statsSection) {
+                statsObserver.observe(statsSection);
             }
-        `;
-        document.head.appendChild(floatStyle);
+        });
+        
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent.replace(/[^\d]/g, ''));
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    
+                    const suffix = stat.textContent.includes('K') ? 'K+' : 
+                                  stat.textContent.includes('.') ? '' : '+';
+                    stat.textContent = Math.floor(current) + suffix;
+                }, 20);
+            });
+        }
     </script>
 </body>
 </html>
-              
