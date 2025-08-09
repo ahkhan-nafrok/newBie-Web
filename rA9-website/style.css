@@ -1,0 +1,59 @@
+:root{
+  --bg:#000000;
+  --muted:#94a3b8;
+  --card-bg: rgba(15, 23, 42, 0.6);
+}
+
+/* Basic resets */
+*{box-sizing:border-box}
+html,body,#bg{height:100%}
+body{background:var(--bg)}
+
+/* Gradient text */
+.text-gradient{background:linear-gradient(90deg,#7c3aed,#4f46e5,#06b6d4);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Sci-fi cards */
+.sci-card{background:linear-gradient(180deg, rgba(20,20,30,0.65), rgba(10,10,15,0.55)); border:1px solid rgba(255,255,255,0.03)}
+.skill-card, .project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03)}
+
+/* Buttons */
+.btn-primary{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem 1rem;border-radius:10px;background:linear-gradient(90deg,#7c3aed,#06b6d4);color:white;font-weight:600}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem 1rem;border-radius:10px;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+/* Inputs */
+.input{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);padding:.75rem;border-radius:8px;color:inherit}
+
+/* Chips */
+.chip{padding:.4rem .6rem;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+
+/* background starfield canvas */
+#bg{background:radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.0) 30%), linear-gradient(180deg,#000000,#05010a);}
+
+/* small responsive tweaks */
+@media (max-width:768px){
+  .text-5xl{font-size:2.25rem}
+}
+
+/* subtle focus states */
+.input:focus{outline:none;box-shadow:0 0 0 4px rgba(59,130,246,0.08);border-color:rgba(99,102,241,0.6)}
+
+/* Menu button style */
+#menuBtn{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04);padding:.5rem .7rem;border-radius:8px}
+
+/* Decorative: tiny grid overlay for sci-fi texture */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);background-size:60px 60px,60px 60px;mix-blend-mode:overlay;opacity:0.08}
+
+/* small animations */
+.project-card, .skill-card{transition:transform .35s ease, box-shadow .35s ease}
+.project-card:hover, .skill-card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+
+
+/* canvas sizing */
+#deviceCanvas{display:block}
+
+
+/* Accessibility */
+a.nav-link:focus, button:focus{outline:2px solid rgba(99,102,241,0.3);outline-offset:2px}
+
+
+/* end styles.css */
