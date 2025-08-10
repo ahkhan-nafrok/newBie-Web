@@ -8,6 +8,12 @@
   <url>
     <loc>https:https://ahkhan.online/ra9.jpg</loc>
     <lastmod>2025-08-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+    <url>
+    <loc>https:https://ahkhan.online/a-h-khan.jpg</loc>
+    <lastmod>2025-08-10</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
