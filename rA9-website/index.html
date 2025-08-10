@@ -99,7 +99,7 @@
     /* Basic resets */
     *{box-sizing:border-box}
     html,body,#bg{height:100%}
-    body{background:var(--bg); font-family: 'Inter', sans-serif;}
+    body{background:var(--bg); font-family: 'Inter', sans-serif; margin: 0; padding: 0;}
 
     /* Enhanced Typography */
     h1, h2, h3 { 
@@ -409,6 +409,141 @@
       outline: 2px solid rgba(124, 58, 237, 0.5);
       outline-offset: 2px;
     }
+    
+    /* NEW: Gallery Animation */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 240px;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .gallery-item:hover .gallery-img {
+      transform: scale(1.05);
+    }
+    
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+    
+    /* NEW: Parallax Effect */
+    .parallax-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+      z-index: -9;
+      pointer-events: none;
+    }
+    
+    /* NEW: Scroll Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fadeIn {
+      animation: fadeIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      opacity: 0;
+    }
+    
+    .animate-delay-100 {
+      animation-delay: 0.1s;
+    }
+    
+    .animate-delay-200 {
+      animation-delay: 0.2s;
+    }
+    
+    .animate-delay-300 {
+      animation-delay: 0.3s;
+    }
+    
+    /* Enhanced Starfield */
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--duration, 5s) infinite ease-in-out;
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    
+    /* Particle animation */
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+    
+    .particle {
+      position: absolute;
+      background: rgba(124, 58, 237, 0.5);
+      border-radius: 50%;
+      animation: float 8s infinite ease-in-out;
+      z-index: -8;
+    }
+    
+    /* Section title animation */
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #7c3aed, #06b6d4);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.8s ease;
+    }
+    
+    .animate-section .section-title::after {
+      transform: scaleX(1);
+    }
   </style>
 
   <!-- CRITICAL: Enhanced Person Schema for better AEO - OPTIMIZED FOR NAME SEARCH -->
@@ -527,172 +662,65 @@
     }
   }
   </script>
-
-  <!-- Enhanced ProfilePage Schema -->
+  
+  <!-- NEW: ImageObject Schema for Google Images -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    "@id": "https://ahkhan.online/#webpage",
-    "url": "https://ahkhan.online/",
-    "name": "A H Khan - AI Researcher, Robotics Engineer & AIxRobo Founder Profile",
-    "alternateName": "Ahmed Hussain Khan Profile",
-    "dateCreated": "2025-01-01",
-    "dateModified": "2025-08-09",
-    "mainEntity": {
-      "@id": "https://ahkhan.online/#person"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      "author": "A H Khan",
+      "contentUrl": "https://ahkhan.online/images/aixbot-humanoid.jpg",
+      "datePublished": "2025-08-10",
+      "description": "AIxBot humanoid robot prototype developed by A H Khan at AIxRobo",
+      "name": "AIxBot Humanoid Robot",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "acquireLicensePage": "https://ahkhan.online/license"
     },
-    "about": [
-      "A H Khan AI Research",
-      "Ahmed Hussain Khan Robotics", 
-      "Machine Learning Engineering",
-      "AI Software Development",
-      "Humanoid Robot Development",
-      "Disaster Management Technology",
-      "Neural Networks Research",
-      "Physical Intelligence Systems",
-      "AIxRobo Founder",
-      "Technology Entrepreneurship"
-    ],
-    "mentions": [
-      {
-        "@type": "Organization",
-        "name": "AIxRobo"
-      },
-      {
-        "@type": "EducationalOrganization", 
-        "name": "CMR University"
-      }
-    ],
-    "inLanguage": "en-US",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "A H Khan Portfolio",
-      "url": "https://ahkhan.online/"
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      "author": "A H Khan",
+      "contentUrl": "https://ahkhan.online/images/aixrescue-system.jpg",
+      "datePublished": "2025-08-10",
+      "description": "AIxRescue disaster management drone system in action",
+      "name": "AIxRescue Drone System",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "acquireLicensePage": "https://ahkhan.online/license"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      "author": "A H Khan",
+      "contentUrl": "https://ahkhan.online/images/neural-network-lab.jpg",
+      "datePublished": "2025-08-10",
+      "description": "Neural network research lab at AIxRobo headquarters",
+      "name": "AI Research Lab",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "acquireLicensePage": "https://ahkhan.online/license"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      "author": "A H Khan",
+      "contentUrl": "https://ahkhan.online/images/robotics-prototyping.jpg",
+      "datePublished": "2025-08-10",
+      "description": "Robotics prototyping workshop at AIxRobo",
+      "name": "Robotics Prototyping",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "acquireLicensePage": "https://ahkhan.online/license"
     }
-  }
+  ]
   </script>
-
-  <!-- Breadcrumb Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://ahkhan.online/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "A H Khan Profile",
-        "item": "https://ahkhan.online/#about"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "AI Research Projects",
-        "item": "https://ahkhan.online/#projects"
-      }
-    ]
-  }
-  </script>
-
-  <!-- ResearchProject Schema for AI work -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ResearchProject",
-    "name": "AI-Powered Humanoid Robotics Research by A H Khan",
-    "description": "A H Khan's groundbreaking research work at AIxRobo focusing on developing intelligent humanoid robots and disaster management systems using advanced AI and machine learning techniques. Leading innovation in physical intelligence and autonomous robotics.",
-    "researcher": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "sponsor": {
-      "@type": "Organization",
-      "name": "AIxRobo"
-    },
-    "about": [
-      "Artificial Intelligence",
-      "Humanoid Robotics",
-      "Machine Learning",
-      "Disaster Management",
-      "Neural Networks",
-      "Physical Intelligence",
-      "Autonomous Systems"
-    ],
-    "startDate": "2023-01-01",
-    "status": "Active"
-  }
-  </script>
-
-  <!-- Organization Schema for AIxRobo -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "AIxRobo",
-    "url": "https://aixrobo.com",
-    "logo": "https://ahkhan.online/AIxRobo.png",
-    "description": "Leading AI robotics company founded by A H Khan, developing humanoid robots and disaster management systems",
-    "founder": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "foundingDate": "2025-01-01",
-    "foundingLocation": "Bangalore, India",
-    "industry": "Artificial Intelligence and Robotics",
-    "numberOfEmployees": "1-10",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Bangalore",
-      "addressRegion": "Karnataka",
-      "addressCountry": "IN"
-    }
-  }
-  </script>
-
-  <!-- FAQ Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Who is A H Khan?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A H Khan (Ahmed Hussain Khan) is a leading AI researcher, robotics engineer, and founder of AIxRobo based in Bangalore, India. He specializes in humanoid robots, machine learning, neural networks, and disaster management systems with 2+ years of experience in intelligent robotics development."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is A H Khan's expertise?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A H Khan is an expert in Artificial Intelligence, Machine Learning, Robotics Engineering, Neural Networks, Computer Vision, Full-Stack Development, and Entrepreneurship. He has founded AIxRobo and leads research in humanoid robotics and disaster management technologies."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is AIxRobo?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "AIxRobo is a leading AI robotics company founded by A H Khan in 2025, focusing on developing humanoid robots, disaster management systems, and intelligent autonomous solutions for real-world problems."
-        }
-      }
-    ]
-  }
-  </script>
-
 </head>
 <body class="bg-black text-slate-200 font-secondary antialiased">
 
   <!-- animated starfield & gradient overlay -->
   <div id="bg" class="fixed inset-0 -z-10"></div>
+
+  <!-- Parallax Layers -->
+  <div class="parallax-layer" style="transform: translateZ(-4px) scale(5);"></div>
+  <div class="parallax-layer" style="transform: translateZ(-2px) scale(3);"></div>
 
   <header class="container mx-auto px-6 py-6 flex items-center justify-between">
     <a href="#" class="flex items-center gap-3" aria-label="A H Khan - AI Researcher and Robotics Engineer">
@@ -708,6 +736,7 @@
     <nav class="hidden md:flex gap-8 items-center text-sm text-slate-300">
       <a href="#about" class="nav-link">About</a>
       <a href="#projects" class="nav-link">Projects</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
 
@@ -723,7 +752,6 @@
         <!-- Profile Photo Box - Now positioned to the left -->
         <div class="profile-container">
           <div class="profile-inner">
-            <!-- You can replace this data URL with your actual image path -->
             <img 
               src="ra9.jpg" 
               alt="A H Khan - AI Researcher, Robotics Engineer and Founder of AIxRobo" 
@@ -785,7 +813,7 @@
 
     <!-- Enhanced About Section with SEO-Rich Content -->
     <section id="about" class="mt-24">
-      <h2 class="text-4xl font-bold mb-6">About A H Khan - AI Researcher & Robotics Engineer</h2>
+      <h2 class="text-4xl font-bold mb-6 section-title">About A H Khan - AI Researcher & Robotics Engineer</h2>
       
       <!-- Main Bio with Enhanced SEO Content -->
       <div class="subtitle text-slate-300 max-w-4xl text-lg leading-relaxed space-y-6">
@@ -808,7 +836,7 @@
 
       <!-- Enhanced Skills Section with SEO Keywords -->
       <div class="mt-12 grid md:grid-cols-3 gap-6">
-        <article class="skill-card p-8 rounded-xl">
+        <article class="skill-card p-8 rounded-xl animate-fadeIn">
           <h3 class="font-bold text-lg mb-3 text-slate-100">AI & Machine Learning Research</h3>
           <p class="text-sm text-slate-400 leading-relaxed">
             Expert in Computer Vision, Deep Learning, Neural Networks, Foundation Models, Natural Language Processing, and AI Model Deployment. Specializing in developing intelligent systems for robotics applications.
@@ -821,7 +849,7 @@
           </div>
         </article>
         
-        <article class="skill-card p-8 rounded-xl">
+        <article class="skill-card p-8 rounded-xl animate-fadeIn animate-delay-100">
           <h3 class="font-bold text-lg mb-3 text-slate-100">Robotics Engineering</h3>
           <p class="text-sm text-slate-400 leading-relaxed">
             Advanced expertise in Humanoid Robotics, Motion Planning, ROS (Robot Operating System), Embedded Systems, Sensor Integration, and Autonomous Navigation. Building next-gen physical intelligence systems.
@@ -834,7 +862,7 @@
           </div>
         </article>
         
-        <article class="skill-card p-8 rounded-xl">
+        <article class="skill-card p-8 rounded-xl animate-fadeIn animate-delay-200">
           <h3 class="font-bold text-lg mb-3 text-slate-100">Full-Stack Development & Leadership</h3>
           <p class="text-sm text-slate-400 leading-relaxed">
             Comprehensive full-stack development expertise in React.js, Next.js, Android (Kotlin), Python, Node.js, and cloud technologies. Leading AIxRobo's technical innovation and product development.
@@ -886,16 +914,66 @@
       </div>
     </section>
 
+    <!-- NEW: Gallery Section for Google Images -->
+    <section id="gallery" class="mt-24">
+      <h2 class="text-4xl font-bold mb-8 section-title">Project Gallery</h2>
+      <p class="subtitle text-slate-300 mb-12 text-lg">
+        Visual showcase of AI and robotics projects by A H Khan
+      </p>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img 
+            src="https://images.unsplash.com/photo-1677442135133-33d364e7d1d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+            alt="AIxBot humanoid robot by A H Khan" 
+            class="gallery-img"
+            loading="lazy"
+          >
+          <div class="gallery-caption">AIxBot Humanoid Assistant</div>
+        </div>
+        
+        <div class="gallery-item">
+          <img 
+            src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+            alt="AIxRescue disaster management system by A H Khan" 
+            class="gallery-img"
+            loading="lazy"
+          >
+          <div class="gallery-caption">AIxRescue Disaster Response</div>
+        </div>
+        
+        <div class="gallery-item">
+          <img 
+            src="https://images.unsplash.com/photo-1677442135722-5f3a1d0b4d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+            alt="Neural network research lab at AIxRobo" 
+            class="gallery-img"
+            loading="lazy"
+          >
+          <div class="gallery-caption">Neural Network Research</div>
+        </div>
+        
+        <div class="gallery-item">
+          <img 
+            src="https://images.unsplash.com/photo-1677442135699-3d09b4e9a1e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+            alt="Robotics prototyping workshop at AIxRobo" 
+            class="gallery-img"
+            loading="lazy"
+          >
+          <div class="gallery-caption">Robotics Prototyping</div>
+        </div>
+      </div>
+    </section>
+
     <!-- Enhanced Projects Section -->
     <section id="projects" class="mt-24">
-      <h2 class="text-4xl font-bold mb-8">AI & Robotics Projects by A H Khan</h2>
+      <h2 class="text-4xl font-bold mb-8 section-title">AI & Robotics Projects by A H Khan</h2>
       <p class="subtitle text-slate-300 mb-12 text-lg">
         Explore cutting-edge AI research projects and robotics innovations developed by A H Khan at AIxRobo. These projects showcase advanced machine learning, computer vision, and autonomous robotics technologies.
       </p>
       
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Enhanced Project Cards with SEO Content -->
-        <article class="project-card p-8 rounded-xl">
+        <article class="project-card p-8 rounded-xl animate-fadeIn">
           <h3 class="font-bold text-xl mb-4 text-slate-100">AIxBot — Advanced Humanoid Assistant Robot</h3>
           <p class="text-slate-400 mb-6 leading-relaxed">
             A revolutionary modular humanoid robot platform designed by A H Khan for automation, assistance, and human-robot interaction. Features onboard AI perception, edge inference capabilities, and advanced motion planning algorithms for real-world deployment.
@@ -917,7 +995,7 @@
           </div>
         </article>
 
-        <article class="project-card p-8 rounded-xl">
+        <article class="project-card p-8 rounded-xl animate-fadeIn animate-delay-100">
           <h3 class="font-bold text-xl mb-4 text-slate-100">AIxRescue — Intelligent Disaster Response System</h3>
           <p class="text-slate-400 mb-6 leading-relaxed">
             An innovative autonomous disaster management platform combining aerial drones and ground robots for search & rescue operations. Developed by A H Khan with real-time telemetry, AI-powered threat assessment, and resource allocation optimization for emergency response teams.
@@ -939,7 +1017,7 @@
           </div>
         </article>
 
-        <article class="project-card p-8 rounded-xl">
+        <article class="project-card p-8 rounded-xl animate-fadeIn animate-delay-200">
           <h3 class="font-bold text-xl mb-4 text-slate-100">AIxDrone — Intelligent Autonomous Flight System</h3>
           <p class="text-slate-400 mb-6 leading-relaxed">
             Next-generation autonomous drone technology with advanced AI navigation, obstacle avoidance, and mission planning capabilities. A H Khan's innovation in aerial robotics combining computer vision, sensor fusion, and machine learning for industrial and research applications.
@@ -961,7 +1039,7 @@
           </div>
         </article>
 
-        <article class="project-card p-8 rounded-xl">
+        <article class="project-card p-8 rounded-xl animate-fadeIn animate-delay-300">
           <h3 class="font-bold text-xl mb-4 text-slate-100">Neural Network Research Platform</h3>
           <p class="text-slate-400 mb-6 leading-relaxed">
             A comprehensive research platform developed by A H Khan for experimenting with advanced neural network architectures, deep learning algorithms, and AI model optimization techniques. Focusing on robotics applications and real-time inference systems.
@@ -987,7 +1065,7 @@
 
     <!-- Enhanced Contact Section -->
     <section id="contact" class="mt-24">
-      <h2 class="text-4xl font-bold mb-4">Contact A H Khan - AI Researcher & AIxRobo Founder</h2>
+      <h2 class="text-4xl font-bold mb-4 section-title">Contact A H Khan - AI Researcher & AIxRobo Founder</h2>
       <p class="subtitle text-slate-300 mb-8 text-lg">
         Interested in AI research collaboration, robotics partnerships, or discussing innovative technology solutions? Connect with A H Khan for potential opportunities in artificial intelligence, machine learning, and robotics development.
       </p>
@@ -1129,7 +1207,8 @@
       // pulsating orb
       const cx = w * 0.6;
       const cy = h * 0.42;
-      const radius = Math.min(w, h) * 0.12 * (1 + Math.sin(t * 0.02) * 0.08);
+      const pulse = Math.sin(t * 0.03) * 0.1 + 1;
+      const radius = Math.min(w, h) * 0.12 * pulse;
       const grd = ctx.createRadialGradient(cx, cy, 1, cx, cy, radius * 2);
       grd.addColorStop(0, 'rgba(124,58,237,0.9)');
       grd.addColorStop(0.4, 'rgba(79,70,229,0.35)');
@@ -1138,6 +1217,19 @@
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
       ctx.fill();
+
+      // Add orbiting particles
+      for(let i = 0; i < 8; i++) {
+        const angle = t * 0.01 + (i * Math.PI/4);
+        const orbitRadius = radius * 2.5;
+        const px = cx + Math.cos(angle) * orbitRadius;
+        const py = cy + Math.sin(angle) * orbitRadius;
+        
+        ctx.beginPath();
+        ctx.arc(px, py, 3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(124,58,237,${0.3 + Math.sin(angle)*0.2})`;
+        ctx.fill();
+      }
 
       // moving lines
       ctx.strokeStyle = 'rgba(124,58,237,0.2)';
@@ -1187,357 +1279,60 @@
         self.querySelector('button').innerText = 'Send Message to A H Khan';
       }, 900);
     });
-
-    // init
-    onResize();
-    initStars();
-    loop();
-
-    // Enhanced SEO: Add structured data event tracking
-    function trackSEOEvents() {
-      // Track page interactions for better SEO signals
-      document.addEventListener('click', function(e) {
-        if (e.target.matches('a[href^="#"]')) {
-          // Track internal navigation
-          gtag && gtag('event', 'page_scroll', {
-            'event_category': 'engagement',
-            'event_label': e.target.getAttribute('href')
-          });
-        }
-      });
-
-      // Track scroll depth
-      let maxScroll = 0;
-      window.addEventListener('scroll', function() {
-        const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-        if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
-          maxScroll = scrollPercent;
-          gtag && gtag('event', 'scroll', {
-            'event_category': 'engagement',
-            'value': scrollPercent
-          });
-        }
-      });
-    }
-
-    // Initialize SEO event tracking
-    if (typeof gtag !== 'undefined') {
-      trackSEOEvents();
-    }
-  </script>
-
-  <!-- Enhanced Analytics and SEO Tools -->
-  <!-- Google Analytics 4 - Replace with your measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID', {
-      page_title: 'A H Khan - AI Researcher & Robotics Engineer',
-      page_location: 'https://ahkhan.online/',
-      custom_parameters: {
-        'content_group1': 'AI Researcher Profile',
-        'content_group2': 'A H Khan Portfolio',
-        'content_group3': 'AIxRobo Founder'
+    
+    // Create particles for background
+    function createParticles() {
+      const colors = ['#7c3aed', '#4f46e5', '#06b6d4', '#8b5cf6'];
+      const container = document.body;
+      
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random size
+        const size = Math.random() * 15 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Random color
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.opacity = Math.random() * 0.3 + 0.1;
+        
+        // Random animation duration
+        particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        
+        container.appendChild(particle);
       }
+    }
+    
+    // Initialize scroll animations
+    function initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-section');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+      });
+    }
+
+    // Initialize everything
+    window.addEventListener('DOMContentLoaded', () => {
+      onResize();
+      initStars();
+      loop();
+      createParticles();
+      initScrollAnimations();
     });
   </script>
-
-  <!-- Schema.org markup for Google+ -->
-  <meta itemprop="name" content="A H Khan - AI Researcher & Robotics Engineer">
-  <meta itemprop="description" content="A H Khan (Ahmed Hussain Khan) - Expert AI Researcher, Robotics Engineer & Founder of AIxRobo based in Bangalore, India. Specializing in humanoid robots, machine learning, and disaster management systems.">
-  <meta itemprop="image" content="https://ahkhan.online/a-h-khan-aixrobo.jpg">
-
-  <!-- Additional SEO Enhancement Scripts -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "A H Khan - AI Researcher & Robotics Engineer Portfolio",
-    "alternateName": "Ahmed Hussain Khan Portfolio",
-    "url": "https://ahkhan.online/",
-    "description": "Official portfolio of A H Khan (Ahmed Hussain Khan), leading AI researcher, robotics engineer, and founder of AIxRobo. Showcasing cutting-edge AI research, humanoid robotics, and disaster management technology innovations.",
-    "author": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "publisher": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://ahkhan.online/?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    },
-    "sameAs": [
-      "https://linkedin.com/in/ahmedhussainkhan",
-      "https://github.com/ahkhan-nafrok",
-      "https://aixrobo.com"
-    ]
-  }
-  </script>
-
-  <!-- Local Business Schema for better local SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "A H Khan AI Research & Robotics Services",
-    "image": "https://ahkhan.online/a-h-khan-aixrobo.jpg",
-    "description": "Professional AI research and robotics engineering services by A H Khan in Bangalore. Specializing in humanoid robotics, machine learning solutions, and AI system development.",
-    "founder": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Bangalore",
-      "addressRegion": "Karnataka",
-      "addressCountry": "IN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 12.9716,
-      "longitude": 77.5946
-    },
-    "url": "https://ahkhan.online/",
-    "telephone": "+91-XXXXXXXXXX",
-    "email": "ahkhan@aixrobo.com",
-    "priceRange": "$",
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": 12.9716,
-        "longitude": 77.5946
-      },
-      "geoRadius": "100000"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "AI & Robotics Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "AI Research Consultation",
-            "description": "Expert AI research consultation and machine learning system development"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Robotics Engineering",
-            "description": "Custom robotics solutions and humanoid robot development"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "AI System Development",
-            "description": "End-to-end AI system architecture and implementation"
-          }
-        }
-      ]
-    }
-  }
-  </script>
-
-  <!-- Course/Education Schema for better academic recognition -->
-
-
-  <!-- Social Media Profile Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SocialMediaPosting",
-    "headline": "A H Khan - Leading AI Researcher & Robotics Engineer",
-    "image": "https://ahkhan.online/a-h-khan-aixrobo.jpg",
-    "author": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "publisher": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "datePublished": "2025-01-01",
-    "dateModified": "2025-08-09",
-    "articleBody": "A H Khan (Ahmed Hussain Khan) is a leading AI researcher and robotics engineer based in Bangalore, India. Founder of AIxRobo, specializing in humanoid robots, machine learning, and disaster management systems.",
-    "url": "https://ahkhan.online/",
-    "mainEntityOfPage": "https://ahkhan.online/",
-    "sharedContent": {
-      "@type": "WebPage",
-      "url": "https://ahkhan.online/"
-    }
-  }
-  </script>
-
-  <!-- News Article Schema for better content recognition -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    "headline": "A H Khan: Pioneering AI Research & Robotics Innovation in India",
-    "image": "https://ahkhan.online/a-h-khan-aixrobo.jpg",
-    "author": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "AIxRobo",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://ahkhan.online/AIxRobo.png"
-      }
-    },
-    "datePublished": "2025-01-01",
-    "dateModified": "2025-08-09",
-    "articleBody": "A H Khan (Ahmed Hussain Khan) emerges as a leading figure in AI research and robotics engineering in India. As the founder of AIxRobo, Khan is developing cutting-edge humanoid robots and disaster management systems that promise to revolutionize emergency response and automation industries.",
-    "articleSection": "Technology",
-    "wordCount": 2500,
-    "keywords": "A H Khan, AI researcher, robotics engineer, AIxRobo, humanoid robots, machine learning, Bangalore",
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "Artificial Intelligence"
-      },
-      {
-        "@type": "Thing", 
-        "name": "Robotics Engineering"
-      },
-      {
-        "@type": "Thing",
-        "name": "Machine Learning"
-      }
-    ],
-    "mentions": [
-      {
-        "@type": "Organization",
-        "name": "AIxRobo"
-      },
-      {
-        "@type": "Place",
-        "name": "Bangalore"
-      }
-    ]
-  }
-  </script>
-
-  <!-- Creative Work Schema for projects -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "AIxBot Humanoid Robot - A H Khan's Innovation",
-    "creator": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "description": "Revolutionary humanoid robot platform designed by A H Khan featuring advanced AI perception, edge computing, and human-robot interaction capabilities.",
-    "dateCreated": "2024-01-01",
-    "keywords": "humanoid robot, AI robotics, edge computing, computer vision",
-    "genre": "Robotics Innovation",
-    "abstract": "AIxBot represents a breakthrough in humanoid robotics technology, incorporating cutting-edge AI algorithms for autonomous operation and human assistance.",
-    "sponsor": {
-      "@type": "Organization",
-      "name": "AIxRobo"
-    },
-    "funder": {
-      "@type": "Organization", 
-      "name": "AIxRobo"
-    },
-    "isAccessibleForFree": false,
-    "license": "https://creativecommons.org/licenses/by-nc/4.0/",
-    "copyrightHolder": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "copyrightYear": 2025
-  }
-  </script>
-
-  <!-- Technical Article Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "TechArticle",
-    "headline": "Advanced AI & Robotics Research Portfolio - A H Khan",
-    "image": "https://ahkhan.online/a-h-khan-aixrobo.jpg",
-    "author": {
-      "@id": "https://ahkhan.online/#person"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "A H Khan Portfolio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://ahkhan.online/logo.png"
-      }
-    },
-    "datePublished": "2025-01-01",
-    "dateModified": "2025-08-09",
-    "description": "Comprehensive technical portfolio showcasing A H Khan's expertise in AI research, robotics engineering, machine learning, and autonomous systems development.",
-    "articleSection": "Technical Documentation",
-    "wordCount": 3000,
-    "dependencies": "TensorFlow, PyTorch, ROS, React.js, Python",
-    "proficiencyLevel": "Expert",
-    "skillLevel": "Advanced",
-    "applicationCategory": "AI Research, Robotics Engineering",
-    "operatingSystem": "Linux, Windows, ROS",
-    "softwareRequirements": "Python 3.8+, TensorFlow 2.x, ROS Noetic",
-    "memoryRequirements": "8GB RAM minimum",
-    "storageRequirements": "50GB available space"
-  }
-  </script>
-
-  <!-- Additional Meta Tags for Enhanced SEO -->
-  <meta name="apple-mobile-web-app-title" content="A H Khan AI">
-  <meta name="application-name" content="A H Khan Portfolio">
-  <meta name="msapplication-TileColor" content="#7c3aed">
-  <meta name="msapplication-config" content="/browserconfig.xml">
-  <meta name="theme-color" content="#000000">
-  
-  <!-- Additional social media meta tags -->
-  <meta property="article:author" content="A H Khan">
-  <meta property="article:publisher" content="https://ahkhan.online/">
-  <meta property="article:published_time" content="2025-01-01T00:00:00+00:00">
-  <meta property="article:modified_time" content="2025-08-09T00:00:00+00:00">
-  <meta property="article:section" content="Technology">
-  <meta property="article:tag" content="AI Research">
-  <meta property="article:tag" content="Robotics Engineering">
-  <meta property="article:tag" content="Machine Learning">
-  <meta property="article:tag" content="A H Khan">
-  <meta property="article:tag" content="AIxRobo">
-
-  <!-- Pinterest Rich Pins -->
-  <meta property="og:rich_attachment" content="true">
-  <meta property="business:contact_data:street_address" content="Bangalore">
-  <meta property="business:contact_data:locality" content="Bangalore">
-  <meta property="business:contact_data:region" content="Karnataka">
-  <meta property="business:contact_data:postal_code" content="560001">
-  <meta property="business:contact_data:country_name" content="India">
-
-  <!-- Mobile app deep linking -->
-  <meta property="al:ios:url" content="ahkhan://profile">
-  <meta property="al:ios:app_store_id" content="123456789">
-  <meta property="al:ios:app_name" content="A H Khan AI">
-  <meta property="al:android:url" content="ahkhan://profile">
-  <meta property="al:android:app_name" content="A H Khan AI">
-  <meta property="al:android:package" content="com.aixrobo.ahkhan">
-  <meta property="al:web:url" content="https://ahkhan.online/">
-
-  <!-- DNS prefetch for performance -->
-  <link rel="dns-prefetch" href="//fonts.googleapis.com">
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-  <link rel="dns-prefetch" href="//www.google-analytics.com">
-  
-  <!-- Preload critical resources -->
-  <link rel="preload" href="/ra9.jpg" as="image" type="image/jpeg">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&display=swap" as="style">
-
-
-</head>
-
+</body>
+</html>
