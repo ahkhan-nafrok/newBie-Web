@@ -86,6 +86,7 @@
             display: flex;
             list-style: none;
             gap: 2rem;
+            transition: all 0.3s ease;
         }
         
         .nav-item a {
@@ -579,11 +580,41 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu {
-                display: none;
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 1rem 0;
             }
             
             .hamburger {
                 display: flex;
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
             }
             
             .hero h1 {
@@ -617,7 +648,7 @@
 </head>
 <body>
     <!-- Navigation -->
-<!-- Navigation -->
+   <!-- Navigation -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
@@ -1036,13 +1067,34 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Add click event listeners to navigation links
+        // Mobile hamburger menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a nav link
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const pageId = link.getAttribute('data-page');
                 showPage(pageId);
+                
+                // Close mobile menu
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
             });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
         });
 
         // Add click event listeners to footer links
@@ -1134,4 +1186,3 @@
     </script>
 </body>
 </html>
-
