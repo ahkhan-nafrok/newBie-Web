@@ -3,60 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bangalore Realty - Premium Properties</title>
+    <title>Cafe Grill - Premium Restaurant Experience</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #0066cc;
-            --primary-dark: #004499;
-            --secondary-color: #00b8d4;
-            --accent-color: #ff6b35;
-            --text-dark: #1a202c;
-            --text-light: #4a5568;
-            --text-muted: #718096;
-            --bg-light: #f7fafc;
-            --bg-white: #ffffff;
-            --border-light: #e2e8f0;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
-            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            --gradient-accent: linear-gradient(135deg, var(--accent-color), #ff8a65);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-gold: #D4AF37;
+            --secondary-gold: #FFD700;
+            --accent-gold: #B8860B;
+            --dark-black: #0a0a0a;
+            --deep-black: #000000;
+            --charcoal: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gold: #F5E6A8;
+            --text-muted: #a8a8a8;
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            --glass-bg: rgba(0, 0, 0, 0.2);
+            --glass-border: rgba(212, 175, 55, 0.2);
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            background: var(--deep-black);
+            color: var(--text-light);
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* Header */
-        .header {
+        /* Animated Background */
+        .animated-bg {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 15px 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+                var(--deep-black);
+            animation: backgroundShift 20s ease-in-out infinite;
         }
 
-        .header.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow-md);
-            backdrop-filter: blur(25px);
+        @keyframes backgroundShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.7;
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(25px) saturate(200%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         .nav-container {
@@ -65,114 +113,145 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 24px;
+            padding: 0 2rem;
         }
 
         .logo {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--gradient-primary);
-            transition: width 0.3s ease;
-        }
-
-        .logo:hover::after {
-            width: 100%;
-        }
-
-        .nav-menu {
             display: flex;
-            list-style: none;
-            gap: 40px;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 16px;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            padding: 12px 0;
         }
 
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .nav-menu a:hover {
-            color: var(--primary-color);
-        }
-
-        .contact-btn {
-            background: var(--gradient-primary);
-            color: white !important;
-            padding: 14px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-md);
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-black);
+            font-weight: bold;
+            font-size: 1.4rem;
             position: relative;
             overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
         }
 
-        .contact-btn::before {
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .logo:hover .logo-icon::before {
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            background: var(--gradient-gold);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover h1 {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
+            display: block;
+        }
+
+        .nav-links a::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
+            background: var(--gradient-gold);
+            transition: all 0.5s ease;
+            z-index: -1;
+            border-radius: 25px;
         }
 
-        .contact-btn:hover::before {
-            left: 100%;
+        .nav-links a:hover::before {
+            left: 0;
         }
 
-        .contact-btn:hover {
+        .nav-links a:hover {
+            color: var(--deep-black);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, rgba(0, 102, 204, 0.9), rgba(0, 184, 212, 0.8)), 
-                        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1973&q=80');
+            height: 100vh;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23D4AF37;stop-opacity:0.3"/><stop offset="100%" style="stop-color:%23000000;stop-opacity:1"/></radialGradient><filter id="noise"><feTurbulence baseFrequency="0.9" numOctaves="4" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/></filter></defs><rect width="1920" height="1080" fill="url(%23grad1)"/><rect width="1920" height="1080" fill="url(%23grad1)" filter="url(%23noise)" opacity="0.4"/></svg>');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -184,1501 +263,1064 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)" opacity="0.6"><animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="0.8" fill="rgba(255,255,255,0.1)" opacity="0.4"><animate attributeName="opacity" values="0.4;0.8;0.4" dur="4s" repeatCount="indefinite"/></circle><circle cx="40" cy="70" r="1.2" fill="rgba(255,255,255,0.1)" opacity="0.5"><animate attributeName="opacity" values="0.5;0.9;0.5" dur="3.5s" repeatCount="indefinite"/></circle></svg>');
-            animation: float 25s infinite linear;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(255, 215, 0, 0.15) 0%, transparent 50%);
+            animation: heroGlow 8s ease-in-out infinite alternate;
         }
 
-        @keyframes float {
-            0% { transform: translateX(-100px) translateY(0px); }
-            50% { transform: translateX(calc(50vw)) translateY(-20px); }
-            100% { transform: translateX(calc(100vw + 100px)) translateY(0px); }
+        @keyframes heroGlow {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.05); }
         }
 
         .hero-content {
-            text-align: center;
-            color: white;
-            max-width: 900px;
-            padding: 0 24px;
-            animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(60px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 24px;
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #F5E6A8 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
+            animation: titleGlow 3s ease-in-out infinite alternate, fadeInUp 1s ease-out;
+            letter-spacing: 3px;
             line-height: 1.1;
-            letter-spacing: -0.02em;
         }
 
-        .hero p {
-            font-size: 1.4rem;
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.7)); }
+            100% { filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.9)); }
+        }
+
+        .hero-content .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 3rem;
+            color: var(--text-gold);
             font-weight: 400;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            letter-spacing: 2px;
+            animation: fadeInUp 1.5s ease-out 0.5s both;
+            opacity: 0.9;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 18px 36px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary-color);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
-            background: #f8fafc;
-        }
-
-        .btn-secondary {
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 3rem;
             background: transparent;
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: white;
-            transform: translateY(-4px);
-            backdrop-filter: blur(15px);
-        }
-
-        /* Trust Indicators */
-        .trust-indicators {
-            background: white;
-            padding: 60px 0;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .trust-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-
-        .trust-item {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideUp 0.8s ease forwards;
-        }
-
-        .trust-item:nth-child(1) { animation-delay: 0.1s; }
-        .trust-item:nth-child(2) { animation-delay: 0.2s; }
-        .trust-item:nth-child(3) { animation-delay: 0.3s; }
-        .trust-item:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes slideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .trust-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            display: block;
-            margin-bottom: 8px;
-            counter-reset: number;
-        }
-
-        .trust-label {
-            font-size: 16px;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        /* Search Section */
-        .search-section {
-            background: var(--bg-light);
-            padding: 80px 0;
-            position: relative;
-        }
-
-        .search-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .search-card {
-            background: white;
-            padding: 48px;
-            border-radius: 24px;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border-light);
-        }
-
-        .search-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .search-title h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-        }
-
-        .search-title p {
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
             font-size: 1.2rem;
-            color: var(--text-light);
-        }
-
-        .search-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            align-items: end;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-            font-size: 15px;
-        }
-
-        .form-group select, .form-group input {
-            padding: 16px 20px;
-            border: 2px solid var(--border-light);
-            border-radius: 12px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: white;
-            color: var(--text-dark);
-        }
-
-        .form-group select:focus, .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .search-btn {
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            padding: 18px 32px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-md);
+            letter-spacing: 2px;
             position: relative;
             overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: fadeInUp 1.5s ease-out 1s both;
+            text-transform: uppercase;
         }
 
-        .search-btn::before {
+        .cta-button::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s;
+            background: var(--gradient-gold);
+            transition: all 0.5s ease;
+            z-index: -1;
         }
 
-        .search-btn:hover::before {
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            color: var(--deep-black);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+            border-color: var(--secondary-gold);
+        }
+
+        /* Premium Sections */
+        .section {
+            padding: 8rem 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 100px;
+            background: var(--gradient-gold);
+            transform: translateX(-50%);
+            opacity: 0.6;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 4rem;
+            background: var(--gradient-gold);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .glass-card:hover::before {
             left: 100%;
         }
 
-        .search-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 50px rgba(212, 175, 55, 0.2);
         }
 
-        /* Property Types */
-        .property-types {
-            padding: 100px 0;
-            background: white;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-title h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-        }
-
-        .section-title p {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .types-grid {
+        /* About Section */
+        .about-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .type-card {
-            background: white;
-            padding: 40px 32px;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-light);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
-        .type-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .type-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .type-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-xl);
-            border-color: rgba(0, 102, 204, 0.2);
-        }
-
-        .type-card i {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 24px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .type-card:hover i {
-            transform: scale(1.15) rotate(5deg);
-            color: var(--secondary-color);
-        }
-
-        .type-card h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--text-dark);
-        }
-
-        .type-card p {
-            color: var(--text-light);
-            line-height: 1.7;
-            font-size: 15px;
-        }
-
-        /* Featured Properties */
-        .featured-properties {
-            padding: 100px 0;
-            background: var(--bg-light);
-        }
-
-        .properties-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 32px;
-        }
-
-        .property-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-light);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .property-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .property-image {
-            height: 280px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .property-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+        .about-text p {
+            margin-bottom: 1.5rem;
+            animation: fadeInLeft 1s ease-out forwards;
             opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
-        .property-card:hover .property-image::before {
-            opacity: 1;
-        }
-
-        .property-1 { background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); }
-        .property-2 { background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); }
-        .property-3 { background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); }
-        .property-4 { background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); }
-
-        .property-status {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--accent-color);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .property-status.sale {
-            background: #10b981;
-        }
-
-        .property-info {
-            padding: 32px;
-        }
-
-        .property-price {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin-bottom: 12px;
-        }
-
-        .property-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-            line-height: 1.3;
-        }
-
-        .property-location {
-            color: var(--text-light);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 15px;
-        }
-
-        .property-features {
-            display: flex;
-            gap: 24px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--text-light);
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .feature i {
-            color: var(--primary-color);
-        }
-
-        .property-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .action-btn {
-            flex: 1;
-            padding: 14px 20px;
-            border: 2px solid var(--primary-color);
-            background: transparent;
-            color: var(--primary-color);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .action-btn:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .action-btn.primary {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .action-btn.primary:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 100px 0;
-            background: white;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 32px;
-            margin-top: 60px;
-        }
-
-        .testimonial-card {
-            background: var(--bg-light);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid var(--border-light);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 40px;
-            font-size: 4rem;
-            color: var(--primary-color);
-            font-weight: 800;
-            opacity: 0.3;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .testimonial-text {
-            font-size: 16px;
-            line-height: 1.7;
-            color: var(--text-dark);
-            margin-bottom: 24px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
+        .about-image {
+            height: 400px;
+            border-radius: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
+            font-size: 4rem;
+            background: var(--gradient-gold);
+            color: var(--deep-black);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInRight 1s ease-out forwards;
+            opacity: 0;
         }
 
-        .author-info h4 {
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 4px;
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
         }
 
-        .author-info p {
-            color: var(--text-light);
-            font-size: 14px;
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* Footer */
-        .footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 80px 0 40px;
-        }
-
-        .footer-content {
+        /* Menu Section */
+        .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 48px;
-            margin-bottom: 48px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
         }
 
-        .footer-section h3 {
-            font-size: 1.6rem;
-            margin-bottom: 24px;
-            color: var(--secondary-color);
-            font-weight: 700;
+        .menu-category {
+            position: relative;
         }
 
-        .footer-section p, .footer-section a {
-            color: #a0aec0;
-            text-decoration: none;
-            line-height: 1.8;
-            transition: color 0.3s ease;
-            font-size: 15px;
-        }
-
-        .footer-section a:hover {
-            color: var(--secondary-color);
-        }
-
-        .footer-links {
+        .menu-category h3 {
+            color: var(--primary-gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            align-items: center;
+            gap: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            padding-left: 1rem;
+            background: rgba(212, 175, 55, 0.05);
+            border-bottom-color: var(--primary-gold);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-item-price {
+            color: var(--primary-gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3,
+        .reservation-form h3 {
+            color: var(--primary-gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .contact-item i {
+            color: var(--primary-gold);
+            font-size: 1.4rem;
+            width: 25px;
+            margin-top: 0.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--primary-gold);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--gradient-gold);
+            color: var(--deep-black);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Premium Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient-gold);
         }
 
         .social-links {
             display: flex;
-            gap: 16px;
-            margin-top: 24px;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .social-links a {
-            width: 48px;
-            height: 48px;
-            background: #2d3748;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 18px;
+            color: var(--text-muted);
+            font-size: 2rem;
+            transition: all 0.4s ease;
+            padding: 1rem;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
         }
 
         .social-links a:hover {
-            background: var(--primary-color);
-            transform: translateY(-3px);
-            color: white;
+            color: var(--primary-gold);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
         }
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid #2d3748;
-            color: #718096;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-            padding: 8px;
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .mobile-menu-btn span {
-            width: 25px;
-            height: 3px;
-            background: var(--text-dark);
-            transition: all 0.3s ease;
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        /* Responsive */
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .nav-menu {
+            .nav-links {
                 display: none;
             }
 
-            .mobile-menu-btn {
-                display: flex;
+            .hero-content h1 {
+                font-size: 3rem;
             }
 
-            .hero h1 {
-                font-size: 2.8rem;
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .hero p {
-                font-size: 1.2rem;
+            .section {
+                padding: 4rem 1rem;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .search-form {
+            .menu-grid {
                 grid-template-columns: 1fr;
             }
 
-            .types-grid {
-                grid-template-columns: 1fr;
+            .nav-container {
+                padding: 0 1rem;
             }
 
-            .properties-grid {
-                grid-template-columns: 1fr;
+            .logo h1 {
+                font-size: 1.8rem;
             }
 
-            .trust-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
-            }
-
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
+            .logo-icon {
+                width: 50px;
+                height: 50px;
             }
         }
 
-        /* Loading Animation */
-        .loading {
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--deep-black);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-gold);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-gold);
+        }
+
+        /* Page Loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--deep-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
         }
 
-        .loading.loaded {
-            opacity: 1;
-            transform: translateY(0);
+        .loader-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            background: var(--gradient-gold);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        /* Pulse Animation for Trust Numbers */
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .trust-number {
-            animation: pulse 2s infinite;
-        }
-
-        /* Smooth Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header" id="header">
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-text">CAFE GRILL</div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">Bangalore Realty</a>
-            <nav class="nav-menu">
-                <a href="#home">Home</a>
-                <a href="#properties">Properties</a>
-                <a href="#search">Search</a>
-                <a href="#testimonials">Reviews</a>
-                <a href="#about">About</a>
-            </nav>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="grill.jpg" alt="Cafe Grill Logo">
+                </div>
+                <h1>CAFE GRILL</h1>
             </div>
-            <a href="#contact" class="contact-btn">
-                <i class="fas fa-phone"></i>
-                Contact Us
-            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Find Your Dream Home in Bangalore</h1>
-            <p>Discover premium properties in the Silicon Valley of India with our expert guidance and personalized service</p>
-            <div class="cta-buttons">
-                <a href="#properties" class="btn-primary">
-                    <i class="fas fa-home"></i>
-                    View Properties
-                </a>
-                <a href="#search" class="btn-secondary">
-                    <i class="fas fa-search"></i>
-                    Start Search
-                </a>
+            <h1>CAFE GRILL</h1>
+            <p class="tagline">Where Premium Meets Perfection</p>
+            <a href="#menu" class="cta-button">Explore Menu</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section fade-in">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Welcome to Cafe Grill, where culinary excellence meets premium dining experience. Located in the heart of HAL 3rd Stage, Jeevan Bima Nagar, we have been serving Bengaluru with exceptional grilled delicacies and gourmet cuisine.</p>
+                <p>Our commitment to quality ingredients, innovative cooking techniques, and exceptional service has made us a preferred destination for food enthusiasts who appreciate fine dining in a warm, contemporary atmosphere.</p>
+                <p>From our signature grills to carefully crafted beverages, every dish tells a story of passion, tradition, and culinary artistry.</p>
+            </div>
+            <div class="about-image">
+                <i class="fas fa-utensils"></i>
             </div>
         </div>
     </section>
 
-    <!-- Trust Indicators -->
-    <section class="trust-indicators">
-        <div class="trust-grid">
-            <div class="trust-item">
-                <span class="trust-number">500+</span>
-                <span class="trust-label">Properties Sold</span>
-            </div>
-            <div class="trust-item">
-                <span class="trust-number">15+</span>
-                <span class="trust-label">Years Experience</span>
-            </div>
-            <div class="trust-item">
-                <span class="trust-number">1000+</span>
-                <span class="trust-label">Happy Clients</span>
-            </div>
-            <div class="trust-item">
-                <span class="trust-number">50+</span>
-                <span class="trust-label">Expert Agents</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Search Section -->
-    <section class="search-section" id="search">
-        <div class="search-container">
-            <div class="search-card reveal">
-                <div class="search-title">
-                    <h2>Find Your Perfect Property</h2>
-                    <p>Use our advanced search to discover properties that match your exact requirements</p>
+    <!-- Menu Section -->
+    <section id="menu" class="section fade-in">
+        <h2>Our Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-category glass-card">
+                <h3><i class="fas fa-fire"></i> Signature Grills</h3>
+                <div class="menu-item">
+                    <div class="menu-item-name">Premium Chicken Grill</div>
+                    <div class="menu-item-price">₹320</div>
                 </div>
-                <form class="search-form">
+                <div class="menu-item">
+                    <div class="menu-item-name">Mutton Seekh Kebab</div>
+                    <div class="menu-item-price">₹380</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Fish Tikka Special</div>
+                    <div class="menu-item-price">₹350</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Paneer Tikka</div>
+                    <div class="menu-item-price">₹280</div>
+                </div>
+            </div>
+            
+            <div class="menu-category glass-card">
+                <h3><i class="fas fa-cocktail"></i> Beverages</h3>
+                <div class="menu-item">
+                    <div class="menu-item-name">Fresh Lime Soda</div>
+                    <div class="menu-item-price">₹80</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Masala Chai</div>
+                    <div class="menu-item-price">₹60</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Cold Coffee</div>
+                    <div class="menu-item-price">₹120</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Fresh Fruit Juice</div>
+                    <div class="menu-item-price">₹100</div>
+                </div>
+            </div>
+
+            <div class="menu-category glass-card">
+                <h3><i class="fas fa-bowl-food"></i> Main Course</h3>
+                <div class="menu-item">
+                    <div class="menu-item-name">Butter Chicken</div>
+                    <div class="menu-item-price">₹290</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Dal Makhani</div>
+                    <div class="menu-item-price">₹220</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Biryani Special</div>
+                    <div class="menu-item-price">₹250</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Naan & Roti</div>
+                    <div class="menu-item-price">₹40</div>
+                </div>
+            </div>
+
+            <div class="menu-category glass-card">
+                <h3><i class="fas fa-ice-cream"></i> Desserts</h3>
+                <div class="menu-item">
+                    <div class="menu-item-name">Gulab Jamun</div>
+                    <div class="menu-item-price">₹80</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Ice Cream</div>
+                    <div class="menu-item-price">₹90</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Kulfi</div>
+                    <div class="menu-item-price">₹70</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Ras Malai</div>
+                    <div class="menu-item-price">₹100</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section fade-in">
+        <h2>Contact & Reservations</h2>
+        <div class="contact-content">
+            <div class="contact-info glass-card">
+                <h3>Get in Touch</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Address:</strong><br>
+                        2, 10th Main, Jeevan Bima Nagar Main Rd,<br>
+                        HAL 3rd Stage, New Tippasandra,<br>
+                        Bengaluru, Karnataka 560075
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Phone:</strong><br>
+                        +91 98765 43210
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Hours:</strong><br>
+                        Mon-Sun: 11:00 AM - 11:00 PM
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email:</strong><br>
+                        info@cafegrill.com
+                    </div>
+                </div>
+            </div>
+
+            <div class="reservation-form glass-card">
+                <h3>Make a Reservation</h3>
+                <form>
                     <div class="form-group">
-                        <label>Property Type</label>
-                        <select>
-                            <option>Any Type</option>
-                            <option>Luxury Apartment</option>
-                            <option>Premium Villa</option>
-                            <option>Residential Plot</option>
-                            <option>Commercial Space</option>
-                            <option>Penthouse</option>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <select id="time" name="time" required>
+                            <option value="">Select Time</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="19:00">7:00 PM</option>
+                            <option value="20:00">8:00 PM</option>
+                            <option value="21:00">9:00 PM</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Location</label>
-                        <select>
-                            <option>Any Location</option>
-                            <option>Koramangala</option>
-                            <option>Indiranagar</option>
-                            <option>Whitefield</option>
-                            <option>Electronic City</option>
-                            <option>Hebbal</option>
-                            <option>Sarjapur Road</option>
-                            <option>HSR Layout</option>
+                        <label for="guests">Number of Guests</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Select Guests</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5+">5+ Guests</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>Budget Range</label>
-                        <select>
-                            <option>Any Budget</option>
-                            <option>₹25L - ₹50L</option>
-                            <option>₹50L - ₹1Cr</option>
-                            <option>₹1Cr - ₹2Cr</option>
-                            <option>₹2Cr - ₹5Cr</option>
-                            <option>₹5Cr+</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Bedrooms</label>
-                        <select>
-                            <option>Any</option>
-                            <option>1 BHK</option>
-                            <option>2 BHK</option>
-                            <option>3 BHK</option>
-                            <option>4+ BHK</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="search-btn">
-                            <i class="fas fa-search"></i>
-                            Search Properties
-                        </button>
-                    </div>
+                    <button type="submit" class="submit-btn">Book Now</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Property Types -->
-    <section class="property-types">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>Property Categories</h2>
-                <p>Explore our comprehensive range of premium properties across Bangalore</p>
-            </div>
-            <div class="types-grid">
-                <div class="type-card reveal">
-                    <i class="fas fa-building"></i>
-                    <h3>Luxury Apartments</h3>
-                    <p>Modern high-rise apartments with world-class amenities, premium finishes, and strategic locations in Bangalore's prime areas.</p>
-                </div>
-                <div class="type-card reveal">
-                    <i class="fas fa-home"></i>
-                    <h3>Premium Villas</h3>
-                    <p>Spacious independent villas with private gardens, modern architecture, and exclusive neighborhood communities.</p>
-                </div>
-                <div class="type-card reveal">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <h3>Residential Plots</h3>
-                    <p>DTCP approved residential plots in developing areas with excellent connectivity and high investment potential.</p>
-                </div>
-                <div class="type-card reveal">
-                    <i class="fas fa-store"></i>
-                    <h3>Commercial Spaces</h3>
-                    <p>Prime commercial properties including offices, retail spaces, and mixed-use developments in business districts.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Properties -->
-    <section class="featured-properties" id="properties">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>Featured Properties</h2>
-                <p>Handpicked premium properties offering the best value and lifestyle in Bangalore</p>
-            </div>
-            <div class="properties-grid">
-                <div class="property-card reveal">
-                    <div class="property-image property-1">
-                        <div class="property-status sale">For Sale</div>
-                    </div>
-                    <div class="property-info">
-                        <div class="property-price">₹1.2 Crores</div>
-                        <div class="property-title">Luxury 3BHK Apartment</div>
-                        <div class="property-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Koramangala, Bangalore
-                        </div>
-                        <div class="property-features">
-                            <div class="feature">
-                                <i class="fas fa-bed"></i>
-                                3 Beds
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-bath"></i>
-                                3 Baths
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-ruler-combined"></i>
-                                1800 sq ft
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-car"></i>
-                                2 Parking
-                            </div>
-                        </div>
-                        <div class="property-actions">
-                            <button class="action-btn primary">View Details</button>
-                            <button class="action-btn">Contact Agent</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="property-card reveal">
-                    <div class="property-image property-2">
-                        <div class="property-status">For Rent</div>
-                    </div>
-                    <div class="property-info">
-                        <div class="property-price">₹2.8 Crores</div>
-                        <div class="property-title">Premium Villa with Garden</div>
-                        <div class="property-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Whitefield, Bangalore
-                        </div>
-                        <div class="property-features">
-                            <div class="feature">
-                                <i class="fas fa-bed"></i>
-                                4 Beds
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-bath"></i>
-                                4 Baths
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-ruler-combined"></i>
-                                3200 sq ft
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-tree"></i>
-                                Garden
-                            </div>
-                        </div>
-                        <div class="property-actions">
-                            <button class="action-btn primary">View Details</button>
-                            <button class="action-btn">Schedule Visit</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="property-card reveal">
-                    <div class="property-image property-3">
-                        <div class="property-status sale">For Sale</div>
-                    </div>
-                    <div class="property-info">
-                        <div class="property-price">₹85 Lakhs</div>
-                        <div class="property-title">Modern 2BHK Apartment</div>
-                        <div class="property-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Electronic City, Bangalore
-                        </div>
-                        <div class="property-features">
-                            <div class="feature">
-                                <i class="fas fa-bed"></i>
-                                2 Beds
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-bath"></i>
-                                2 Baths
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-ruler-combined"></i>
-                                1200 sq ft
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-swimming-pool"></i>
-                                Pool
-                            </div>
-                        </div>
-                        <div class="property-actions">
-                            <button class="action-btn primary">View Details</button>
-                            <button class="action-btn">Get Loan Info</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="property-card reveal">
-                    <div class="property-image property-4">
-                        <div class="property-status sale">For Sale</div>
-                    </div>
-                    <div class="property-info">
-                        <div class="property-price">₹45 Lakhs</div>
-                        <div class="property-title">DTCP Approved Plot</div>
-                        <div class="property-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Sarjapur Road, Bangalore
-                        </div>
-                        <div class="property-features">
-                            <div class="feature">
-                                <i class="fas fa-ruler-combined"></i>
-                                1200 sq ft
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-certificate"></i>
-                                DTCP Approved
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-road"></i>
-                                30x40 ft
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-bolt"></i>
-                                All Utilities
-                            </div>
-                        </div>
-                        <div class="property-actions">
-                            <button class="action-btn primary">View Plot</button>
-                            <button class="action-btn">Site Visit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>What Our Clients Say</h2>
-                <p>Real experiences from satisfied customers who found their dream homes with us</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-text">
-                        "Bangalore Realty helped us find our perfect home in Koramangala. Their team was professional, knowledgeable, and made the entire process seamless. Highly recommended!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AS</div>
-                        <div class="author-info">
-                            <h4>Anita Sharma</h4>
-                            <p>Software Engineer</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-text">
-                        "Excellent service and great property options. They understood our requirements perfectly and showed us only relevant properties. Found our dream villa within a week!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RK</div>
-                        <div class="author-info">
-                            <h4>Rajesh Kumar</h4>
-                            <p>Business Owner</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-text">
-                        "Professional, trustworthy, and transparent in all dealings. They guided us through every step of the home buying process. Couldn't be happier with our new apartment!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">PM</div>
-                        <div class="author-info">
-                            <h4>Priya Mehta</h4>
-                            <p>Marketing Manager</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Bangalore Realty</h3>
-                    <p>Your trusted partner in finding the perfect property in Bangalore. We specialize in premium residential and commercial properties with personalized service and expert guidance.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <div class="footer-links">
-                        <a href="#home">Home</a>
-                        <a href="#properties">Properties</a>
-                        <a href="#search">Property Search</a>
-                        <a href="#testimonials">Client Reviews</a>
-                        <a href="#about">About Us</a>
-                        <a href="#">Careers</a>
-                        <a href="#">Blog</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Property Types</h3>
-                    <div class="footer-links">
-                        <a href="#">Luxury Apartments</a>
-                        <a href="#">Premium Villas</a>
-                        <a href="#">Residential Plots</a>
-                        <a href="#">Commercial Spaces</a>
-                        <a href="#">Penthouses</a>
-                        <a href="#">Investment Properties</a>
-                        <a href="#">Rental Properties</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Information</h3>
-                    <div class="footer-links">
-                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-                        <p><i class="fas fa-envelope"></i> info@bangalorerealty.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Brigade Road, Bangalore - 560025</p>
-                        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 7:00 PM</p>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Bangalore Realty. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Sitemap</a></p>
-            </div>
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Google"><i class="fab fa-google"></i></a>
         </div>
+        <p>&copy; 2025 Cafe Grill Restaurant. All rights reserved.</p>
+        <p style="color: var(--primary-gold); margin-top: 0.5rem; font-family: 'Playfair Display', serif;">Premium Dining Experience in Bengaluru</p>
     </footer>
 
     <script>
-        // Enhanced JavaScript functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Header scroll effect
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const headerHeight = header.offsetHeight;
-                        const targetPosition = target.offsetTop - headerHeight;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Intersection Observer for reveal animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe elements for animation
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Enhanced property card interactions
-            document.querySelectorAll('.property-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-12px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Type card hover effects with enhanced animations
-            document.querySelectorAll('.type-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    const icon = this.querySelector('i');
-                    icon.style.transform = 'scale(1.2) rotate(10deg)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    const icon = this.querySelector('i');
-                    icon.style.transform = 'scale(1) rotate(0deg)';
-                });
-            });
-
-            // Enhanced search form handling
-            document.querySelector('.search-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const searchBtn = this.querySelector('.search-btn');
-                const originalHTML = searchBtn.innerHTML;
-                
-                // Add loading state
-                searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching Properties...';
-                searchBtn.disabled = true;
-                searchBtn.style.opacity = '0.7';
-                
-                // Simulate search with realistic delay
-                setTimeout(() => {
-                    searchBtn.innerHTML = '<i class="fas fa-check"></i> Search Complete!';
-                    searchBtn.style.background = '#10b981';
-                    
-                    setTimeout(() => {
-                        searchBtn.innerHTML = originalHTML;
-                        searchBtn.disabled = false;
-                        searchBtn.style.opacity = '1';
-                        searchBtn.style.background = '';
-                        
-                        // Show results notification
-                        showNotification('Found 25 properties matching your criteria!', 'success');
-                    }, 1500);
-                }, 2000);
-            });
-
-            // Property action buttons with enhanced feedback
-            document.querySelectorAll('.action-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const action = this.textContent.trim();
-                    const originalText = this.textContent;
-                    
-                    // Add click animation
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1)';
-                    }, 150);
-                    
-                    if (action === 'View Details') {
-                        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
-                        setTimeout(() => {
-                            this.innerHTML = originalText;
-                            showNotification('Property details would open in a modal!', 'info');
-                        }, 1000);
-                    } else if (action.includes('Contact')) {
-                        this.innerHTML = '<i class="fas fa-phone fa-pulse"></i> Connecting...';
-                        setTimeout(() => {
-                            this.innerHTML = originalText;
-                            showNotification('Contact form would open here!', 'info');
-                        }, 1000);
-                    } else if (action.includes('Visit') || action.includes('Schedule')) {
-                        this.innerHTML = '<i class="fas fa-calendar fa-spin"></i> Scheduling...';
-                        setTimeout(() => {
-                            this.innerHTML = originalText;
-                            showNotification('Site visit scheduled successfully!', 'success');
-                        }, 1000);
-                    }
-                });
-            });
-
-            // Enhanced parallax effect for hero section
-            let ticking = false;
-            window.addEventListener('scroll', function() {
-                if (!ticking) {
-                    requestAnimationFrame(function() {
-                        const scrolled = window.pageYOffset;
-                        const hero = document.querySelector('.hero');
-                        const rate = scrolled * -0.3;
-                        hero.style.transform = `translateY(${rate}px)`;
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            });
-
-            // Animated counter for trust indicators
-            function animateCounter(element, target, duration = 2000) {
-                let start = 0;
-                const increment = target / (duration / 16);
-                
-                function updateCounter() {
-                    start += increment;
-                    if (start < target) {
-                        element.textContent = Math.floor(start) + (element.textContent.includes('+') ? '+' : '');
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        element.textContent = target + (element.textContent.includes('+') ? '+' : '');
-                    }
-                }
-                updateCounter();
-            }
-
-            // Trigger counter animation when trust section is visible
-            const trustObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const numbers = entry.target.querySelectorAll('.trust-number');
-                        numbers.forEach(num => {
-                            const text = num.textContent;
-                            const value = parseInt(text.replace(/\D/g, ''));
-                            animateCounter(num, value);
-                        });
-                        trustObserver.unobserve(entry.target);
-                    }
-                });
-            });
-
-            const trustSection = document.querySelector('.trust-indicators');
-            if (trustSection) {
-                trustObserver.observe(trustSection);
-            }
-
-            // Mobile menu functionality
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                    this.classList.toggle('active');
-                });
-            }
-
-            // Notification system
-            function showNotification(message, type = 'info') {
-                const notification = document.createElement('div');
-                notification.className = `notification notification-${type}`;
-                notification.innerHTML = `
-                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-                    <span>${message}</span>
-                    <button class="notification-close">&times;</button>
-                `;
-                
-                // Add notification styles
-                Object.assign(notification.style, {
-                    position: 'fixed',
-                    top: '100px',
-                    right: '20px',
-                    background: type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#0066cc',
-                    color: 'white',
-                    padding: '16px 20px',
-                    borderRadius: '12px',
-                    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
-                    zIndex: '10000',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    maxWidth: '350px',
-                    transform: 'translateX(400px)',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-                });
-                
-                document.body.appendChild(notification);
-                
-                // Animate in
-                setTimeout(() => {
-                    notification.style.transform = 'translateX(0)';
-                }, 100);
-                
-                // Close functionality
-                notification.querySelector('.notification-close').addEventListener('click', () => {
-                    notification.style.transform = 'translateX(400px)';
-                    setTimeout(() => notification.remove(), 300);
-                });
-                
-                // Auto remove
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.style.transform = 'translateX(400px)';
-                        setTimeout(() => notification.remove(), 300);
-                    }
-                }, 5000);
-            }
-
-            // Contact button pulse effect
-            const contactBtn = document.querySelector('.contact-btn');
-            setInterval(() => {
-                contactBtn.style.transform = 'scale(1.05)';
-                setTimeout(() => {
-                    contactBtn.style.transform = 'scale(1)';
-                }, 200);
-            }, 4000);
-
-            // Add loading states to page elements
+        // Page loader
+        window.addEventListener('load', function() {
             setTimeout(() => {
-                document.querySelectorAll('.loading').forEach(el => {
-                    el.classList.add('loaded');
-                });
-            }, 500);
+                document.querySelector('.page-loader').classList.add('hidden');
+            }, 1500);
         });
 
-        // Additional CSS for mobile menu and notifications
-        const additionalStyles = document.createElement('style');
-        additionalStyles.textContent = `
-            @media (max-width: 768px) {
-                .nav-menu.active {
-                    display: flex;
-                    position: fixed;
-                    top: 80px;
-                    left: 0;
-                    right: 0;
-                    background: white;
-                    flex-direction: column;
-                    padding: 20px;
-                    box-shadow: var(--shadow-lg);
-                    border-top: 1px solid var(--border-light);
+        // Create floating particles
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.animationDelay = Math.random() * 15 + 's';
+                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    document.body.appendChild(particle);
+
+                    // Remove particle after animation
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 25000);
+                }, i * 300);
+            }
+        }
+
+        // Start particle animation
+        createParticles();
+        setInterval(createParticles, 15000);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
-                
-                .mobile-menu-btn.active span:nth-child(1) {
-                    transform: rotate(45deg) translate(5px, 5px);
+            });
+        });
+
+        // Enhanced navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Enhanced scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate about text paragraphs
+                        if (entry.target.querySelector('.about-text')) {
+                            const paragraphs = entry.target.querySelectorAll('.about-text p');
+                            const aboutImage = entry.target.querySelector('.about-image');
+                            
+                            paragraphs.forEach((p, i) => {
+                                setTimeout(() => {
+                                    p.style.animationDelay = `${i * 0.2}s`;
+                                    p.style.opacity = '1';
+                                    p.style.transform = 'translateX(0)';
+                                }, i * 200);
+                            });
+
+                            setTimeout(() => {
+                                if (aboutImage) {
+                                    aboutImage.style.opacity = '1';
+                                    aboutImage.style.transform = 'translateX(0)';
+                                }
+                            }, 600);
+                        }
+
+                        // Animate menu items
+                        if (entry.target.querySelector('.menu-grid')) {
+                            const menuCards = entry.target.querySelectorAll('.menu-category');
+                            menuCards.forEach((card, i) => {
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'translateY(0) scale(1)';
+                                }, i * 150);
+                            });
+                        }
+                    }, index * 100);
                 }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced form submission with animation
+        document.querySelector('.reservation-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            // Button loading animation
+            submitBtn.textContent = 'BOOKING...';
+            submitBtn.style.background = 'var(--accent-gold)';
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const date = formData.get('date');
+            const time = formData.get('time');
+            const guests = formData.get('guests');
+            
+            setTimeout(() => {
+                if (name && phone && date && time && guests) {
+                    // Success animation
+                    submitBtn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                    submitBtn.textContent = 'BOOKING CONFIRMED!';
+                    
+                    setTimeout(() => {
+                        alert(`Thank you ${name}! Your reservation for ${guests} guests on ${date} at ${time} has been received. We'll confirm shortly via phone.`);
+                        this.reset();
+                        
+                        // Reset button
+                        setTimeout(() => {
+                            submitBtn.style.background = 'var(--gradient-gold)';
+                            submitBtn.textContent = originalText;
+                        }, 2000);
+                    }, 1000);
+                } else {
+                    // Error animation
+                    submitBtn.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+                    submitBtn.textContent = 'PLEASE FILL ALL FIELDS';
+                    
+                    setTimeout(() => {
+                        submitBtn.style.background = 'var(--gradient-gold)';
+                        submitBtn.textContent = originalText;
+                    }, 2000);
+                }
+            }, 1500);
+        });
+
+        // Enhanced menu category animations
+        document.querySelectorAll('.menu-category').forEach(category => {
+            category.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.03)';
                 
-                .mobile-menu-btn.active span:nth-child(2) {
+                // Animate menu items
+                const items = this.querySelectorAll('.menu-item');
+                items.forEach((item, i) => {
+                    setTimeout(() => {
+                        item.style.transform = 'translateX(10px)';
+                        item.style.background = 'rgba(212, 175, 55, 0.1)';
+                    }, i * 50);
+                });
+            });
+            
+            category.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                
+                // Reset menu items
+                const items = this.querySelectorAll('.menu-item');
+                items.forEach(item => {
+                    item.style.transform = 'translateX(0)';
+                    item.style.background = 'transparent';
+                });
+            });
+        });
+
+        // CTA button ripple effect
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.5);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                left: ${x}px;
+                top: ${y}px;
+                width: ${size}px;
+                height: ${size}px;
+                pointer-events: none;
+            `;
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+
+        // Add ripple animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
                     opacity: 0;
                 }
-                
-                .mobile-menu-btn.active span:nth-child(3) {
-                    transform: rotate(-45deg) translate(7px, -6px);
-                }
-            }
-            
-            .notification-close {
-                background: none;
-                border: none;
-                color: white;
-                font-size: 20px;
-                cursor: pointer;
-                padding: 0;
-                margin-left: auto;
-            }
-            
-            /* Enhanced hover effects */
-            .btn-primary::before, .btn-secondary::before, .contact-btn::before, .search-btn::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-                transition: left 0.6s;
-            }
-            
-            .btn-primary:hover::before, .btn-secondary:hover::before, .search-btn:hover::before {
-                left: 100%;
             }
         `;
-        document.head.appendChild(additionalStyles);
+        document.head.appendChild(style);
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Dynamic year in footer
+        const currentYear = new Date().getFullYear();
+        document.querySelector('.footer p').innerHTML = 
+            `&copy; ${currentYear} Cafe Grill Restaurant. All rights reserved.`;
+
+        // Enhanced intersection observer for glass cards
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            cardObserver.observe(card);
+        });
+
+        // Mobile menu toggle (for future implementation)
+        const mobileMenuToggle = () => {
+            // This can be implemented for mobile hamburger menu
+            console.log('Mobile menu toggle');
+        };
     </script>
 </body>
 </html>
