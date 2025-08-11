@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAN WYCK - Premium Interior Design</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --royal-gold: #D4A574;
+            --deep-navy: #1A1B23;
+            --charcoal: #2C2D35;
+            --cream: #F8F6F0;
+            --warm-white: #FEFCF7;
+            --accent-brown: #8B6914;
+            --text-light: #6B7280;
+            --text-dark: #1F2937;
+            --royal-purple: #4A2C7A;
+            --deep-emerald: #1B4B36;
+            --rich-burgundy: #722F37;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header - Responsive */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(254, 252, 247, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+        }
+        
+        .header.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+     .logo {
+    display: flex;
+    flex-direction: column; /* Stack image over text */
+    align-items: center;    /* Center both */
+    text-decoration: none;
+    gap: 0.3rem;
+}
+
+.logo-icon {
+    height: 50px; /* Adjust as needed */
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; /* Slightly smaller than image for balance */
+    font-weight: 500;
+    color: var(--deep-navy);
+    letter-spacing: 3px;
+    transition: all 0.3s ease;
+    display: flex;
+    gap: 0.2rem;
+}
+
+.logo-text .logoa {
+    font-weight: 1000;
+    color: var(--royal-gold);
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+}
+
+
+        
+        .logo:hover {
+            color: var(--royal-gold);
+            transform: scale(1.05);
+        }
+        
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--deep-navy);
+            z-index: 1001;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--royal-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--royal-gold);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .cta-btn {
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
+        }
+        
+        /* Hero Section - Responsive */
+        .hero {
+            height: auto;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px;
+            padding: 6rem 0 4rem;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23D4A574" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .hero-text {
+            animation: fadeInUp 1s ease-out;
+            text-align: center;
+        }
+        
+        .hero-subtitle {
+            color: var(--royal-gold);
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--deep-navy);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-family: 'Crimson Text', serif;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--deep-navy);
+            padding: 1rem 2rem;
+            border: 2px solid var(--deep-navy);
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(212, 165, 116, 0.4);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--deep-navy);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease;
+        }
+        
+        .hero-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* How It Works Section - Responsive */
+        .how-it-works {
+            padding: 5rem 0;
+            background: var(--warm-white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-subtitle {
+            color: var(--royal-gold);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--deep-navy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-description {
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+        
+        .step {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .step.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .step-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            background: rgba(254, 252, 247, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            order: 2;
+        }
+        
+        .step-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .step-number {
+            font-size: 4rem;
+            font-weight: 200;
+            color: var(--royal-gold);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+            position: absolute;
+            top: -30px;
+            left: 0;
+            z-index: -1;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .step-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .step-images {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            height: auto;
+            order: 1;
+        }
+        
+        .step-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .step-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Featured Work Section - Responsive */
+        .featured-work {
+            padding: 5rem 0;
+            background: var(--cream);
+        }
+        
+        .work-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .work-item {
+            position: relative;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+        
+        .work-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .work-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .work-item:hover .work-img {
+            transform: scale(1.1);
+        }
+        
+        .work-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 2rem 1.5rem;
+            transform: translateY(100px);
+            transition: all 0.5s ease;
+        }
+        
+        .work-item:hover .work-overlay {
+            transform: translateY(0);
+        }
+        
+        .work-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .work-category {
+            color: var(--royal-gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Reviews Section - Responsive */
+        .reviews {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 50%, var(--cream) 100%);
+            padding: 5rem 0;
+            color: var(--text-dark);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .reviews::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(212, 165, 116, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 40%, rgba(212, 165, 116, 0.02) 50%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .reviews-subtitle {
+            color: var(--royal-gold);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .reviews-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--accent-brown));
+        }
+        
+        .reviews-main-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--deep-navy);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        
+        .reviews-description {
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+        }
+        
+        .reviews-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.2rem;
+            background: rgba(254, 252, 247, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(212, 165, 116, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--royal-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .reviews-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .reviews-text {
+            text-align: center;
+        }
+        
+        .reviews-label {
+            color: var(--royal-gold);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .reviews-label::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--royal-gold);
+        }
+        
+        .reviews-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--deep-navy);
+        }
+        
+        .reviews-title .highlight {
+            color: var(--royal-gold);
+            font-style: italic;
+        }
+        
+        .reviews-text-description {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-family: 'Crimson Text', serif;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .reviews-btn {
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        .reviews-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .reviews-btn:hover::before {
+            left: 100%;
+        }
+        
+        .reviews-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
+        }
+        
+        .reviews-slider {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 1rem;
+}
+
+.reviews-cards {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: visible;
+}
+
+.review-card {
+    background: linear-gradient(135deg, var(--warm-white) 0%, rgba(248, 246, 240, 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2rem;
+    min-width: 300px;
+    flex: 0 0 auto;
+    color: var(--text-dark);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(212, 165, 116, 0.15);
+}
+        .review-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--accent-brown));
+        }
+        
+        .review-card::after {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 6rem;
+            color: rgba(212, 165, 116, 0.1);
+            font-weight: 700;
+            line-height: 1;
+            z-index: 1;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(212, 165, 116, 0.3);
+        }
+        
+        .reviewer-info {
+            flex: 1;
+        }
+        
+        .reviewer-name {
+            color: var(--deep-navy);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .reviewer-location {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+        }
+        
+        .stars {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stars i {
+            color: #FFD700;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+            filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+        }
+        
+        .review-card:hover .stars i {
+            transform: scale(1.1);
+        }
+        
+        .review-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .review-text {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            font-family: 'Crimson Text', serif;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .reviews-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nav-btn {
+            background: var(--warm-white);
+            color: var(--deep-navy);
+            border: 2px solid var(--royal-gold);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .nav-btn:hover::before {
+            left: 0;
+        }
+        
+        .nav-btn:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            color: white;
+        }
+        
+        .nav-dots {
+            display: flex;
+            gap: 0.8rem;
+        }
+        
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(212, 165, 116, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: var(--royal-gold);
+            transform: scale(1.3);
+        }
+        
+        .nav-dot:hover {
+            background: var(--royal-gold);
+            transform: scale(1.2);
+        }
+        
+     .footer {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 50%, var(--cream) 100%);
+            color: var(--text-dark);
+            padding: 4rem 0 0;
+            position: relative;
+            overflow: hidden;
+            border-top: 3px solid var(--royal-gold);
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(212, 165, 116, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 40%, rgba(212, 165, 116, 0.02) 50%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        .footer-top {
+            position: relative;
+            z-index: 2;
+            padding-bottom: 3rem;
+        }
+        
+        .footer-brand {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--accent-brown));
+        }
+        
+        .footer-tagline {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        
+        /* Plain Footer Content - No Cards */
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-section {
+            text-align: center;
+            /* Removed all card styling */
+        }
+        
+        .footer-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--deep-navy);
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 2px;
+            background: var(--royal-gold);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: all 0.3s ease;
+            font-family: 'Crimson Text', serif;
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+        
+        .footer-section a:hover {
+            color: var(--royal-gold);
+            transform: translateX(5px);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            padding: 0.6rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(212, 165, 116, 0.1);
+        }
+        
+        .contact-item i {
+            color: var(--royal-gold);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
+            background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .social-link:hover::before {
+            left: 100%;
+        }
+        
+        .social-link:hover {
+            background: var(--deep-navy);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(212, 165, 116, 0.4);
+        }
+        
+        .footer-bottom {
+            background: var(--deep-navy);
+            padding: 1.5rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-bottom-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--royal-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--royal-gold);
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 576px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+                text-align: left;
+            }
+            
+            .footer-section h3::after {
+                left: 0;
+                transform: none;
+            }
+            
+            .contact-item {
+                justify-content: flex-start;
+            }
+            
+            .social-links {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .footer-bottom-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        /* Responsive Design - Media Queries */
+        @media (min-width: 576px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .reviews-main-title {
+                font-size: 3rem;
+            }
+            
+            .work-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .step-images {
+                grid-template-columns: 1fr 1fr;
+                height: 300px;
+            }
+            
+            .step-img:first-child {
+                grid-row: 1 / 3;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Tablet adjustments */
+@media (max-width: 768px) {
+    .reviews-slider {
+        padding: 0 0.75rem;
+    }
+    
+    .review-card {
+        min-width: 280px;
+        padding: 1.8rem;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+    .reviews-slider {
+        padding: 0 1rem;
+    }
+    
+    .reviews-cards {
+        gap: 1rem;
+    }
+    
+    .review-card {
+        min-width: 260px; /* Fixed smaller width */
+        max-width: 260px;
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+    
+    .review-card:hover {
+        transform: translateY(-8px) scale(1.01);
+    }
+    
+    .reviewer-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .review-header {
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .reviewer-name {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .reviewer-location {
+        font-size: 0.75rem;
+    }
+    
+    .stars {
+        margin-bottom: 1rem;
+        gap: 0.2rem;
+    }
+    
+    .stars i {
+        font-size: 0.85rem;
+    }
+    
+    .review-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.2;
+    }
+    
+    .review-text {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+    
+    .review-card::after {
+        font-size: 3.5rem;
+        top: 0.5rem;
+        right: 0.75rem;
+    }
+    
+    .reviews-navigation {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+        border-radius: 25px;
+    }
+    
+    .nav-dots {
+        order: -1; /* Move dots above buttons */
+    }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+    .reviews-slider {
+        padding: 0 0.5rem;
+    }
+    
+    .review-card {
+        min-width: 240px; /* Even smaller for very small screens */
+        max-width: 240px;
+        padding: 1.25rem;
+        border-radius: 12px;
+    }
+    
+    .reviewer-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .review-title {
+        font-size: 1rem;
+    }
+    
+    .review-text {
+        font-size: 0.75rem;
+    }
+    
+    .review-card::after {
+        font-size: 3rem;
+        top: 0.25rem;
+        right: 0.5rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .reviews-slider {
+        padding: 0 0.25rem;
+    }
+    
+    .review-card {
+        min-width: 220px;
+        max-width: 220px;
+        padding: 1rem;
+    }
+    
+    .reviewer-name {
+        font-size: 0.85rem;
+    }
+    
+    .reviewer-location {
+        font-size: 0.7rem;
+    }
+    
+    .review-title {
+        font-size: 0.95rem;
+    }
+    
+    .review-text {
+        font-size: 0.7rem;
+    }
+}
+        @media (min-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+                padding-top: 0;
+            }
+            
+            .hero-text {
+                text-align: left;
+            }
+            
+            .hero-description {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+            
+            .hero-img {
+                max-height: 600px;
+            }
+            
+            .step {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+            
+            .step-content {
+                order: 0;
+            }
+            
+            .step:nth-child(even) .step-content {
+                order: 1;
+            }
+            
+            .step:nth-child(even) .step-images {
+                order: 0;
+            }
+            
+            .reviews-text {
+                text-align: left;
+            }
+            
+            .reviews-label::after {
+                left: 0;
+                transform: none;
+            }
+            
+            .reviews-title {
+                font-size: 2.8rem;
+            }
+            
+            .reviews-text-description {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .work-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .section-title {
+                font-size: 3.2rem;
+            }
+            
+            .reviews-main-title {
+                font-size: 3.5rem;
+            }
+            
+            .reviews-title {
+                font-size: 3.2rem;
+            }
+            
+            .reviews-content {
+                grid-template-columns: 1fr 2fr;
+            }
+            
+            .step-images {
+                height: 350px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .hero-title {
+                font-size: 4.5rem;
+            }
+            
+            .section-title {
+                font-size: 3.5rem;
+            }
+            
+            .reviews-main-title {
+                font-size: 4rem;
+            }
+            
+            .reviews-title {
+                font-size: 3.5rem;
+            }
+            
+            .step-images {
+                height: 400px;
+            }
+        }
+        
+        /* Mobile Navigation */
+        @media (max-width: 991px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: rgba(254, 252, 247, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                transition: right 0.4s ease;
+                z-index: 1000;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .cta-btn {
+                display: none;
+            }
+            
+            .nav-cta-mobile {
+                display: block;
+                margin-top: 2rem;
+            }
+        }
+        
+        /* Mobile Menu Animation */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Fix for duplicate button */
+        .nav-cta-mobile {
+            display: none;
+        }
+        
+        @media (max-width: 991px) {
+            .nav-cta-mobile {
+                display: block;
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav">
+          <a href="#" class="logo">
+  <img src="stanwyck.png" alt="Logo Icon" class="logo-icon" />
+  <div class="logo-text">
+    STAN<span class="logoa">WYCK</span>
+  </div>
+</a>
+
+<div> <span> <a href=""></a></span></div>
+
+
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">Portfolio</a></li>
+                <li><a href="#" class="nav-link">Services</a></li>
+                <li><a href="#" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+                <li class="nav-cta-mobile">
+                    <button class="cta-btn">Get Started</button>
+                </li>
+            </ul>
+            
+            <button class="cta-btn">Get Started</button>
+        </nav>
+    </header>
+    
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-subtitle">Premium Interior Design</p>
+                <h1 class="hero-title">Transform Your Space Into Art</h1>
+                <p class="hero-description">
+                    Experience luxury living with our bespoke interior design solutions. 
+                    We create sophisticated spaces that reflect your unique style and elevate your lifestyle.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">Start Your Project</button>
+                    <button class="btn-secondary">View Portfolio</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" alt="Luxury Interior" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">How STANWYCK Works</p>
+                <h2 class="section-title">Your Journey to Perfect Design</h2>
+                <p class="section-description">
+                    Our streamlined process ensures every detail is perfect, 
+                    from initial consultation to final installation.
+                </p>
+            </div>
+            
+            <div class="steps">
+                <div class="step" data-step="1">
+                    <div class="step-content">
+                        <div class="step-number">01</div>
+                        <h3>Match with our talented designers and get inspired</h3>
+                        <p>Take a style quiz to help us get to know you a little bit better, then choose your interior designer from our personalized recommendations. With over 10 years of experience and nearly 1 million designs, our expert team will help you turn your vision into reality.</p>
+                    </div>
+                    <div class="step-images">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=800&fit=crop" alt="Design Consultation" class="step-img">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&h=300&fit=crop" alt="Designer Meeting" class="step-img">
+                        <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?w=400&h=300&fit=crop" alt="Style Selection" class="step-img">
+                    </div>
+                </div>
+                
+                <div class="step" data-step="2">
+                    <div class="step-content">
+                        <div class="step-number">02</div>
+                        <h3>Partner with your designer to create a home you love</h3>
+                        <p>Great design doesn't happen alone. Let your designer guide you to solutions that meet your functional needs and products that suit your unique style. See it come to life with a 3D rendering of the design in your actual space.</p>
+                    </div>
+                    <div class="step-images">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=800&fit=crop" alt="Design Process" class="step-img">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="3D Rendering" class="step-img">
+                        <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=400&h=300&fit=crop" alt="Material Selection" class="step-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-work">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Featured Projects</p>
+                <h2 class="section-title">Exceptional Designs</h2>
+                <p class="section-description">
+                    Discover our portfolio of luxury interiors that showcase 
+                    our commitment to excellence and attention to detail.
+                </p>
+            </div>
+            
+            <div class="work-grid">
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=800&fit=crop" alt="Modern Living Room" class="work-img">
+                    <div class="work-overlay">
+                        <h3 class="work-title">Modern Minimalist Living</h3>
+                        <p class="work-category">Residential • Living Room</p>
+                    </div>
+                </div>
+                
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=800&fit=crop" alt="Luxury Bedroom" class="work-img">
+                    <div class="work-overlay">
+                        <h3 class="work-title">Serene Master Suite</h3>
+                        <p class="work-category">Residential • Bedroom</p>
+                    </div>
+                </div>
+                
+                <div class="work-item">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=800&fit=crop" alt="Executive Office" class="work-img">
+                    <div class="work-overlay">
+                        <h3 class="work-title">Executive Office Design</h3>
+                        <p class="work-category">Commercial • Office</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <div class="container">
+            <div class="reviews-header">
+                <p class="reviews-subtitle">CLIENT TESTIMONIALS</p>
+                <h2 class="reviews-main-title">What Our Clients Say</h2>
+                <p class="reviews-description">
+                    Discover why homeowners and businesses trust STANWYCK to transform 
+                    their spaces into works of art. Every review tells a story of excellence.
+                </p>
+                
+                <div class="reviews-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">100K+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4.9</span>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reviews-content">
+                <div class="reviews-text">
+                    <p class="reviews-label">TESTIMONIALS</p>
+                    <h3 class="reviews-title">Transforming <span class="highlight">dreams</span><br>into reality, one<br>space at a time.</h3>
+                    <p class="reviews-text-description">
+                        Our commitment to excellence has earned us the trust of discerning clients 
+                        who value quality, creativity, and attention to detail.
+                    </p>
+                    <button class="reviews-btn">VIEW ALL REVIEWS</button>
+                </div>
+                
+                <div class="reviews-slider">
+                    <div class="reviews-cards" id="reviewsCards">
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-avatar">S</div>
+                                <div class="reviewer-info">
+                                    <p class="reviewer-name">Shaniece Williams</p>
+                                    <p class="reviewer-location">Mumbai, India</p>
+                                </div>
+                            </div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4 class="review-title">Another Masterpiece</h4>
+                            <p class="review-text">This was my second time working with the same designer with Luxoria. She understands what we like more than we even understand it. I wouldn't change anything from beginning to end, the process was stellar.</p>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-avatar">P</div>
+                                <div class="reviewer-info">
+                                    <p class="reviewer-name">Pam Rodriguez</p>
+                                    <p class="reviewer-location">Delhi, India</p>
+                                </div>
+                            </div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4 class="review-title">Amazing Experience!</h4>
+                            <p class="review-text">The entire process was seamless and fun. The designer incorporated new and existing furniture pieces, recommended changing the floorplan to maximize functionality.</p>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-avatar">B</div>
+                                <div class="reviewer-info">
+                                    <p class="reviewer-name">Blaine Thompson</p>
+                                    <p class="reviewer-location">Bangalore, India</p>
+                                </div>
+                            </div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4 class="review-title">What a Lifesaver!</h4>
+                            <p class="review-text">Luxoria saved me! I worked with their team to design an entire house in less than 1 month. It was fun, efficient and the house looks like it's straight out of a luxury catalog.</p>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-avatar">L</div>
+                                <div class="reviewer-info">
+                                    <p class="reviewer-name">Liz Chen</p>
+                                    <p class="reviewer-location">Hyderabad, India</p>
+                                </div>
+                            </div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4 class="review-title">Best Investment!</h4>
+                            <p class="review-text">Buying my first home was overwhelming, but I found the best designer to help me create the perfect space. The process was smooth and I have design ideas for years to come.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reviews-navigation">
+                        <button class="nav-btn prev-btn" id="prevBtn">← PREVIOUS</button>
+                        <div class="nav-dots">
+                            <span class="nav-dot active"></span>
+                            <span class="nav-dot"></span>
+                            <span class="nav-dot"></span>
+                            <span class="nav-dot"></span>
+                        </div>
+                        <button class="nav-btn next-btn" id="nextBtn">NEXT →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <img src="stanwyck.png" alt="Logo Icon" class="logo-icon" />
+                        <div class="logo-text">
+                            STAN<span class="logoa">WYCK</span>
+                        </div>
+                    </a>
+                    <p class="footer-tagline">Creating exceptional interior spaces that inspire and elevate your lifestyle. Experience the pinnacle of luxury design.</p>
+                </div>
+                
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Our Services</h3>
+                        <a href="#">Residential Design</a>
+                        <a href="#">Commercial Spaces</a>
+                        <a href="#">3D Visualization</a>
+                        <a href="#">Project Management</a>
+                        <a href="#">Custom Furniture</a>
+                        <a href="#">Color Consultation</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <a href="#">About Luxoria</a>
+                        <a href="#">Our Portfolio</a>
+                        <a href="#">Design Team</a>
+                        <a href="#">Client Stories</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Press & Media</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Get In Touch</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@luxoria.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Brigade Road, Bangalore</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Sat: 9:00 AM - 7:00 PM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <p>Stay connected for design inspiration and latest updates</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Luxoria. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        });
+        
+        mobileMenuOverlay.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe step elements
+        document.querySelectorAll('.step').forEach(step => {
+            observer.observe(step);
+        });
+
+        // Enhanced animation observer for reviews and footer sections
+        const enhancedObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0s';
+                    entry.target.style.animationFillMode = 'both';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Observe reviews and footer sections
+        document.querySelectorAll('.reviews-label, .reviews-title, .reviews-btn, .reviews-slider, .footer-section').forEach(element => {
+            enhancedObserver.observe(element);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Enhanced reviews slider functionality
+        let currentSlide = 0;
+        const reviewsCards = document.getElementById('reviewsCards');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dots = document.querySelectorAll('.nav-dot');
+        
+        function initializeReviewsSlider() {
+            const totalCards = document.querySelectorAll('.review-card').length;
+            const cardsPerView = window.innerWidth > 768 ? 3 : 1;
+            const maxSlide = Math.max(0, totalCards - cardsPerView);
+
+            function updateSlider() {
+                if (!reviewsCards) return;
+                
+                const translateX = currentSlide * -(100 / cardsPerView);
+                reviewsCards.style.transform = `translateX(${translateX}%)`;
+                reviewsCards.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                
+                // Update dots if they exist
+                if (dots.length > 0) {
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentSlide);
+                    });
+                }
+                
+                // Update button states
+                if (prevBtn) prevBtn.classList.toggle('active', currentSlide > 0);
+                if (nextBtn) nextBtn.classList.toggle('active', currentSlide < maxSlide);
+            }
+
+            // Next button functionality
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    if (currentSlide < maxSlide) {
+                        currentSlide++;
+                        updateSlider();
+                    }
+                });
+            }
+
+            // Previous button functionality
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        updateSlider();
+                    }
+                });
+            }
+
+            // Dot navigation
+            if (dots.length > 0) {
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentSlide = index;
+                        updateSlider();
+                    });
+                });
+            }
+
+            // Auto-play functionality
+            let autoPlayInterval;
+            
+            function startAutoPlay() {
+                autoPlayInterval = setInterval(() => {
+                    if (currentSlide < maxSlide) {
+                        currentSlide++;
+                    } else {
+                        currentSlide = 0;
+                    }
+                    updateSlider();
+                }, 5000);
+            }
+            
+            function stopAutoPlay() {
+                clearInterval(autoPlayInterval);
+            }
+            
+            // Pause auto-play on hover
+            if (reviewsCards) {
+                reviewsCards.addEventListener('mouseenter', stopAutoPlay);
+                reviewsCards.addEventListener('mouseleave', startAutoPlay);
+            }
+            
+            // Initialize slider
+            updateSlider();
+            startAutoPlay();
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                const newCardsPerView = window.innerWidth > 768 ? 3 : 1;
+                const newMaxSlide = Math.max(0, totalCards - newCardsPerView);
+                
+                if (currentSlide > newMaxSlide) {
+                    currentSlide = newMaxSlide;
+                }
+                updateSlider();
+            });
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeReviewsSlider();
+            
+            // Add floating animation to review cards
+            document.querySelectorAll('.review-card').forEach((card, index) => {
+                card.style.animation = `float 6s ease-in-out ${index * 0.5}s infinite`;
+            });
+            
+            // Stats counter animation
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            const statsSection = document.querySelector('.reviews-stats');
+            if (statsSection) {
+                statsObserver.observe(statsSection);
+            }
+        });
+        
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent.replace(/[^\d]/g, ''));
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    
+                    const suffix = stat.textContent.includes('K') ? 'K+' : 
+                                  stat.textContent.includes('.') ? '' : '+';
+                    stat.textContent = Math.floor(current) + suffix;
+                }, 20);
+            });
+        }
+    </script>
+</body>
+</html>
