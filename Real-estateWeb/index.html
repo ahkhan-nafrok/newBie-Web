@@ -3,6 +3,1141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RINAAZ Beauty Parlour & Salon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-pink: #e91e63;
+            --secondary-pink: #ad1457;
+            --light-pink: #fce4ec;
+            --accent-pink: #f8bbd9;
+            --dark-text: #2d2d2d;
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(233, 30, 99, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-item a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-item a:hover {
+            color: var(--primary-pink);
+        }
+        
+        .nav-item a.active {
+            color: var(--primary-pink);
+        }
+        
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-item a:hover::after,
+        .nav-item a.active::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-pink);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.9), rgba(173, 20, 87, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="beauty" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="2" fill="%23fff" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23beauty)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary-pink);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-pink);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            transition: all 0.5s ease;
+            z-index: -1;
+            opacity: 0.05;
+        }
+        
+        .service-card:hover::before {
+            left: 0;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(233, 30, 99, 0.2);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            background: var(--gradient);
+            border-radius: 20px;
+            z-index: -1;
+        }
+        
+        .about-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            background: var(--light-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary-pink);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
+        }
+        
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-text);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 10px rgba(233, 30, 99, 0.1);
+        }
+        
+        .btn-submit {
+            background: var(--gradient);
+            color: white;
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark-text);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            color: var(--accent-pink);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-pink);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.3);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+        
+        /* Page Content (Hidden by default) */
+        .page-content {
+            display: none;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-img">💄</div>
+                <div class="logo-text">RINAAZ</div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-page="services">Services</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-page="about">About</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-page="gallery">Gallery</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page-content active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>RINAAZ Beauty Parlour & Salon</h1>
+                <p>Transform your beauty with our premium services. Experience luxury and elegance at its finest.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" data-page="services">View Services</a>
+                    <a href="#" class="btn btn-outline" data-page="contact">Book Appointment</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Services -->
+        <section class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Premium Services</h2>
+                    <p>Discover our range of beauty and wellness services designed to enhance your natural beauty</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💇‍♀️</div>
+                        <h3>Hair Styling</h3>
+                        <p>Expert hair cuts, coloring, styling and treatments using premium products for all hair types.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💄</div>
+                        <h3>Makeup & Beauty</h3>
+                        <p>Professional makeup services for special occasions, parties, and bridal events.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">✨</div>
+                        <h3>Skincare Treatments</h3>
+                        <p>Advanced facial treatments, skin analysis, and personalized skincare routines.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Preview -->
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Why Choose RINAAZ?</h2>
+                        <p>Located in the heart of HAL 3rd Stage, RINAAZ Beauty Parlour & Salon has been serving the Bengaluru community with exceptional beauty services and personalized care.</p>
+                        <p>Our team of skilled professionals is dedicated to helping you look and feel your absolute best using the latest techniques and premium products.</p>
+                        <div class="about-features">
+                            <div class="feature">
+                                <div class="feature-icon">✓</div>
+                                <span>Expert Stylists</span>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-icon">✓</div>
+                                <span>Premium Products</span>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-icon">✓</div>
+                                <span>Hygienic Environment</span>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-icon">✓</div>
+                                <span>Affordable Prices</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-img">💅</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page-content">
+        <section style="padding: 6rem 0; background: var(--light-gray); margin-top: 80px;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Complete Beauty Services</h2>
+                    <p>Comprehensive beauty and wellness solutions tailored to your needs</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💇‍♀️</div>
+                        <h3>Hair Care & Styling</h3>
+                        <p>Hair cuts, styling, coloring, highlights, perms, straightening, and hair treatments for all hair types.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💄</div>
+                        <h3>Makeup Services</h3>
+                        <p>Bridal makeup, party makeup, event makeup, and makeup lessons using premium cosmetic brands.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">✨</div>
+                        <h3>Facial Treatments</h3>
+                        <p>Deep cleansing facials, anti-aging treatments, acne treatment, and customized skincare solutions.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💅</div>
+                        <h3>Nail Care</h3>
+                        <p>Manicures, pedicures, nail art, gel polish, and complete nail care services.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🧴</div>
+                        <h3>Spa Treatments</h3>
+                        <p>Relaxing body massages, aromatherapy, and wellness treatments for complete rejuvenation.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👰</div>
+                        <h3>Bridal Packages</h3>
+                        <p>Complete bridal makeover packages including hair, makeup, skincare, and pre-wedding treatments.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page-content">
+        <section style="padding: 6rem 0; background: white; margin-top: 80px;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About RINAAZ</h2>
+                    <p>Your trusted beauty partner in Bengaluru</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Our Story</h2>
+                        <p>RINAAZ Beauty Parlour & Salon has been a cornerstone of beauty and wellness in the HAL 3rd Stage area of Bengaluru. We pride ourselves on providing exceptional beauty services in a warm, welcoming environment.</p>
+                        <p>Our team consists of highly trained and experienced beauty professionals who stay updated with the latest trends and techniques in the beauty industry. We believe that every client deserves personalized attention and care.</p>
+                        <p>Located conveniently on HAL Old Airport Road, we serve clients from across Bengaluru with our comprehensive range of beauty and wellness services.</p>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-img">🏪</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 4rem;">
+                    <div class="section-title">
+                        <h2>Our Values</h2>
+                    </div>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">⭐</div>
+                            <h3>Excellence</h3>
+                            <p>We strive for excellence in every service we provide, ensuring the highest quality results.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🤝</div>
+                            <h3>Trust</h3>
+                            <p>Building lasting relationships with our clients through trust, reliability, and consistent service.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🌟</div>
+                            <h3>Innovation</h3>
+                            <p>Staying current with the latest beauty trends and techniques to offer modern solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Gallery Page -->
+    <div id="gallery" class="page-content">
+        <section style="padding: 6rem 0; background: var(--light-gray); margin-top: 80px;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Gallery</h2>
+                    <p>Showcase of our beautiful transformations and salon ambiance</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">💇‍♀️</div>
+                        <h3>Hair Transformations</h3>
+                        <p>Before and after shots of our amazing hair makeovers and styling work.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">💄</div>
+                        <h3>Makeup Gallery</h3>
+                        <p>Beautiful makeup looks for various occasions including bridal and party makeup.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">🏪</div>
+                        <h3>Salon Interior</h3>
+                        <p>Take a virtual tour of our modern, clean, and comfortable salon space.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">👰</div>
+                        <h3>Bridal Collection</h3>
+                        <p>Stunning bridal makeovers and complete bridal packages we've created.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">💅</div>
+                        <h3>Nail Art</h3>
+                        <p>Creative nail art designs and manicure transformations by our experts.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">✨</div>
+                        <h3>Special Events</h3>
+                        <p>Highlights from special events, workshops, and celebrations at our salon.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page-content">
+        <section class="contact" style="margin-top: 80px;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch to book your appointment or learn more about our services</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Visit Us Today</h3>
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div>
+                                <strong>Address</strong><br>
+                                No: 2404 2nd cross, HAL Old Airport Rd<br>
+                                HAL 3rd Stage, Bengaluru, Karnataka 560017
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +91 98765 43210<br>
+                                +91 80 2345 6789
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📧</div>
+                            <div>
+                                <strong>Email</strong><br>
+                                info@rinaazbeauty.com<br>
+                                appointments@rinaazbeauty.com
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">🕒</div>
+                            <div>
+                                <strong>Opening Hours</strong><br>
+                                Monday - Saturday: 9:00 AM - 8:00 PM<br>
+                                Sunday: 10:00 AM - 6:00 PM
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link">📘</a>
+                            <a href="#" class="social-link">📷</a>
+                            <a href="#" class="social-link">🐦</a>
+                            <a href="#" class="social-link">📞</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3>Book an Appointment</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Select Service</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Choose a service</option>
+                                    <option value="hair-styling">Hair Styling & Cut</option>
+                                    <option value="makeup">Makeup Services</option>
+                                    <option value="facial">Facial Treatments</option>
+                                    <option value="nail-care">Nail Care</option>
+                                    <option value="spa">Spa Treatments</option>
+                                    <option value="bridal">Bridal Package</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Preferred Date</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Preferred Time</label>
+                                <select id="time" name="time" required>
+                                    <option value="">Select time</option>
+                                    <option value="9:00">9:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Special Requests</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Any specific requirements or questions..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Book Appointment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RINAAZ Beauty Parlour</h3>
+                    <p>Your trusted beauty partner in Bengaluru. We provide premium beauty services with personalized care and attention.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📞</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#" data-page="home">Home</a></p>
+                    <p><a href="#" data-page="services">Services</a></p>
+                    <p><a href="#" data-page="about">About Us</a></p>
+                    <p><a href="#" data-page="gallery">Gallery</a></p>
+                    <p><a href="#" data-page="contact">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p>Hair Styling & Cuts</p>
+                    <p>Makeup Services</p>
+                    <p>Facial Treatments</p>
+                    <p>Nail Care</p>
+                    <p>Spa Treatments</p>
+                    <p>Bridal Packages</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 No: 2404 2nd cross, HAL Old Airport Rd<br>HAL 3rd Stage, Bengaluru 560017</p>
+                    <p>📞 +91 98765 43210</p>
+                    <p>📧 info@rinaazbeauty.com</p>
+                    <p>🕒 Mon-Sat: 9AM-8PM, Sun: 10AM-6PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RINAAZ Beauty Parlour & Salon. All rights reserved. | Designed with ❤️ for beautiful you.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page-content');
+        const footerLinks = document.querySelectorAll('footer a[data-page]');
+
+        function showPage(pageId) {
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+            
+            // Update active nav link
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+            if (activeLink && activeLink.classList.contains('nav-link')) {
+                activeLink.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add click event listeners to navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+
+        // Add click event listeners to footer links
+        footerLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+
+        // Add click event listeners to CTA buttons
+        document.querySelectorAll('[data-page]').forEach(button => {
+            if (!button.classList.contains('nav-link') && !button.closest('footer')) {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = button.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(233, 30, 99, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(233, 30, 99, 0.1)';
+            }
+        });
+
+        // Form submission
+        document.querySelector('.contact-form form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.name || !data.phone || !data.service || !data.date || !data.time) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Success message
+            alert(`Thank you ${data.name}! Your appointment request for ${data.service} on ${data.date} at ${data.time} has been received. We will contact you soon to confirm.`);
+            
+            // Reset form
+            e.target.reset();
+        });
+
+        // Mobile hamburger menu (basic functionality)
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards and other elements
+        document.querySelectorAll('.service-card, .about-content, .contact-content').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Set minimum date for appointment booking (today)
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+        
+        // Set maximum date for appointment booking (3 months from now)
+        const maxDate = new Date();
+        maxDate.setMonth(maxDate.getMonth() + 3);
+        document.getElementById('date').setAttribute('max', maxDate.toISOString().split('T')[0]);
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafe Grill - Premium Restaurant Experience</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1324,3 +2459,4 @@
     </script>
 </body>
 </html>
+
