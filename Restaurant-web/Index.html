@@ -3,60 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bella Vista Restaurant</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>RINAAZ Beauty Parlour & Salon</title>
     <style>
-        /* Your existing CSS remains unchanged */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         :root {
-            --primary-color: #d4af37;
-            --secondary-color: #2c2c2c;
-            --accent-color: #f8f8f8;
-            --text-light: #666;
-            --text-dark: #2c2c2c;
+            --primary-pink: #e91e63;
+            --secondary-pink: #ad1457;
+            --light-pink: #fce4ec;
+            --accent-pink: #f8bbd9;
+            --dark-text: #2d2d2d;
+            --light-gray: #f5f5f5;
             --white: #ffffff;
-            --shadow-light: 0 4px 20px rgba(0,0,0,0.08);
-            --shadow-medium: 0 8px 30px rgba(0,0,0,0.12);
-            --border-radius: 8px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
         }
-
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--white);
-            font-weight: 400;
+            color: var(--dark-text);
+            overflow-x: hidden;
         }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
+        
         /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(233, 30, 99, 0.1);
         }
-
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow-light);
-        }
-
+        
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -65,987 +52,615 @@
             align-items: center;
             padding: 0 2rem;
         }
-
+        
         .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            letter-spacing: -0.5px;
+            gap: 1rem;
         }
-
-        .logo i {
-            font-size: 1.2rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 1px;
-            background: var(--primary-color);
-            transition: var(--transition);
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-
-        .book-btn {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .book-btn:hover {
-            background: #c19b26;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu span {
-            width: 22px;
-            height: 2px;
-            background: var(--text-dark);
-            margin: 2px 0;
-            transition: var(--transition);
-            border-radius: 1px;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
-            position: relative;
-            overflow: hidden;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
-
-        .hero::before {
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-item a:hover {
+            color: var(--primary-pink);
+        }
+        
+        .nav-item a.active {
+            color: var(--primary-pink);
+        }
+        
+        .nav-item a::after {
             content: '';
             position: absolute;
-            top: 0;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
-            pointer-events: none;
+            background: var(--gradient);
+            transition: width 0.3s ease;
         }
-
-        .hero-content {
-            max-width: 600px;
+        
+        .nav-item a:hover::after,
+        .nav-item a.active::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-pink);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.9), rgba(173, 20, 87, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="beauty" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="2" fill="%23fff" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23beauty)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 0 2rem;
-            z-index: 2;
+            color: white;
             position: relative;
         }
-
-        .hero-badge {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            animation: fadeInUp 0.8s ease-out;
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
         }
-
+        
         .hero h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
-            font-weight: 300;
+            font-weight: 700;
             margin-bottom: 1rem;
-            line-height: 1.2;
-            letter-spacing: -2px;
-            color: var(--text-dark);
-            animation: fadeInUp 0.8s ease-out 0.2s both;
+            letter-spacing: 2px;
         }
-
-        .hero h1 span {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
+        
         .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            color: var(--text-light);
-            line-height: 1.8;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
-
-        .hero-buttons {
+        
+        .cta-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
         }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: var(--white);
+        
+        .btn {
             padding: 1rem 2rem;
             border: none;
             border-radius: 50px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
+            font-weight: 600;
             text-decoration: none;
-            display: inline-block;
-            font-size: 0.9rem;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-dark);
-            padding: 1rem 2rem;
-            border: 1px solid var(--text-dark);
-            border-radius: 50px;
-            font-weight: 500;
+            transition: all 0.3s ease;
             cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-block;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
-
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary-pink);
+        }
+        
         .btn-primary:hover {
-            background: #c19b26;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
-
-        .btn-secondary:hover {
-            background: var(--text-dark);
-            color: var(--white);
-            transform: translateY(-2px);
+        
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
         }
-
-        /* Page System */
-        .page {
-            display: none;
-            min-height: 100vh;
-            padding-top: 80px;
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-pink);
         }
-
-        .page.active {
-            display: block;
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: var(--light-gray);
         }
-
-        /* Sections */
-        .section {
-            padding: 4rem 0;
+        
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
+            padding: 0 2rem;
         }
-
-        .section-header {
+        
+        .section-title {
             text-align: center;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 4rem;
         }
-
-        .section-badge {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--primary-color);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1rem;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .section h2 {
+        
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
-            font-weight: 300;
             margin-bottom: 1rem;
-            color: var(--text-dark);
-            letter-spacing: -1px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .section p {
+        
+        .section-title p {
             font-size: 1.1rem;
-            color: var(--text-light);
-            line-height: 1.8;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        /* Featured Menu */
-        .featured-grid {
+        
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
-
-        .dish-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-            cursor: pointer;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .dish-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .dish-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #f8f8f8 0%, #eeeeee 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-
-        .dish-image::before {
+        
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            transition: all 0.5s ease;
+            z-index: -1;
+            opacity: 0.05;
+        }
+        
+        .service-card:hover::before {
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.1) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: var(--transition);
         }
-
-        .dish-card:hover .dish-image::before {
-            transform: translateX(100%);
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(233, 30, 99, 0.2);
         }
-
-        .dish-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .dish-image i {
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
             font-size: 2rem;
-            color: var(--primary-color);
-            opacity: 0.3;
+            color: white;
         }
-
-        .dish-info {
-            padding: 1.5rem;
-        }
-
-        .dish-info h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-
-        .dish-info p {
-            color: var(--text-light);
+        
+        .service-card h3 {
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-            font-size: 0.9rem;
+            color: var(--dark-text);
+        }
+        
+        .service-card p {
+            color: #666;
             line-height: 1.6;
         }
-
-        .dish-price {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
+        
         /* About Section */
-        .about-grid {
+        .about {
+            padding: 6rem 0;
+            background: white;
+        }
+        
+        .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
-            margin-top: 3rem;
         }
-
-        .about-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .about-content p {
+        
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            color: var(--text-light);
-            line-height: 1.8;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .about-image {
-            width: 100%;
-            height: 400px;
-            border-radius: var(--border-radius);
-            background: linear-gradient(135deg, #f8f8f8 0%, #eeeeee 100%);
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--gradient);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        .about-image {
             position: relative;
-            overflow: hidden;
         }
-
-        .about-image img {
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            background: var(--gradient);
+            border-radius: 20px;
+            z-index: -1;
+        }
+        
+        .about-img {
             width: 100%;
-            height: 100%;
+            height: 400px;
             object-fit: cover;
-        }
-
-        .about-image i {
-            font-size: 3rem;
-            color: var(--primary-color);
-            opacity: 0.3;
-        }
-
-        /* Stats */
-        .stats {
-            background: var(--accent-color);
-            padding: 4rem 0;
-            margin: 4rem 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 300;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Menu Categories */
-        .menu-tabs {
+            border-radius: 20px;
+            background: var(--light-pink);
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
+            font-size: 4rem;
+            color: var(--primary-pink);
         }
-
-        .menu-tab {
-            background: transparent;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: var(--text-dark);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .menu-tab.active,
-        .menu-tab:hover {
-            background: var(--primary-color);
-            color: var(--white);
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .menu-item {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease-out forwards;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .menu-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .menu-item h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-
-        .menu-item p {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .menu-item .price {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            float: right;
-        }
-
+        
         /* Contact Section */
-        .contact-grid {
+        .contact {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+        
+        .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 3rem;
+            gap: 4rem;
         }
-
+        
+        .contact-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
+        }
+        
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        
         .contact-form {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
         }
-
+        
         .form-group {
             margin-bottom: 1.5rem;
         }
-
+        
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
-            color: var(--text-dark);
-            font-size: 0.9rem;
+            color: var(--dark-text);
         }
-
+        
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #e0e0e0;
-            border-radius: var(--border-radius);
-            font-size: 0.9rem;
-            transition: var(--transition);
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
             font-family: inherit;
+            transition: all 0.3s ease;
         }
-
+        
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 10px rgba(233, 30, 99, 0.1);
         }
-
-        .contact-info {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-item i {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-right: 1rem;
-            width: 25px;
-            margin-top: 0.2rem;
-        }
-
-        .contact-item div {
-            flex: 1;
-        }
-
-        .contact-item strong {
-            display: block;
-            margin-bottom: 0.25rem;
-            color: var(--text-dark);
+        
+        .btn-submit {
+            background: var(--gradient);
+            color: white;
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-
-        .contact-item a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: var(--transition);
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.3);
         }
-
-        .contact-item a:hover {
-            color: var(--primary-color);
-        }
-
+        
         /* Footer */
         .footer {
-            background: var(--secondary-color);
-            color: var(--white);
+            background: var(--dark-text);
+            color: white;
             padding: 3rem 0 1rem;
-            text-align: center;
         }
-
+        
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
-
+        
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            color: var(--accent-pink);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-pink);
+        }
+        
         .social-links {
             display: flex;
-            justify-content: center;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-top: 1rem;
         }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        
+        .social-link {
             width: 40px;
             height: 40px;
-            background: var(--primary-color);
-            color: var(--white);
+            background: var(--gradient);
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             text-decoration: none;
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
-
-        .social-links a:hover {
-            background: #c19b26;
+        
+        .social-link:hover {
             transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.3);
         }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 2rem;
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
         }
-
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            transition: var(--transition);
-            opacity: 0.8;
+        
+        /* Page Content (Hidden by default) */
+        .page-content {
+            display: none;
+            padding-top: 80px;
+            min-height: 100vh;
         }
-
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--primary-color);
+        
+        .page-content.active {
+            display: block;
         }
-
-        .copyright {
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            height: 250px;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-overlay i {
-            color: var(--white);
-            font-size: 2rem;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background: var(--accent-color);
-            padding: 4rem 0;
-            margin: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonials::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4af37' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.5;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .testimonial-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            font-size: 4rem;
-            color: var(--primary-color);
-            opacity: 0.1;
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-
-        .testimonial-content {
-            font-style: italic;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .author-info h4 {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .author-info p {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
+        
         /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite ease-in-out;
-        }
-
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu {
-                display: none;
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+                z-index: 999;
             }
 
-            .mobile-menu {
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 1rem 0;
+            }
+            
+            .hamburger {
                 display: flex;
             }
 
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
             .hero h1 {
                 font-size: 2.5rem;
             }
-
-            .hero-buttons {
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-
-            .about-grid,
-            .contact-grid {
+            
+            .about-content,
+            .contact-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .featured-grid,
-            .menu-grid {
+            
+            .about-features {
                 grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 3rem 0;
-            }
-
-            .section h2 {
-                font-size: 2rem;
-            }
-
-            .menu-tabs {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .section {
-                padding-left: 1rem;
-                padding-right: 1rem;
             }
             
-            .gallery-grid {
+            .services-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        /* Mobile Menu Open */
-        .mobile-menu.open span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .mobile-menu.open span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        .nav-menu.open {
-            display: flex;
-            position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: var(--white);
-            flex-direction: column;
-            padding: 2rem;
-            gap: 1.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            animation: slideDown 0.4s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Scroll animations */
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-
-        .scroll-animate.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Loading animation */
-        .loading {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: var(--white);
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">
-                <i class="fas fa-utensils"></i>
-                Bella Vista
-            </a>
-            
+           <div class="logo">
+            <img src="rinaaz.png" alt="Rinaaz Logo" class="logo-img">
+        </div>
             <ul class="nav-menu">
-                <li><a href="#" class="nav-link active" onclick="showPage('home')">Home</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('menu')">Menu</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('about')">About</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('gallery')">Gallery</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('contact')">Contact</a></li>
-                <li><a href="#" class="book-btn" onclick="showPage('contact')">Book Table</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-page="services">Services</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-page="about">About</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-page="gallery">Gallery</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-page="contact">Contact</a></li>
             </ul>
-            
-            <div class="mobile-menu" onclick="toggleMobileMenu()">
+            <div class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -1053,645 +668,520 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Home Page -->
-        <div id="home" class="page active">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="hero-content">
-                    <div class="hero-badge">Fine Dining Experience</div>
-                    <h1>Authentic <span>Italian</span><br>Cuisine</h1>
-                    <p>Experience the perfect blend of traditional recipes and modern culinary artistry in the heart of the city</p>
-                    <div class="hero-buttons">
-                        <a href="#" class="btn-primary" onclick="showPage('menu')">Explore Menu</a>
-                        <a href="#" class="btn-secondary" onclick="showPage('contact')">Reserve Table</a>
-                    </div>
+    <!-- Home Page -->
+    <div id="home" class="page-content active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>RINAAZ Beauty Parlour & Salon</h1>
+                <p>Transform your beauty with our premium services. Experience luxury and elegance at its finest.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" data-page="services">View Services</a>
+                    <a href="#" class="btn btn-outline" data-page="contact">Book Appointment</a>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Featured Menu -->
-            <section class="section scroll-animate">
-                <div class="section-header">
-                    <div class="section-badge">Featured</div>
-                    <h2>Signature Dishes</h2>
-                    <p>Discover our most beloved creations, crafted with passion and the finest ingredients</p>
+        <!-- Featured Services -->
+        <section class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Premium Services</h2>
+                    <p>Discover our range of beauty and wellness services designed to enhance your natural beauty</p>
                 </div>
-                
-                <div class="featured-grid">
-                    <div class="dish-card">
-                        <div class="dish-image">
-                            <i class="fas fa-pizza-slice"></i>
-                        </div>
-                        <div class="dish-info">
-                            <h3>Margherita Pizza</h3>
-                            <p>Fresh mozzarella, San Marzano tomatoes, basil, and extra virgin olive oil on our signature dough</p>
-                            <div class="dish-price">$18</div>
-                        </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💇‍♀️</div>
+                        <h3>Hair Styling</h3>
+                        <p>Expert hair cuts, coloring, styling and treatments using premium products for all hair types.</p>
                     </div>
-                    
-                    <div class="dish-card">
-                        <div class="dish-image">
-                            <i class="fas fa-seedling"></i>
-                        </div>
-                        <div class="dish-info">
-                            <h3>Truffle Risotto</h3>
-                            <p>Creamy Arborio rice with wild mushrooms, parmesan, and shaved black truffle</p>
-                            <div class="dish-price">$26</div>
-                        </div>
+                    <div class="service-card">
+                        <div class="service-icon">💄</div>
+                        <h3>Makeup & Beauty</h3>
+                        <p>Professional makeup services for special occasions, parties, and bridal events.</p>
                     </div>
-                    
-                    <div class="dish-card">
-                        <div class="dish-image">
-                            <i class="fas fa-fish"></i>
-                        </div>
-                        <div class="dish-info">
-                            <h3>Grilled Branzino</h3>
-                            <p>Fresh Mediterranean sea bass with lemon, herbs, and seasonal vegetables</p>
-                            <div class="dish-price">$32</div>
-                        </div>
+                    <div class="service-card">
+                        <div class="service-icon">✨</div>
+                        <h3>Skincare Treatments</h3>
+                        <p>Advanced facial treatments, skin analysis, and personalized skincare routines.</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Stats Section -->
-            <section class="stats">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">1,500+</div>
-                        <div class="stat-label">Happy Guests</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">25</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">40+</div>
-                        <div class="stat-label">Signature Dishes</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">4.9</div>
-                        <div class="stat-label">Rating</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- About Preview -->
-            <section class="section scroll-animate">
-                <div class="section-header">
-                    <div class="section-badge">Our Story</div>
-                    <h2>Tradition Meets Innovation</h2>
-                    <p>A culinary journey that celebrates authentic Italian flavors with a contemporary twist</p>
-                </div>
-                
-                <div class="about-grid">
-                    <div class="about-content">
-                        <h3>25 Years of Culinary Excellence</h3>
-                        <p>Since 1998, Bella Vista has been a cornerstone of authentic Italian dining. Our passionate team combines time-honored recipes with innovative techniques to create unforgettable culinary experiences.</p>
-                        <p>Every dish tells a story of tradition, quality, and love for the art of cooking. We source the finest ingredients and prepare each meal with meticulous attention to detail.</p>
-                        <a href="#" class="btn-primary" onclick="showPage('about')">Learn More</a>
-                    </div>
-                    <div class="about-image">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Testimonials -->
-            <section class="testimonials scroll-animate">
-                <div class="section-header">
-                    <div class="section-badge">Testimonials</div>
-                    <h2>What Our Guests Say</h2>
-                    <p>Discover why Bella Vista has become a culinary destination for food lovers</p>
-                </div>
-                
-                <div class="testimonial-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            The truffle risotto was absolutely divine! The flavors were perfectly balanced, and the presentation was exquisite. This is authentic Italian dining at its finest.
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">MS</div>
-                            <div class="author-info">
-                                <h4>Michael S.</h4>
-                                <p>Food Critic</p>
+        <!-- About Preview -->
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Why Choose RINAAZ?</h2>
+                        <p>Located in the heart of HAL 3rd Stage, RINAAZ Beauty Parlour & Salon has been serving the Bengaluru community with exceptional beauty services and personalized care.</p>
+                        <p>Our team of skilled professionals is dedicated to helping you look and feel your absolute best using the latest techniques and premium products.</p>
+                        <div class="about-features">
+                            <div class="feature">
+                                <div class="feature-icon">✓</div>
+                                <span>Expert Stylists</span>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-icon">✓</div>
+                                <span>Premium Products</span>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-icon">✓</div>
+                                <span>Hygienic Environment</span>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-icon">✓</div>
+                                <span>Affordable Prices</span>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            Celebrated our anniversary here and it was magical. The ambiance, service, and especially the Grilled Branzino made it a night to remember. Highly recommend!
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">EJ</div>
-                            <div class="author-info">
-                                <h4>Emma Johnson</h4>
-                                <p>Regular Guest</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            As an Italian living abroad, I can say this is the most authentic Italian cuisine I've had outside of Italy. The pasta is cooked perfectly al dente every time.
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">AR</div>
-                            <div class="author-info">
-                                <h4>Antonio Rossi</h4>
-                                <p>From Milan</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Menu Page -->
-        <div id="menu" class="page">
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-badge">Menu</div>
-                    <h2>Culinary Creations</h2>
-                    <p>Explore our carefully curated selection of authentic Italian dishes</p>
-                </div>
-                
-                <div class="menu-tabs">
-                    <div class="menu-tab active" onclick="showMenuCategory('antipasti')">Antipasti</div>
-                    <div class="menu-tab" onclick="showMenuCategory('primi')">Primi</div>
-                    <div class="menu-tab" onclick="showMenuCategory('secondi')">Secondi</div>
-                    <div class="menu-tab" onclick="showMenuCategory('dolci')">Dolci</div>
-                    <div class="menu-tab" onclick="showMenuCategory('drinks')">Drinks</div>
-                </div>
-
-                <div id="antipasti" class="menu-grid">
-                    <div class="menu-item">
-                        <h4>Antipasto Misto</h4>
-                        <p>Selection of cured meats, artisanal cheeses, and marinated vegetables</p>
-                        <span class="price">$16</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Burrata Caprese</h4>
-                        <p>Fresh burrata with heirloom tomatoes, basil, and aged balsamic</p>
-                        <span class="price">$14</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Calamari Fritti</h4>
-                        <p>Crispy fried calamari with lemon aioli and marinara sauce</p>
-                        <span class="price">$15</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Bruschetta al Pomodoro</h4>
-                        <p>Toasted bread topped with fresh tomatoes, garlic, and basil</p>
-                        <span class="price">$12</span>
-                    </div>
-                </div>
-
-                <div id="primi" class="menu-grid" style="display:none">
-                    <div class="menu-item">
-                        <h4>Spaghetti Carbonara</h4>
-                        <p>Traditional Roman pasta with guanciale, pecorino, and black pepper</p>
-                        <span class="price">$18</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Risotto ai Funghi</h4>
-                        <p>Creamy risotto with wild mushrooms and truffle oil</p>
-                        <span class="price">$22</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Gnocchi al Pesto</h4>
-                        <p>Homemade potato gnocchi with fresh basil pesto</p>
-                        <span class="price">$19</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Lasagna Bolognese</h4>
-                        <p>Layers of pasta, slow-cooked beef ragù, and béchamel sauce</p>
-                        <span class="price">$21</span>
-                    </div>
-                </div>
-
-                <div id="secondi" class="menu-grid" style="display:none">
-                    <div class="menu-item">
-                        <h4>Filetto di Manzo</h4>
-                        <p>8oz beef tenderloin with rosemary potatoes and red wine reduction</p>
-                        <span class="price">$34</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Pollo alla Parmigiana</h4>
-                        <p>Chicken breast topped with tomato sauce and melted mozzarella</p>
-                        <span class="price">$24</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Branzino al Limone</h4>
-                        <p>Grilled sea bass with lemon butter sauce and seasonal vegetables</p>
-                        <span class="price">$32</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Osso Buco</h4>
-                        <p>Braised veal shank with saffron risotto and gremolata</p>
-                        <span class="price">$36</span>
-                    </div>
-                </div>
-
-                <div id="dolci" class="menu-grid" style="display:none">
-                    <div class="menu-item">
-                        <h4>Tiramisù</h4>
-                        <p>Classic Italian dessert with espresso-soaked ladyfingers</p>
-                        <span class="price">$10</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Panna Cotta</h4>
-                        <p>Vanilla cream pudding with fresh berries and berry coulis</p>
-                        <span class="price">$9</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Cannoli Siciliani</h4>
-                        <p>Crispy pastry tubes filled with sweet ricotta cream</p>
-                        <span class="price">$8</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Chocolate Soufflé</h4>
-                        <p>Warm chocolate soufflé with vanilla gelato</p>
-                        <span class="price">$12</span>
-                    </div>
-                </div>
-
-                <div id="drinks" class="menu-grid" style="display:none">
-                    <div class="menu-item">
-                        <h4>Italian Sparkling Wine</h4>
-                        <p>Prosecco DOC, Veneto</p>
-                        <span class="price">$12/glass</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Chianti Classico</h4>
-                        <p>Riserva, Tuscany 2018</p>
-                        <span class="price">$14/glass</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Negroni</h4>
-                        <p>Gin, Campari, sweet vermouth</p>
-                        <span class="price">$13</span>
-                    </div>
-                    <div class="menu-item">
-                        <h4>Espresso Martini</h4>
-                        <p>Vodka, espresso, coffee liqueur</p>
-                        <span class="price">$14</span>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- About Page -->
-        <div id="about" class="page">
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-badge">Our Story</div>
-                    <h2>The Bella Vista Experience</h2>
-                    <p>Discover the passion and tradition behind our authentic Italian cuisine</p>
-                </div>
-                
-                <div class="about-grid">
                     <div class="about-image">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <div class="about-content">
-                        <h3>A Culinary Legacy</h3>
-                        <p>Founded in 1998 by Chef Marco Bianchi, Bella Vista began as a small family restaurant in the heart of Milan. Chef Marco brought his passion for authentic Italian cuisine to New York, creating a space where tradition meets innovation.</p>
-                        <p>Today, under the direction of Marco's daughter Sofia, we continue to honor our roots while embracing modern culinary techniques. Our kitchen is a place where time-honored recipes are preserved and new creations are born.</p>
+                        <div class="about-img">💅</div>
                     </div>
                 </div>
-                
-                <div class="about-grid">
-                    <div class="about-content">
-                        <h3>Our Philosophy</h3>
-                        <p>At Bella Vista, we believe that exceptional food begins with exceptional ingredients. That's why we source the finest produce from local farmers and import specialty items directly from Italy.</p>
-                        <p>Our menu changes seasonally to showcase the freshest ingredients available. From handmade pasta to wood-fired pizzas, every dish is prepared with meticulous attention to detail and a deep respect for Italian culinary traditions.</p>
-                        <div class="stat-item" style="text-align:left; padding:0; margin-top:1.5rem">
-                            <div class="stat-number">95%</div>
-                            <div class="stat-label">Ingredients sourced locally</div>
-                        </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page-content">
+        <section style="padding: 6rem 0; background: var(--light-gray); margin-top: 80px;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Complete Beauty Services</h2>
+                    <p>Comprehensive beauty and wellness solutions tailored to your needs</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💇‍♀️</div>
+                        <h3>Hair Care & Styling</h3>
+                        <p>Hair cuts, styling, coloring, highlights, perms, straightening, and hair treatments for all hair types.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💄</div>
+                        <h3>Makeup Services</h3>
+                        <p>Bridal makeup, party makeup, event makeup, and makeup lessons using premium cosmetic brands.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">✨</div>
+                        <h3>Facial Treatments</h3>
+                        <p>Deep cleansing facials, anti-aging treatments, acne treatment, and customized skincare solutions.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💅</div>
+                        <h3>Nail Care</h3>
+                        <p>Manicures, pedicures, nail art, gel polish, and complete nail care services.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🧴</div>
+                        <h3>Spa Treatments</h3>
+                        <p>Relaxing body massages, aromatherapy, and wellness treatments for complete rejuvenation.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👰</div>
+                        <h3>Bridal Packages</h3>
+                        <p>Complete bridal makeover packages including hair, makeup, skincare, and pre-wedding treatments.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page-content">
+        <section style="padding: 6rem 0; background: white; margin-top: 80px;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About RINAAZ</h2>
+                    <p>Your trusted beauty partner in Bengaluru</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Our Story</h2>
+                        <p>RINAAZ Beauty Parlour & Salon has been a cornerstone of beauty and wellness in the HAL 3rd Stage area of Bengaluru. We pride ourselves on providing exceptional beauty services in a warm, welcoming environment.</p>
+                        <p>Our team consists of highly trained and experienced beauty professionals who stay updated with the latest trends and techniques in the beauty industry. We believe that every client deserves personalized attention and care.</p>
+                        <p>Located conveniently on HAL Old Airport Road, we serve clients from across Bengaluru with our comprehensive range of beauty and wellness services.</p>
                     </div>
                     <div class="about-image">
-                        <i class="fas fa-leaf"></i>
+                        <div class="about-img">🏪</div>
                     </div>
                 </div>
                 
-                <div class="section-header">
-                    <h2>Meet Our Team</h2>
-                    <p>The passionate individuals who bring the Bella Vista experience to life</p>
-                </div>
-                
-                <div class="featured-grid">
-                    <div class="dish-card">
-                        <div class="dish-image" style="background:#f0f0f0">
-                            <i class="fas fa-user-chef"></i>
-                        </div>
-                        <div class="dish-info">
-                            <h3>Sofia Bianchi</h3>
-                            <p>Executive Chef</p>
-                            <p>Trained in Florence and Bologna, Sofia brings contemporary flair to traditional recipes.</p>
-                        </div>
+                <div style="margin-top: 4rem;">
+                    <div class="section-title">
+                        <h2>Our Values</h2>
                     </div>
-                    
-                    <div class="dish-card">
-                        <div class="dish-image" style="background:#f0f0f0">
-                            <i class="fas fa-wine-bottle"></i>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">⭐</div>
+                            <h3>Excellence</h3>
+                            <p>We strive for excellence in every service we provide, ensuring the highest quality results.</p>
                         </div>
-                        <div class="dish-info">
-                            <h3>Luca Moretti</h3>
-                            <p>Sommelier</p>
-                            <p>With over 15 years experience, Luca curates our award-winning wine selection.</p>
+                        <div class="service-card">
+                            <div class="service-icon">🤝</div>
+                            <h3>Trust</h3>
+                            <p>Building lasting relationships with our clients through trust, reliability, and consistent service.</p>
                         </div>
-                    </div>
-                    
-                    <div class="dish-card">
-                        <div class="dish-image" style="background:#f0f0f0">
-                            <i class="fas fa-concierge-bell"></i>
-                        </div>
-                        <div class="dish-info">
-                            <h3>Giovanni Rossi</h3>
-                            <p>General Manager</p>
-                            <p>Ensuring every guest experiences true Italian hospitality since 2005.</p>
+                        <div class="service-card">
+                            <div class="service-icon">🌟</div>
+                            <h3>Innovation</h3>
+                            <p>Staying current with the latest beauty trends and techniques to offer modern solutions.</p>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+    </div>
 
-        <!-- Gallery Page -->
-        <div id="gallery" class="page">
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-badge">Gallery</div>
-                    <h2>Visual Journey</h2>
-                    <p>Explore our restaurant, dishes, and atmosphere through our gallery</p>
+    <!-- Gallery Page -->
+    <div id="gallery" class="page-content">
+        <section style="padding: 6rem 0; background: var(--light-gray); margin-top: 80px;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Gallery</h2>
+                    <p>Showcase of our beautiful transformations and salon ambiance</p>
                 </div>
-                
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                        <div style="background:linear-gradient(135deg, #e6d6b1 0%, #d4af37 100%); height:100%"></div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">💇‍♀️</div>
+                        <h3>Hair Transformations</h3>
+                        <p>Before and after shots of our amazing hair makeovers and styling work.</p>
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                        <div style="background:linear-gradient(135deg, #f0e6d2 0%, #e8d9a9 100%); height:100%"></div>
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">💄</div>
+                        <h3>Makeup Gallery</h3>
+                        <p>Beautiful makeup looks for various occasions including bridal and party makeup.</p>
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                        <div style="background:linear-gradient(135deg, #d9c8a3 0%, #c5a95c 100%); height:100%"></div>
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">🏪</div>
+                        <h3>Salon Interior</h3>
+                        <p>Take a virtual tour of our modern, clean, and comfortable salon space.</p>
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                        <div style="background:linear-gradient(135deg, #f5f0e4 0%, #e2d4b4 100%); height:100%"></div>
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">👰</div>
+                        <h3>Bridal Collection</h3>
+                        <p>Stunning bridal makeovers and complete bridal packages we've created.</p>
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                        <div style="background:linear-gradient(135deg, #e8dfca 0%, #d0b780 100%); height:100%"></div>
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">💅</div>
+                        <h3>Nail Art</h3>
+                        <p>Creative nail art designs and manicure transformations by our experts.</p>
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                        <div style="background:linear-gradient(135deg, #f8f4e9 0%, #e7dbb8 100%); height:100%"></div>
+                    <div class="service-card">
+                        <div class="service-icon" style="font-size: 3rem; height: 120px;">✨</div>
+                        <h3>Special Events</h3>
+                        <p>Highlights from special events, workshops, and celebrations at our salon.</p>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+    </div>
 
-        <!-- Contact Page -->
-        <div id="contact" class="page">
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-badge">Contact</div>
-                    <h2>Reserve Your Table</h2>
-                    <p>We look forward to welcoming you to Bella Vista</p>
+    <!-- Contact Page -->
+    <div id="contact" class="page-content">
+        <section class="contact" style="margin-top: 80px;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch to book your appointment or learn more about our services</p>
                 </div>
-                
-                <div class="contact-grid">
-                    <div class="contact-form">
-                        <h3 style="margin-bottom:1.5rem; font-weight:600">Make a Reservation</h3>
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" placeholder="Your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="Your email">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" placeholder="Your phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="date">Date & Time</label>
-                            <input type="datetime-local" id="date">
-                        </div>
-                        <div class="form-group">
-                            <label for="guests">Number of Guests</label>
-                            <select id="guests">
-                                <option value="1">1 person</option>
-                                <option value="2">2 people</option>
-                                <option value="3">3 people</option>
-                                <option value="4">4 people</option>
-                                <option value="5">5 people</option>
-                                <option value="6">6 people</option>
-                                <option value="7">7+ people</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Special Requests</label>
-                            <textarea id="message" rows="3" placeholder="Dietary restrictions, celebrations, etc."></textarea>
-                        </div>
-                        <button class="btn-primary" style="width:100%">Book Table</button>
-                    </div>
-                    
+                <div class="contact-content">
                     <div class="contact-info">
-                        <h3 style="margin-bottom:1.5rem; font-weight:600">Visit Us</h3>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
+                        <h3>Visit Us Today</h3>
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
                             <div>
-                                <strong>Address</strong>
-                                <p>123 Culinary Avenue<br>New York, NY 10001</p>
+                                <strong>Address</strong><br>
+                                No: 2404 2nd cross, HAL Old Airport Rd<br>
+                                HAL 3rd Stage, Bengaluru, Karnataka 560017
                             </div>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt"></i>
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
                             <div>
-                                <strong>Phone</strong>
-                                <a href="tel:+12125551234">(212) 555-1234</a>
+                                <strong>Phone</strong><br>
+                                +91 98765 43210<br>
+                                +91 80 2345 6789
                             </div>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
+                        <div class="info-item">
+                            <div class="info-icon">📧</div>
                             <div>
-                                <strong>Email</strong>
-                                <a href="mailto:info@bellavista.com">info@bellavista.com</a>
+                                <strong>Email</strong><br>
+                                info@rinaazbeauty.com<br>
+                                appointments@rinaazbeauty.com
                             </div>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
+                        <div class="info-item">
+                            <div class="info-icon">🕒</div>
                             <div>
-                                <strong>Opening Hours</strong>
-                                <p>Monday - Thursday: 5pm - 10pm<br>
-                                Friday - Saturday: 5pm - 11pm<br>
-                                Sunday: 4pm - 9pm</p>
+                                <strong>Opening Hours</strong><br>
+                                Monday - Saturday: 9:00 AM - 8:00 PM<br>
+                                Sunday: 10:00 AM - 6:00 PM
                             </div>
                         </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-subway"></i>
-                            <div>
-                                <strong>Public Transport</strong>
-                                <p>Subway: 1, 2, 3 to Times Square<br>
-                                Bus: M5, M7, M20, M104</p>
-                            </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link">📘</a>
+                            <a href="#" class="social-link">📷</a>
+                            <a href="#" class="social-link">🐦</a>
+                            <a href="#" class="social-link">📞</a>
                         </div>
                     </div>
+                    
+                    <div class="contact-form">
+                        <h3>Book an Appointment</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Select Service</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Choose a service</option>
+                                    <option value="hair-styling">Hair Styling & Cut</option>
+                                    <option value="makeup">Makeup Services</option>
+                                    <option value="facial">Facial Treatments</option>
+                                    <option value="nail-care">Nail Care</option>
+                                    <option value="spa">Spa Treatments</option>
+                                    <option value="bridal">Bridal Package</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Preferred Date</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Preferred Time</label>
+                                <select id="time" name="time" required>
+                                    <option value="">Select time</option>
+                                    <option value="9:00">9:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Special Requests</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Any specific requirements or questions..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Book Appointment</button>
+                        </form>
+                    </div>
                 </div>
-            </section>
-            
-            <!-- Map Section -->
-            <section class="section" style="padding-top:0">
-                <div style="height:400px; background:linear-gradient(135deg, #f8f8f8 0%, #eeeeee 100%); border-radius:var(--border-radius); display:flex; align-items:center; justify-content:center">
-                    <i class="fas fa-map-marked-alt" style="font-size:3rem; color:var(--primary-color); opacity:0.3"></i>
-                </div>
-            </section>
-        </div>
-    </main>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <a href="#" class="logo" style="color:var(--white); margin-bottom:1.5rem; display:inline-block">
-                <i class="fas fa-utensils"></i>
-                Bella Vista
-            </a>
-            
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RINAAZ Beauty Parlour</h3>
+                    <p>Your trusted beauty partner in Bengaluru. We provide premium beauty services with personalized care and attention.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📞</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#" data-page="home">Home</a></p>
+                    <p><a href="#" data-page="services">Services</a></p>
+                    <p><a href="#" data-page="about">About Us</a></p>
+                    <p><a href="#" data-page="gallery">Gallery</a></p>
+                    <p><a href="#" data-page="contact">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p>Hair Styling & Cuts</p>
+                    <p>Makeup Services</p>
+                    <p>Facial Treatments</p>
+                    <p>Nail Care</p>
+                    <p>Spa Treatments</p>
+                    <p>Bridal Packages</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 No: 2404 2nd cross, HAL Old Airport Rd<br>HAL 3rd Stage, Bengaluru 560017</p>
+                    <p>📞 +91 98765 43210</p>
+                    <p>📧 info@rinaazbeauty.com</p>
+                    <p>🕒 Mon-Sat: 9AM-8PM, Sun: 10AM-6PM</p>
+                </div>
             </div>
-            
-            <div class="footer-links">
-                <a href="#" onclick="showPage('home')">Home</a>
-                <a href="#" onclick="showPage('menu')">Menu</a>
-                <a href="#" onclick="showPage('about')">About</a>
-                <a href="#" onclick="showPage('gallery')">Gallery</a>
-                <a href="#" onclick="showPage('contact')">Contact</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
-            
-            <div class="copyright">
-                &copy; 2023 Bella Vista Restaurant. All rights reserved.
+            <div class="footer-bottom">
+                <p>&copy; 2025 RINAAZ Beauty Parlour & Salon. All rights reserved. | Designed with ❤️ for beautiful you.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Page Navigation
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page-content');
+        const footerLinks = document.querySelectorAll('footer a[data-page]');
+
         function showPage(pageId) {
             // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
+            pages.forEach(page => {
                 page.classList.remove('active');
             });
             
             // Show selected page
-            document.getElementById(pageId).classList.add('active');
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
             
             // Update active nav link
-            document.querySelectorAll('.nav-link').forEach(link => {
+            navLinks.forEach(link => {
                 link.classList.remove('active');
             });
             
-            // Add active class to corresponding nav link
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                if (link.textContent.toLowerCase() === pageId) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Close mobile menu if open
-            document.querySelector('.mobile-menu').classList.remove('open');
-            document.querySelector('.nav-menu').classList.remove('open');
+            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+            if (activeLink && activeLink.classList.contains('nav-link')) {
+                activeLink.classList.add('active');
+            }
             
             // Scroll to top
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        
-        // Menu Category Tabs
-        function showMenuCategory(categoryId) {
-            // Hide all menu grids
-            document.querySelectorAll('.menu-grid').forEach(grid => {
-                grid.style.display = 'none';
+
+        // Mobile hamburger menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a nav link
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+                
+                // Close mobile menu
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
             });
-            
-            // Show selected category
-            document.getElementById(categoryId).style.display = 'grid';
-            
-            // Update active tab
-            document.querySelectorAll('.menu-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Add active class to clicked tab
-            event.target.classList.add('active');
-        }
-        
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            mobileMenu.classList.toggle('open');
-            navMenu.classList.toggle('open');
-        }
-        
-        // Scroll Animations
-        function initScrollAnimations() {
-            const scrollElements = document.querySelectorAll('.scroll-animate');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            scrollElements.forEach(element => {
-                observer.observe(element);
-            });
-        }
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
             }
         });
-        
-        // Initialize when page loads
-        window.addEventListener('DOMContentLoaded', function() {
-            initScrollAnimations();
+
+        // Add click event listeners to footer links
+        footerLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
         });
+
+        // Add click event listeners to CTA buttons
+        document.querySelectorAll('[data-page]').forEach(button => {
+            if (!button.classList.contains('nav-link') && !button.closest('footer')) {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = button.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(233, 30, 99, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(233, 30, 99, 0.1)';
+            }
+        });
+
+        // Form submission
+        document.querySelector('.contact-form form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.name || !data.phone || !data.service || !data.date || !data.time) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Success message
+            alert(`Thank you ${data.name}! Your appointment request for ${data.service} on ${data.date} at ${data.time} has been received. We will contact you soon to confirm.`);
+            
+            // Reset form
+            e.target.reset();
+        });
+
+        // Mobile hamburger menu (basic functionality)
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards and other elements
+        document.querySelectorAll('.service-card, .about-content, .contact-content').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Set minimum date for appointment booking (today)
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+        
+        // Set maximum date for appointment booking (3 months from now)
+        const maxDate = new Date();
+        maxDate.setMonth(maxDate.getMonth() + 3);
+        document.getElementById('date').setAttribute('max', maxDate.toISOString().split('T')[0]);
     </script>
 </body>
 </html>
