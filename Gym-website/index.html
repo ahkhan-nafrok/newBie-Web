@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX GYM - Transform Your Body, Elevate Your Life</title>
+    <title>Monarch Momentum Gym - Transform Your Body, Elevate Your Life</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
@@ -67,7 +67,23 @@
             align-items: center;
             padding: 0 2rem;
         }
-        
+        .nav img {
+    height: 50px; /* keeps it consistent */
+    width: auto; /* maintains aspect ratio */
+    object-fit: contain; /* avoids stretching */
+    margin-right: 1rem; /* space between image and text */
+    border-radius: 8px; /* optional rounded edges */
+    transition: transform 0.3s ease;
+}
+
+.nav img:hover {
+    transform: scale(1.05); /* subtle hover effect */
+}
+.brand {
+    display: flex;
+    align-items: center;
+}
+
         .logo {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
@@ -1734,8 +1750,11 @@
 <body>
     <header class="header" id="header">
         <nav class="nav">
-            <a href="#" class="logo">APEX GYM</a>
-            
+          <div class="brand">
+    <img src="suiied.png" alt="Monarch Logo">
+    <a href="#" class="logo">MONARCH MOMENTUM</a>
+</div>
+
             <div class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -1762,14 +1781,14 @@
         <div class="hero-content">
             <div class="hero-text">
                 <p class="hero-subtitle">Premium Fitness Experience</p>
-                <h1 class="hero-title">UNLEASH YOUR <span class="highlight">POTENTIAL</span></h1>
+                <h1 class="hero-title">BUILD YOUR <span class="highlight">MOMENTUM</span></h1>
                 <p class="hero-description">
-                    Transform your body, elevate your mind, and discover the strongest version of yourself. 
-                    Join thousands who've already started their transformation journey with APEX GYM.
+                    Transform your body, build unstoppable momentum, and achieve extraordinary results. 
+                    Join Monarch Momentum Gym in Kodihalli, Bengaluru - where champions are forged.
                 </p>
                 <div class="hero-buttons">
-                    <button class="btn-primary">Get Started</button>
-                    <button class="btn-secondary">Learn More</button>
+                    <button class="btn-primary">Start Training</button>
+                    <button class="btn-secondary">Explore Programs</button>
                 </div>
             </div>
             <div class="hero-image"></div>
@@ -1779,11 +1798,11 @@
     <section class="programs" id="programs">
         <div class="container">
             <div class="section-header">
-                <p class="section-subtitle">Our Offerings</p>
-                <h2 class="section-title">FITNESS PROGRAMS</h2>
+                <p class="section-subtitle">Our Specialties</p>
+                <h2 class="section-title">TRAINING PROGRAMS</h2>
                 <p class="section-description">
-                    Discover our diverse range of fitness programs designed to help you achieve your goals, 
-                    whether you're a beginner or a seasoned athlete.
+                    Discover our comprehensive range of fitness programs designed to help you build momentum 
+                    and achieve your fitness goals with expert guidance.
                 </p>
             </div>
             
@@ -1795,42 +1814,44 @@
                         </div>
                     </div>
                     <div class="program-content">
-                        <h3 class="program-title">Strength Training</h3>
+                        <h3 class="program-title">Strength & Muscle Building</h3>
                         <p class="program-description">
-                            Build muscle, increase strength and transform your physique with our expert-guided 
-                            strength training program.
+                            Build serious muscle mass and increase your strength with our proven powerlifting 
+                            and bodybuilding programs. Perfect for all experience levels.
                         </p>
                         <div class="program-features">
-                            <span class="feature-tag">Personalized Plans</span>
-                            <span class="feature-tag">Nutrition Guide</span>
-                            <span class="feature-tag">Progress Tracking</span>
+                            <span class="feature-tag">Mobility Training</span>
+                            <span class="feature-tag">Core Stability</span>
+                                <span class="feature-tag">Progressive Overload</span>
+                            <span class="feature-tag">Muscle Hypertrophy</span>
+                          
+                            
                         </div>
-                        <button class="program-btn">Explore Program</button>
+                        <button class="program-btn">Join Program</button>
                     </div>
                 </div>
-                
-                <div class="program-card animate-on-scroll">
+                 <div class="program-card animate-on-scroll">
                     <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=400&fit=crop');">
                         <div class="program-overlay">
                             <i class="fas fa-heartbeat"></i>
                         </div>
                     </div>
                     <div class="program-content">
-                        <h3 class="program-title">HIIT & Cardio</h3>
+                        <h3 class="program-title">Fat Loss & Conditioning</h3>
                         <p class="program-description">
-                            Maximize fat burning and boost cardiovascular health with our high-intensity 
-                            interval training sessions.
+                            Torch calories, melt fat, and improve cardiovascular health with our high-intensity 
+                            training sessions and metabolic conditioning workouts.
                         </p>
                         <div class="program-features">
-                            <span class="feature-tag">Calorie Torching</span>
+                            <span class="feature-tag">HIIT Training</span>
                             <span class="feature-tag">Metabolism Boost</span>
-                            <span class="feature-tag">Group Sessions</span>
+                            <span class="feature-tag">Injury Prevention</span>
+                            <span class="feature-tag">Body Transformation</span>
                         </div>
-                        <button class="program-btn">Explore Program</button>
+                        <button class="program-btn">Join Program</button>
                     </div>
                 </div>
-                
-                <div class="program-card animate-on-scroll">
+  <div class="program-card animate-on-scroll">
                     <div class="program-image" style="background-image: url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&h=400&fit=crop');">
                         <div class="program-overlay">
                             <i class="fas fa-running"></i>
@@ -1846,10 +1867,13 @@
                             <span class="feature-tag">Mobility Focus</span>
                             <span class="feature-tag">Core Strength</span>
                             <span class="feature-tag">Injury Prevention</span>
+                              <span class="feature-tag">Expert Coaching</span>
                         </div>
                         <button class="program-btn">Explore Program</button>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </section>
@@ -1857,11 +1881,11 @@
     <section class="trainers" id="trainers">
         <div class="container">
             <div class="section-header">
-                <p class="section-subtitle">Meet Our Experts</p>
-                <h2 class="section-title">ELITE TRAINERS</h2>
+                <p class="section-subtitle">Meet Our Team</p>
+                <h2 class="section-title">EXPERT TRAINERS</h2>
                 <p class="section-description">
-                    Our certified trainers bring years of experience and passion to help you achieve 
-                    your fitness goals with personalized guidance.
+                    Our certified trainers bring years of experience and passion to help you build 
+                    unstoppable momentum towards your fitness goals.
                 </p>
             </div>
             
@@ -1869,23 +1893,23 @@
                 <div class="trainer-card animate-on-scroll">
                     <div class="trainer-image" style="background-image: url('https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&h=500&fit=crop');">
                         <div class="trainer-overlay">
-                            <p>"Strength comes from within. Let me help you find it."</p>
+                            <p>"Strength is built one rep at a time, momentum one day at a time."</p>
                         </div>
                     </div>
                     <div class="trainer-content">
-                        <h3 class="trainer-name">ALEX JOHNSON</h3>
-                        <p class="trainer-specialty">Strength & Conditioning</p>
+                        <h3 class="trainer-name">RAJESH KUMAR</h3>
+                        <p class="trainer-specialty">Head Strength Coach</p>
                         <p class="trainer-bio">
-                            Certified strength coach with 8+ years experience. Specializes in powerlifting, 
-                            Olympic lifting, and athletic performance.
+                            Certified strength & conditioning specialist with 10+ years experience. 
+                            Specializes in powerlifting, Olympic lifting, and athlete development.
                         </p>
                         <div class="trainer-stats">
                             <div class="stat">
-                                <span class="stat-number">8+</span>
+                                <span class="stat-number">10+</span>
                                 <span class="stat-label">Years Exp</span>
                             </div>
                             <div class="stat">
-                                <span class="stat-number">500+</span>
+                                <span class="stat-number">800+</span>
                                 <span class="stat-label">Clients</span>
                             </div>
                             <div class="stat">
@@ -1904,23 +1928,23 @@
                 <div class="trainer-card animate-on-scroll">
                     <div class="trainer-image" style="background-image: url('https://images.unsplash.com/photo-1567013127542-490d757e51cd?w=600&h=500&fit=crop');">
                         <div class="trainer-overlay">
-                            <p>"Functional movement for a stronger life"</p>
+                            <p>"Functional movement creates lifelong momentum."</p>
                         </div>
                     </div>
                     <div class="trainer-content">
-                        <h3 class="trainer-name">MIKE CHEN</h3>
+                        <h3 class="trainer-name">ARJUN SINGH</h3>
                         <p class="trainer-specialty">Functional Training Expert</p>
                         <p class="trainer-bio">
-                            CrossFit Level 3 trainer and movement specialist. 
-                            Focuses on functional fitness and injury prevention.
+                            Movement specialist and injury prevention expert. 
+                            Focuses on functional fitness, mobility, and corrective exercise techniques.
                         </p>
                         <div class="trainer-stats">
                             <div class="stat">
-                                <span class="stat-number">10+</span>
+                                <span class="stat-number">8+</span>
                                 <span class="stat-label">Years Exp</span>
                             </div>
                             <div class="stat">
-                                <span class="stat-number">300+</span>
+                                <span class="stat-number">600+</span>
                                 <span class="stat-label">Clients</span>
                             </div>
                             <div class="stat">
@@ -1939,23 +1963,23 @@
                 <div class="trainer-card animate-on-scroll">
                     <div class="trainer-image" style="background-image: url('https://images.unsplash.com/photo-1549060279-7e168fce7090?w=600&h=500&fit=crop');">
                         <div class="trainer-overlay">
-                            <p>"Your body can stand almost anything. It's your mind you have to convince."</p>
+                            <p>"Every workout builds unstoppable momentum towards your goals."</p>
                         </div>
                     </div>
                     <div class="trainer-content">
-                        <h3 class="trainer-name">SOPHIA WILLIAMS</h3>
-                        <p class="trainer-specialty">HIIT & Cardio Specialist</p>
+                        <h3 class="trainer-name">PRIYA SHARMA</h3>
+                        <p class="trainer-specialty">Conditioning & Fat Loss Coach</p>
                         <p class="trainer-bio">
-                            Certified personal trainer and group fitness instructor with 6 years experience 
-                            in metabolic conditioning and fat loss.
+                            Certified personal trainer and group fitness instructor specializing in 
+                            metabolic conditioning, weight loss, and body transformation programs.
                         </p>
                         <div class="trainer-stats">
                             <div class="stat">
-                                <span class="stat-number">6+</span>
+                                <span class="stat-number">7+</span>
                                 <span class="stat-label">Years Exp</span>
                             </div>
                             <div class="stat">
-                                <span class="stat-number">200+</span>
+                                <span class="stat-number">500+</span>
                                 <span class="stat-label">Clients</span>
                             </div>
                             <div class="stat">
@@ -1978,10 +2002,10 @@
         <div class="container">
             <div class="section-header">
                 <p class="section-subtitle">Success Stories</p>
-                <h2 class="section-title">TRANSFORMATION RESULTS</h2>
+                <h2 class="section-title">MOMENTUM BUILDERS</h2>
                 <p class="section-description">
-                    Real people, real results. Hear from our members who have transformed 
-                    their lives through dedication and expert guidance.
+                    Real transformations from our Monarch Momentum family. Hear from members who 
+                    have built unstoppable momentum towards their fitness goals.
                 </p>
             </div>
             
@@ -1989,10 +2013,10 @@
                 <div class="testimonials-cards" id="testimonialsCards">
                     <div class="testimonial-card">
                         <div class="testimonial-header">
-                            <div class="testimonial-avatar">J</div>
+                            <div class="testimonial-avatar">A</div>
                             <div class="testimonial-info">
-                                <p class="testimonial-name">Jake Morrison</p>
-                                <p class="testimonial-role">Weight Loss Champion</p>
+                                <p class="testimonial-name">Arun Mehta</p>
+                                <p class="testimonial-role">Weight Loss Success</p>
                             </div>
                         </div>
                         <div class="stars">
@@ -2003,37 +2027,16 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <p class="testimonial-text">
-                            "Lost 50 pounds in 6 months! The trainers at APEX pushed me beyond my limits 
-                            and helped me discover strength I never knew I had. This place changed my life."
+                            "Lost 25 kg in 8 months! The trainers at Monarch Momentum created a perfect plan 
+                            that fit my busy schedule. The location in Kodihalli is so convenient from my office."
                         </p>
                     </div>
                     
                     <div class="testimonial-card">
                         <div class="testimonial-header">
-                            <div class="testimonial-avatar">M</div>
+                            <div class="testimonial-avatar">S</div>
                             <div class="testimonial-info">
-                                <p class="testimonial-name">Maria Santos</p>
-                                <p class="testimonial-role">Fitness Enthusiast</p>
-                            </div>
-                        </div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="testimonial-text">
-                            "The functional training program improved my athletic performance dramatically. 
-                            I'm stronger, more flexible, and confident in my abilities. Best investment ever!"
-                        </p>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-header">
-                            <div class="testimonial-avatar">D</div>
-                            <div class="testimonial-info">
-                                <p class="testimonial-name">David Kim</p>
+                                <p class="testimonial-name">Sneha Reddy</p>
                                 <p class="testimonial-role">Strength Athlete</p>
                             </div>
                         </div>
@@ -2045,17 +2048,38 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <p class="testimonial-text">
-                            "Increased my deadlift by 100lbs in 8 months. The strength program here is 
-                            scientifically designed and the coaches know exactly how to push you safely."
+                            "The functional training program completely transformed my athletic performance. 
+                            I'm stronger, more flexible, and injury-free. Best gym in HAL area!"
                         </p>
                     </div>
                     
                     <div class="testimonial-card">
                         <div class="testimonial-header">
-                            <div class="testimonial-avatar">L</div>
+                            <div class="testimonial-avatar">R</div>
                             <div class="testimonial-info">
-                                <p class="testimonial-name">Lisa Johnson</p>
-                                <p class="testimonial-role">Cardio Queen</p>
+                                <p class="testimonial-name">Rahul Gupta</p>
+                                <p class="testimonial-role">Fitness Enthusiast</p>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Gained 15 kg of lean muscle in 10 months. The strength training program here is 
+                            scientifically designed and the coaches really know how to push you safely."
+                        </p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">K</div>
+                            <div class="testimonial-info">
+                                <p class="testimonial-name">Kavya Nair</p>
+                                <p class="testimonial-role">Transformation Star</p>
                             </div>
                         </div>
                         <div class="stars">
@@ -2067,7 +2091,7 @@
                         </div>
                         <p class="testimonial-text">
                             "The HIIT classes are incredible! I've never felt stronger or more energetic. 
-                            The community here is supportive and motivating. I actually look forward to workouts now!"
+                            The community at Monarch Momentum is so supportive and motivating!"
                         </p>
                     </div>
                 </div>
@@ -2093,7 +2117,7 @@
                 <h2 class="section-title">MEMBERSHIP OPTIONS</h2>
                 <p class="section-description">
                     Select the perfect membership plan that fits your lifestyle and goals. 
-                    All plans include access to our state-of-the-art equipment and expert guidance.
+                    All plans include access to our state-of-the-art equipment and expert coaching.
                 </p>
             </div>
             
@@ -2106,17 +2130,17 @@
                     <div class="membership-period">per month</div>
                     <ul class="membership-features">
                         <li><i class="fas fa-check"></i> Access to gym equipment</li>
-                        <li><i class="fas fa-check"></i> Locker room access</li>
-                        <li><i class="fas fa-check"></i> 1 personal training session</li>
-                        <li><i class="fas fa-check"></i> Nutritional guidance</li>
-                        <li><i class="fas fa-check"></i> Mobile app access</li>
+                        <li><i class="fas fa-check"></i> Locker room facilities</li>
+                        <li><i class="fas fa-check"></i> 2 personal training sessions</li>
+                        <li><i class="fas fa-check"></i> Basic nutrition guidance</li>
+                        <li><i class="fas fa-check"></i> Workout tracking app</li>
                     </ul>
                     <button class="membership-btn">CHOOSE STARTER</button>
                 </div>
                 
                 <div class="membership-card featured animate-on-scroll">
                     <div class="membership-badge">Most Popular</div>
-                    <div class="membership-title">PREMIUM</div>
+                    <div class="membership-title">MOMENTUM</div>
                     <div class="membership-price">
                         <span class="currency">₹</span>4,999
                     </div>
@@ -2124,29 +2148,29 @@
                     <ul class="membership-features">
                         <li><i class="fas fa-check"></i> All Starter benefits</li>
                         <li><i class="fas fa-check"></i> Unlimited group classes</li>
-                        <li><i class="fas fa-check"></i> 4 personal training sessions</li>
-                        <li><i class="fas fa-check"></i> Custom workout plans</li>
-                        <li><i class="fas fa-check"></i> Meal planning service</li>
-                        <li><i class="fas fa-check"></i> Recovery zone access</li>
+                        <li><i class="fas fa-check"></i> 8 personal training sessions</li>
+                        <li><i class="fas fa-check"></i> Customized workout plans</li>
+                        <li><i class="fas fa-check"></i> Nutrition consultation</li>
+                        <li><i class="fas fa-check"></i> Progress tracking & analysis</li>
                     </ul>
-                    <button class="membership-btn">CHOOSE PREMIUM</button>
+                    <button class="membership-btn">CHOOSE MOMENTUM</button>
                 </div>
                 
                 <div class="membership-card animate-on-scroll">
-                    <div class="membership-title">ELITE</div>
+                    <div class="membership-title">MONARCH</div>
                     <div class="membership-price">
                         <span class="currency">₹</span>7,999
                     </div>
                     <div class="membership-period">per month</div>
                     <ul class="membership-features">
-                        <li><i class="fas fa-check"></i> All Premium benefits</li>
+                        <li><i class="fas fa-check"></i> All Momentum benefits</li>
                         <li><i class="fas fa-check"></i> Unlimited personal training</li>
-                        <li><i class="fas fa-check"></i> VIP locker room</li>
-                        <li><i class="fas fa-check"></i> Massage therapy sessions</li>
+                        <li><i class="fas fa-check"></i> VIP locker room access</li>
+                        <li><i class="fas fa-check"></i> Recovery & wellness sessions</li>
                         <li><i class="fas fa-check"></i> Priority class booking</li>
                         <li><i class="fas fa-check"></i> Exclusive member events</li>
                     </ul>
-                    <button class="membership-btn">CHOOSE ELITE</button>
+                    <button class="membership-btn">CHOOSE MONARCH</button>
                 </div>
             </div>
         </div>
@@ -2156,10 +2180,10 @@
         <div class="footer-top">
             <div class="container">
                 <div class="footer-brand">
-                    <div class="footer-logo">APEX GYM</div>
+                    <div class="footer-logo">MONARCH MOMENTUM</div>
                     <p class="footer-tagline">
-                        Transform your body, elevate your mind, and unleash your potential. 
-                        Join the APEX community and discover the strongest version of yourself.
+                        Build unstoppable momentum towards your fitness goals. Join the Monarch Momentum family 
+                        in Kodihalli, Bengaluru and discover the champion within you.
                     </p>
                 </div>
                 
@@ -2167,8 +2191,8 @@
                     <div class="footer-section">
                         <h3>Programs</h3>
                         <a href="#">Strength Training</a>
-                        <a href="#">Cardio Blast</a>
-                        <a href="#">Functional Fitness</a>
+                        <a href="#">Fat Loss & Conditioning</a>
+                        <a href="#">Functional Movement</a>
                         <a href="#">Personal Training</a>
                         <a href="#">Group Classes</a>
                         <a href="#">Nutrition Coaching</a>
@@ -2176,42 +2200,46 @@
                     
                     <div class="footer-section">
                         <h3>Gym Info</h3>
-                        <a href="#">About APEX</a>
+                        <a href="#">About Monarch Momentum</a>
                         <a href="#">Our Trainers</a>
                         <a href="#">Success Stories</a>
-                        <a href="#">Equipment</a>
-                        <a href="#">Careers</a>
-                        <a href="#">Blog</a>
+                        <a href="#">Equipment & Facilities</a>
+                        <a href="#">Join Our Team</a>
+                        <a href="#">Fitness Blog</a>
                     </div>
                     
                     <div class="footer-section">
                         <h3>Get In Touch</h3>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+91 98765 43210</span>
+                            <span>+91 95130 50500</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>+91 95130 50500</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>info@apexgym.com</span>
+                            <span>info@monarchmomentum.com</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>MG Road, Bangalore</span>
+                            <span>Ajaneya Plaza, Kodihalli, Bengaluru</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-clock"></i>
-                            <span>24/7 Access Available</span>
+                            <span>5:30 AM - 11:00 PM Daily</span>
                         </div>
                     </div>
                     
                     <div class="footer-section">
                         <h3>Follow Us</h3>
-                        <p>Join our community for daily motivation, tips, and exclusive content</p>
+                        <p>Join our community for daily motivation, workout tips, and transformation inspiration</p>
                         <div class="footer-social-links">
                             <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
                             <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
                             <a href="#" class="footer-social-link"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="footer-social-link"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>
@@ -2221,11 +2249,11 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="footer-bottom-content">
-                    <p>&copy; 2025 APEX GYM. All rights reserved.</p>
+                    <p>&copy; 2025 Monarch Momentum Gym. All rights reserved.</p>
                     <div class="footer-links">
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Service</a>
-                        <a href="#">Cookie Policy</a>
+                        <a href="#">Membership Agreement</a>
                     </div>
                 </div>
             </div>
@@ -2510,4 +2538,5 @@
         }
     </script>
 </body>
-</html>
+</html>       
+                
