@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TrueBrew Cafe & Restaurant</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<style>
+    /* ==== RESET ==== */
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: #f6e7d8; color: #1e1e1e; overflow-x: hidden; }
+
+    /* ==== LOADER ==== */
+    #loader {
+        position: fixed;
+        background: linear-gradient(135deg, #f6e7d8, #e8d5c4);
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+    }
+    .coffee-cup {
+        border: 6px solid #b11e2b;
+        border-radius: 50%;
+        height: 80px;
+        width: 80px;
+        border-top: 6px solid transparent;
+        border-right: 6px solid transparent;
+        animation: spin 1s linear infinite;
+        position: relative;
+    }
+    .coffee-cup::after {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 3px solid #d63447;
+        border-radius: 50%;
+        border-top: 3px solid transparent;
+        animation: spin 0.8s linear infinite reverse;
+    }
+    .loader-text {
+        margin-top: 2rem;
+        font-family: 'Dancing Script', cursive;
+        font-size: 2rem;
+        color: #b11e2b;
+        animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
+    @keyframes pulse { 
+        0%, 100% { opacity: 0.6; transform: scale(1); } 
+        50% { opacity: 1; transform: scale(1.05); } 
+    }
+
+    /* ==== NAVBAR ==== */
+    nav {
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 10%;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        z-index: 1000;
+        transition: all 0.3s ease;
+    }
+    nav img { width: 50px; }
+    nav ul {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+    }
+    nav a {
+        text-decoration: none;
+        color: #1e1e1e;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    nav a:hover { 
+        color: #b11e2b; 
+        transform: translateY(-2px);
+    }
+    nav a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background-color: #b11e2b;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+    nav a:hover::after { width: 100%; }
+
+    /* ==== MOBILE MENU ==== */
+    .mobile-menu-btn {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 1001;
+    }
+    .mobile-menu-btn span {
+        width: 25px;
+        height: 3px;
+        background: #1e1e1e;
+        margin: 3px 0;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+    .mobile-menu-btn.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+        background: #b11e2b;
+    }
+    .mobile-menu-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .mobile-menu-btn.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+        background: #b11e2b;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: linear-gradient(135deg, #ffffff, #f6e7d8);
+        backdrop-filter: blur(20px);
+        box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        z-index: 999;
+        padding-top: 80px;
+    }
+    .mobile-menu.active {
+        right: 0;
+    }
+    .mobile-menu ul {
+        list-style: none;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .mobile-menu a {
+        color: #1e1e1e;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding: 1rem;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        display: block;
+        text-align: center;
+    }
+    .mobile-menu a:hover {
+        background: rgba(177, 30, 43, 0.1);
+        color: #b11e2b;
+        transform: translateX(10px);
+    }
+    
+    .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0,0,0,0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 998;
+    }
+    .mobile-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* ==== HERO ==== */
+    header {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, rgba(182, 28, 43, 0.7), rgba(0,0,0,0.5)), 
+                    url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+        z-index: 1;
+    }
+    header > * {
+        position: relative;
+        z-index: 2;
+    }
+    header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 4rem;
+        color: white;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        animation: fadeInUp 1s ease-out;
+    }
+    header p { 
+        font-size: 1.4rem; 
+        margin-bottom: 2rem; 
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        animation: fadeInUp 1s ease-out 0.3s both;
+    }
+    header a {
+        display: inline-block;
+        background: linear-gradient(45deg, #b11e2b, #d63447);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(177, 30, 43, 0.3);
+        animation: fadeInUp 1s ease-out 0.6s both;
+        position: relative;
+        overflow: hidden;
+    }
+    header a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+    header a:hover::before { left: 100%; }
+    header a:hover { 
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(177, 30, 43, 0.4);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ==== SECTION ==== */
+    section { padding: 4rem 10%; }
+    h2 {
+        font-family: 'Playfair Display', serif;
+        color: #b11e2b;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+    }
+    .script-heading {
+        font-family: 'Dancing Script', cursive;
+        font-size: 2.5rem;
+        color: #b11e2b;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    /* ==== ABOUT ==== */
+    .about-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 3rem;
+        margin-top: 3rem;
+    }
+    .about-text { 
+        flex: 1; 
+        line-height: 1.8; 
+        font-size: 1.1rem;
+    }
+    .about-img { 
+        flex: 1; 
+        position: relative;
+    }
+    .about-img img { 
+        width: 100%; 
+        border-radius: 15px; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease;
+    }
+    .about-img:hover img {
+        transform: scale(1.02);
+    }
+    .about-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    .stat-item {
+        text-align: center;
+        padding: 1.5rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    .stat-item:hover { transform: translateY(-5px); }
+    .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #b11e2b;
+        margin-bottom: 0.5rem;
+    }
+
+    /* ==== MENU ==== */
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    .menu-item {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .menu-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(45deg, #b11e2b, #d63447);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+    .menu-item:hover::before { transform: scaleX(1); }
+    .menu-item:hover { 
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    .menu-item h3 { 
+        color: #b11e2b; 
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+    .menu-item p { 
+        font-size: 1rem; 
+        color: #555; 
+        line-height: 1.6;
+    }
+
+    /* ==== GALLERY ==== */
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        height: 250px;
+    }
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+    .gallery-item:hover img { 
+        transform: scale(1.1);
+    }
+    .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(177, 30, 43, 0.8), rgba(214, 52, 71, 0.8));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+    }
+
+    /* ==== CONTACT ==== */
+    .contact-info {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    .contact-info p {
+        margin: 1rem 0;
+        font-size: 1.1rem;
+    }
+    .contact-info i {
+        color: #b11e2b;
+        margin-right: 0.5rem;
+    }
+    form {
+        max-width: 600px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    input, textarea {
+        padding: 1rem;
+        border-radius: 10px;
+        border: 2px solid #e0e0e0;
+        font-family: inherit;
+        transition: border-color 0.3s ease;
+        font-size: 1rem;
+    }
+    input:focus, textarea:focus {
+        outline: none;
+        border-color: #b11e2b;
+    }
+    button {
+        padding: 1rem;
+        background: linear-gradient(45deg, #b11e2b, #d63447);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(177, 30, 43, 0.3);
+    }
+    button:hover { 
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(177, 30, 43, 0.4);
+    }
+
+    /* ==== FOOTER ==== */
+    footer {
+        background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+        color: white;
+        padding: 3rem 10%;
+        text-align: center;
+    }
+    .social-icons {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+    .social-icons a {
+        color: white;
+        font-size: 1.8rem;
+        transition: all 0.3s ease;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(177, 30, 43, 0.1);
+    }
+    .social-icons a:hover { 
+        color: #b11e2b; 
+        background: rgba(177, 30, 43, 0.2);
+        transform: translateY(-3px);
+    }
+
+    /* ==== RESPONSIVE ==== */
+    @media (max-width: 768px) {
+        header h1 { font-size: 2.5rem; }
+        header p { font-size: 1.1rem; }
+        .about-container { flex-direction: column; }
+        .menu-grid, .gallery { grid-template-columns: 1fr; }
+        section { padding: 2rem 5%; }
+        nav { padding: 1rem 5%; }
+        
+        .desktop-menu { display: none; }
+        .mobile-menu-btn { display: flex; }
+        
+        .gallery {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .gallery-item {
+            height: 200px;
+        }
+        
+        .about-stats {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .menu-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .social-icons {
+            gap: 1.5rem;
+        }
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            font-size: 1.5rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        header h1 { font-size: 2rem; }
+        header p { font-size: 1rem; }
+        .gallery { grid-template-columns: 1fr; }
+        .about-stats { grid-template-columns: 1fr; }
+        .mobile-menu { width: 90%; }
+        
+        .script-heading { font-size: 2rem; }
+        h2 { font-size: 2rem; }
+    }
+
+    /* ==== ANIMATIONS ==== */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+    }
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+    <div class="coffee-cup"></div>
+    <div class="loader-text">Brewing Excellence...</div>
+</div>
+
+<!-- Mobile Overlay -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- Navbar -->
+<nav>
+    <img src="TRUE.png" alt="TrueBrew Logo">
+    <ul class="desktop-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="mobile-menu-btn" id="mobileMenuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</div>
+
+<!-- Hero -->
+<header id="home">
+    <h1>TrueBrew Cafe & Restaurant</h1>
+    <p>Serving Indiranagar with passion, flavor & artisanal coffee.</p>
+    <a href="#menu">Explore Menu</a>
+</header>
+
+<!-- About -->
+<section id="about">
+    <h2>About Us</h2>
+    <div class="about-container">
+        <div class="about-text">
+            <p>At TrueBrew, coffee is more than a drink—it's an experience. Our certified Q Arabica Graders and expert roasters curate beans from around the world to serve brews that awaken the senses. Pair it with our chef-crafted breakfast, salads, and desserts in a space designed for comfort and connection.</p>
+            <p>Located in the heart of Indiranagar, we pride ourselves on creating moments of joy through exceptional coffee and culinary artistry. Every cup tells a story, every dish reflects our passion for quality.</p>
+        </div>
+        <div class="about-img">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="About TrueBrew - Cozy cafe interior">
+        </div>
+    </div>
+    <div class="about-stats">
+        <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div>Happy Customers Daily</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">15</div>
+            <div>Coffee Origins</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">8</div>
+            <div>Years of Excellence</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div>Menu Items</div>
+        </div>
+    </div>
+</section>
+
+<!-- Menu -->
+<section id="menu">
+    <div class="script-heading">All Day Breakfast</div>
+    <div class="menu-grid">
+        <div class="menu-item"><h3>Brioche French Toast</h3><p>Custard-dipped brioche with blueberry compote & mascarpone cheese.</p></div>
+        <div class="menu-item"><h3>Eggs Benedict</h3><p>Free-range eggs, meat choice, hollandaise, crispy bacon on sourdough.</p></div>
+        <div class="menu-item"><h3>Rock & Root Salad</h3><p>Beetroot, feta, apples, walnuts & rocket leaves with balsamic.</p></div>
+        <div class="menu-item"><h3>Grilled Vegetable Salad</h3><p>Broccoli, zucchini, peppers & honey mustard dressing.</p></div>
+        <div class="menu-item"><h3>Eggs Florentine</h3><p>Poached eggs on spinach & sourdough with hollandaise.</p></div>
+        <div class="menu-item"><h3>Mr. Beans</h3><p>Black bean patty with poached eggs & sourdough.</p></div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Artisan Coffee">
+            <div class="gallery-overlay">Artisan Coffee</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Fresh Breakfast">
+            <div class="gallery-overlay">Fresh Breakfast</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Latte Art">
+            <div class="gallery-overlay">Latte Art</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Cafe Ambiance">
+            <div class="gallery-overlay">Cafe Ambiance</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Gourmet Salads">
+            <div class="gallery-overlay">Gourmet Salads</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Dessert Delights">
+            <div class="gallery-overlay">Dessert Delights</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Coffee Beans">
+            <div class="gallery-overlay">Premium Beans</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1481833761820-0509d3217039?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Barista Skills">
+            <div class="gallery-overlay">Barista Skills</div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> hello@truebrew.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> 3163, Paramahansa Yogananda Road, HAL 2nd Stage, Indiranagar, Bengaluru</p>
+    </div>
+    <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2025 TrueBrew Cafe & Restaurant | All Rights Reserved</p>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+</footer>
+
+<script>
+    // Loader script
+    window.addEventListener("load", () => {
+        document.getElementById("loader").style.display = "none";
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Add scroll effect to navbar
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+    });
+
+    // Enhanced Loader script
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+        loader.style.opacity = "0";
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 500);
+    });
+
+    // Mobile Menu Functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        mobileOverlay.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    // Close mobile menu when clicking overlay
+    mobileOverlay.addEventListener('click', () => {
+        closeMobileMenu();
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+    });
+
+    function closeMobileMenu() {
+        mobileMenuBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Smooth scrolling for all navigation links
+    document.querySelectorAll('nav a[href^="#"], .mobile-menu a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add scroll effect to navbar
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+    });
+</script>
+
+</body>
+</html>
