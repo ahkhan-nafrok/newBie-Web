@@ -1,75 +1,3 @@
-
-image.png
-
-<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- CRITICAL: Enhanced SEO with immediate render - OPTIMIZED FOR A.H. KHAN RANKING --> <title>A H Khan - AI & Robotics Researcher | AIxRobo Founder</tit
-
-pasted
-
-hey this is my code and i wanna make some changes in my cotent as it's too much i want a simple take a reference and compare both 
-
-Hi, I'm a tech developer blending robotics and artificial intelligence to create real-world impact. At AIxRobo, I develop full-stack systems and AI models that power the brain of our humanoid robots—helping them see, think, and act intelligently.
-With hands-on experience in Android development, full-stack web tech (React, JavaScript, Python, Kotlin), and machine learning, I've been actively building and experimenting with intelligent products for over 2 years—pushing AIxRobo toward the future of physical intelligence. Check out AIxRescue
-
-and make the required content changes only that part not messing up any part of other 
-
-also last changes is  in the code of nav bar section i wanna add my own image in the header so do that css part or enhance it with a glossy overlay
-
-I'll help you simplify the About section content and add your image to the header navbar. Let me make these targeted changes to your code.
-
-
-A H Khan - Updated Portfolio with Simplified Content
-Interactive artifact 
-
-
-
-Continue
-
-
-A H Khan - Updated Portfolio with Simplified Content
-Interactive artifact ∙ Version 2 
-
-A H Khan - Updated Portfolio with Simplified Content
-Interactive artifact ∙ Version 3 
-
-A H Khan - Updated Portfolio with Simplified Content
-Interactive artifact ∙ Version 4 
-Perfect! I've made the requested changes to your portfolio:
-
-Key Changes Made:
-1. Simplified About Section Content ✅
-Replaced the lengthy technical content with your preferred concise version
-Updated the main bio to match your reference: "Hi, I'm a tech developer blending robotics and artificial intelligence to create real-world impact..."
-Simplified the skills section to focus on three core areas: AI & Robotics, Full-Stack Development, and Product Innovation
-Removed the extensive experience timeline and education sections for a cleaner look
-2. Enhanced Header with Your Image ✅
-Added a sophisticated header logo using your ra9.jpg image
-Created a glossy overlay effect with:
-Shimmer animation that moves across the image
-Hover effects with subtle scaling and opacity changes
-Gradient borders and professional styling
-Fallback system with your initials "AK" if the image fails to load
-Added proper error handling and retry mechanisms for image loading
-3. Technical Improvements ✅
-Enhanced CSS with professional animations and effects
-Improved responsive design for both header and profile images
-Added proper image loading functions for both header and profile photos
-Maintained all existing functionality and styling
-Key Features of the Header Logo:
-Glossy Effect: Subtle overlay that appears on hover
-Shimmer Animation: Continuous subtle animation effect
-Professional Styling: Gradient borders and shadows
-Responsive Design: Works perfectly on all screen sizes
-Fallback Protection: Shows "AK" initials if image fails
-The content is now much more concise and focused while maintaining the professional appearance. The header logo adds a personal touch with sophisticated visual effects that match your site's modern aesthetic.
-
-
-
-
-
-This conversation has reached its maximum length.
-Start a new conversation
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -219,101 +147,6 @@ Start a new conversation
     @keyframes gradientShift {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
-    }
-
-    /* ENHANCED: Header Logo Image with Glossy Overlay */
-    .header-logo {
-      position: relative;
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      overflow: hidden;
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #1e40af 50%, #0f172a 75%, #000000 100%);
-      padding: 2px;
-      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
-    }
-
-    .header-logo-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: 14px;
-      overflow: hidden;
-      background: linear-gradient(135deg, #0a0f1c 0%, #1a1a2e 100%);
-    }
-
-    .header-logo-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 14px;
-      filter: saturate(1.1) contrast(1.05) brightness(1.02);
-      transition: transform 0.3s ease;
-    }
-
-    .header-logo:hover .header-logo-img {
-      transform: scale(1.05);
-    }
-
-    /* Glossy overlay effect */
-    .header-logo::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.2) 0%, 
-        rgba(255, 255, 255, 0.05) 50%, 
-        rgba(255, 255, 255, 0.1) 100%);
-      border-radius: 16px;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 2;
-    }
-
-    .header-logo:hover::before {
-      opacity: 1;
-    }
-
-    /* Shimmer effect for header logo */
-    .header-logo::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, 
-        transparent 30%, 
-        rgba(124, 58, 237, 0.3) 35%, 
-        rgba(79, 70, 229, 0.2) 40%, 
-        rgba(6, 182, 212, 0.3) 45%, 
-        transparent 50%);
-      animation: headerShimmer 4s linear infinite;
-      border-radius: 16px;
-      z-index: 1;
-    }
-
-    @keyframes headerShimmer {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
-
-    .header-logo-fallback {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #7c3aed;
-      background: linear-gradient(135deg, #1e1b4b, #312e81);
-      border-radius: 14px;
     }
 
     /* FIXED: Profile Photo Box - Centered properly */
@@ -1037,7 +870,7 @@ Start a new conversation
         </p>
         
         <p>
-          At <strong class="text-slate-100">AIxRobo</strong>, We lead groundbreaking research in <em>physical intelligence</em>, developing autonomous robots that can understand, interact with, and adapt to complex real-world environments. My work focuses on creating AI-powered solutions for critical applications including disaster management, search and rescue operations, healthcare robotics, and industrial automation systems.
+          At <strong class="text-slate-100">AIxRobo</strong>, I lead groundbreaking research in <em>physical intelligence</em>, developing autonomous robots that can understand, interact with, and adapt to complex real-world environments. My work focuses on creating AI-powered solutions for critical applications including disaster management, search and rescue operations, healthcare robotics, and industrial automation systems.
         </p>
         
         <p>
@@ -1697,6 +1530,3 @@ Start a new conversation
   </script>
 </body>
 </html>
-
-
-
