@@ -149,6 +149,101 @@
       50% { background-position: 100% 50%; }
     }
 
+    /* ENHANCED: Header Logo Image with Glossy Overlay */
+    .header-logo {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #1e40af 50%, #0f172a 75%, #000000 100%);
+      padding: 2px;
+      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
+    }
+
+    .header-logo-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a0f1c 0%, #1a1a2e 100%);
+    }
+
+    .header-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+      filter: saturate(1.1) contrast(1.05) brightness(1.02);
+      transition: transform 0.3s ease;
+    }
+
+    .header-logo:hover .header-logo-img {
+      transform: scale(1.05);
+    }
+
+    /* Glossy overlay effect */
+    .header-logo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        rgba(255, 255, 255, 0.05) 50%, 
+        rgba(255, 255, 255, 0.1) 100%);
+      border-radius: 16px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    .header-logo:hover::before {
+      opacity: 1;
+    }
+
+    /* Shimmer effect for header logo */
+    .header-logo::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(124, 58, 237, 0.3) 35%, 
+        rgba(79, 70, 229, 0.2) 40%, 
+        rgba(6, 182, 212, 0.3) 45%, 
+        transparent 50%);
+      animation: headerShimmer 4s linear infinite;
+      border-radius: 16px;
+      z-index: 1;
+    }
+
+    @keyframes headerShimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .header-logo-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #7c3aed;
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+      border-radius: 14px;
+    }
+
     /* FIXED: Profile Photo Box - Centered properly */
     .profile-container {
       position: relative;
@@ -774,8 +869,17 @@
 
   <header class="main-container py-6 flex items-center justify-between">
     <a href="#" class="flex items-center gap-3" aria-label="A H Khan - AI Researcher and Robotics Engineer">
-      <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-700 via-purple-600 to-pink-600 flex items-center justify-center shadow-2xl">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M3 7v10a2 2 0 0 0 2 2h14"></path><path d="M8 7V5a4 4 0 0 1 8 0v2"></path></svg>
+      <!-- ENHANCED: Header Logo with Your Image and Glossy Effect -->
+      <div class="header-logo">
+        <div class="header-logo-inner">
+          <img 
+            src="ra9.jpg" 
+            alt="A H Khan" 
+            class="header-logo-img"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+          />
+          <div class="header-logo-fallback" style="display: none;">AK</div>
+        </div>
       </div>
       <div>
         <div class="text-sm text-slate-300 font-medium">A H Khan</div>
@@ -1530,3 +1634,4 @@
   </script>
 </body>
 </html>
+
