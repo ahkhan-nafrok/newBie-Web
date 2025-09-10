@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wango — The Mango Club</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================
+       Color palette inspired by provided logo
+       Primary Mango Yellow:  #FFC400
+       Deep Green (bg):       #0c6b5a
+       Olive Green (accent):  #7aa04a
+       Soft Orange (accent):  #ff9a2e
+       Light Cream (cards):   #fff7ea
+       =====================*/
+
+    :root{
+      --mango: #FFC400;
+      --deep:  #0c6b5a;
+      --olive: #7aa04a;
+      --orange:#ff9a2e;
+      --cream: #fff7ea;
+      --muted: #37474f;
+      --glass: rgba(255,255,255,0.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+    body{background:linear-gradient(180deg,var(--deep),#055b4d);color:#fff;-webkit-font-smoothing:antialiased}
+
+    /* ========== LOADER ========== */
+    .loader-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, var(--deep), #055b4d);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    .loader-overlay img {
+  width: 100px; /* adjust size as needed */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%; /* makes logo round */
+  border: 2px solid #fff; /* outline for clean look */
+}
+    .loader-overlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+
+
+    .mango-loader {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin-bottom: 24px;
+    }
+
+    .mango-slice {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--orange), var(--mango));
+      animation: mangoSpin 2s ease-in-out infinite;
+      opacity: 0.8;
+    }
+
+    .mango-slice:nth-child(1) { animation-delay: 0s; }
+    .mango-slice:nth-child(2) { animation-delay: 0.3s; }
+    .mango-slice:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes mangoSpin {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+    }
+
+    .loader-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--mango);
+      text-align: center;
+      opacity: 0;
+      animation: fadeInText 1s ease 0.5s forwards;
+    }
+
+    .loader-subtext {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 8px;
+      opacity: 0;
+      animation: fadeInText 1s ease 0.8s forwards;
+    }
+
+    @keyframes fadeInText {
+      to { opacity: 1; }
+    }
+
+    /* ========== HEADER / NAV ========== */
+    header{position:fixed;left:0;right:0;top:0;z-index:60;padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{display:flex;align-items:center;gap:8px}
+
+        .logo img {
+  width: 80px; /* adjust size as needed */
+  height: 60px;
+  object-fit: cover;
+ /* makes logo round */
+  /* outline for clean look */
+}
+    .brand h1{font-family:Playfair Display, serif;margin:0;font-size:20px;letter-spacing:1px}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:rgba(255,255,255,.9);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;transition:background 0.3s ease}
+    nav a:hover{background:var(--glass);backdrop-filter:blur(4px)}
+    .cta{background:var(--mango);color:#083224;padding:10px 14px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.18);transition:transform 0.2s ease}
+    .cta:hover{transform:translateY(-2px)}
+
+    /* Mobile nav */
+    .hamburger{display:none;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,0.18);align-items:center;justify-content:center;border:none;color:white;font-size:18px;cursor:pointer}
+
+    /* ========== HERO ========== */
+    .hero{min-height:88vh;padding:100px 6vw 60px;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center}
+    .hero .intro{max-width:720px}
+    .kicker{display:inline-block;background:rgba(255,255,255,.06);padding:6px 12px;border-radius:999px;font-weight:600;color:var(--cream);letter-spacing:0.6px}
+    .title{font-family:Playfair Display, serif;font-size:58px;line-height:1.02;margin:18px 0}
+    .lead{font-size:18px;color:rgba(255,255,255,.92);margin-bottom:22px}
+    .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 18px;border-radius:12px;font-weight:700;border:none;cursor:pointer;transition:all 0.3s ease}
+    .btn.primary{background:var(--mango);color:#083224}
+    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,196,0,0.3)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.08);color:#fff}
+    .btn.ghost:hover{background:rgba(255,255,255,0.05)}
+
+    /* Right: card with overlayed hero image */
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:18px;border-radius:18px;box-shadow:0 12px 40px rgba(3,23,17,0.55);display:flex;flex-direction:column;gap:12px}
+    .hero-card .img{height:320px;border-radius:12px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+    .hero-card .img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(12,107,90,0.08), rgba(0,0,0,0.38))}
+    .hero-card .meta{display:flex;justify-content:space-between;align-items:center}
+
+    /* ========== SECTIONS ========== */
+    section{padding:64px 6vw}
+    .container{max-width:1200px;margin:0 auto}
+
+    /* About */
+    .about{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center}
+    .card{background:var(--cream);color:var(--deep);padding:18px;border-radius:14px}
+
+    /* Gallery */
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .gallery-item{position:relative;border-radius:10px;overflow:hidden;min-height:160px;background-size:cover;background-position:center;cursor:pointer;transition:transform .28s ease, box-shadow .28s ease}
+    .gallery-item:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,14,10,0.45)}
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(12,107,90,0.18), rgba(0,0,0,0.28));display:flex;align-items:flex-end;padding:12px;color:#fff;font-weight:700;backdrop-filter:blur(2px)}
+/* Exclusive page */
+.exclusive {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;   /* controls overall width */
+  margin: 0 auto;      /* centers the section */
+  padding: 20px;
+}
+
+.exclusive .list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;      /* allows wrapping on smaller screens */
+  justify-content: center; /* centers tiles inside */
+}
+
+.tile {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 14px;
+  min-width: 260px;   /* wider tiles */
+  flex: 1 1 300px;    /* makes tiles responsive */
+  max-width: 350px;   /* prevents them from being too wide */
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.tile:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+    /* ========== CONTACT FORM - FIXED RESPONSIVENESS ========== */
+    .contact-section {
+      padding: 64px 6vw;
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    form.contact {
+      background: var(--cream);
+      color: var(--deep);
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(3,23,17,0.15);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--deep);
+      font-size: 14px;
+    }
+
+    input, textarea, select {
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 2px solid rgba(12,107,90,0.1);
+      outline: none;
+      font-size: 15px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--mango);
+      box-shadow: 0 0 0 3px rgba(255,196,0,0.1);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .submit {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
+    }
+
+    .btn.submit-btn {
+      padding: 14px 32px;
+      font-size: 16px;
+      min-width: 140px;
+    }
+
+    /* ========== FOOTER - FIXED RESPONSIVENESS ========== */
+    footer {
+      padding: 48px 6vw 32px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05));
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .footer-info h4 {
+      margin: 0 0 12px 0;
+      font-family: 'Playfair Display', serif;
+      color: var(--mango);
+      font-size: 20px;
+    }
+
+    .footer-address {
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .footer-hours {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+    }
+
+    .footer-social {
+      text-align: right;
+    }
+
+    .social {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      justify-content: flex-end;
+    }
+
+    .social a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .social a:hover {
+      background: var(--mango);
+      color: var(--deep);
+      transform: translateY(-2px);
+    }
+
+    .footer-copyright {
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+    }
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:90;backdrop-filter:blur(4px)}
+    .modal .frame{width:min(960px,96vw);background:#fff;color:#0b3c33;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+    .modal .frame img{width:100%;display:block}
+
+    /* ========== RESPONSIVE DESIGN ========== */
+    @media (max-width: 1024px) {
+      .hero, .about {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      
+      .hero-card {
+        order: -1;
+      }
+      
+      .title {
+        font-size: 48px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      nav {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+      }
+      
+      .footer-social {
+        text-align: center;
+      }
+      
+      .social {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 16px 20px;
+      }
+      
+      .hero {
+        padding: 80px 4vw 40px;
+      }
+      
+      section {
+        padding: 48px 4vw;
+      }
+      
+      form.contact {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 16px;
+      }
+      
+      .form-group.full-width {
+        grid-column: 1;
+      }
+      
+      .submit {
+        grid-column: 1;
+        justify-content: center;
+      }
+      
+      .exclusive .list {
+        flex-direction: column;
+      }
+      
+      .tile {
+        min-width: auto;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .title {
+        font-size: 36px;
+      }
+      
+      .lead {
+        font-size: 16px;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .btn {
+        text-align: center;
+      }
+      
+      .brand h1 {
+        font-size: 18px;
+      }
+      
+      .logo .mark {
+        width: 48px;
+        height: 32px;
+      }
+      
+      footer {
+        padding: 32px 4vw 24px;
+      }
+    }
+
+    /* ========== ANIMATIONS ========== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Loading state for buttons */
+    .btn.loading {
+      position: relative;
+      color: transparent;
+    }
+
+    .btn.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      border-right-color: transparent;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loader -->
+<div class="loader-overlay" id="loader">
+  <div class="mango-loader">
+
+  </div>
+  <div class="loader-text">
+   <img src="wango-.png" alt="">
+    <div class="loader-subtext">The Mango Club</div>
+  </div>
+</div>
+
+<header>
+  <div class="brand">
+    <div class="logo">
+      <img src="wango-.png" alt="">
+      <div style="font-size:12px;color:rgba(255,255,255,0.8);margin-top:4px">The Mango Club • HAL 3rd Stage</div>
+      <div>
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#exclusive">Exclusive</a>
+    <a href="#contact">Contact</a>
+    <button class="btn cta" id="orderBtn">Order Now</button>
+  </nav>
+
+  <button class="hamburger" id="menuBtn">☰</button>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="intro fade-up">
+      <span class="kicker">Seasonal Special</span>
+      <h2 class="title">100% Mango Love — Shakes, Desserts & More</h2>
+      <p class="lead">Fresh Alphonso, creamy shakes, mango cheesecakes and delightful seasonal creations. Small-batch, handcrafted mango treats served with love at HAL 3rd Stage.</p>
+      <div class="actions">
+        <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a Table</button>
+        <button class="btn ghost" onclick="openGallery()">Explore Gallery</button>
+      </div>
+
+      <div style="margin-top:20px;color:rgba(255,255,255,0.88)">
+        <strong>Address:</strong> 1673, 9th Main Road, HAL 3rd Stage, New Thippasandra, Bengaluru
+      </div>
+    </div>
+
+    <aside class="hero-card fade-up" style="animation-delay:.15s">
+      <div class="img" id="heroImg" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nopN0kC3YO3XQY6K4DqjlkjdicAIrN1kLVRPWhvRauM7iYaqxQyCetXiEuslw3Ml8kY2EVDdXFWd68LMPZxdLsOjp6XgXnWjXIZCFrMGtkv5yWbBibdeaLDxX_wtnPDCF3ofqjtWgScXcZQ=s1360-w1360-h1020-rw')"></div>
+      <div class="meta">
+        <div style="font-weight:700">Chef's Pick: Alphonso Mousse</div>
+        <div style="opacity:.85">Open • 11:00 AM — 10:30 PM</div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container about">
+      <div>
+        <h3 style="margin-top:0;font-family:Playfair Display,serif;font-size:32px">About Wango — The Mango Club</h3>
+        <p style="color:rgba(255,255,255,0.9);font-size:17px;line-height:1.6">Wango started with one idea: celebrate the mango. Sourcing the ripest Alphonso and pairing it with modern desserts, we make mango treats that feel nostalgic and new at the same time. Our menu rotates seasonally to bring you the best textures and flavours.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:24px">
+          <div class="card">
+            <strong>Fresh Ingredients</strong>
+            <p style="margin:8px 0 0">Local farms • Handpicked daily • No artificial preservatives</p>
+          </div>
+          <div class="card">
+            <strong>Crafted Desserts</strong>
+            <p style="margin:8px 0 0">Shakes, puddings, cheesecakes & seasonal specials</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h4 style="margin:0 0 12px">Open Kitchen Experience</h4>
+          <p style="margin:0 0 16px">Get a seat at our counter and watch the mango magic happen. Great for dates and small gatherings.</p>
+          <ul style="margin:0;padding-left:18px">
+            <li>Private tasting platters</li>
+            <li>Seasonal menus</li>
+            <li>Catering for events</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <h3 style="font-family:Playfair Display,serif;font-size:32px">Gallery</h3>
+      <p style="color:rgba(255,255,255,0.9)">A few mango moments — click to enlarge.</p>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrlTDvHg7J4vP8UjeUtpybySbqAzldGIqK8Psp7wizOw9y1mjCyMMCzKR2y3kNoCKx5j7jtOZW3NFHMCecu8i-xfrEiZ34X48oz0svyPcbjPyDoaxwAR9UEv12ja-X7uMO25G6ywq-TZVLU=s1360-w1360-h1020-rw">
+          <div class="overlay">Alphonso Mousse</div>
+        </div>
+        <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nojt2_4MMfMkfMs2Q6Zb1VAE60AuDABUA4UsazBdvpVwFSXlBdYzlkOCNuwDMmWegX-BP_-akaHv3pg5mi1gJvgOSwMMOWLf96SQBzd0ObQStEXd7-hBFavoM5mHWG-2XGRnLsxnCR7bEqj=s1360-w1360-h1020-rw" style="background-image:url('https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=60')">
+          <div class="overlay">Mango Shake</div>
+        </div>
+        <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr3FVR7Pr3WsnUlG0q29AZA34gyCHJUrNOXsMOTZFcey81aBK0zYc7vjb0q0bWf5J0SCle3X4xd-T0MIvqPW9J2J_-RiVOUQCmcc2I5wjQGiB0Gei9thFyrTL2buVLhX6vFjel1HnVfQBqv=s1360-w1360-h1020-rw" style="background-image:url('https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?auto=format&fit=crop&w=800&q=60')">
+          <div class="overlay">Mango Cheesecake</div>
+        </div>
+        <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrnVvGjZJ6348SZto5Au7-k4DmcA422TSQ3Xtx3db0Gud-FQwcrQ6GRIUvtzDbyopri4K_3o3OkOrBkXkkP2jKkTokaL6FB9EkRfWN1Ok63YqX9dTsB3bipTYgBjw6Y7JmBGFNwPtg1k_st=s1360-w1360-h1020-rw">
+          <div class="overlay">Seasonal Falooda</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXCLUSIVE PAGE -->
+  <section id="exclusive">
+    <div class="container exclusive">
+      <h3 style="font-family:Playfair Display,serif;font-size:32px">Exclusive — Limited Edition</h3>
+      <p style="color:rgba(255,255,255,0.9)">Specials that run for a short time only. Reserve or pre-order.</p>
+
+      <div class="list">
+        <div class="tile">
+          <h4 style="margin:0 0 8px">Alphonso Sky Parfait</h4>
+          <p style="margin:0;opacity:0.9">Layers of mango gel, croquant, and saffron cream.</p>
+        </div>
+        <div class="tile">
+          <h4 style="margin:0 0 8px">Smoky Mango Tart</h4>
+          <p style="margin:0;opacity:0.9">Stone-grilled mango with burnt sugar crumb.</p>
+        </div>
+        <div class="tile">
+          <h4 style="margin:0 0 8px">Mango & Rosemary Sorbet</h4>
+          <p style="margin:0;opacity:0.9">Refreshing palate-cleanser with herbal notes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="contact-container">
+      <h3 style="font-family:Playfair Display,serif;font-size:32px;text-align:center;margin-bottom:8px">Contact & Reservations</h3>
+      <p style="color:rgba(255,255,255,0.9);text-align:center;margin-bottom:40px">Reach us for bookings, catering and collaborations.</p>
+
+      <form class="contact" id="contactForm" onsubmit="return submitForm(event)">
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <input type="text" name="name" placeholder="Your Name" required />
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Email Address *</label>
+          <input type="email" name="email" placeholder="your@email.com" required />
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" name="phone" placeholder="+91 98765 43210" />
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Inquiry Type</label>
+          <select name="type">
+            <option value="booking">Table Reservation</option>
+            <option value="catering">Catering Services</option>
+            <option value="event">Private Events</option>
+            <option value="other">General Inquiry</option>
+          </select>
+        </div>
+        
+        <div class="form-group full-width">
+          <label class="form-label">Message *</label>
+          <textarea name="message" placeholder="Tell us about your requirements, preferred date/time, number of guests, etc..." required></textarea>
+        </div>
+        
+        <div class="submit">
+          <button class="btn primary submit-btn" type="submit">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- Modal for gallery -->
+<div class="modal" id="modal">
+  <div class="frame">
+    <img src="" alt="enlarged" id="modalImg">
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-info">
+      <h4>Wango — The Mango Club</h4>
+      <div class="footer-address">
+        1673, 9th Main Road, HAL 3rd Stage<br>
+        New Thippasandra, Bengaluru, Karnataka 560075
+      </div>
+      <div class="footer-hours">
+        <strong>Hours:</strong> Daily 11:00 AM — 10:30 PM
+      </div>
+    </div>
+
+    <div class="footer-social">
+      <div class="social">
+        <a href="#" title="Instagram">Instagram</a>
+        <a href="#" title="Facebook">Facebook</a>
+        <a href="#" title="Twitter">Twitter</a>
+      </div>
+      <div class="footer-copyright">
+        © <span id="year"></span> Wango. All Rights Reserved.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Loader functionality
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('fade-out');
+    setTimeout(() => {
+      document.getElementById('loader').style.display = 'none';
+    }, 500);
+  }, 1500); // Show loader for 1.5 seconds minimum
+});
+
+// Set current year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuBtn');
+menuBtn.addEventListener('click', () => {
+  alert('Mobile menu: you can wire a slide-out here. For demo, navigation links are on the header for large screens.');
+});
+
+// Gallery interactions
+function openGallery() {
+  document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
+}
+
+const items = document.querySelectorAll('.gallery-item');
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+
+items.forEach(item => {
+  item.addEventListener('click', () => {
+    const src = item.dataset.src || '';
+    if(src) { 
+      modalImg.src = src; 
+      modal.style.display = 'flex';
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden';
+    }
+  });
+});
+
+modal.addEventListener('click', () => { 
+  modal.style.display = 'none'; 
+  modalImg.src = '';
+  // Re-enable body scroll when modal is closed
+  document.body.style.overflow = 'auto';
+});
+
+// Contact form with improved UX
+function submitForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('.submit-btn');
+  const formData = Object.fromEntries(new FormData(form).entries());
+  
+  // Validation
+  if(!formData.name || !formData.email || !formData.message) {
+    alert('Please fill in all required fields.');
+    return false;
+  }
+  
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(formData.email)) {
+    alert('Please enter a valid email address.');
+    return false;
+  }
+  
+  // Show loading state
+  submitBtn.classList.add('loading');
+  submitBtn.disabled = true;
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Sending...';
+  
+  // Simulate API call
+  setTimeout(() => {
+    // Success feedback
+    alert(`Thank you ${formData.name}! We've received your message and will get back to you within 24 hours.`);
+    
+    // Reset form and button
+    form.reset();
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+    
+    // Optional: Show success message in UI instead of alert
+    // You can replace this with a toast notification or inline message
+  }, 1500);
+  
+  return false;
+}
+
+// Smooth reveal animations for elements
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-up');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// Observe elements for animation
+document.addEventListener('DOMContentLoaded', () => {
+  const animateElements = document.querySelectorAll('.gallery-item, .tile, .card');
+  animateElements.forEach((el, index) => {
+    el.style.animationDelay = `${index * 0.1}s`;
+    observer.observe(el);
+  });
+});
+
+// Smooth scroll for navigation links
+document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Order button functionality
+document.getElementById('orderBtn').addEventListener('click', () => {
+  // You can integrate with food delivery APIs or redirect to ordering platform
+  alert('Redirecting to our ordering platform... (This would integrate with Zomato/Swiggy/etc in production)');
+});
+
+// Add scroll effect to header
+let lastScrollTop = 0;
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (scrollTop > 100) {
+    header.style.background = 'rgba(12, 107, 90, 0.95)';
+    header.style.backdropFilter = 'blur(10px)';
+    header.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+  } else {
+    header.style.background = 'transparent';
+    header.style.backdropFilter = 'none';
+    header.style.borderBottom = 'none';
+  }
+  
+  // Hide header on scroll down, show on scroll up
+  if (scrollTop > lastScrollTop && scrollTop > 200) {
+    header.style.transform = 'translateY(-100%)';
+  } else {
+    header.style.transform = 'translateY(0)';
+  }
+  
+  lastScrollTop = scrollTop;
+});
+
+// Add header transition
+header.style.transition = 'all 0.3s ease';
+
+// Preload critical images
+const criticalImages = [
+  'https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=1400&q=80',
+  'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=60',
+  'https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?auto=format&fit=crop&w=800&q=60'
+];
+
+criticalImages.forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
+
+// Error handling for images
+document.querySelectorAll('img, [style*="background-image"]').forEach(element => {
+  if (element.tagName === 'IMG') {
+    element.addEventListener('error', () => {
+      element.style.display = 'none';
+      console.log('Failed to load image:', element.src);
+    });
+  }
+});
+
+// Add keyboard navigation support
+document.addEventListener('keydown', (e) => {
+  // Close modal on Escape key
+  if (e.key === 'Escape' && modal.style.display === 'flex') {
+    modal.style.display = 'none';
+    modalImg.src = '';
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Performance optimization: Lazy load gallery images
+const lazyLoadOptions = {
+  threshold: 0.1,
+  rootMargin: '50px'
+};
+
+const lazyImageObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      const src = img.dataset.src;
+      if (src && !img.dataset.loaded) {
+        const tempImg = new Image();
+        tempImg.onload = () => {
+          img.style.backgroundImage = `url(${src})`;
+          img.dataset.loaded = 'true';
+        };
+        tempImg.src = src;
+        lazyImageObserver.unobserve(img);
+      }
+    }
+  });
+}, lazyLoadOptions);
+
+// Initialize lazy loading for gallery items
+document.querySelectorAll('.gallery-item[data-src]').forEach(item => {
+  lazyImageObserver.observe(item);
+});
+
+</script>
+
+</body>
+</html>

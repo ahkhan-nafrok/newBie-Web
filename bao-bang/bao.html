@@ -1,0 +1,1509 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BAO • Bangalore — Himalayan & Pan‑Asian Kitchen</title>
+  <meta name="description" content="BAO Bangalore — Modern Himalayan & Pan‑Asian kitchen in HAL 3rd Stage. Baos, momos, bowls & more." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================
+       ENHANCED DESIGN SYSTEM
+       =========================== */
+    :root {
+      --ink: #0b0b0b;
+      --ink-2: #171717;
+      --paper: #fefefe;
+      --line: #e5e5e5;
+      --muted: #6b7280;
+      --accent: #111111;
+      --accent-light: #f3f4f6;
+      --success: #10b981;
+      --error: #ef4444;
+      --warning: #f59e0b;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --border-radius-lg: 24px;
+    }
+
+    /* Enhanced CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* ===========================
+       LOADER
+       =========================== */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--paper);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      text-align: center;
+    }
+
+    .loader-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 auto 24px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .loader-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .loader-subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .progress-bar {
+      width: 200px;
+      height: 3px;
+      background: var(--line);
+      border-radius: 999px;
+      margin: 24px auto 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--ink);
+      border-radius: 999px;
+      animation: loading 3s ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes loading {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    /* Layout helpers */
+    .container {
+      width: min(1200px, 95vw);
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(16px, 2.5vw, 32px);
+    }
+
+    .grid {
+      display: grid;
+      gap: clamp(20px, 3vw, 40px);
+    }
+
+    /* ===========================
+       HEADER & NAVIGATION
+       =========================== */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: #FEFEFE;
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--line);
+      transition: all 0.3s ease;
+    }
+
+    .header-scrolled {
+      background: rgba(254, 254, 254, 0.95);
+      box-shadow: var(--shadow);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .brand h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      padding: 10px 16px;
+      border-radius: var(--border-radius-sm);
+      transition: all 0.3s ease;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--ink);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:hover::after {
+      width: 60%;
+    }
+
+    .nav-links a:hover {
+      background: var(--accent-light);
+    }
+
+    /* Mobile menu */
+    .menu-btn {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--border-radius-sm);
+      background: white;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-btn:hover {
+      background: var(--accent-light);
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(85vw, 320px);
+      height: 100vh;
+      background: white;
+      border-left: 1px solid var(--line);
+      padding: 80px 24px 24px;
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+      box-shadow: var(--shadow-xl);
+      z-index: 99;
+    }
+
+    .drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer a {
+      display: block;
+      padding: 16px 12px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .drawer a:hover {
+      background: var(--accent-light);
+      padding-left: 20px;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 98;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-btn { display: flex; }
+    }
+
+    /* ===========================
+       HERO SECTION - FIXED
+       =========================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+                  url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+      padding-bottom: 80px; /* Added for fixed header */
+    }
+
+    .hero-content {
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      margin-bottom: 24px;
+    }
+
+    .hero h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 8vw, 80px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #ffffff, #f3f4f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: clamp(16px, 2vw, 20px);
+      margin-bottom: 40px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.8;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+      font-size: 16px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--ink);
+      border-color: white;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .hero p {
+        max-width: 100%;
+      }
+    }
+
+    /* ===========================
+       SECTIONS
+       =========================== */
+    section {
+      padding: clamp(60px, 10vw, 120px) 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: clamp(40px, 8vw, 80px);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+
+    .section-subtitle {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ===========================
+       ABOUT SECTION - FIXED
+       =========================== */
+    .about-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: clamp(40px, 8vw, 80px);
+    }
+
+    .about-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--border-radius-lg);
+      padding: clamp(24px, 4vw, 40px);
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .about-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-5px);
+    }
+
+    .about-card p {
+      margin-bottom: 20px;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .signature {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .about-image {
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.5s ease;
+      height: 100%;
+      min-height: 400px;
+    }
+
+    .about-image:hover {
+      transform: scale(1.05);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 968px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .about-image {
+        order: -1;
+        min-height: 350px;
+      }
+    }
+
+    /* ===========================
+       GALLERY SECTION - FIXED
+       =========================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: all 0.5s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .gallery-item.wide {
+      grid-column: span 8;
+    }
+
+    .gallery-item.tall {
+      grid-column: span 4;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 60%);
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* Set aspect ratios for gallery items */
+    .gallery-item.wide {
+      aspect-ratio: 16/9;
+    }
+
+    .gallery-item.tall {
+      aspect-ratio: 3/4;
+    }
+
+    @media (max-width: 1024px) {
+      .gallery-item.wide, .gallery-item.tall {
+        grid-column: span 6;
+      }
+      
+      .gallery-item.wide {
+        aspect-ratio: 16/9;
+      }
+      
+      .gallery-item.tall {
+        aspect-ratio: 4/5;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      
+      .gallery-item.wide, .gallery-item.tall {
+        grid-column: span 1;
+        aspect-ratio: 16/9;
+      }
+    }
+
+    /* ===========================
+       MENU SECTION
+       =========================== */
+    .menu-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .menu-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .menu-card-content {
+      padding: 24px;
+    }
+
+    .menu-tag {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .menu-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .menu-card p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .menu-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .menu-card .btn {
+      width: 100%;
+      justify-content: center;
+      background: var(--ink);
+      color: white;
+      padding: 12px 24px;
+    }
+
+    .menu-card .btn:hover {
+      background: var(--ink-2);
+    }
+
+    /* ===========================
+       CONTACT SECTION
+       =========================== */
+    .contact-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(40px, 8vw, 80px);
+      align-items: start;
+    }
+
+    .contact-form {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--border-radius-lg);
+      padding: clamp(24px, 4vw, 40px);
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-field.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--border-radius-sm);
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
+    }
+
+    .form-field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-message {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: var(--border-radius-sm);
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-message.success {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .form-message.error {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--error);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .contact-info {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-info img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .contact-details {
+      padding: 24px;
+    }
+
+    .contact-item {
+      margin-bottom: 20px;
+    }
+
+    .contact-item h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .contact-item p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--accent-light);
+      border-radius: var(--border-radius-sm);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      background: var(--ink);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===========================
+       FOOTER
+       =========================== */
+    footer {
+      background: var(--ink);
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--border-radius-sm);
+      background: rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: white;
+      color: var(--ink);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-logo .logo {
+      width: 40px;
+      height: 40px;
+      background: white;
+      color: var(--ink);
+    }
+
+    @media (max-width: 768px) {
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .social-links {
+        justify-content: center;
+      }
+    }
+
+    /* ===========================
+       ANIMATIONS & REVEALS
+       =========================== */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: none;
+    }
+
+    [data-reveal].fade-in {
+      transform: none;
+    }
+
+    [data-reveal].slide-left {
+      transform: translateX(-50px);
+    }
+
+    [data-reveal].slide-right {
+      transform: translateX(50px);
+    }
+
+    [data-reveal].scale-up {
+      transform: scale(0.9);
+    }
+
+    /* ===========================
+       UTILITY CLASSES
+       =========================== */
+    .text-center { text-align: center; }
+    .mb-0 { margin-bottom: 0; }
+    .mt-auto { margin-top: auto; }
+
+    /* Smooth scrolling offset for fixed header */
+    html {
+      scroll-padding-top: 100px;
+    }
+
+    /* Focus styles for accessibility */
+    button:focus,
+    input:focus,
+    textarea:focus,
+    a:focus {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-logo"><img src="huu.jpg" alt=""></div>
+      <h2 class="loader-text">BAO • Bangalore</h2>
+      <p class="loader-subtitle">Himalayan & Pan-Asian Kitchen</p>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="brand">
+          <div class="logo"><img src="huu.jpg" alt=""></div>
+          <h1>BAO • Bangalore</h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+          ☰ Menu
+        </button>
+      </nav>
+    </div>
+    
+    <!-- Mobile Drawer -->
+    <div class="overlay" id="overlay"></div>
+    <aside class="drawer" id="drawer">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#menu">Menu</a>
+      <a href="#contact">Contact</a>
+    </aside>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
+      <div class="hero-content" data-reveal="fade-in">
+        <span class="eyebrow">HAL 3rd Stage • New Tippasandra</span>
+        <h2>Himalayan & Pan‑Asian, crafted with soul.</h2>
+        <p>Experience the authentic flavors of the Himalayas and Asia through our carefully crafted baos, momos, and traditional bowls. Every dish tells a story of heritage and innovation.</p>
+        <div class="hero-cta">
+          <a href="#menu" class="btn btn-primary">Order Now</a>
+          <a href="#gallery" class="btn btn-secondary">View Gallery</a>
+        </div>
+      </div>
+ 
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <h3 class="section-title">About Us</h3>
+        <p class="section-subtitle">Born in Bengaluru, inspired by Himalayan kitchens and bustling pan-Asian streets. Our story is one of tradition meeting innovation.</p>
+      </div>
+      
+      <div class="grid about-grid">
+        <div class="stack" data-reveal="slide-right">
+          <div class="about-card">
+            <p>We believe in keeping it simple yet extraordinary: soft, cloud-like baos filled with authentic flavors, hand-pleated momos that carry centuries of tradition, and comforting bowls that warm both body and soul.</p>
+            <p>Our kitchen blends traditional Himalayan recipes with contemporary techniques, using seasonal ingredients and house-made sauces. Every dish is crafted with care, designed for both casual dining and memorable evenings.</p>
+            <p class="signature">— The BAO Family</p>
+          </div>
+        </div>
+        
+        <div class="about-image" data-reveal="slide-left">
+          <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Traditional steamed bao buns">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <h3 class="section-title">Our Gallery</h3>
+        <p class="section-subtitle">A visual journey through our culinary creations and the warm atmosphere we've crafted for you.</p>
+      </div>
+      
+      <div class="gallery-grid" data-reveal="scale-up">
+        <figure class="gallery-item wide">
+          <img src="https://curlytales.com/wp-content/uploads/2022/10/bao-2.jpg" alt="Asian street food spread">
+          <figcaption class="gallery-overlay">
+            <h4>Street-style Feast</h4>
+          </figcaption>
+        </figure>
+        
+        <figure class="gallery-item tall">
+          <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Steamed bao buns">
+          <figcaption class="gallery-overlay">
+            <h4>Fresh Steamed Baos</h4>
+          </figcaption>
+        </figure>
+        
+        <figure class="gallery-item tall">
+          <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Handmade momos">
+          <figcaption class="gallery-overlay">
+            <h4>Hand-pleated Momos</h4>
+          </figcaption>
+        </figure>
+        
+        <figure class="gallery-item wide">
+          <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Noodle soup bowl">
+          <figcaption class="gallery-overlay">
+            <h4>Comfort Bowls</h4>
+          </figcaption>
+        </figure>
+        
+        <figure class="gallery-item tall">
+          <img src="https://images.unsplash.com/photo-1559847844-d721426d6edc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant interior">
+          <figcaption class="gallery-overlay">
+            <h4>Cozy Ambiance</h4>
+          </figcaption>
+        </figure>
+        
+        <figure class="gallery-item tall">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Traditional tea service">
+          <figcaption class="gallery-overlay">
+            <h4>Traditional Teas</h4>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <h3 class="section-title">BAO Exclusives</h3>
+        <p class="section-subtitle">Limited drops & Bangalore specials. Order early — we make small batches daily with love and care.</p>
+      </div>
+      
+      <div class="menu-grid" data-reveal="scale-up">
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Karnataka Fried Chicken Bao">
+          <div class="menu-card-content">
+            <span class="menu-tag">Drop #01</span>
+            <h4>Karnataka Fried Chicken Bao</h4>
+            <p>Crispy chicken marinated in South Indian spices, fresh green chutney, and tangy pickled onions in our signature soft bao.</p>
+            <div class="menu-price">₹ 249</div>
+            <button class="btn">Order Now</button>
+          </div>
+        </article>
+        
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Thai Curry Veg Bao">
+          <div class="menu-card-content">
+            <span class="menu-tag">Drop #02</span>
+            <h4>Thai Curry Veg Bao</h4>
+            <p>Silky Thai curry with seasonal vegetables, fresh herbs, and crunchy vegetable slaw wrapped in our pillowy bao.</p>
+            <div class="menu-price">₹ 229</div>
+            <button class="btn">Order Now</button>
+          </div>
+        </article>
+        
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Smoked Pork Belly Bao">
+          <div class="menu-card-content">
+            <span class="menu-tag">Drop #03</span>
+            <h4>Smoked Pork Belly Bao</h4>
+            <p>Tender smoked pork belly with caramel glaze, toasted sesame seeds, and fresh scallions. A perfect balance of sweet and savory.</p>
+            <div class="menu-price">₹ 279</div>
+            <button class="btn">Order Now</button>
+          </div>
+        </article>
+        
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Traditional Momos">
+          <div class="menu-card-content">
+            <span class="menu-tag">Classic</span>
+            <h4>Himalayan Momos</h4>
+            <p>Hand-pleated traditional momos with your choice of chicken, vegetable, or yak filling. Served with our signature spicy sauce.</p>
+            <div class="menu-price">₹ 199</div>
+            <button class="btn">Order Now</button>
+          </div>
+        </article>
+        
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Thukpa Bowl">
+          <div class="menu-card-content">
+            <span class="menu-tag">Comfort</span>
+            <h4>Authentic Thukpa</h4>
+            <p>Soul-warming Tibetan noodle soup with tender meat or vegetables, aromatic herbs, and our rich bone broth.</p>
+            <div class="menu-price">₹ 259</div>
+            <button class="btn">Order Now</button>
+          </div>
+        </article>
+        
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Himalayan Tea">
+          <div class="menu-card-content">
+            <span class="menu-tag">Beverage</span>
+            <h4>Himalayan Butter Tea</h4>
+            <p>Traditional Tibetan tea churned with yak butter and salt. An authentic experience that warms the soul.</p>
+            <div class="menu-price">₹ 149</div>
+            <button class="btn">Order Now</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <h3 class="section-title">Get In Touch</h3>
+        <p class="section-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-form" data-reveal="slide-right">
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required autocomplete="name">
+              </div>
+              <div class="form-field">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+              </div>
+            </div>
+            
+            <div class="form-field full-width">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+            
+            <div class="form-field full-width">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" required placeholder="Tell us about your inquiry..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+              Send Message
+            </button>
+            
+            <div id="formMessage" class="form-message"></div>
+          </form>
+        </div>
+        
+        <div class="contact-info" data-reveal="slide-left">
+          <img src="https://images.unsplash.com/photo-1559847844-d721426d6edc?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Restaurant interior">
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <h4>Location</h4>
+              <p>472, 80 Feet Road<br>HAL 3rd Stage, New Tippasandra<br>Bengaluru, Karnataka 560075</p>
+            </div>
+            
+            <div class="contact-item">
+              <h4>Hours</h4>
+              <p>Monday - Sunday<br>12:00 PM - 11:00 PM</p>
+            </div>
+            
+            <div class="contact-item">
+              <h4>Contact</h4>
+              <a href="tel:+919999999999" class="contact-link">
+                📞 +91 99999 99999
+              </a>
+            </div>
+            
+            <div class="contact-item">
+              <h4>Email</h4>
+              <a href="mailto:hello@baobangalore.com" class="contact-link">
+                ✉️ hello@baobangalore.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>BAO • Bangalore</h4>
+          <p>Bringing the authentic flavors of the Himalayas and Pan-Asian cuisine to the heart of Bengaluru. Every dish tells a story of tradition and passion.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">
+              📷 Instagram
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              📘 Facebook
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Location & Hours</h4>
+          <p>472, 80 Feet Road<br>HAL 3rd Stage, New Tippasandra<br>Bengaluru, Karnataka 560075</p>
+          <br>
+          <p><strong>Hours:</strong><br>Monday - Sunday: 12:00 PM - 11:00 PM</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <p>Phone: <a href="tel:+919999999999">+91 99999 99999</a></p>
+          <p>Email: <a href="mailto:hello@baobangalore.com">hello@baobangalore.com</a></p>
+          <br>
+          <a href="#" class="social-link">
+            🗺️ View on Google Maps
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="footer-logo">
+          <div class="logo">包</div>
+          <span>© <span id="currentYear"></span> BAO • Bangalore. All rights reserved.</span>
+        </div>
+        <p>Made with ❤️ in Bengaluru</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('loader');
+    loader.classList.add('hidden');
+  }, 3000);
+});
+
+// Header scroll effect
+const header = document.getElementById('header');
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    header.classList.add('header-scrolled');
+  } else {
+    header.classList.remove('header-scrolled');
+  }
+});
+
+// Mobile menu
+const menuBtn = document.getElementById('menuBtn');
+const drawer = document.getElementById('drawer');
+const overlay = document.getElementById('overlay');
+
+function toggleMenu() {
+  drawer.classList.toggle('open');
+  overlay.classList.toggle('show');
+  document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+}
+
+function closeMenu() {
+  drawer.classList.remove('open');
+  overlay.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+menuBtn?.addEventListener('click', toggleMenu);
+overlay?.addEventListener('click', closeMenu);
+
+// Close menu when clicking links
+drawer?.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// Observe all reveal elements
+document.querySelectorAll('[data-reveal]').forEach(el => {
+  observer.observe(el);
+});
+
+// Contact form handling
+const contactForm = document.getElementById('contactForm');
+const formMessage = document.getElementById('formMessage');
+
+contactForm?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(this);
+  const name = formData.get('name')?.trim();
+  const email = formData.get('email')?.trim();
+  const message = formData.get('message')?.trim();
+
+  // Basic validation
+  if (!name || !email || !message) {
+    showFormMessage('Please fill in all required fields.', 'error');
+    return;
+  }
+
+  if (!isValidEmail(email)) {
+    showFormMessage('Please enter a valid email address.', 'error');
+    return;
+  }
+
+  // Simulate form submission
+  const submitBtn = this.querySelector('button[type="submit"]');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    showFormMessage('Thank you for your message! We\'ll get back to you soon.', 'success');
+    this.reset();
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  }, 2000);
+});
+
+function showFormMessage(message, type) {
+  formMessage.textContent = message;
+  formMessage.className = `form-message ${type}`;
+  formMessage.style.display = 'block';
+  
+  setTimeout(() => {
+    formMessage.style.display = 'none';
+  }, 5000);
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Set current year
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// Menu item click handlers (for demo purposes)
+document.querySelectorAll('.menu-card .btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const dishName = this.closest('.menu-card').querySelector('h4').textContent;
+    alert(`Great choice! "${dishName}" will be available for order soon. Please call us at +91 99999 99999 to place your order.`);
+  });
+});
+
+// Only keep menu card hover effects - removed problematic hover effects
+document.querySelectorAll('.menu-card').forEach(card => {
+  card.addEventListener('mouseenter', function() {
+    this.style.transform = 'translateY(-8px)';
+  });
+  
+  card.addEventListener('mouseleave', function() {
+    this.style.transform = 'translateY(0)';
+  });
+});
+
+  </script>
+</body>
+</html>

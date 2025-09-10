@@ -1,0 +1,1274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dofu — Pan-Asian • Indiranagar</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary-red: #FF3B30;
+      --secondary-red: #FF453A;
+      --dark-bg: #0A0A0A;
+      --card-bg: #111111;
+      --surface: #1C1C1E;
+      --surface-elevated: #2C2C2E;
+      --text-primary: #FFFFFF;
+      --text-secondary: #8E8E93;
+      --text-tertiary: #48484A;
+      --accent: #FF6B47;
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --max-w: 1200px;
+    }
+
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html, body{
+      height: 100%;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Loader */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--dark-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+        .loader img {
+  width: 60px; /* adjust size as needed */
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%; /* makes logo round */
+  border: 2px solid #fff; /* outline for clean look */
+}
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      text-align: center;
+    }
+
+    .loader-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 24px;
+      color: white;
+      margin: 0 auto 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .loader-text {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    a{
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    /* Layout */
+    .container{
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Header / Navbar */
+    header{
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 28px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    
+    .logo img {
+  width: 60px; /* adjust size as needed */
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%; /* makes logo round */
+  border: 2px solid #fff; /* outline for clean look */
+}
+
+    .brand .logo:hover{
+      transform: scale(1.05);
+    }
+
+    .brand h1{
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .brand .location{
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    nav ul{
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      list-style: none;
+    }
+
+    nav li a{
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav li a:hover{
+      background: var(--glass);
+      transform: translateY(-2px);
+    }
+
+    .cta{
+      background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+      color: white;
+      font-weight: 600;
+      box-shadow: var(--shadow-light);
+    }
+
+    .cta:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255, 59, 48, 0.4);
+    }
+
+    /* Mobile menu */
+    .hamburger{
+      display: none;
+      background: none;
+      border: 0;
+      color: var(--text-primary);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero{
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 60px;
+      background: 
+        linear-gradient(135deg, rgba(255, 59, 48, 0.1) 0%, rgba(10, 10, 10, 0.9) 50%),
+        url('https://lh3.googleusercontent.com/p/AF1QipMnKUVG5QCUq7ZFtnnmUzWeTHFfv1xXi8iFEnZc=s1360-w1360-h1020-rw') center/cover;
+      position: relative;
+    }
+
+    .hero::before{
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 59, 48, 0.05), rgba(10, 10, 10, 0.8));
+    }
+
+    .hero-content{
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 28px;
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text{
+      animation: slideInLeft 1s ease-out;
+    }
+
+    .kicker{
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+      color: white;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 24px;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .hero h1{
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .hero p{
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      line-height: 1.7;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .hero-cta{
+      display: flex;
+      gap: 16px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease-out 0.8s both;
+    }
+
+    .btn{
+      padding: 16px 32px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+      color: white;
+      box-shadow: var(--shadow-light);
+    }
+
+    .btn-primary:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 15px 45px rgba(255, 59, 48, 0.4);
+    }
+
+    .btn-ghost{
+      background: var(--glass);
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-ghost:hover{
+      background: var(--surface);
+      transform: translateY(-3px);
+    }
+
+    .info-chips{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      animation: fadeInUp 1s ease-out 1s both;
+    }
+
+    .chip{
+      background: var(--surface);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-visual{
+      animation: slideInRight 1s ease-out;
+    }
+
+    .hero-card{
+      background: linear-gradient(135deg, var(--glass), rgba(255, 255, 255, 0.02));
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image{
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* Sections */
+    section{
+      padding: 100px 0;
+    }
+
+    .section-header{
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-subtitle{
+      color: var(--primary-red);
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .section-title{
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .section-description{
+      color: var(--text-secondary);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* About Section */
+    .about{
+      background: var(--surface);
+    }
+
+    .about-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-content h3{
+      color: var(--primary-red);
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .about-content h2{
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .about-content p{
+      color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .about-features{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .feature-chip{
+      background: var(--dark-bg);
+      color: var(--text-primary);
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .about-visual{
+      position: relative;
+    }
+
+    .about-image{
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    /* Gallery */
+    .gallery-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .gallery-item{
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--surface);
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover{
+      transform: translateY(-8px);
+    }
+
+    .gallery-item img{
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img{
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay{
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      color: white;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay{
+      opacity: 1;
+    }
+
+    /* Exclusive */
+    .exclusive{
+      background: var(--surface);
+    }
+
+    .exclusive-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .exclusive-card{
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s ease;
+    }
+
+    .exclusive-card:hover{
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary-red);
+    }
+
+    .exclusive-card h4{
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .exclusive-card p{
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Contact */
+    .contact-grid{
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 60px;
+      margin-top: 60px;
+    }
+
+    .contact-form{
+      background: var(--surface);
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .form-row{
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    input, textarea{
+      width: 100%;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, textarea:focus{
+      outline: none;
+      border-color: var(--primary-red);
+    }
+
+    .contact-info{
+      background: var(--card-bg);
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .contact-info h4{
+      margin-bottom: 16px;
+      font-size: 1.2rem;
+    }
+
+    .contact-info p{
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .contact-detail{
+      margin-bottom: 24px;
+    }
+
+    .contact-detail strong{
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .contact-detail span{
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .food-apps{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .app-chip{
+      background: var(--primary-red);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.3s ease;
+    }
+
+    .app-chip:hover{
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer{
+      background: var(--card-bg);
+      padding: 60px 0 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-content{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .footer-brand{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-logo{
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+    }
+
+        .footer-logo img {
+  width: 60px; /* adjust size as needed */
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%; /* makes logo round */
+  border: 2px solid #fff; /* outline for clean look */
+}
+    .footer-info h4{
+      margin-bottom: 4px;
+    }
+
+    .footer-info small{
+      color: var(--text-secondary);
+    }
+
+    .footer-links{
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a{
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover{
+      color: var(--primary-red);
+    }
+
+    .copyright{
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-secondary);
+    }
+
+    /* Animations */
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-content,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .hero-content {
+        text-align: center;
+      }
+      
+      .exclusive-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .hero {
+        min-height: 80vh;
+        padding: 100px 0 40px;
+      }
+      
+      .container {
+        padding: 0 20px;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .exclusive-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loader -->
+<div class="loader" id="loader">
+  <div class="loader-content">
+    <div class="loader-logo"><img src="dofu.jpg" alt=""></div>
+    <div class="loader-text">Loading culinary excellence...</div>
+  </div>
+</div>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="logo"><img src="dofu.jpg" alt="">
+      </div>
+      <div>
+        <h1>DOFU</h1>
+        <div class="location">Indiranagar, Bengaluru</div>
+      </div>
+    </div>
+
+    <nav>
+      <button class="hamburger" id="menuBtn">☰</button>
+      <ul id="navList">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#exclusive">Exclusive</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="cta" href="#menu">Order Now</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="kicker">Tokyo meets Hawker Street</span>
+      <h1>Authentic Pan-Asian flavours in the heart of Indiranagar</h1>
+      <p>Experience the perfect fusion of Japanese precision and Southeast Asian boldness. From steaming ramen bowls to crispy baos, every dish tells a story of culinary artistry.</p>
+      
+      <div class="hero-cta">
+        <button class="btn btn-primary">View Menu</button>
+        <button class="btn btn-ghost">Reserve Table</button>
+      </div>
+
+      <div class="info-chips">
+        <span class="chip">🕐 Open 11:00 - 23:00</span>
+        <span class="chip">🚫 Closed Tuesday</span>
+        <span class="chip">📍 Outer Ring Road</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <img class="hero-image" src="https://lh3.googleusercontent.com/p/AF1QipPqDs2s7g3WqJ3E-EXxESEcI14h9gaQ3bEqoCkl=s1360-w1360-h1020-rw" alt="Signature ramen bowl">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-content fade-up">
+        <h3>Our Story</h3>
+        <h2>Where tradition meets innovation</h2>
+        <p>Dofu represents the harmony between Japanese minimalism and the vibrant chaos of Asian street food. Our kitchen is a canvas where traditional techniques paint bold, contemporary flavors that speak to the modern palate.</p>
+        
+        <div class="about-features">
+          <div class="feature-chip">Premium Ramen</div>
+          <div class="feature-chip">Fresh Bao Buns</div>
+          <div class="feature-chip">Craft Boba</div>
+          <div class="feature-chip">Seasonal Specials</div>
+        </div>
+      </div>
+
+      <div class="about-visual fade-up">
+        <img class="about-image" src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npLBwyvHIfr5lakS-IPhDgLx6h-2n_xHKTK_7gzhLLhdcriDGN3YXnCQRR1vMzhIwp5EESGMP5RYP2vGTKYZ502BkyGMRXW89CK2U1_zsQaj9trXjUPNrhc6S8o4YkzzWzPCnsJ=s1360-w1360-h1020-rw" alt="Restaurant interior with modern Asian decor">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-subtitle">Visual Feast</div>
+      <h2 class="section-title">Discover Our Creations</h2>
+      <p class="section-description">Every dish is crafted with passion and presented with artistry</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=2080&auto=format&fit=crop" alt="Tonkotsu Ramen">
+        <div class="gallery-overlay">Signature Tonkotsu Ramen</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq9Z1KRkRw9xsHBXge4jWsDjXNpJ3OErW1zm_BcU7UBtqOUakgW-ditqzn09U9QhU2tZntMJPmT0tONl1Ghr3qVwEz7SYy39XMyv_-XKbwzIL-rAIP-g78VUB8WSqG_8mHsIns1=s1360-w1360-h1020-rw" alt="Bao Buns">
+        <div class="gallery-overlay">Steamed Pork Bao</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqus24-BxwgPgYMz3SHeDPCCZQ0qM0D0PluvQHLrx-1fDBALSLAf_AJiVT1k6u5AD9q39xOlaXPtyUay0ue1b3AxBmGKXE6pblE2OvC5xKjTdpOiIwriMErmXZO1cuCCbYUONxG=s1360-w1360-h1020-rw" alt="Bubble Tea">
+        <div class="gallery-overlay">Taro Bubble Tea</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr6wguMTzbvNVJZymjPtL7Fic8bPrnDS4Kl64I_f1QvujEl7jFBqaNiotnpazujyqw0P5etntwIx4B6i9WbvYyl--RPYm0BznQZuL17u241Smh-rWqmcL5Q3PTAXJP_F9SyMPc9=s1360-w1360-h1020-rw" alt="Gyoza">
+        <div class="gallery-overlay">Pan-fried Gyoza</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npbMYeEtlhcYX3-QGRhk7f21dg8Sg_-61oAGR_tn3q7uZ-P4XRcPaw9RkApmOPpN2MXWooyhSidaV7BNMgGyv_C5GIwWH0T0EUAu1AWY0197d1fKkZR7tV4h6ipqiXPKPDr15oI=s1360-w1360-h1020-rw" alt="Sushi Roll">
+        <div class="gallery-overlay">Dragon Roll</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?q=80&w=2076&auto=format&fit=crop" alt="Korean BBQ">
+        <div class="gallery-overlay">Korean BBQ Platter</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXCLUSIVE -->
+<section id="exclusive" class="exclusive">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-subtitle">Limited Edition</div>
+      <h2 class="section-title">Chef's Exclusive Menu</h2>
+      <p class="section-description">Seasonal specialties and weekend-only creations</p>
+    </div>
+
+    <div class="exclusive-grid">
+      <div class="exclusive-card fade-up">
+        <h4>Dragon's Breath Ramen</h4>
+        <p>A fiery combination of spicy miso broth, tender chashu, and house-made chili oil. Only available on weekends.</p>
+      </div>
+      <div class="exclusive-card fade-up">
+        <h4>Truffle Mushroom Bao</h4>
+        <p>Premium shiitake and truffle filling wrapped in our signature steamed bun. A vegetarian masterpiece.</p>
+      </div>
+      <div class="exclusive-card fade-up">
+        <h4>Matcha Fusion Dessert</h4>
+        <p>Traditional matcha meets modern presentation in our signature dessert that changes with the seasons.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-subtitle">Get In Touch</div>
+      <h2 class="section-title">Reserve Your Experience</h2>
+      <p class="section-description">Book a table or reach out for private events and collaborations</p>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <form id="contactForm" class="contact-form" onsubmit="return handleSubmit(event)">
+          <div class="form-row">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+          </div>
+          <div class="form-row">
+            <input type="email" id="email" placeholder="Email Address">
+            <input type="date" id="date" placeholder="Preferred Date">
+          </div>
+          <div class="form-row">
+            <textarea id="msg" rows="4" placeholder="Special requests or message" required></textarea>
+          </div>
+          <div style="display: flex; gap: 16px; align-items: center;">
+            <button class="btn btn-primary" type="submit">Send Request</button>
+            <div id="formStatus" style="color: var(--primary-red); font-weight: 600;"></div>
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h4>Visit Us</h4>
+        <p>Experience authentic Pan-Asian cuisine in our modern, cozy setting</p>
+        
+        <div class="contact-detail">
+          <strong>📍 Address</strong>
+          <span>303, Ashok Terrace<br>Outer Ring Road, Indiranagar<br>Bangalore 560038</span>
+        </div>
+        
+        <div class="contact-detail">
+          <strong>🕒 Opening Hours</strong>
+          <span>Monday, Wednesday - Sunday<br>11:00 AM - 11:00 PM<br><em>Closed on Tuesdays</em></span>
+        </div>
+        
+        <div class="contact-detail">
+          <strong>📱 Order Online</strong>
+          <div class="food-apps">
+            <a href="#" class="app-chip">Swiggy</a>
+            <a href="#" class="app-chip">Zomato</a>
+            <a href="#" class="app-chip">Uber Eats</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="dofu.jpg" alt=""></div>
+        <div class="footer-info">
+          <h4>DOFU</h4>
+          <small>Pan-Asian Cuisine • Indiranagar</small>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Privacy</a>
+      </div>
+
+      <div style="text-align: right;">
+        <div style="margin-bottom: 16px;">
+          <strong>Follow Us</strong>
+        </div>
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>© <span id="year"></span> DOFU. All rights reserved. Crafted with ❤️ for food lovers.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Loader
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+      loader.classList.add('hidden');
+    }, 1500);
+  });
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  let isMenuOpen = false;
+
+  menuBtn?.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      navList.style.display = 'flex';
+      navList.style.position = 'absolute';
+      navList.style.top = '100%';
+      navList.style.left = '0';
+      navList.style.right = '0';
+      navList.style.flexDirection = 'column';
+      navList.style.background = 'rgba(10, 10, 10, 0.95)';
+      navList.style.backdropFilter = 'blur(20px)';
+      navList.style.padding = '20px';
+      navList.style.borderRadius = '0 0 16px 16px';
+    } else {
+      navList.style.display = '';
+      navList.style.position = '';
+      navList.style.top = '';
+      navList.style.left = '';
+      navList.style.right = '';
+      navList.style.flexDirection = '';
+      navList.style.background = '';
+      navList.style.backdropFilter = '';
+      navList.style.padding = '';
+      navList.style.borderRadius = '';
+    }
+  });
+
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const headerOffset = 80;
+        const elementPosition = target.offsetTop;
+        const offsetPosition = elementPosition - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+
+        // Close mobile menu if open
+        if (isMenuOpen) {
+          isMenuOpen = false;
+          navList.style.display = '';
+        }
+      }
+    });
+  });
+
+  // Header scroll effect
+  let lastScrollY = 0;
+  const header = document.querySelector('header');
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    
+    if (currentScrollY > 100) {
+      header.style.background = 'rgba(10, 10, 10, 0.95)';
+      header.style.borderBottom = '1px solid rgba(255, 59, 48, 0.2)';
+    } else {
+      header.style.background = 'rgba(10, 10, 10, 0.8)';
+      header.style.borderBottom = '1px solid rgba(255, 255, 255, 0.05)';
+    }
+
+    if (currentScrollY > lastScrollY && currentScrollY > 200) {
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      header.style.transform = 'translateY(0)';
+    }
+
+    lastScrollY = currentScrollY;
+  });
+
+  // Intersection Observer for fade-up animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Form submission
+  function handleSubmit(e) {
+    e.preventDefault();
+    const status = document.getElementById('formStatus');
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    status.textContent = '';
+    
+    // Simulate form submission
+    setTimeout(() => {
+      status.textContent = '✓ Request sent! We\'ll call you soon to confirm.';
+      status.style.color = 'var(--primary-red)';
+      document.getElementById('contactForm').reset();
+      
+      // Reset button
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Request';
+      
+      // Clear status after 5 seconds
+      setTimeout(() => {
+        status.textContent = '';
+      }, 5000);
+    }, 1200);
+    
+    return false;
+  }
+
+  // Dynamic year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Add subtle parallax effect to hero (removed problematic parallax)
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    // Removed parallax effect that was causing overlap
+  });
+
+  // Add loading animation to gallery images
+  const galleryImages = document.querySelectorAll('.gallery-item img');
+  galleryImages.forEach(img => {
+    img.addEventListener('load', () => {
+      img.style.opacity = '1';
+    });
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.5s ease';
+  });
+
+  // Add hover effects to cards
+  const cards = document.querySelectorAll('.exclusive-card, .gallery-item');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-8px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0) scale(1)';
+    });
+  });
+
+  // Add click-to-copy functionality for address
+  const address = document.querySelector('.contact-detail span');
+  if (address) {
+    address.style.cursor = 'pointer';
+    address.title = 'Click to copy address';
+    
+    address.addEventListener('click', () => {
+      const text = address.textContent.replace(/\n/g, ', ');
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = address.innerHTML;
+        address.innerHTML = '📋 Address copied!';
+        address.style.color = 'var(--primary-red)';
+        
+        setTimeout(() => {
+          address.innerHTML = originalText;
+          address.style.color = '';
+        }, 2000);
+      });
+    });
+  }
+
+  // Add stagger animation to chips
+  const chips = document.querySelectorAll('.info-chips .chip');
+  chips.forEach((chip, index) => {
+    chip.style.animationDelay = `${1 + index * 0.1}s`;
+    chip.classList.add('fade-up');
+  });
+
+  // Add typing effect to hero subtitle
+  const kicker = document.querySelector('.kicker');
+  if (kicker) {
+    const text = kicker.textContent;
+    kicker.textContent = '';
+    kicker.style.borderRight = '2px solid var(--primary-red)';
+    
+    let i = 0;
+    const typeWriter = () => {
+      if (i < text.length) {
+        kicker.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      } else {
+        setTimeout(() => {
+          kicker.style.borderRight = 'none';
+        }, 500);
+      }
+    };
+    
+    setTimeout(typeWriter, 800);
+  }
+</script>
+
+</body>
+</html>

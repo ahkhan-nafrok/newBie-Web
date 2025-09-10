@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KALE — A Salad Symphony</title>
+  <meta name="description" content="KALE - A Salad Symphony. Fresh salads, bowls, wraps & smoothies. Indiranagar, Bengaluru." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Color palette inspired by the attached logo */
+      --deep-green:#134c45; /* bowl */
+      --leaf-green:#79c65c; /* leaf */
+      --accent-yellow:#ffb300; /* yellow dot */
+      --accent-red:#ff5b3a; /* tomato */
+      --muted:#f6f7f5;
+      --card:#ffffffcc;
+      --glass: rgba(255,255,255,0.06);
+      --max-width:1200px;
+      --radius:14px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Quicksand",sans-serif;background:linear-gradient(180deg,#f8faf8 0%, #ffffff 100%);color:#122;}
+    a{color:inherit}
+
+    /* LOADER */
+    .loader-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--deep-green) 0%, var(--leaf-green) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    .loader-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader {
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .loader-logo {
+      width: 80px;
+      height: 80px;
+      background: var(--muted);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--deep-green);
+      margin: 0 auto 20px;
+      animation: pulse 2s infinite;
+    }
+ .logo img {
+  width: 70px; /* adjust size as needed */
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%; /* makes logo round */
+  border: 2px solid #fff; /* outline for clean look */
+}
+.loader-logo img{
+     width: 70px; /* adjust size as needed */
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%; /* makes logo round */
+  border: 2px solid #fff; /* outline for clean look */
+
+}
+
+    .loader-text {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      animation: fadeInOut 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
+
+    /* NAV */
+    header{position:sticky;top:10px;z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;background:transparent}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand .logo{width:56px;height:56px;border-radius:12px;background:var(--deep-green);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;box-shadow:0 6px 18px rgba(19,76,69,0.08)}
+    .brand h1{margin:0;font-size:18px;letter-spacing:1px}
+    
+    .nav-links{display:flex;gap:14px;list-style:none;margin:0;padding:0}
+    .nav-links a{padding:10px 12px;border-radius:10px;font-weight:600;color:var(--deep-green);text-decoration:none;transition:background 0.3s ease}
+    .nav-links a:hover{background:var(--glass)}
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .mobile-menu-btn span {
+      width: 25px;
+      height: 3px;
+      background: var(--deep-green);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-btn.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .mobile-menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-btn.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      padding: 80px 30px 30px;
+      transition: left 0.3s ease;
+      z-index: 40;
+    }
+
+    .mobile-nav.active {
+      left: 0;
+    }
+
+    .mobile-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mobile-nav li {
+      margin-bottom: 20px;
+    }
+
+    .mobile-nav a {
+      display: block;
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--deep-green);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(19, 76, 69, 0.1);
+      transition: color 0.3s ease;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--leaf-green);
+    }
+
+    .mobile-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 35;
+    }
+
+    .mobile-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* HERO */
+    .hero{position:relative;border-radius:20px;overflow:hidden;margin:18px 0;display:grid;grid-template-columns:1fr;align-items:center}
+    .hero .bg{min-height:420px;background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');background-size:cover;background-position:center;filter:contrast(1.02) saturate(1.05)}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg, rgba(19,76,69,0.64) 0%, rgba(121,198,92,0.14) 60%);} 
+    .hero .hero-content{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;padding:48px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));backdrop-filter: blur(6px);border-radius:16px;padding:28px;max-width:980px;display:flex;gap:24px;align-items:center;color:var(--muted)}
+    .hero-card img.logo-sm{width:88px;height:88px;border-radius:12px;object-fit:cover;box-shadow:0 10px 30px rgba(19,76,69,0.15)}
+    .hero-copy{flex:1}
+    .hero-copy h2{margin:0 0 6px;font-size:28px;color:var(--muted);line-height:1.02}
+    .hero-copy p{margin:0 0 12px;color:#e8f3ef}
+    .cta{display:flex;gap:12px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;border:0;cursor:pointer;font-weight:700;transition:all 0.3s ease}
+    .btn-primary{background:var(--accent-yellow);color:var(--deep-green)}
+    .btn-primary:hover{background:#ffcc33;transform:translateY(-2px)}
+    .btn-outline{background:transparent;border:2px solid rgba(255,255,255,0.12);color:var(--muted)}
+    .btn-outline:hover{background:rgba(255,255,255,0.1)}
+
+    /* Sections */
+    section{padding:48px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+    .section-head h3{margin:0;font-size:32px;color:var(--deep-green)}
+
+    /* Cards */
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 8px 24px rgba(17,24,20,0.04);transition:transform 0.3s ease, box-shadow 0.3s ease}
+    .card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(17,24,20,0.08)}
+    .card img{width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:12px}
+    .card h4{margin:10px 0 8px;color:var(--deep-green);font-size:18px}
+    .card p{color:#666;line-height:1.5}
+    .card .price{color:var(--accent-red);font-weight:700;font-size:16px;margin-top:8px}
+    .tag{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--leaf-green);color:#0b2b20;font-weight:700;font-size:13px}
+
+    /* Enhanced Menu */
+    .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:30px}
+    .menu-card{background:#fff;border-radius:16px;padding:0;box-shadow:0 10px 30px rgba(17,24,20,0.06);overflow:hidden;transition:all 0.3s ease}
+    .menu-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(17,24,20,0.12)}
+    .menu-card img{width:100%;height:220px;object-fit:cover}
+    .menu-card-content{padding:20px}
+    .menu-card h4{margin:0 0 8px;color:var(--deep-green);font-size:20px}
+    .menu-card .description{color:#666;line-height:1.6;margin:8px 0 12px}
+    .menu-card .price{color:var(--accent-red);font-weight:700;font-size:18px}
+    .menu-card .dietary{display:flex;gap:6px;margin-top:10px}
+    .dietary-tag{padding:4px 8px;border-radius:12px;font-size:11px;font-weight:600}
+    .vegan{background:#e8f5e8;color:#2d5a2d}
+    .gluten-free{background:#fff3e0;color:#b8860b}
+    .protein{background:#ffe8e8;color:#8b0000}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+    .gallery .tile{position:relative;overflow:hidden;border-radius:12px}
+    .gallery img{width:100%;height:240px;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.9,.2,1)}
+    .gallery .tile:hover img{transform:scale(1.12)}
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.4));opacity:0;display:flex;align-items:flex-end;padding:16px;transition:opacity .3s}
+    .tile:hover .overlay{opacity:1}
+    .overlay h5{color:white;margin:0;font-size:16px}
+
+    /* Enhanced Exclusive */
+    .exclusive{margin-top:30px}
+    .exclusive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:24px}
+    .exclusive-card{background:linear-gradient(135deg,#fff 0%,#f9fff9 100%);padding:28px;border-radius:16px;display:flex;gap:20px;align-items:center;box-shadow:0 8px 24px rgba(17,24,20,0.06);transition:all 0.3s ease;border:1px solid rgba(121,198,92,0.1)}
+    .exclusive-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(17,24,20,0.1)}
+    .exclusive-icon{width:80px;height:80px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px;flex-shrink:0}
+    .exclusive-content{flex:1}
+    .exclusive-content h4{margin:0 0 8px;color:var(--deep-green);font-size:20px}
+    .exclusive-content p{margin:0 0 8px;color:#666;line-height:1.5}
+    .exclusive-price{color:var(--accent-red);font-weight:700;font-size:16px}
+    .limited-badge{display:inline-block;padding:4px 8px;background:var(--accent-yellow);color:var(--deep-green);border-radius:12px;font-size:11px;font-weight:700;margin-top:8px}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 400px;gap:24px}
+    .form{background:#fff;padding:24px;border-radius:16px;box-shadow:0 10px 32px rgba(17,24,20,0.08)}
+    .form label{display:block;font-weight:600;margin-bottom:8px;color:var(--deep-green)}
+    .form input,.form textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #e6e9e6;margin-bottom:16px;font-family:inherit;transition:border-color 0.3s ease}
+    .form input:focus,.form textarea:focus{outline:none;border-color:var(--leaf-green)}
+    .map{height:100%;min-height:300px;border-radius:16px;overflow:hidden}
+
+    /* Footer */
+    footer{padding:40px 0;margin-top:60px;background:linear-gradient(135deg,#f8faf8 0%,#ffffff 100%)}
+    .footer-grid{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .socials{display:flex;gap:12px}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:#fff;border:1px solid rgba(0,0,0,0.06);transition:all 0.3s ease}
+    .socials a:hover{background:var(--leaf-green);transform:translateY(-2px)}
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links{display:none}
+      .mobile-menu-btn{display:flex}
+      
+      .container{padding:20px}
+      
+      .hero{margin:12px 0}
+      .hero .bg{min-height:300px}
+      .hero .hero-content{padding:24px}
+      .hero-card{flex-direction:column;align-items:flex-start;padding:24px}
+      .hero-card img.logo-sm{width:64px;height:64px}
+      .hero-copy h2{font-size:24px}
+      .cta{flex-direction:column;width:100%}
+      .btn{justify-content:center}
+      
+      .section-head{flex-direction:column;align-items:flex-start;gap:12px}
+      .section-head h3{font-size:26px}
+      
+      .cards{grid-template-columns:1fr;gap:16px}
+      .menu-grid{grid-template-columns:1fr;gap:20px}
+      .exclusive-grid{grid-template-columns:1fr;gap:20px}
+      .exclusive-card{flex-direction:column;text-align:center}
+      .exclusive-icon{margin-bottom:12px}
+      
+      .gallery{grid-template-columns:repeat(2,1fr);gap:12px}
+      .gallery img{height:200px}
+      
+      .contact-grid{grid-template-columns:1fr}
+      .map{min-height:250px}
+      
+      .footer-grid{flex-direction:column;gap:16px;text-align:center}
+    }
+
+    @media (max-width: 480px) {
+      .exclusive-grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr}
+      .menu-grid{grid-template-columns:1fr}
+    }
+
+    /* Animations */
+    .fade-up{opacity:0;transform:translateY(20px);transition:all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
+    .fade-up.in{opacity:1;transform:translateY(0)}
+
+    .slide-in{opacity:0;transform:translateX(-30px);transition:all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
+    .slide-in.in{opacity:1;transform:translateX(0)}
+  </style>
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader-overlay" id="loader">
+    <div class="loader">
+      <div class="loader-logo"><img src="suwer.jpg" alt=""></div>
+    
+    </div>
+  </div>
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <div class="container">
+    <header>
+      <div class="nav">
+        <div class="brand slide-in">
+          <div class="logo"><img src="suwer.jpg" alt=""></div>
+          <div>
+            <h1>KALE</h1>
+            <div style="font-size:12px;color:#5a7b6f">A Salad Symphony</div>
+          </div>
+        </div>
+        
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#exclusive">Exclusive</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+      <li><a href="#menu" onclick="closeMobileMenu()">Menu</a></li>
+      <li><a href="#gallery" onclick="closeMobileMenu()">Gallery</a></li>
+      <li><a href="#exclusive" onclick="closeMobileMenu()">Exclusive</a></li>
+      <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="hero-content">
+      <div class="hero-card container fade-up" style="background:transparent;">
+        <img class="logo-sm" src="suwer.jpg" alt="KALE logo">
+        <div class="hero-copy">
+          <h2>KALE — Fresh, Customisable, Delicious</h2>
+          <p>Bowls, wraps, smoothies & more. Crafted with seasonal produce and vibrant dressings — healthy never looked this good.</p>
+          <div class="cta">
+            <button class="btn btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">View Menu</button>
+            <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a Table</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-head">
+        <h3>About KALE</h3>
+        <div style="color:#6b8d7f">2212, 80 Feet Rd, HAL 3rd Stage, Indiranagar, Bengaluru</div>
+      </div>
+      <div class="cards">
+        <article class="card fade-up">
+          <h4>Our Philosophy</h4>
+          <p>We believe food should be fresh, vibrant and customizable. Pick your base, protein, toppings and dressings — we'll make it sing.</p>
+        </article>
+        <article class="card fade-up">
+          <h4>Diet Friendly</h4>
+          <p>Options for vegan, gluten-free, keto and more. Clear labeling and swap options for all bowls and wraps.</p>
+        </article>
+        <article class="card fade-up">
+          <h4>Quick & Sustainable</h4>
+          <p>Eco-friendly packaging, seasonal sourcing and fast service — because healthy should be easy.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ENHANCED MENU -->
+    <section id="menu">
+      <div class="section-head">
+        <h3>Our Menu</h3>
+        <div class="tag">Customizable</div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Falafel Wrap">
+          <div class="menu-card-content">
+            <h4>Falafel Wrap</h4>
+            <p class="description">Whole wheat tortilla, beetroot hummus, pico de gallo, jalapeño, feta & mixed greens</p>
+            <div class="price">₹199</div>
+            <div class="dietary">
+              <span class="dietary-tag vegan">Vegan Option</span>
+              <span class="dietary-tag protein">Protein Rich</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="menu-card fade-up">
+          <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Green Smoothie Bowl">
+          <div class="menu-card-content">
+            <h4>Green Smoothie Bowl</h4>
+            <p class="description">Spinach, banana, almond milk, granola, chia seeds, seasonal berries</p>
+            <div class="price">₹249</div>
+            <div class="dietary">
+              <span class="dietary-tag vegan">Vegan</span>
+              <span class="dietary-tag gluten-free">Gluten Free</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="menu-card fade-up">
+          <img src="https://images.unsplash.com/photo-1543332164-0d5f0d0d6a2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Hummus & Greens">
+          <div class="menu-card-content">
+            <h4>Hummus & Greens Bowl</h4>
+            <p class="description">House-made hummus, roasted vegetables, microgreens & warm flatbread</p>
+            <div class="price">₹179</div>
+            <div class="dietary">
+              <span class="dietary-tag vegan">Vegan</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="menu-card fade-up">
+          <img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Quinoa Power Bowl">
+          <div class="menu-card-content">
+            <h4>Quinoa Power Bowl</h4>
+            <p class="description">Tri-color quinoa, grilled chicken, avocado, cherry tomatoes, tahini dressing</p>
+            <div class="price">₹299</div>
+            <div class="dietary">
+              <span class="dietary-tag protein">High Protein</span>
+              <span class="dietary-tag gluten-free">Gluten Free</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="menu-card fade-up">
+          <img src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Mediterranean Wrap">
+          <div class="menu-card-content">
+            <h4>Mediterranean Wrap</h4>
+            <p class="description">Grilled halloumi, olives, cucumber, red onion, tzatziki in spinach tortilla</p>
+            <div class="price">₹229</div>
+            <div class="dietary">
+              <span class="dietary-tag protein">Protein Rich</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="menu-card fade-up">
+          <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Acai Bowl">
+          <div class="menu-card-content">
+            <h4>Açaí Energy Bowl</h4>
+            <p class="description">Açaí blend, coconut flakes, almonds, fresh fruits, honey drizzle</p>
+            <div class="price">₹279</div>
+            <div class="dietary">
+              <span class="dietary-tag vegan">Vegan Option</span>
+              <span class="dietary-tag gluten-free">Gluten Free</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="section-head">
+        <h3>Gallery</h3>
+        <div style="color:#6b8d7f">Fresh from the bowl — curated images</div>
+      </div>
+      <div class="gallery">
+        <div class="tile fade-up">
+          <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="gallery1">
+          <div class="overlay"><h5>Seasonal Bowl</h5></div>
+        </div>
+        <div class="tile fade-up">
+          <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="gallery2">
+          <div class="overlay"><h5>Falafel Wrap</h5></div>
+        </div>
+        <div class="tile fade-up">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="gallery3">
+          <div class="overlay"><h5>Smoothie</h5></div>
+        </div>
+        <div class="tile fade-up">
+          <img src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="gallery4">
+          <div class="overlay"><h5>Hummus Plate</h5></div>
+        </div>
+        <div class="tile fade-up">
+          <img src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="gallery5">
+          <div class="overlay"><h5>Mediterranean</h5></div>
+        </div>
+        <div class="tile fade-up">
+          <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="gallery6">
+          <div class="overlay"><h5>Açaí Bowl</h5></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENHANCED EXCLUSIVE -->
+    <section id="exclusive">
+      <div class="section-head">
+        <h3>Chef's Exclusive</h3>
+        <div style="color:#6b8d7f">Limited edition bowls & seasonal specialties</div>
+      </div>
+      <div class="exclusive">
+        <div class="exclusive-grid">
+          <div class="exclusive-card fade-up">
+            <div class="exclusive-icon" style="background:var(--leaf-green);color:#06311f;">N</div>
+            <div class="exclusive-content">
+              <h4>Nutty Tahina Bowl</h4>
+              <p>Seasonal nuts, seeds, roasted chickpeas with our signature tahina drizzle over quinoa and fresh greens</p>
+              <div class="exclusive-price">₹349</div>
+              <div class="limited-badge">LIMITED EDITION</div>
+            </div>
+          </div>
+
+          <div class="exclusive-card fade-up">
+            <div class="exclusive-icon" style="background:var(--accent-red);color:#fff;">P</div>
+            <div class="exclusive-content">
+              <h4>Pickle & Paneer Fusion</h4>
+              <p>A tangy twist with spicy Indian achar, smoky grilled paneer, mint chutney, and crispy papadums</p>
+              <div class="exclusive-price">₹299</div>
+              <div class="limited-badge">CHEF'S SPECIAL</div>
+            </div>
+          </div>
+
+          <div class="exclusive-card fade-up">
+            <div class="exclusive-icon" style="background:var(--accent-yellow);color:var(--deep-green);">S</div>
+            <div class="exclusive-content">
+              <h4>Superfood Immunity Bowl</h4>
+              <p>Kale, spirulina, goji berries, hemp seeds, turmeric dressing - packed with antioxidants and nutrients</p>
+              <div class="exclusive-price">₹399</div>
+              <div class="limited-badge">WELLNESS EDITION</div>
+            </div>
+          </div>
+
+          <div class="exclusive-card fade-up">
+            <div class="exclusive-icon" style="background:linear-gradient(135deg, var(--leaf-green), var(--deep-green));color:#fff;">M</div>
+            <div class="exclusive-content">
+              <h4>Millet & Masala Bowl</h4>
+              <p>Ancient grains with roasted spices, seasonal vegetables, coconut chutney, and crispy curry leaves</p>
+              <div class="exclusive-price">₹279</div>
+              <div class="limited-badge">TRADITIONAL TWIST</div>
+            </div>
+          </div>
+
+          <div class="exclusive-card fade-up">
+            <div class="exclusive-icon" style="background:linear-gradient(135deg, #ff6b6b, var(--accent-red));color:#fff;">D</div>
+            <div class="exclusive-content">
+              <h4>Dragon Fruit Paradise</h4>
+              <p>Exotic dragon fruit, passion fruit dressing, edible flowers, coconut chips - Instagram-worthy freshness</p>
+              <div class="exclusive-price">₹429</div>
+              <div class="limited-badge">EXOTIC SPECIAL</div>
+            </div>
+          </div>
+
+          <div class="exclusive-card fade-up">
+            <div class="exclusive-icon" style="background:linear-gradient(135deg, #8b5a3c, #d4a574);color:#fff;">C</div>
+            <div class="exclusive-content">
+              <h4>Chocolate Protein Bowl</h4>
+              <p>Cacao nibs, protein powder, almond butter, dark chocolate shavings over banana nice cream base</p>
+              <div class="exclusive-price">₹359</div>
+              <div class="limited-badge">FITNESS EDITION</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-head">
+        <h3>Contact & Bookings</h3>
+        <div style="color:#6b8d7f">Reach out for catering, parties or questions</div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="form">
+          <form id="contactForm" onsubmit="return handleForm(event)">
+            <label for="name">Name</label>
+            <input id="name" name="name" required placeholder="Your name">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@email.com">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" required placeholder="+91 98765 43210">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your booking or query"></textarea>
+            <div style="display:flex;gap:10px;align-items:center">
+              <button class="btn btn-primary" type="submit">Send Message</button>
+              <div id="formMsg" style="font-size:14px;color:#2b6b53"></div>
+            </div>
+          </form>
+        </div>
+
+        <div class="map">
+          <!-- Embedded Google Map iframe placeholder - replace the src with a proper embed for production -->
+          <iframe src="https://www.google.com/maps?q=2212+80+Feet+Rd+HAL+3rd+Stage+Indiranagar+Bengaluru&output=embed" style="width:100%;height:100%;border:0" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div style="display:flex;flex-direction:column">
+          <strong>KALE — A Salad Symphony</strong>
+          <small style="color:#556b63">2212, 80 Feet Rd, HAL 3rd Stage, Indiranagar, Bengaluru — 560008</small>
+        </div>
+        <div class="socials">
+          <a href="#" aria-label="instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="#134c45" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="#134c45" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 6.5h.01" stroke="#134c45" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" aria-label="facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M18 2h-3a4 4 0 0 0-4 4v3H8v3h3v7h3v-7h2.5l.5-3H14V6a1 1 0 0 1 1-1h3V2z" fill="#134c45"/></svg>
+          </a>
+          <a href="#" aria-label="twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#134c45"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.4 1s-2 .9-3.1 1.2A4.49 4.49 0 0 0 12 5.1 12.8 12.8 0 0 1 2 2s4 3 9 3a4.5 4.5 0 0 0 7.86-4A13 13 0 0 0 23 3z"/></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 2000);
+    });
+
+    // Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+
+    function toggleMobileMenu() {
+      mobileMenuBtn.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      mobileOverlay.classList.toggle('active');
+    }
+
+    function closeMobileMenu() {
+      mobileMenuBtn.classList.remove('active');
+      mobileNav.classList.remove('active');
+      mobileOverlay.classList.remove('active');
+    }
+
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+
+    // Smooth scroll for mobile menu links
+    document.querySelectorAll('.mobile-nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+        closeMobileMenu();
+      });
+    });
+
+    // Smooth scroll for regular nav links
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Enhanced entrance animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+        }
+      });
+    }, observerOptions);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Observe all fade-up and slide-in elements
+      document.querySelectorAll('.fade-up, .slide-in').forEach(el => {
+        observer.observe(el);
+      });
+    });
+
+    // Contact form handler - mock send
+    function handleForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const el = document.getElementById('formMsg');
+      
+      // Basic validation
+      if(!name||!email||!phone){ 
+        el.textContent='Please fill required fields.'; 
+        el.style.color = 'var(--accent-red)';
+        return false;
+      }
+      
+      el.textContent='Sending...';
+      el.style.color = 'var(--deep-green)';
+      
+      // simulate async send
+      setTimeout(()=>{
+        el.textContent='Thanks, '+name+' — we received your message! We will reach out soon.';
+        el.style.color = 'var(--leaf-green)';
+        document.getElementById('contactForm').reset();
+      }, 1500);
+      return false;
+    }
+
+    // Add some interactive effects
+    document.querySelectorAll('.card, .menu-card, .exclusive-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+
+    // Parallax effect for hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero .bg');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+  </script>
+</body>
+</html>

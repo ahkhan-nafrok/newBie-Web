@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grazie The Cafe - Premium Coffee Experience</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-forest: #2C4A2E;
+      --secondary-sage: #4A6B4D;
+      --accent-gold: #D4AF37;
+      --neutral-cream: #F8F7F4;
+      --neutral-warm: #F5F3F0;
+      --text-dark: #1A1A1A;
+      --text-medium: #4A4A4A;
+      --text-light: #7A7A7A;
+      --white: #FFFFFF;
+      
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Inter', sans-serif;
+      
+      --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--neutral-cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+      font-family: var(--font-body);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--neutral-warm);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-forest);
+      border-radius: 4px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 5%;
+      background: rgba(248, 247, 244, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(44, 74, 46, 0.1);
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--primary-forest);
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.02);
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      z-index: 1001;
+    }
+
+    .mobile-menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--primary-forest);
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 3rem;
+    }
+
+    nav a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 50%;
+      background: var(--accent-gold);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: var(--primary-forest);
+    }
+
+    /* Hero Section - Fixed Implementation */
+.hero {
+  height: 100vh;
+  background: 
+    linear-gradient(135deg, rgba(44, 74, 46, 0.8) 0%, rgba(74, 107, 77, 0.7) 100%),
+    url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2141&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional: Add a subtle animation effect */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+    /* Fallback for browsers that don't support background-attachment: fixed on mobile */
+    @media (max-width: 768px) {
+      .hero {
+        background-attachment: scroll;
+      }
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+      animation: rotate 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: heroFade 1.5s ease-out;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      letter-spacing: 2px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 1s ease-out 0.3s forwards;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 1s ease-out 0.6s forwards;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--accent-gold);
+      text-decoration: none;
+      font-weight: 400;
+      letter-spacing: 1px;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 1s ease-out 0.9s forwards;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent-gold);
+      color: var(--primary-forest);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heroFade {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Section Styles */
+    section {
+      padding: 8rem 5%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--primary-forest);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      font-weight: 300;
+      letter-spacing: 1px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* About Section */
+    .about {
+      background: var(--white);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--text-medium);
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow-medium);
+      transition: all 0.4s ease;
+    }
+
+    .about-image:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Gallery Section */
+    .gallery {
+      background: var(--neutral-warm);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(44, 74, 46, 0.8), rgba(212, 175, 55, 0.6));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-text {
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-align: center;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-text {
+      transform: translateY(0);
+    }
+
+    /* Experience Section */
+    .experience {
+      background: var(--primary-forest);
+      color: var(--white);
+    }
+
+    .experience .section-title {
+      color: var(--white);
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .experience-card {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .experience-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-gold);
+      transition: all 0.3s ease;
+    }
+
+    .experience-card:hover .experience-icon {
+      transform: scale(1.2);
+      animation: bounce 0.6s ease;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    .experience-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .experience-text {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 300;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--white);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .form-group label {
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+      font-weight: 400;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1rem;
+      border: 2px solid var(--neutral-warm);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: var(--neutral-cream);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-forest);
+      background: var(--white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-submit {
+      padding: 1rem 2rem;
+      background: var(--primary-forest);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-submit:hover {
+      background: var(--secondary-sage);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .contact-info {
+      padding-left: 2rem;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--primary-forest);
+    }
+
+    .info-item {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .info-item:hover {
+      background: var(--neutral-warm);
+      transform: translateX(10px);
+    }
+
+    .info-label {
+      font-weight: 500;
+      color: var(--primary-forest);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .info-value {
+      color: var(--text-medium);
+      font-weight: 300;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text-dark);
+      color: var(--white);
+      padding: 3rem 5%;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--accent-gold);
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-social a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+
+    .footer-social a:hover {
+      color: var(--accent-gold);
+      transform: translateY(-5px);
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    .footer-text {
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 300;
+    }
+
+    /* Scroll to Top Button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: var(--accent-gold);
+      color: var(--primary-forest);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 100px;
+      right: 2rem;
+      background: var(--primary-forest);
+      color: var(--white);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow-medium);
+      transform: translateX(400px);
+      transition: all 0.4s ease;
+      z-index: 1001;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification.success {
+      background: #22c55e;
+    }
+
+    .notification.error {
+      background: #ef4444;
+    }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Design - Fixed Mobile Implementation */
+    @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: flex;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--neutral-cream);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: left 0.3s ease;
+        z-index: 999;
+      }
+
+      nav.active {
+        left: 0;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      nav a {
+        font-size: 1.5rem;
+      }
+
+      /* Fixed mobile header padding */
+      header {
+        padding: 1rem 5%;
+      }
+
+      /* Ensure hero section works properly on mobile */
+      .hero {
+        min-height: 100vh;
+        background-attachment: scroll;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+      }
+
+      section {
+        padding: 4rem 5%;
+      }
+
+      .about-content,
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .gallery-item {
+        min-height: 250px;
+      }
+
+      .experience-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .contact-info {
+        padding-left: 0;
+      }
+
+      .scroll-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+      }
+
+      .notification {
+        right: 1rem;
+        left: 1rem;
+        transform: translateY(-100px);
+      }
+
+      .notification.show {
+        transform: translateY(0);
+      }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 480px) {
+      header {
+        padding: 0.8rem 3%;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+      }
+
+      section {
+        padding: 3rem 3%;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .experience-card {
+        padding: 1.5rem;
+      }
+
+      .hero-cta {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Loading Animation */
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-text {
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 3rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* Accessibility improvements */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus indicators for better accessibility */
+    a:focus, button:focus, input:focus, textarea:focus {
+      outline: 2px solid var(--accent-gold);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading" id="loading">
+    <div class="loading-text">Grazie</div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="#home" class="logo">Grazie</a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="nav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1 class="hero-title">Grazie</h1>
+      <p class="hero-subtitle">The Cafe</p>
+      <a href="#about" class="hero-cta">Discover Our Story</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-header fade-up">
+        <h2 class="section-title">About Grazie</h2>
+        <p class="section-subtitle">Where coffee meets culture in the heart of Indiranagar</p>
+      </div>
+      <div class="about-content">
+        <div class="about-text fade-up">
+          <p>Grazie The Cafe in Indiranagar is a minimalist yet premium destination where coffee meets culture. Designed with elegance and comfort in mind, we offer handcrafted coffee, artisanal bites, and an ambiance that inspires meaningful conversations.</p>
+          <br>
+          <p>Step into Grazie, and step into an experience of taste and tranquility. Our carefully curated space reflects our commitment to quality, sustainability, and the art of slow living.</p>
+        </div>
+        <div class="about-image fade-up">
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nov1Pum4iokoGTJTQfs57hJ1WtQmU0wofd3mOKPkk2pDnecYTBzTNKuu2ZoQhd1Qb85yOoKiKHxn-p-sNnqjo1fSYSI2EG2RSDs1oGRVCnfQuT3G3yqgx93G-jFVt5lq75CuNfS4qiLxUOY=s1360-w1360-h1020-rw" alt="Grazie Cafe Interior">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header fade-up">
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-subtitle">Moments captured in our space of serenity</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item fade-up">
+          <img src="https://lh3.googleusercontent.com/p/AF1QipPAR2mT_CQBzTD1daC2rWZjoDQBRC-MZyfRb_QE=w190-h191-n-k-no-nu" alt="Coffee Art">
+          <div class="gallery-overlay">
+            <div class="gallery-text">Artisan Coffee</div>
+          </div>
+        </div>
+        <div class="gallery-item fade-up">
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4noCEQGpOOnHTqmCa9AlRr86qYhrLZTsL60Sy1Yq7qwGLQ2CRXlTg45Ya_qZYYaT0LuOQcgHbsyy7zj0GZavLuyIL_T_6BN5mD5X-6BPW6VY-A-0y27cidhyzundvhO47dIdi2Q=s1360-w1360-h1020-rw" alt="Cafe Interior">
+          <div class="gallery-overlay">
+            <div class="gallery-text">Minimalist Design</div>
+          </div>
+        </div>
+        <div class="gallery-item fade-up">
+          <img src="https://lh3.googleusercontent.com/p/AF1QipOapIOPKZ6KORe4CAJtkpxM8gNTozQXmMgDlD7T=s1360-w1360-h1020-rw" alt="Fresh Pastries">
+          <div class="gallery-overlay">
+            <div class="gallery-text">Fresh Pastries</div>
+          </div>
+        </div>
+        <div class="gallery-item fade-up">
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqZwhiE26fqY10eRNDKZeWd-r7huyg9N-fdyXE5VbuZwDrEJrxscD3vJE_agnyaNNVXr5wgiV8RnCoVDwqvGj6VBgVQbWXVTYctIMByxjIoExHWuSHZ_lPYxG6Gs6mf19C0zXntI9-brIQ=s1360-w1360-h1020-rw" alt="Workspace">
+          <div class="gallery-overlay">
+            <div class="gallery-text">Work & Relax</div>
+          </div>
+        </div>
+        <div class="gallery-item fade-up">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Coffee Beans">
+          <div class="gallery-overlay">
+            <div class="gallery-text">Premium Beans</div>
+          </div>
+        </div>
+        <div class="gallery-item fade-up">
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqPLZzEDsDf33lMRZm_C3X1cYF7qpXXSeUIKrH9xmwzSZF_jNV4eRJgtPGph5zfg3LcWJccTmjrLex21X_MDIrdvcTLLPz9YoStE-8GEYwHzANXZfndTMJrwW26gDs5HMrKx_beRgaZMy4L=s1360-w1360-h1020-rw" alt="Cafe Atmosphere">
+          <div class="gallery-overlay">
+            <div class="gallery-text">Cozy Atmosphere</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="experience" id="experience">
+    <div class="container">
+      <div class="section-header fade-up">
+        <h2 class="section-title">The Grazie Experience</h2>
+        <p class="section-subtitle">Crafted with passion, served with love</p>
+      </div>
+      <div class="experience-grid">
+        <div class="experience-card fade-up">
+          <div class="experience-icon">☕</div>
+          <h3 class="experience-title">Artisan Coffee</h3>
+          <p class="experience-text">Handcrafted beverages using premium beans sourced from sustainable farms around the world.</p>
+        </div>
+        <div class="experience-card fade-up">
+          <div class="experience-icon">🥐</div>
+          <h3 class="experience-title">Fresh Pastries</h3>
+          <p class="experience-text">Daily baked pastries and artisanal treats made with locally sourced, organic ingredients.</p>
+        </div>
+        <div class="experience-card fade-up">
+          <div class="experience-icon">🌿</div>
+          <h3 class="experience-title">Serene Ambiance</h3>
+          <p class="experience-text">A thoughtfully designed space that promotes mindfulness, creativity, and meaningful connections.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header fade-up">
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-subtitle">We'd love to hear from you</p>
+      </div>
+      <div class="contact-content">
+        <form class="contact-form fade-up" id="contactForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+          <button type="submit" class="contact-submit">Send Message</button>
+        </form>
+        <div class="contact-info fade-up">
+          <h3>Visit Us</h3>
+          <div class="info-item">
+            <div class="info-label">Address</div>
+            <div class="info-value">100ft Road, Indiranagar<br>Bangalore, Karnataka 560038</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Phone</div>
+            <div class="info-value">+91 98765 43210</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Hours</div>
+            <div class="info-value">Mon - Sun: 7:00 AM - 10:00 PM</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Email</div>
+            <div class="info-value">hello@graziecafe.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">Grazie</div>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="Twitter">Twitter</a>
+      </div>
+      <div class="footer-text">
+        &copy; 2025 Grazie The Cafe. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">↑</button>
+
+  <!-- Notification -->
+ 
+
+  <script>
+    // Utility Functions
+    function showNotification(message, type = 'success') {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.className = `notification ${type}`;
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 4000);
+    }
+
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Loading screen
+    window.addEventListener('load', () => {
+      const loading = document.getElementById('loading');
+      setTimeout(() => {
+        loading.style.opacity = '0';
+        setTimeout(() => {
+          loading.style.display = 'none';
+          initializeAnimations();
+        }, 500);
+      }, 1500);
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const nav = document.getElementById('nav');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenuToggle.classList.toggle('active');
+      nav.classList.toggle('active');
+      document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    // Close mobile menu when clicking on a link
+    nav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        mobileMenuToggle.classList.remove('active');
+        nav.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (nav.classList.contains('active') && 
+          !nav.contains(e.target) && 
+          !mobileMenuToggle.contains(e.target)) {
+        mobileMenuToggle.classList.remove('active');
+        nav.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerHeight = document.querySelector('header').offsetHeight;
+          const targetPosition = target.offsetTop - headerHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Scroll animations with Intersection Observer
+    function initializeAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            if (entry.target.classList.contains('experience-card') || 
+                entry.target.classList.contains('gallery-item')) {
+              const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 200;
+              entry.target.style.transitionDelay = `${delay}ms`;
+            }
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-up').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Header scroll effects
+    let lastScrollY = 0;
+    const header = document.querySelector('header');
+    const scrollToTop = document.getElementById('scrollToTop');
+
+    const handleScroll = debounce(() => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > 100) {
+        header.style.background = 'rgba(248, 247, 244, 0.98)';
+        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+        header.style.backdropFilter = 'blur(30px)';
+      } else {
+        header.style.background = 'rgba(248, 247, 244, 0.95)';
+        header.style.boxShadow = 'none';
+        header.style.backdropFilter = 'blur(20px)';
+      }
+
+      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+
+      if (currentScrollY > 300) {
+        scrollToTop.classList.add('visible');
+      } else {
+        scrollToTop.classList.remove('visible');
+      }
+
+      lastScrollY = currentScrollY;
+    }, 10);
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Scroll to top functionality
+    scrollToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const name = formData.get('name').trim();
+      const email = formData.get('email').trim();
+      const message = formData.get('message').trim();
+
+      if (!name || name.length < 2) {
+        showNotification('Please enter a valid name (at least 2 characters)', 'error');
+        document.getElementById('name').focus();
+        return;
+      }
+
+      if (!email || !isValidEmail(email)) {
+        showNotification('Please enter a valid email address', 'error');
+        document.getElementById('email').focus();
+        return;
+      }
+
+      if (!message || message.length < 10) {
+        showNotification('Please enter a message (at least 10 characters)', 'error');
+        document.getElementById('message').focus();
+        return;
+      }
+
+      const submitButton = e.target.querySelector('.contact-submit');
+      const originalText = submitButton.textContent;
+      
+      submitButton.textContent = 'Sending...';
+      submitButton.disabled = true;
+      submitButton.style.opacity = '0.7';
+
+      try {
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        showNotification(`Thank you ${name}! Your message has been sent successfully.`, 'success');
+        contactForm.reset();
+        
+        submitButton.style.background = '#22c55e';
+        submitButton.textContent = 'Message Sent!';
+        
+        setTimeout(() => {
+          submitButton.style.background = '';
+          submitButton.textContent = originalText;
+          submitButton.disabled = false;
+          submitButton.style.opacity = '1';
+        }, 3000);
+        
+      } catch (error) {
+        showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+        submitButton.style.opacity = '1';
+      }
+    });
+
+    // Form interactions
+    const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+    
+    formInputs.forEach(input => {
+      input.addEventListener('focus', (e) => {
+        e.target.parentNode.classList.add('focused');
+      });
+
+      input.addEventListener('blur', (e) => {
+        if (!e.target.value) {
+          e.target.parentNode.classList.remove('focused');
+        }
+      });
+
+      input.addEventListener('input', (e) => {
+        const input = e.target;
+        input.style.borderColor = '';
+        
+        if (input.type === 'email' && input.value) {
+          if (isValidEmail(input.value)) {
+            input.style.borderColor = '#22c55e';
+          } else {
+            input.style.borderColor = '#ef4444';
+          }
+        }
+      });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('active')) {
+        mobileMenuToggle.classList.remove('active');
+        nav.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+      
+      if (e.key === 'Enter' && e.target === scrollToTop) {
+        scrollToTop.click();
+      }
+    });
+
+    console.log('✅ Grazie The Cafe website loaded successfully!');
+  </script>
+</body>
+</html>
