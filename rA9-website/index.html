@@ -935,43 +935,56 @@
   }
   </script>
   
-  <!-- NEW: ImageObject Schema for Google Images - Updated URLs -->
   <script type="application/ld+json">
-  [
-    {
-      "@context": "https://schema.org",
-      "@type": "ImageObject",
-      "author": "A H Khan",
-      "contentUrl": "https://www.ahkhan.online/Futuristic-City-with-Robo-Ad-Photoroom.png",
-      "datePublished": "2025-08-10",
-      "description": "AIxRescue disaster management drone system in action",
-      "name": "AIxRescue Drone System",
-      "license": "https://creativecommons.org/licenses/by/4.0/",
-      "acquireLicensePage": "https://www.ahkhan.online/license"
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "name": "A H Khan AI Robotics Portfolio Gallery",
+    "description": "Gallery of AI and robotics projects by A H Khan, Founder of AIxRobo",
+    "author": {
+      "@type": "Person",
+      "name": "A H Khan"
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "ImageObject",
-      "author": "A H Khan",
-      "contentUrl": "https://www.ahkhan.online/images/neural-network-lab.jpg",
-      "datePublished": "2025-08-10",
-      "description": "Neural network research lab at AIxRobo headquarters",
-      "name": "AI Research Lab",
-      "license": "https://creativecommons.org/licenses/by/4.0/",
-      "acquireLicensePage": "https://www.ahkhan.online/license"
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "A H Khan"
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "ImageObject",
-      "author": "A H Khan",
-      "contentUrl": "https://www.ahkhan.online/images/robotics-prototyping.jpg",
-      "datePublished": "2025-08-10",
-      "description": "Robotics prototyping workshop at AIxRobo",
-      "name": "Robotics Prototyping",
-      "license": "https://creativecommons.org/licenses/by/4.0/",
-      "acquireLicensePage": "https://www.ahkhan.online/license"
-    }
-  ]
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "acquireLicensePage": "https://www.ahkhan.online/license",
+    "image": [
+      {
+        "@type": "ImageObject",
+        "contentUrl": "https://www.ahkhan.online/ra9.jpg",
+        "name": "A H Khan Profile Photo - AI Researcher",
+        "description": "Professional portrait of A H Khan, AI and Robotics researcher and founder of AIxRobo",
+        "author": "A H Khan",
+        "datePublished": "2025-08-10",
+        "width": "400",
+        "height": "400",
+        "keywords": "A H Khan, AI researcher, robotics engineer, founder AIxRobo"
+      },
+      {
+        "@type": "ImageObject",
+        "contentUrl": "https://www.ahkhan.online/ra99.png",
+        "name": "A H Khan Professional Headshot",
+        "description": "A H Khan - AI researcher and robotics engineer specializing in humanoid robots and AI systems",
+        "author": "A H Khan",
+        "datePublished": "2025-08-10",
+        "width": "400",
+        "height": "400"
+      },
+      {
+        "@type": "ImageObject",
+        "contentUrl": "https://www.ahkhan.online/Futuristic-City-with-Robo-Ad-Photoroom.png",
+        "name": "AIxBot Humanoid Robot by A H Khan",
+        "description": "AIxBot humanoid assistant robot developed by A H Khan at AIxRobo for automation and human-robot interaction",
+        "author": "A H Khan",
+        "datePublished": "2025-08-10",
+        "width": "800",
+        "height": "600"
+      }
+    ]
+  }
   </script>
 </head>
 <body class="bg-black text-slate-200 font-secondary antialiased">
@@ -1022,17 +1035,19 @@
         <!-- FIXED: Content Section - Now properly centered -->
         <div class="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
           <!-- FIXED: Profile Photo Box - Always centered -->
-          <div class="profile-container">
-            <div class="profile-inner">
-              <img 
-                src="ra99.png" 
-                alt="A H Khan - AI and Robotics Researcher and Founder of AIxRobo" 
-                class="profile-image"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-              />
-              <div class="profile-placeholder" style="display: none;">AK</div>
-            </div>
-          </div>
+         <div class="profile-container">
+    <div class="profile-inner">
+      <img 
+        src="ra99.png" 
+        alt="A H Khan - AI and Robotics Researcher and Founder of AIxRobo" 
+        class="profile-image"
+        width="400" 
+        height="400"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+      />
+      <div class="profile-placeholder" style="display: none;">AK</div>
+    </div>
+  </div>
 
           <h1 class="hero-title text-5xl md:text-6xl leading-tight">
             A H <span class="text-gradient">Khan</span>
@@ -1251,57 +1266,62 @@
 
   
 
-    <!-- NEW: Gallery Section for Google Images -->
-    <section id="gallery" class="mt-24 section-container">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold section-title">Project Gallery</h2>
-        <p class="subtitle text-slate-300 mt-4 text-lg max-w-2xl mx-auto">
-          Visual showcase of AI and robotics projects by A H Khan
-        </p>
+  <!-- Gallery Section with enhanced image attributes -->
+  <section id="gallery" class="mt-24 section-container">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold section-title">Project Gallery</h2>
+      <p class="subtitle text-slate-300 mt-4 text-lg max-w-2xl mx-auto">
+        Visual showcase of AI and robotics projects by A H Khan
+      </p>
+    </div>
+    
+    <div class="gallery-grid max-w-6xl mx-auto">
+      <div class="gallery-item">
+        <img 
+          src="Futuristic-City-with-Robo-Ad-Photoroom.png" 
+          alt="AIxBot humanoid robot by A H Khan - AIxRobo humanoid assistant" 
+          class="gallery-img"
+          width="800"
+          height="600"
+        >
+        <div class="gallery-caption">AIxBot Humanoid Assistant</div>
       </div>
       
-      <div class="gallery-grid max-w-6xl mx-auto">
-        <div class="gallery-item">
-          <img 
-            src="Futuristic-City-with-Robo-Ad-Photoroom.png" 
-            alt="AIxBot humanoid robot by A H Khan" 
-            class="gallery-img"
-            loading="lazy"
-          >
-          <div class="gallery-caption">AIxBot Humanoid Assistant</div>
-        </div>
-        
-        <div class="gallery-item">
-          <img 
-            src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-            alt="AIxRescue disaster management system by A H Khan" 
-            class="gallery-img"
-            loading="lazy"
-          >
-          <div class="gallery-caption">AIxRescue Disaster Response</div>
-        </div>
-        
-        <div class="gallery-item">
-          <img 
-            src="https://images.unsplash.com/photo-1677442135722-5f3a1d0b4d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-            alt="Neural network research lab at AIxRobo" 
-            class="gallery-img"
-            loading="lazy"
-          >
-          <div class="gallery-caption">Neural Network Research</div>
-        </div>
-        
-        <div class="gallery-item">
-          <img 
-            src="https://images.unsplash.com/photo-1677442135699-3d09b4e9a1e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-            alt="Robotics prototyping workshop at AIxRobo" 
-            class="gallery-img"
-            loading="lazy"
-          >
-          <div class="gallery-caption">Robotics Prototyping</div>
-        </div>
+      <!-- Consider replacing Unsplash images with your own hosted images -->
+      <div class="gallery-item">
+        <img 
+          src="path-to-your-own-image1.jpg" 
+          alt="AIxRescue disaster management system by A H Khan" 
+          class="gallery-img"
+          width="800"
+          height="600"
+        >
+        <div class="gallery-caption">AIxRescue Disaster Response</div>
       </div>
-    </section>
+      
+      <div class="gallery-item">
+        <img 
+          src="path-to-your-own-image2.jpg" 
+          alt="Neural network research lab at AIxRobo by A H Khan" 
+          class="gallery-img"
+          width="800"
+          height="600"
+        >
+        <div class="gallery-caption">Neural Network Research</div>
+      </div>
+      
+      <div class="gallery-item">
+        <img 
+          src="path-to-your-own-image3.jpg" 
+          alt="Robotics prototyping workshop at AIxRobo by A H Khan" 
+          class="gallery-img"
+          width="800"
+          height="600"
+        >
+        <div class="gallery-caption">Robotics Prototyping</div>
+      </div>
+    </div>
+  </section>
 
     <!-- Enhanced Projects Section -->
     <section id="projects" class="mt-24 section-container">
@@ -1827,6 +1847,7 @@
   </script>
 </body>
 </html>
+
 
 
 
