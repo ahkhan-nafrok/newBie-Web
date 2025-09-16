@@ -1,1 +1,26 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.ahkhan.online/</loc>
+    <image:image>
+      <image:loc>https://www.ahkhan.online/ra9.jpg</image:loc>
+      <image:title>A H Khan Profile Photo - AI Researcher</image:title>
+      <image:caption>Professional portrait of A H Khan, AI and Robotics researcher and founder of AIxRobo</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.ahkhan.online/ra99.png</image:loc>
+      <image:title>A H Khan Professional Headshot</image:title>
+      <image:caption>A H Khan - AI researcher and robotics engineer specializing in humanoid robots and AI systems</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.ahkhan.online/Futuristic-City-with-Robo-Ad-Photoroom.png</image:loc>
+      <image:title>AIxBot Humanoid Robot by A H Khan</image:title>
+      <image:caption>AIxBot humanoid assistant robot developed by A H Khan at AIxRobo for automation and human-robot interaction</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    <!-- Add more images as needed -->
+  </url>
+</urlset>
