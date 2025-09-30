@@ -284,6 +284,66 @@ body {
     box-shadow: 0 4px 15px rgba(201, 169, 97, 0.3);
 }
 
+.view-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.view-more-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.view-more-btn {
+    background: linear-gradient(135deg, var(--royal-gold), var(--dark-gold));
+    color: white;
+    border: none;
+    padding: 1.25rem 3rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+}
+
+.view-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.view-more-btn:hover::before {
+    left: 100%;
+}
+
+.view-more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(201, 169, 97, 0.5);
+}
+
+.view-more-btn:active {
+    transform: translateY(-1px);
+}
+
+.view-more-btn.hidden {
+    display: none;
+}
+
 @media (max-width: 1200px) {
     .gallery-grid {
         grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -293,11 +353,15 @@ body {
 
 @media (max-width: 768px) {
     .section-title {
-        font-size: 2.75rem;
+        font-size: 2.5rem;
     }
 
     .section {
-        padding: 6rem 0;
+        padding: 5rem 0;
+    }
+    
+    .section-header {
+        margin-bottom: 4rem;
     }
 
     .gallery-grid {
@@ -313,19 +377,60 @@ body {
         padding: 0.8rem 1.5rem;
         font-size: 0.75rem;
     }
+    
+    .gallery-item {
+        height: 300px;
+    }
+    
+    .gallery-overlay {
+        padding: 1.5rem 1.25rem;
+    }
+    
+    .view-more-btn {
+        padding: 1rem 2.5rem;
+        font-size: 0.8125rem;
+    }
 }
 
 @media (max-width: 576px) {
     .section-title {
-        font-size: 2.25rem;
+        font-size: 2rem;
+    }
+    
+    .section-description {
+        font-size: 1rem;
     }
 
     .gallery-title {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 
     .container {
         padding: 0 1rem;
+    }
+    
+    .gallery-item {
+        height: 280px;
+    }
+    
+    .premium-badge {
+        top: 15px;
+        right: 15px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.65rem;
+    }
+    
+    .gallery-overlay {
+        padding: 1.25rem 1rem;
+    }
+    
+    .gallery-category {
+        font-size: 0.75rem;
+    }
+    
+    .view-more-btn {
+        padding: 0.9rem 2rem;
+        font-size: 0.75rem;
     }
 }
 
@@ -357,10 +462,7 @@ body {
             
             <div class="gallery-grid" id="galleryGrid">
                 
-                
-               
-
-      <!-- Inlay Works -->
+<!-- Inlay Works -->
 <div class="gallery-item" data-category="inlay">
     <div class="premium-badge">Masterpiece</div>
     <img src="Inly-works/inly1.png" alt="Intricate Inlay Work" class="gallery-img" loading="lazy">
@@ -369,7 +471,30 @@ body {
         <p class="gallery-category">Custom • Jaipur</p>
     </div>
 </div>
-
+<div class="gallery-item" data-category="mandir">
+    <div class="premium-badge">Heritage</div>
+    <img src="JainTemples/temple7.png" alt="Marble Idol Base" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Marble Idol Base</h4>
+        <p class="gallery-category">Mandir • Ahmedabad</p>
+    </div>
+</div>
+<div class="gallery-item" data-category="flooring">
+    <div class="premium-badge">Premium</div>
+    <img src="Floor/Temple-floor4.png" alt="Temple Marble Idol Base" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Temple Marble Idol Base</h4>
+        <p class="gallery-category">Temple • Karnataka</p>
+    </div>
+</div>
+<div class="gallery-item" data-category="mandir">
+    <div class="premium-badge">Heritage</div>
+    <img src="JainTemples/temple4.png" alt="Temple Domes" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Temple Domes</h4>
+        <p class="gallery-category">Mandir • Jaipur</p>
+    </div>
+</div>
 <div class="gallery-item" data-category="inlay">
     <div class="premium-badge">Masterpiece</div>
     <img src="Inly-works/inly2.png" alt="Floral Marble Inlay" class="gallery-img" loading="lazy">
@@ -433,7 +558,7 @@ body {
     </div>
 </div>
 
-               <!-- Handicrafts -->
+<!-- Handicrafts -->
 <div class="gallery-item" data-category="handicrafts">
     <div class="premium-badge">Artisan</div>
     <img src="HandiCrafts/hand1.png" alt="Handcrafted Marble Art" class="gallery-img" loading="lazy">
@@ -515,17 +640,7 @@ body {
     </div>
 </div>
 
-
-                <!-- Mandir References -->
-
-<div class="gallery-item" data-category="mandir">
-    <div class="premium-badge">Heritage</div>
-    <img src="JainTemples/temple7.png" alt="Marble Idol Base" class="gallery-img" loading="lazy">
-    <div class="gallery-overlay">
-        <h4 class="gallery-title">Marble Idol Base</h4>
-        <p class="gallery-category">Mandir • Ahmedabad</p>
-    </div>
-</div>
+<!-- Mandir References -->
 
 <div class="gallery-item" data-category="mandir">
     <div class="premium-badge">Heritage</div>
@@ -554,14 +669,6 @@ body {
     </div>
 </div>
 
-<div class="gallery-item" data-category="mandir">
-    <div class="premium-badge">Heritage</div>
-    <img src="JainTemples/temple4.png" alt="Temple Domes" class="gallery-img" loading="lazy">
-    <div class="gallery-overlay">
-        <h4 class="gallery-title">Temple Domes</h4>
-        <p class="gallery-category">Mandir • Jaipur</p>
-    </div>
-</div>
 
 <div class="gallery-item" data-category="mandir">
     <div class="premium-badge">Heritage</div>
@@ -581,8 +688,7 @@ body {
     </div>
 </div>
 
-
-                <!-- Floor References -->
+<!-- Floor References -->
 <div class="gallery-item" data-category="flooring">
     <div class="premium-badge">Premium</div>
     <img src="Floor/Temple-floor3.png" alt="Temple Marble Pillars" class="gallery-img" loading="lazy">
@@ -610,14 +716,7 @@ body {
     </div>
 </div>
 
-<div class="gallery-item" data-category="flooring">
-    <div class="premium-badge">Premium</div>
-    <img src="Floor/Temple-floor4.png" alt="Temple Marble Idol Base" class="gallery-img" loading="lazy">
-    <div class="gallery-overlay">
-        <h4 class="gallery-title">Temple Marble Idol Base</h4>
-        <p class="gallery-category">Temple • Karnataka</p>
-    </div>
-</div>
+
 
 <!-- House References -->
 <div class="gallery-item" data-category="flooring">
@@ -657,14 +756,26 @@ body {
 </div>
 
             </div>
+            
+            <div class="view-more-container" id="viewMoreContainer">
+                <button class="view-more-btn" id="viewMoreBtn">
+                    View More <i class="fas fa-chevron-down" style="margin-left: 8px;"></i>
+                </button>
+            </div>
         </div>
     </section>
 
 <script>
 (function() {
+    const ITEMS_PER_PAGE = 6;
+    let currentCategory = 'all';
+    let currentPage = 1;
+    
     function initGallery() {
         const galleryGrid = document.getElementById('galleryGrid');
         const galleryTabs = document.querySelector('.gallery-tabs');
+        const viewMoreBtn = document.getElementById('viewMoreBtn');
+        const viewMoreContainer = document.getElementById('viewMoreContainer');
         
         if (!galleryGrid || !galleryTabs) {
             console.log('Gallery elements not found, retrying...');
@@ -688,11 +799,49 @@ body {
             item.style.opacity = '0';
             item.style.transform = 'translateY(30px)';
             item.style.transition = `all 0.6s ease ${index * 0.1}s`;
-            observer.observe(item);
         });
 
+        function getFilteredItems(category) {
+            const items = Array.from(document.querySelectorAll('.gallery-item'));
+            if (category === 'all') {
+                return items;
+            }
+            return items.filter(item => item.dataset.category === category);
+        }
+
+        function displayItems(items, page) {
+            const endIndex = page * ITEMS_PER_PAGE;
+            
+            items.forEach((item, index) => {
+                if (index < endIndex) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                        item.style.transition = 'all 0.6s ease';
+                        observer.observe(item);
+                    }, (index % ITEMS_PER_PAGE) * 50);
+                } else {
+                    item.style.display = 'none';
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(30px)';
+                }
+            });
+
+            // Show or hide View More button
+            if (endIndex >= items.length) {
+                viewMoreBtn.classList.add('hidden');
+                viewMoreContainer.classList.remove('visible');
+            } else {
+                viewMoreBtn.classList.remove('hidden');
+                setTimeout(() => {
+                    viewMoreContainer.classList.add('visible');
+                }, 300);
+            }
+        }
+
         function filterGallery(category, clickedButton) {
-            const items = document.querySelectorAll('.gallery-item');
+            const allItems = document.querySelectorAll('.gallery-item');
             const tabs = document.querySelectorAll('.tab-btn');
             
             tabs.forEach(tab => tab.classList.remove('active'));
@@ -700,34 +849,66 @@ body {
                 clickedButton.classList.add('active');
             }
 
-            items.forEach((item, index) => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'block';
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(30px)';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                        item.style.transition = 'all 0.6s ease';
-                    }, index * 100);
-                } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(30px)';
-                    setTimeout(() => { 
-                        item.style.display = 'none'; 
-                    }, 300);
-                }
+            currentCategory = category;
+            currentPage = 1;
+
+            // Hide all items first
+            allItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.display = 'none';
             });
+
+            // Get filtered items and display them
+            setTimeout(() => {
+                const filteredItems = getFilteredItems(category);
+                displayItems(filteredItems, currentPage);
+            }, 300);
         }
 
+        // Tab button click handlers
         const tabButtons = document.querySelectorAll('.tab-btn');
         tabButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const category = this.getAttribute('data-category');
                 filterGallery(category, this);
+                
+                // Smooth scroll to gallery section
+                setTimeout(() => {
+                    galleryGrid.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 100);
             });
         });
 
+        // View More button click handler
+        if (viewMoreBtn) {
+            viewMoreBtn.addEventListener('click', function() {
+                currentPage++;
+                const filteredItems = getFilteredItems(currentCategory);
+                
+                const newItemsStartIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+                displayItems(filteredItems, currentPage);
+                
+                // Scroll to first new item after animation
+                setTimeout(() => {
+                    if (filteredItems[newItemsStartIndex]) {
+                        const element = filteredItems[newItemsStartIndex];
+                        const yOffset = -100;
+                        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        
+                        window.scrollTo({
+                            top: y,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 400);
+            });
+        }
+
+        // Image error handling
         galleryItems.forEach(imgItem => {
             const img = imgItem.querySelector('.gallery-img');
             if (img) {
@@ -745,6 +926,7 @@ body {
             }
         });
 
+        // Section header animation
         const sectionHeader = document.querySelector('.section-header');
         if (sectionHeader) {
             sectionHeader.style.opacity = '0';
@@ -752,6 +934,11 @@ body {
             sectionHeader.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
             observer.observe(sectionHeader);
         }
+
+        // Initialize with "All Projects" filter
+        setTimeout(() => {
+            filterGallery('all', document.querySelector('.tab-btn.active'));
+        }, 100);
     }
 
     if (document.readyState === 'loading') {
