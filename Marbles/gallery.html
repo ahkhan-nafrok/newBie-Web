@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Section - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+
+:root {
+    --royal-gold: #C9A961;
+    --deep-navy: #0F172A;
+    --charcoal: #1E293B;
+    --cream: #FEFDF8;
+    --warm-white: #FFFFFF;
+    --accent-brown: #92400E;
+    --text-light: #64748B;
+    --text-dark: #1E293B;
+    --royal-purple: #5B21B6;
+    --deep-emerald: #059669;
+    --rich-burgundy: #991B1B;
+    --light-gold: #FEF3C7;
+    --dark-gold: #D97706;
+    --soft-gray: #F8FAFC;
+    --border-light: #E2E8F0;
+    --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+.section {
+    padding: 8rem 0;
+    position: relative;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--soft-gray) 100%);
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+}
+
+.section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="luxury-grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.8" fill="%23C9A961" opacity="0.03"/><circle cx="75" cy="45" r="0.5" fill="%23C9A961" opacity="0.02"/><circle cx="45" cy="75" r="0.6" fill="%23C9A961" opacity="0.025"/></pattern></defs><rect width="100" height="100" fill="url(%23luxury-grain)"/></svg>');
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 6rem;
+    position: relative;
+}
+
+.section-subtitle {
+    color: var(--royal-gold);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    display: inline-block;
+}
+
+.section-subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--royal-gold), var(--dark-gold));
+    border-radius: 2px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.75rem;
+    font-weight: 600;
+    color: var(--deep-navy);
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.section-description {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+}
+
+.gallery-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: var(--warm-white);
+    color: var(--text-dark);
+    border: 2px solid var(--royal-gold);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8125rem;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-subtle);
+}
+
+.tab-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.tab-btn:hover::before {
+    left: 100%;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+    background: linear-gradient(135deg, var(--royal-gold), var(--dark-gold));
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(201, 169, 97, 0.4);
+    border-color: var(--royal-gold);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.gallery-item {
+    position: relative;
+    height: 350px;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--warm-white);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--royal-gold), var(--dark-gold));
+    border-radius: 24px 24px 0 0;
+    z-index: 2;
+}
+
+.gallery-item:hover {
+    transform: translateY(-20px) scale(1.02);
+    box-shadow: var(--shadow-heavy);
+    border-color: rgba(201, 169, 97, 0.3);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.95) 100%);
+    color: white;
+    padding: 2rem 1.5rem;
+    transform: translateY(100px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+    background: linear-gradient(135deg, 
+        rgba(201, 169, 97, 0.95) 0%, 
+        rgba(146, 64, 14, 0.95) 100%);
+}
+
+.gallery-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.gallery-category {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.premium-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--royal-gold), var(--dark-gold));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 4;
+    box-shadow: 0 4px 15px rgba(201, 169, 97, 0.3);
+}
+
+@media (max-width: 1200px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.75rem;
+    }
+
+    .section {
+        padding: 6rem 0;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .gallery-tabs {
+        gap: 0.75rem;
+    }
+
+    .tab-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 2.25rem;
+    }
+
+    .gallery-title {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+    </style>
+</head>
+<body>
+    <section class="section gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Our Portfolio</p>
+                <h2 class="section-title">Explore Our Gallery</h2>
+                <p class="section-description">
+                    Explore our extensive portfolio of completed projects, showcasing the extraordinary beauty 
+                    and masterful craftsmanship of our marble and granite installations across diverse settings.
+                </p>
+            </div>
+            
+            <div class="gallery-tabs">
+                <button class="tab-btn active" data-category="all">All Projects</button>
+                <button class="tab-btn" data-category="mandir">Mandirs</button>
+                <button class="tab-btn" data-category="flooring">Flooring</button>
+                <button class="tab-btn" data-category="handicrafts">Handicrafts</button>
+                <button class="tab-btn" data-category="inlay">Inlay Work</button>
+            </div>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                
+                
+               
+
+      <!-- Inlay Works -->
+<div class="gallery-item" data-category="inlay">
+    <div class="premium-badge">Masterpiece</div>
+    <img src="Inly-works/inly1.png" alt="Intricate Inlay Work" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Intricate Inlay Work</h4>
+        <p class="gallery-category">Custom • Jaipur</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="inlay">
+    <div class="premium-badge">Masterpiece</div>
+    <img src="Inly-works/inly2.png" alt="Floral Marble Inlay" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Floral Marble Inlay</h4>
+        <p class="gallery-category">Custom • Agra</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="inlay">
+    <div class="premium-badge">Masterpiece</div>
+    <img src="Inly-works/inly3.png" alt="Traditional Inlay Design" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Traditional Inlay Design</h4>
+        <p class="gallery-category">Custom • Delhi</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="inlay">
+    <div class="premium-badge">Masterpiece</div>
+    <img src="Inly-works/inly4.png" alt="Geometric Inlay Pattern" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Geometric Inlay Pattern</h4>
+        <p class="gallery-category">Custom • Mumbai</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="inlay">
+    <div class="premium-badge">Masterpiece</div>
+    <img src="Inly-works/inly6.png" alt="Elegant Inlay Flooring" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Elegant Inlay Flooring</h4>
+        <p class="gallery-category">Custom • Bangalore</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="inlay">
+    <div class="premium-badge">Masterpiece</div>
+    <img src="Inly-works/inly7.png" alt="Classic Marble Inlay" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Classic Marble Inlay</h4>
+        <p class="gallery-category">Custom • Chennai</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="inlay">
+    <div class="premium-badge">Masterpiece</div>
+    <img src="Inly-works/inly8.png" alt="Royal Inlay Artwork" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Royal Inlay Artwork</h4>
+        <p class="gallery-category">Custom • Udaipur</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="inlay">
+    <div class="premium-badge">Masterpiece</div>
+    <img src="Inly-works/inly9.png" alt="Artistic Marble Inlay" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Artistic Marble Inlay</h4>
+        <p class="gallery-category">Custom • Lucknow</p>
+    </div>
+</div>
+
+               <!-- Handicrafts -->
+<div class="gallery-item" data-category="handicrafts">
+    <div class="premium-badge">Artisan</div>
+    <img src="HandiCrafts/hand1.png" alt="Handcrafted Marble Art" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Handcrafted Marble Art</h4>
+        <p class="gallery-category">Decorative • Agra</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="handicrafts">
+    <div class="premium-badge">Artisan</div>
+    <img src="HandiCrafts/hand2.png" alt="Marble Decorative Vase" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Marble Decorative Vase</h4>
+        <p class="gallery-category">Decorative • Jaipur</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="handicrafts">
+    <div class="premium-badge">Artisan</div>
+    <img src="HandiCrafts/hand3.png" alt="Handmade Marble Plate" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Handmade Marble Plate</h4>
+        <p class="gallery-category">Decorative • Delhi</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="handicrafts">
+    <div class="premium-badge">Artisan</div>
+    <img src="HandiCrafts/hand4.png" alt="Marble Elephant Figurine" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Marble Elephant Figurine</h4>
+        <p class="gallery-category">Decorative • Rajasthan</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="handicrafts">
+    <div class="premium-badge">Artisan</div>
+    <img src="HandiCrafts/hand5.png" alt="Carved Marble Bowl" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Carved Marble Bowl</h4>
+        <p class="gallery-category">Decorative • Hyderabad</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="handicrafts">
+    <div class="premium-badge">Artisan</div>
+    <img src="HandiCrafts/hand6.png" alt="Marble Candle Holder" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Marble Candle Holder</h4>
+        <p class="gallery-category">Decorative • Bangalore</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="handicrafts">
+    <div class="premium-badge">Artisan</div>
+    <img src="HandiCrafts/hand7.png" alt="Traditional Marble Box" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Traditional Marble Box</h4>
+        <p class="gallery-category">Decorative • Lucknow</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="handicrafts">
+    <div class="premium-badge">Artisan</div>
+    <img src="HandiCrafts/hand8.png" alt="Marble Peacock Artwork" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Marble Peacock Artwork</h4>
+        <p class="gallery-category">Decorative • Udaipur</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="handicrafts">
+    <div class="premium-badge">Artisan</div>
+    <img src="HandiCrafts/hand9.png" alt="Elegant Marble Sculpture" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Elegant Marble Sculpture</h4>
+        <p class="gallery-category">Decorative • Chennai</p>
+    </div>
+</div>
+
+
+                <!-- Mandir References -->
+
+<div class="gallery-item" data-category="mandir">
+    <div class="premium-badge">Heritage</div>
+    <img src="JainTemples/temple7.png" alt="Marble Idol Base" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Marble Idol Base</h4>
+        <p class="gallery-category">Mandir • Ahmedabad</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mandir">
+    <div class="premium-badge">Heritage</div>
+    <img src="JainTemples/temple1.png" alt="Temple Pillars" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Temple Pillars</h4>
+        <p class="gallery-category">Mandir • Rajasthan</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mandir">
+    <div class="premium-badge">Heritage</div>
+    <img src="JainTemples/temple2.png" alt="Temple Flooring" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Temple Flooring</h4>
+        <p class="gallery-category">Mandir • Karnataka</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mandir">
+    <div class="premium-badge">Heritage</div>
+    <img src="JainTemples/temple3.png" alt="Mandir Entrance Gate" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Mandir Entrance Gate</h4>
+        <p class="gallery-category">Mandir • Varanasi</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mandir">
+    <div class="premium-badge">Heritage</div>
+    <img src="JainTemples/temple4.png" alt="Temple Domes" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Temple Domes</h4>
+        <p class="gallery-category">Mandir • Jaipur</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mandir">
+    <div class="premium-badge">Heritage</div>
+    <img src="JainTemples/temple5.png" alt="Mandir Wall Carvings" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Mandir Wall Carvings</h4>
+        <p class="gallery-category">Mandir • Udaipur</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mandir">
+    <div class="premium-badge">Heritage</div>
+    <img src="JainTemples/temple6.png" alt="Temple Sanctum" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Temple Sanctum</h4>
+        <p class="gallery-category">Mandir • Chennai</p>
+    </div>
+</div>
+
+
+                <!-- Floor References -->
+<div class="gallery-item" data-category="flooring">
+    <div class="premium-badge">Premium</div>
+    <img src="Floor/Temple-floor3.png" alt="Temple Marble Pillars" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Temple Marble Pillars</h4>
+        <p class="gallery-category">Temple • Rajasthan</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="flooring">
+    <div class="premium-badge">Premium</div>
+    <img src="Floor/Temple-floor2.png" alt="Temple Flooring" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Temple Flooring</h4>
+        <p class="gallery-category">Temple • Tamil Nadu</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="flooring">
+    <div class="premium-badge">Premium</div>
+    <img src="Floor/Temple-floor1.png" alt="Temple Marble Entrance" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Temple Marble Entrance</h4>
+        <p class="gallery-category">Temple • Gujarat</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="flooring">
+    <div class="premium-badge">Premium</div>
+    <img src="Floor/Temple-floor4.png" alt="Temple Marble Idol Base" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Temple Marble Idol Base</h4>
+        <p class="gallery-category">Temple • Karnataka</p>
+    </div>
+</div>
+
+<!-- House References -->
+<div class="gallery-item" data-category="flooring">
+    <div class="premium-badge">Premium</div>
+    <img src="Floor/house-floor2.png" alt="Luxury Marble Flooring" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Luxury Marble Flooring</h4>
+        <p class="gallery-category">Residential • Bangalore</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="flooring">
+    <div class="premium-badge">Premium</div>
+    <img src="Floor/house-floor3.png" alt="Modern Marble Kitchen" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Modern Marble Kitchen</h4>
+        <p class="gallery-category">Residential • Mumbai</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="flooring">
+    <div class="premium-badge">Premium</div>
+    <img src="Floor/house-floor4.png" alt="Marble Staircase" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Marble Staircase</h4>
+        <p class="gallery-category">Residential • Hyderabad</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="flooring">
+    <div class="premium-badge">Premium</div>
+    <img src="Floor/house-floor5.png" alt="Marble Bathroom Design" class="gallery-img" loading="lazy">
+    <div class="gallery-overlay">
+        <h4 class="gallery-title">Marble Bathroom Design</h4>
+        <p class="gallery-category">Residential • Delhi</p>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </section>
+
+<script>
+(function() {
+    function initGallery() {
+        const galleryGrid = document.getElementById('galleryGrid');
+        const galleryTabs = document.querySelector('.gallery-tabs');
+        
+        if (!galleryGrid || !galleryTabs) {
+            console.log('Gallery elements not found, retrying...');
+            setTimeout(initGallery, 100);
+            return;
+        }
+
+        console.log('✅ Gallery initialized successfully');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(item);
+        });
+
+        function filterGallery(category, clickedButton) {
+            const items = document.querySelectorAll('.gallery-item');
+            const tabs = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+
+            items.forEach((item, index) => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(30px)';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                        item.style.transition = 'all 0.6s ease';
+                    }, index * 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(30px)';
+                    setTimeout(() => { 
+                        item.style.display = 'none'; 
+                    }, 300);
+                }
+            });
+        }
+
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                filterGallery(category, this);
+            });
+        });
+
+        galleryItems.forEach(imgItem => {
+            const img = imgItem.querySelector('.gallery-img');
+            if (img) {
+                img.addEventListener('error', function() {
+                    this.src = 'data:image/svg+xml;base64,' + btoa(`
+                        <svg xmlns="http://www.w3.org/2000/svg" width="600" height="600">
+                            <rect width="600" height="600" fill="#FEFDF8"/>
+                            <text x="50%" y="50%" fill="#C9A961" font-size="20" font-family="Arial" text-anchor="middle" dy=".3em">
+                                Image Not Available
+                            </text>
+                        </svg>
+                    `);
+                    this.alt = 'Image not available';
+                });
+            }
+        });
+
+        const sectionHeader = document.querySelector('.section-header');
+        if (sectionHeader) {
+            sectionHeader.style.opacity = '0';
+            sectionHeader.style.transform = 'translateY(40px)';
+            sectionHeader.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(sectionHeader);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initGallery);
+    } else {
+        initGallery();
+    }
+})();
+</script>
+</body>
+</html>

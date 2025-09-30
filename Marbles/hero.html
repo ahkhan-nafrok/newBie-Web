@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+ <style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+:root {
+    --royal-gold: #D4A574;
+    --deep-navy: #1A1B23;
+    --charcoal: #2C2D35;
+    --cream: #F8F6F0;
+    --warm-white: #FEFCF7;
+    --accent-brown: #8B6914;
+    --text-light: #6B7280;
+    --text-dark: #1F2937;
+    --royal-purple: #4A2C7A;
+    --deep-emerald: #1B4B36;
+    --rich-burgundy: #722F37;
+    --light-gold: #F4E4BC;
+    --dark-gold: #B8860B;
+    --pure-white: #FFFFFF;
+    --soft-black: #0A0A0A;
+    --elegant-gray: #F5F5F7;
+}
+
+/* Hero Section with Background Slider */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+    font-feature-settings: "liga" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-color, rgba(0, 0, 0, 0.15));
+    z-index: 1;
+    transition: background 2s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeIn 2s ease;
+}
+
+.hero-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, var(--overlay-accent, rgba(212, 165, 116, 0.08)) 100%);
+    opacity: 0.6;
+    z-index: 2;
+    transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideInRight 2s ease;
+}
+
+.hero-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-text {
+    animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-text > * {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInStagger 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.hero-text .hero-subtitle {
+    animation-delay: 0.2s;
+}
+
+.hero-text .hero-title {
+    animation-delay: 0.4s;
+}
+
+.hero-text .hero-description {
+    animation-delay: 0.6s;
+}
+
+.hero-text .hero-buttons {
+    animation-delay: 0.8s;
+}
+
+.hero-subtitle {
+    color: var(--subtitle-color, var(--royal-gold));
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    opacity: 0.9;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+.hero-subtitle:hover {
+    letter-spacing: 5px;
+    transform: translateX(5px);
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.75rem;
+    font-weight: 600;
+    color: var(--title-color, var(--deep-navy));
+    line-height: 1.05;
+    margin-bottom: 2rem;
+    letter-spacing: -2px;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--subtitle-color, var(--royal-gold));
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-title:hover::after {
+    width: 120px;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--description-color, var(--text-light));
+    margin-bottom: 3rem;
+    line-height: 1.75;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 400;
+    max-width: 560px;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.95;
+}
+
+.hero-description:hover {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-btn-text, white);
+    padding: 1.25rem 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 60px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    box-shadow: 0 8px 32px rgba(212, 165, 116, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(212, 165, 116, 0.35);
+    letter-spacing: 2px;
+}
+
+.hero-image {
+    position: relative;
+    animation: fadeInRight 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-image::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: 20px;
+    bottom: 20px;
+    border: 2px solid var(--subtitle-color, var(--royal-gold));
+    border-radius: 24px;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.hero-image:hover::before {
+    opacity: 0.3;
+    top: -15px;
+    left: -15px;
+    right: 15px;
+    bottom: 15px;
+}
+
+.hero-img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(1.05) contrast(1.05);
+}
+
+.hero-img:hover {
+    transform: scale(1.03) rotateY(2deg);
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.25);
+}
+
+/* Slide Navigation Indicators */
+.slide-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 15;
+}
+
+.slide-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.slide-dot::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-dot.active {
+    background: var(--royal-gold);
+    border-color: var(--royal-gold);
+    transform: scale(1.2);
+}
+
+.slide-dot.active::before {
+    border-color: var(--royal-gold);
+    opacity: 0.3;
+}
+
+.slide-dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(1.1);
+}
+
+.slide-dot:hover::before {
+    inset: -6px;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInStagger {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 0.6;
+        transform: translateX(0);
+    }
+}
+
+/* Content fade animation */
+.hero-text.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.hero-text.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Parallax effect for background */
+@media (prefers-reduced-motion: no-preference) {
+    .hero-slide {
+        transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.1s ease-out;
+    }
+    
+    .hero-slide.active {
+        animation: subtleZoom 20s ease-in-out infinite alternate;
+    }
+}
+
+@keyframes subtleZoom {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 4rem;
+        padding: 0 2rem;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .hero-description {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 120px 0 80px;
+    }
+
+    .hero-title {
+        font-size: 2.75rem;
+        letter-spacing: -1px;
+    }
+
+    .hero-description {
+        font-size: 1.125rem;
+    }
+
+    .btn-primary{
+        padding: 1rem 2.5rem;
+        font-size: 0.8rem;
+    }
+
+    .slide-indicators {
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content {
+        padding: 0 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.25rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .btn-primary{
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+}
+</style>
+</head>
+<body>
+    <section class="hero" id="home">
+    <div class="hero-slider">
+        <div class="hero-slide active" 
+             style="background-image: url('Hero/herobg1.png')"
+             data-theme="dark"
+             data-subtitle="Exquisite Italian Marble Collection"
+             data-title="Timeless Luxury in Every Grain"
+             data-description="Discover our handpicked selection of premium Carrara and Calacatta marbles, where centuries of Italian craftsmanship meet contemporary elegance."
+             data-primary-btn="Explore Marble"></div>
+        
+        <div class="hero-slide" 
+             style="background-image: url('Hero/herobg4.png')"
+             data-theme="light"
+             data-subtitle="Sacred Temple Artistry"
+             data-title="Divine Mandirs, Crafted to Perfection"
+             data-description="Experience the spiritual elegance of our bespoke marble mandirs, meticulously carved by master artisans to create sacred spaces of unparalleled beauty."
+             data-primary-btn="Design Mandir"></div>
+        
+        <div class="hero-slide" 
+             style="background-image: url('Hero/herobg3.png')"
+             data-theme="dark"
+             data-subtitle="Architectural Granite Excellence"
+             data-title="Strength Meets Sophistication"
+             data-description="From kitchen countertops to grand facades, our premium granite selections offer durability and elegance that stands the test of time."
+             data-primary-btn="Discover Granite"></div>
+        
+        <div class="hero-slide" 
+             style="background-image: url('Hero/herobg2.png')"
+             data-theme="dark"
+             data-subtitle="Bespoke Stone Installations"
+             data-title="Your Vision, Our Mastery"
+             data-description="Transform your space with custom stone installations that reflect your unique style. From concept to completion, we bring dreams to life."
+             data-primary-btn="Start Project"></div>
+    </div>
+    
+    <div class="hero-content">
+        <div class="hero-text">
+            <p class="hero-subtitle">Premium Marble & Granite Specialists</p>
+            <h1 class="hero-title">Crafting Timeless Elegance with Natural Stone Mastery</h1>
+            <p class="hero-description">
+                Experience the pinnacle of marble artistry with our exquisite collection of premium natural stones. 
+                From sacred home mandirs to breathtaking floor installations, we transform spaces with unmatched 
+                craftsmanship, superior quality, and generations of stone-working expertise.
+            </p>
+            <div class="hero-buttons">
+                <a href="#gallery" class="btn-primary">Discover Collections</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-indicators">
+        <div class="slide-dot active" data-slide="0"></div>
+        <div class="slide-dot" data-slide="1"></div>
+        <div class="slide-dot" data-slide="2"></div>
+        <div class="slide-dot" data-slide="3"></div>
+    </div>
+</section>
+
+   <script>
+// Hero section functionality - COMPONENT VERSION
+(function() {
+    // Wait for DOM to be ready
+    function initHero() {
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slide-dot');
+        const totalSlides = slides.length;
+        const heroText = document.querySelector('.hero-text');
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        const heroTitle = document.querySelector('.hero-title');
+        const heroDescription = document.querySelector('.hero-description');
+        const btnPrimary = document.querySelector('.btn-primary');
+
+        // Exit if elements not found
+        if (!slides.length || !heroText) {
+            console.log('Hero elements not ready, retrying...');
+            setTimeout(initHero, 100);
+            return;
+        }
+
+        // Theme configurations
+        const themes = {
+            dark: {
+                titleColor: '#FFFFFF',
+                subtitleColor: '#D4A574',
+                descriptionColor: '#E5E7EB',
+                overlayColor: 'rgba(0, 0, 0, 0.45)',
+                overlayAccent: 'rgba(212, 165, 116, 0.15)',
+                primaryBtnBg: 'linear-gradient(135deg, #D4A574, #B8860B)',
+                primaryBtnText: '#FFFFFF',
+            },
+            light: {
+                titleColor: '#1A1B23',
+                subtitleColor: '#4A4A4E',
+                descriptionColor: '#4B5563',
+                overlayColor: 'rgba(255, 255, 255, 0.25)',
+                overlayAccent: 'rgba(26, 27, 35, 0.08)',
+                primaryBtnBg: 'linear-gradient(135deg, #1A1B23, #2C2D35)',
+                primaryBtnText: '#FFFFFF',
+            }
+        };
+
+        function updateContent(slideIndex) {
+            const slide = slides[slideIndex];
+            const theme = slide.dataset.theme;
+            const subtitle = slide.dataset.subtitle;
+            const title = slide.dataset.title;
+            const description = slide.dataset.description;
+            const primaryBtn = slide.dataset.primaryBtn;
+
+            // Fade out
+            heroText.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            heroText.style.opacity = '0';
+            heroText.style.transform = 'translateY(-20px)';
+
+            setTimeout(() => {
+                // Update content
+                heroSubtitle.textContent = subtitle;
+                heroTitle.textContent = title;
+                heroDescription.textContent = description;
+                btnPrimary.textContent = primaryBtn;
+
+                // Apply theme colors
+                const themeConfig = themes[theme];
+                document.documentElement.style.setProperty('--title-color', themeConfig.titleColor);
+                document.documentElement.style.setProperty('--subtitle-color', themeConfig.subtitleColor);
+                document.documentElement.style.setProperty('--description-color', themeConfig.descriptionColor);
+                document.documentElement.style.setProperty('--overlay-color', themeConfig.overlayColor);
+                document.documentElement.style.setProperty('--overlay-accent', themeConfig.overlayAccent);
+                document.documentElement.style.setProperty('--primary-btn-bg', themeConfig.primaryBtnBg);
+                document.documentElement.style.setProperty('--primary-btn-text', themeConfig.primaryBtnText);
+
+                // Fade in
+                heroText.style.opacity = '1';
+                heroText.style.transform = 'translateY(0)';
+            }, 400);
+        }
+
+        function nextSlide() {
+            if (slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % totalSlides;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+                updateContent(currentSlide);
+            }
+        }
+
+        function goToSlide(slideIndex) {
+            if (slides.length > 0 && slideIndex >= 0 && slideIndex < totalSlides && slideIndex !== currentSlide) {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                currentSlide = slideIndex;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+                updateContent(currentSlide);
+            }
+        }
+
+        // Initialize with first slide content
+        updateContent(0);
+
+        // Auto-advance slides
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                goToSlide(index);
+                slideInterval = setInterval(nextSlide, 6000);
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                clearInterval(slideInterval);
+                const prevSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
+                goToSlide(prevSlide);
+                slideInterval = setInterval(nextSlide, 5000);
+            } else if (e.key === 'ArrowRight') {
+                clearInterval(slideInterval);
+                const nextSlideIndex = (currentSlide + 1) % totalSlides;
+                goToSlide(nextSlideIndex);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+        });
+
+        // Pause on hover
+        const hero = document.querySelector('.hero');
+        // Smooth scrolling for buttons
+        const heroButtons = document.querySelectorAll('.hero-buttons a[href^="#"]');
+        heroButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    if (window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'scrollToSection',
+                            sectionId: targetId
+                        }, '*');
+                    } else {
+                        const headerHeight = 80;
+                        const targetPosition = targetElement.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Visibility change handling
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                clearInterval(slideInterval);
+            } else {
+                slideInterval = setInterval(nextSlide, 6000);
+            }
+        });
+
+        // Preload images
+        slides.forEach((slide, index) => {
+            const bgImage = getComputedStyle(slide).backgroundImage;
+            const imageUrl = bgImage.slice(4, -1).replace(/"/g, "");
+            
+            if (imageUrl && imageUrl !== 'none') {
+                const img = new Image();
+                img.onload = () => console.log(`Hero slide ${index + 1} loaded`);
+                img.src = imageUrl;
+            }
+        });
+
+        console.log('✅ Hero slider initialized successfully');
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHero);
+    } else {
+        initHero();
+    }
+})();
+</script>
+</body>
+</html>

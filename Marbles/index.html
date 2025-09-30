@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIZAZ MARBLE TRADERS</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --royal-gold: #D4A574;
+      --deep-navy: #1A1B23;
+      --accent-brown: #8B6914;
+      --cream: #F8F6F0;
+      --warm-white: #FEFCF7;
+      --text-dark: #1F2937;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--warm-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    html { scroll-behavior: smooth; }
+
+    /* Loader */
+    .page-loader {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--warm-white);
+      z-index: 9999;
+    }
+    .loader-logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--royal-gold);
+      font-family: 'Cormorant Garamond', serif;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1) }
+      50% { transform: scale(1.1) }
+    }
+    body.loaded .page-loader { opacity: 0; pointer-events: none; transition: 0.5s; }
+    .site-wrapper { opacity: 0; transition: opacity 0.5s ease; }
+    body.loaded .site-wrapper { opacity: 1; }
+  </style>
+</head>
+<body>
+  <!-- Loader -->
+  <div class="page-loader">
+    <div class="loader-logo">AM</div>
+  </div>
+
+  <!-- Wrapper -->
+  <div class="site-wrapper">
+    <!-- Navbar Component -->
+    <div id="navbarComponent"></div>
+
+    <!-- Other Components -->
+    <div id="heroComponent"></div>
+    <div id="aboutComponent"></div>
+    <div id="categoriesComponent"></div>
+    <div id="galleryComponent"></div>
+    <div id="contactComponent"></div>
+    <div id="footerComponent"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        document.body.classList.add("loaded");
+        loadComponents();
+      }, 1500);
+    });
+
+    async function loadComponents() {
+      const components = [
+        { name: "navbar", target: "navbarComponent" },
+        { name: "hero", target: "heroComponent" },
+        { name: "about", target: "aboutComponent" },
+        { name: "categories", target: "categoriesComponent" },
+        { name: "gallery", target: "galleryComponent" },
+        { name: "contact", target: "contactComponent" },
+        { name: "footer", target: "footerComponent" }
+      ];
+      
+      for (const comp of components) {
+        await loadComponent(comp.name, comp.target);
+      }
+    }
+
+    // Load component function with proper CSS, HTML, and script handling
+    async function loadComponent(name, targetId) {
+      try {
+        const htmlResp = await fetch(`${name}.html`);
+        const htmlText = await htmlResp.text();
+        
+        // Create a temporary div to parse the HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlText;
+        
+        // Get the target element
+        const targetElement = document.getElementById(targetId);
+        
+        // Extract and insert CSS styles first
+        const styles = tempDiv.querySelectorAll('style');
+        styles.forEach(style => {
+          const styleElement = document.createElement('style');
+          styleElement.innerHTML = style.innerHTML;
+          styleElement.setAttribute('data-component', name);
+          document.head.appendChild(styleElement);
+        });
+        
+        // Extract scripts before removing them
+        const scripts = tempDiv.querySelectorAll('script');
+        const scriptContents = Array.from(scripts).map(script => script.innerHTML);
+        
+        // Remove script and style tags from the HTML
+        scripts.forEach(script => script.remove());
+        styles.forEach(style => style.remove());
+        
+        // Insert the HTML content
+        targetElement.innerHTML = tempDiv.innerHTML;
+        
+        // Wait for DOM to be ready (important for animations and JavaScript)
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Execute scripts after HTML and CSS are properly inserted
+        scriptContents.forEach(scriptContent => {
+          if (scriptContent.trim()) {
+            try {
+              // Create a new script element and execute it
+              const scriptElement = document.createElement('script');
+              scriptElement.innerHTML = scriptContent;
+              scriptElement.setAttribute('data-component', name);
+              document.body.appendChild(scriptElement);
+              
+              // Clean up after execution to avoid duplicates
+              setTimeout(() => {
+                if (scriptElement.parentNode) {
+                  scriptElement.parentNode.removeChild(scriptElement);
+                }
+              }, 500);
+            } catch (scriptError) {
+              console.error(`❌ Error executing script in ${name}:`, scriptError);
+            }
+          }
+        });
+        
+        console.log(`✅ ${name} component loaded successfully`);
+        
+      } catch (err) {
+        console.error(`❌ Error loading ${name}:`, err);
+      }
+    }
+  </script>
+</body>
+</html>

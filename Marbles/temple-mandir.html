@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jain Mandirs & Temples - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <div class="back-navigation">
+                <a href="backcategories.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Categories</span>
+                </a>
+            </div>
+
+            <div class="section-header">
+                <p class="section-subtitle">Sacred Architecture</p>
+                <h1 class="section-title">Jain Mandirs & Temples</h1>
+                <p class="section-description">
+                    Experience the sublime beauty of Jain temple architecture. Our master artisans craft exquisite marble temples that honor Jain principles of non-violence, purity, and spiritual devotion. Each piece reflects the intricate artistry found in historic Jain temples of Ranakpur, Dilwara, and Palitana, bringing sacred serenity to your space.
+                </p>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-body">
+                <span class="modal-badge">Premium Collection</span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+                <h3 class="features-title">Key Features</h3>
+                <ul class="modal-features" id="modalFeatures"></ul>
+                <button class="modal-whatsapp" onclick="contactWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Inquire on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Dilwara Style Temple",
+                image: "JainTemples/temple7.png",
+                badge: "Masterpiece",
+                description: "Magnificent temple inspired by the legendary Dilwara temples of Mount Abu. Features intricate marble carvings with delicate filigree work, ornate pillars, and detailed ceiling patterns. A masterpiece of Jain architectural excellence that brings divine beauty and spiritual energy to any space.",
+                features: ["Dilwara-inspired design", "Intricate marble filigree", "Hand-carved ornate pillars", "Detailed ceiling patterns", "Museum-quality craftsmanship"]
+            },
+            {
+                id: 2,
+                title: "Ranakpur Inspired Mandir",
+                image: "JainTemples/temple1.png",
+                badge: "Heritage",
+                description: "Grand temple design inspired by Ranakpur's architectural marvel. Features multiple carved domes, intricate jaali work, and symmetrical precision. Each pillar tells a story of devotion through detailed carvings of Tirthankaras and sacred symbols, creating an atmosphere of profound spirituality.",
+                features: ["Ranakpur architectural style", "Multiple carved domes", "Sacred Tirthankara carvings", "Precise symmetrical design", "Authentic jaali screens"]
+            },
+            {
+                id: 3,
+                title: "Compact Jain Prayer Shrine",
+                image: "JainTemples/temple2.png",
+                badge: "Elegant",
+                description: "Beautifully proportioned compact shrine perfect for homes and offices. Features essential Jain architectural elements including lotus motifs, swastika symbols, and intricate border carvings. Provides a serene space for daily prayers and meditation while maintaining elegant simplicity.",
+                features: ["Compact home design", "Lotus & swastika motifs", "Space-efficient layout", "Daily prayer friendly", "Pure white marble"]
+            },
+            {
+                id: 4,
+                title: "Triple Spire Jain Temple",
+                image: "JainTemples/temple3.png",
+                badge: "Grand",
+                description: "Majestic triple-spire temple representing the three jewels of Jainism - right faith, right knowledge, and right conduct. Each spire is adorned with intricate carvings and topped with kalash finials. Perfect for larger prayer halls and community spaces.",
+                features: ["Triple spire architecture", "Three jewels symbolism", "Kalash finial tops", "Grand scale design", "Community temple size"]
+            },
+            {
+                id: 5,
+                title: "Palitana Style Shikhara Temple",
+                image: "JainTemples/temple4.png",
+                badge: "Sacred",
+                description: "Authentic Palitana-inspired shikhara temple with soaring central tower. Features traditional Jain architectural elements including mandapa, garbha griha, and elaborate shikhara tower with intricate stone carvings depicting scenes from Jain scriptures and geometric patterns.",
+                features: ["Palitana architectural style", "Soaring shikhara tower", "Traditional mandapa design", "Scripture-inspired carvings", "Sacred geometry patterns"]
+            },
+            {
+                id: 6,
+                title: "Marble Jain Derasar",
+                image: "JainTemples/temple5.png",
+                badge: "Traditional",
+                description: "Traditional Gujarati-style Jain derasar with characteristic architectural features. Includes elaborate torana (archway), detailed pillar work, and sanctum for Tirthankara idols. Crafted following traditional proportions and sacred geometry principles passed down through generations.",
+                features: ["Gujarati derasar style", "Elaborate torana archway", "Multiple Tirthankara niches", "Traditional proportions", "Sacred geometry based"]
+            },
+            {
+                id: 7,
+                title: "Contemporary Jain Shrine",
+                image: "JainTemples/temple6.png",
+                badge: "Modern",
+                description: "Modern interpretation of Jain temple architecture combining traditional symbolism with contemporary clean lines. Features minimalist marble construction while maintaining essential elements like lotus pedestals and sacred symbols. Perfect for modern homes seeking spiritual connection.",
+                features: ["Contemporary design", "Minimalist aesthetics", "Traditional symbolism", "Clean marble lines", "Modern home compatible"]
+            }
+        ];
+
+        const whatsappNumber = "1234567890";
+        let currentProduct = null;
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map((product, index) => `
+                <div class="product-card" style="animation-delay: ${index * 0.1}s; transform: translateY(30px);" onclick="openModal(${product.id})">
+                    <div class="product-image-wrapper">
+                        <span class="premium-badge">${product.badge}</span>
+                        <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'320\\'%3E%3Crect fill=\\'%23f8fafc\\' width=\\'400\\' height=\\'320\\'/%3E%3Ctext fill=\\'%23c9a961\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' font-family=\\'Playfair Display, serif\\' font-size=\\'24\\'%3EJain Temple%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-preview">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="view-details-btn">
+                                View Details
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <div class="whatsapp-btn" onclick="event.stopPropagation(); contactWhatsAppDirect(${product.id})">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            observeCards();
+        }
+
+        function observeCards() {
+            const cards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        }
+
+        function openModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            document.getElementById('modalImage').src = currentProduct.image;
+            document.getElementById('modalTitle').textContent = currentProduct.title;
+            document.getElementById('modalDescription').textContent = currentProduct.description;
+            
+            const featuresHtml = currentProduct.features.map(feature => `<li>${feature}</li>`).join('');
+            document.getElementById('modalFeatures').innerHTML = featuresHtml;
+
+            const modal = document.getElementById('productModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentProduct = null;
+        }
+
+        function contactWhatsApp() {
+            if (currentProduct) {
+                const message = `Hi! I'm interested in the *${currentProduct.title}* from your Jain Mandirs & Temples Collection.\n\nCould you please provide:\n• Pricing & quotation\n• Customization options\n• Dimensions & specifications\n• Installation services\n• Completion timeline\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        function contactWhatsAppDirect(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const message = `Hi! I'm interested in the *${product.title}* from your Jain Mandirs & Temples Collection.\n\nCould you please provide:\n• Pricing & quotation\n• Customization options\n• Dimensions & specifications\n• Installation services\n• Completion timeline\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Enhanced card interactions with smooth 3D tilt effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach((card) => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * 8;
+                    const rotateY = ((centerX - x) / centerX) * 8;
+                    
+                    this.style.transform = `translateY(-20px) scale(1.03) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Smooth scroll reveal with stagger
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const fadeInObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Animate section header
+            const sectionHeader = document.querySelector('.section-header');
+            if (sectionHeader) {
+                sectionHeader.style.opacity = '0';
+                sectionHeader.style.transform = 'translateY(30px)';
+                sectionHeader.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                fadeInObserver.observe(sectionHeader);
+            }
+
+            // Enhanced ripple effect for buttons
+            const buttons = document.querySelectorAll('.view-details-btn, .modal-whatsapp, .whatsapp-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.6);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: rippleEffect 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 700);
+                });
+            });
+
+            // Add ripple animation
+            if (!document.querySelector('#rippleAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'rippleAnimation';
+                style.textContent = `
+                    @keyframes rippleEffect {
+                        to {
+                            transform: scale(4.5);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            console.log('✨ Enhanced Premium Jain Mandirs & Temples Collection Loaded');
+            console.log('🎨 Features: Glassmorphism, Smooth 3D animations, Enhanced modal transitions');
+        });
+
+        // Initialize
+        renderProducts();
+    </script>
+</body>
+</html>

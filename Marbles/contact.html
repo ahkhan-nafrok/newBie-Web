@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Section - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+   <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+    --royal-gold: #D4A574;
+    --deep-navy: #1A1B23;
+    --charcoal: #2C2D35;
+    --cream: #F8F6F0;
+    --warm-white: #FEFCF7;
+    --accent-brown: #8B6914;
+    --text-light: #6B7280;
+    --text-dark: #1F2937;
+    --royal-purple: #4A2C7A;
+    --deep-emerald: #1B4B36;
+    --rich-burgundy: #722F37;
+    --light-gold: #F4E4BC;
+    --dark-gold: #B8860B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Section Styles */
+.section {
+    padding: 6rem 0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-subtitle {
+    color: var(--royal-gold);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--deep-navy);
+    margin-bottom: 1.5rem;
+}
+
+.section-description {
+    font-size: 1rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-family: 'Crimson Text', serif;
+}
+
+/* Contact Section */
+.contact {
+    background: var(--warm-white);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.contact-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-top: 4px solid var(--royal-gold);
+    border: 1px solid rgba(212, 165, 116, 0.1);
+}
+
+.contact-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon {
+    font-size: 2.5rem;
+    color: var(--royal-gold);
+    margin-bottom: 1rem;
+}
+
+.contact-item h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--deep-navy);
+    margin-bottom: 0.5rem;
+}
+
+.contact-item p {
+    color: var(--text-light);
+    font-family: 'Crimson Text', serif;
+}
+
+.contact-form {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid rgba(212, 165, 116, 0.1);
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--deep-navy);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(212, 165, 116, 0.2);
+    border-radius: 10px;
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--royal-gold);
+    box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
+    color: white;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(212, 165, 116, 0.4);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media (max-width: 991px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+
+    .contact-form {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+}</style>
+</head>
+<body>
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Get In Touch</p>
+                <h2 class="section-title">Contact Aizaz Marble Traders</h2>
+                <p class="section-description">
+                    Ready to transform your space with premium marble and granite? 
+                    Contact us for personalized consultations, detailed quotes, and expert guidance on your project.
+                </p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4>Phone</h4>
+                        <p>+91 98765 43210<br>+91 87654 32109</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email</h4>
+                        <p>info@aizazmarble.com<br>sales@aizazmarble.com</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Address</h4>
+                        <p>123 Marble District<br>Industrial Area, Mumbai</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Business Hours</h4>
+                        <p>Mon-Sat: 9:00 AM - 7:00 PM<br>Sunday: By Appointment</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--deep-navy); margin-bottom: 2rem; text-align: center;">Request a Quote</h3>
+                    
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category">Project Category</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select Your Project Type</option>
+                                <option value="home-mandir">Home Mandir</option>
+                                <option value="temple-mandir">Temple Mandir</option>
+                                <option value="floor-marble">Floor Marble</option>
+                                <option value="handicrafts">Handicrafts</option>
+                                <option value="jaali-work">Jaali Work (2D/3D)</option>
+                                <option value="inlay-work">Inlay Work</option>
+                                <option value="custom-project">Custom Project</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" name="message" placeholder="Please describe your project requirements, dimensions, design preferences, timeline, and any specific details that will help us provide an accurate quote..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Submit Quote Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Contact section functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Initialize contact items with staggered animation
+    const contactItems = document.querySelectorAll('.contact-item');
+    contactItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = `all 0.8s ease ${index * 0.2}s`;
+        observer.observe(item);
+    });
+
+    // Initialize contact form
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.style.opacity = '0';
+        contactForm.style.transform = 'translateY(50px)';
+        contactForm.style.transition = 'all 1s ease 0.5s';
+        observer.observe(contactForm);
+    }
+
+    // Form submission handling
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const firstName = formData.get('firstName');
+            const lastName = formData.get('lastName');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const category = formData.get('category');
+            const message = formData.get('message');
+            
+            // Basic validation
+            if (!validateForm(firstName, lastName, email, phone, category, message)) {
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Add loading animation
+            submitBtn.style.background = 'linear-gradient(135deg, #999, #666)';
+            
+            // Simulate form submission (replace with actual form submission logic)
+            setTimeout(() => {
+                // Success feedback
+                showSuccessMessage(`Thank you ${firstName}! Your quote request for ${category.replace('-', ' ')} has been submitted successfully. Our team will contact you within 24 hours.`);
+                
+                // Reset form
+                this.reset();
+                resetFormStyles();
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.background = 'linear-gradient(135deg, var(--royal-gold), var(--accent-brown))';
+                
+            }, 2000);
+        });
+    }
+
+    // Form validation
+    function validateForm(firstName, lastName, email, phone, category, message) {
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showError('Please enter a valid email address.');
+            return false;
+        }
+        
+        // Phone validation (basic)
+        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+        if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+            showError('Please enter a valid phone number.');
+            return false;
+        }
+        
+        // Category validation
+        if (!category) {
+            showError('Please select a project category.');
+            return false;
+        }
+        
+        // Message length validation
+        if (message.length < 10) {
+            showError('Please provide more details about your project (minimum 10 characters).');
+            return false;
+        }
+        
+        return true;
+    }
+
+    // Show error message
+    function showError(message) {
+        const errorDiv = document.querySelector('.error-message') || createErrorMessage();
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            errorDiv.style.display = 'none';
+        }, 5000);
+    }
+
+    // Show success message
+    function showSuccessMessage(message) {
+        const successDiv = document.querySelector('.success-message') || createSuccessMessage();
+        successDiv.textContent = message;
+        successDiv.style.display = 'block';
+        
+        // Auto-hide after 8 seconds
+        setTimeout(() => {
+            successDiv.style.display = 'none';
+        }, 8000);
+    }
+
+    // Create error message element
+    function createErrorMessage() {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.style.cssText = `
+            display: none;
+            background: #fee;
+            color: #c33;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #c33;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        `;
+        
+        const form = document.getElementById('contactForm');
+        form.insertBefore(errorDiv, form.firstChild);
+        
+        return errorDiv;
+    }
+
+    // Create success message element
+    function createSuccessMessage() {
+        const successDiv = document.createElement('div');
+        successDiv.className = 'success-message';
+        successDiv.style.cssText = `
+            display: none;
+            background: #efe;
+            color: #363;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #363;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        `;
+        
+        const form = document.getElementById('contactForm');
+        form.insertBefore(successDiv, form.firstChild);
+        
+        return successDiv;
+    }
+
+    // Reset form styles
+    function resetFormStyles() {
+        const inputs = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
+        inputs.forEach(input => {
+            input.style.borderColor = 'rgba(212, 165, 116, 0.2)';
+        });
+    }
+
+    // Enhanced form field interactions
+    const formFields = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
+    formFields.forEach(field => {
+        field.addEventListener('focus', function() {
+            this.style.borderColor = 'var(--royal-gold)';
+            this.style.boxShadow = '0 0 0 3px rgba(212, 165, 116, 0.1)';
+        });
+        
+        field.addEventListener('blur', function() {
+            if (this.value.trim() === '') {
+                this.style.borderColor = 'rgba(212, 165, 116, 0.2)';
+                this.style.boxShadow = 'none';
+            } else {
+                this.style.borderColor = '#4CAF50';
+                this.style.boxShadow = '0 0 0 2px rgba(76, 175, 80, 0.1)';
+            }
+        });
+        
+        field.addEventListener('input', function() {
+            // Real-time validation feedback
+            if (this.type === 'email' && this.value.length > 0) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailRegex.test(this.value)) {
+                    this.style.borderColor = '#4CAF50';
+                } else {
+                    this.style.borderColor = '#ff6b6b';
+                }
+            }
+        });
+    });
+
+    // Contact item hover effects
+    contactItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+            this.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.15)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.05)';
+        });
+    });
+
+    // Add click-to-copy functionality for contact info
+    const phoneElements = document.querySelectorAll('.contact-item p');
+    phoneElements.forEach(element => {
+        if (element.textContent.includes('+91') || element.textContent.includes('@')) {
+            element.style.cursor = 'pointer';
+            element.title = 'Click to copy';
+            
+            element.addEventListener('click', function() {
+                const text = this.textContent.replace(/\n/g, ' ').trim();
+                navigator.clipboard.writeText(text).then(() => {
+                    // Show temporary feedback
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<span style="color: var(--royal-gold);">Copied!</span>';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 1500);
+                }).catch(() => {
+                    console.log('Copy failed');
+                });
+            });
+        }
+    });
+
+    // Initialize section header animation
+    const sectionHeader = document.querySelector('.section-header');
+    if (sectionHeader) {
+        sectionHeader.style.opacity = '0';
+        sectionHeader.style.transform = 'translateY(30px)';
+        sectionHeader.style.transition = 'all 1s ease';
+        observer.observe(sectionHeader);
+    }
+
+    // Character counter for textarea
+    const messageTextarea = document.getElementById('message');
+    if (messageTextarea) {
+        const counterDiv = document.createElement('div');
+        counterDiv.className = 'char-counter';
+        counterDiv.style.cssText = `
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        `;
+        
+        messageTextarea.parentNode.appendChild(counterDiv);
+        
+        messageTextarea.addEventListener('input', function() {
+            const length = this.value.length;
+            counterDiv.textContent = `${length}/500 characters`;
+            
+            if (length > 450) {
+                counterDiv.style.color = '#ff6b6b';
+            } else {
+                counterDiv.style.color = 'var(--text-light)';
+            }
+            
+            // Enforce max length
+            if (length > 500) {
+                this.value = this.value.substring(0, 500);
+                counterDiv.textContent = '500/500 characters (max reached)';
+            }
+        });
+    }
+
+    // Auto-resize textarea
+    if (messageTextarea) {
+        messageTextarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 200) + 'px';
+        });
+    }
+
+    // Form field animations on scroll
+    const formGroups = document.querySelectorAll('.form-group');
+    formGroups.forEach((group, index) => {
+        group.style.opacity = '0';
+        group.style.transform = 'translateX(-30px)';
+        group.style.transition = `all 0.6s ease ${index * 0.1}s`;
+        
+        const formObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        formObserver.observe(group);
+    });
+
+    // Add loading dots animation for submit button
+    function addLoadingAnimation(button) {
+        const loadingDots = document.createElement('span');
+        loadingDots.className = 'loading-dots';
+        loadingDots.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+        
+        // Add CSS for loading animation
+        if (!document.querySelector('#loadingStyles')) {
+            const loadingStyle = document.createElement('style');
+            loadingStyle.id = 'loadingStyles';
+            loadingStyle.textContent = `
+                .loading-dots span {
+                    animation: loadingDots 1.4s infinite ease-in-out both;
+                    display: inline-block;
+                    margin: 0 2px;
+                }
+                
+                .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+                .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+                
+                @keyframes loadingDots {
+                    0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+                    40% { transform: scale(1); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(loadingStyle);
+        }
+        
+        return loadingDots;
+    }
+
+    // Initialize contact section observer
+    const contactSection = document.querySelector('.contact');
+    if (contactSection) {
+        const sectionObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.body.classList.add('contact-section-visible');
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        sectionObserver.observe(contactSection);
+    }
+});
+    </script>
+</body>
+</html>

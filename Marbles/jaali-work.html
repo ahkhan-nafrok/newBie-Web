@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaali Works Collection - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <div class="back-navigation">
+                <a href="backcategories.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Categories</span>
+                </a>
+            </div>
+
+            <div class="section-header">
+                <p class="section-subtitle">Architectural Excellence</p>
+                <h1 class="section-title">Jaali Works Collection</h1>
+                <p class="section-description">
+                    Discover the timeless beauty of traditional marble jaali (lattice) work. Our master craftsmen create intricate perforated screens that filter light beautifully while maintaining privacy. Each jaali pattern is a tribute to Islamic and Mughal architectural heritage, perfect for adding elegance and cultural richness to modern spaces.
+                </p>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-body">
+                <span class="modal-badge">Premium Collection</span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+                <h3 class="features-title">Key Features</h3>
+                <ul class="modal-features" id="modalFeatures"></ul>
+                <button class="modal-whatsapp" onclick="contactWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Inquire on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Classic Geometric Jaali",
+                image: "jaaliworks/jaali1.png",
+                badge: "Traditional",
+                description: "Timeless geometric jaali featuring interlocking hexagonal patterns. This classic design filters natural light beautifully while providing privacy and ventilation. Hand-carved from premium white marble, perfect for windows, room dividers, and architectural screens.",
+                features: ["Traditional hexagonal pattern", "Hand-carved precision", "Premium white marble", "Dimensions: 36\" x 24\" x 2\"", "Light filtering design"]
+            },
+            {
+                id: 2,
+                title: "Floral Lattice Jaali Panel",
+                image: "jaaliworks/jaali2.png",
+                badge: "Elegant",
+                description: "Delicate floral jaali with intricate petal and vine motifs. Each flower is carved with remarkable detail, creating a romantic play of light and shadow. Ideal for creating an enchanting ambiance in gardens, balconies, and interior spaces.",
+                features: ["Intricate floral motifs", "Detailed petal carving", "Romantic light effects", "Custom sizing available", "Indoor & outdoor use"]
+            },
+            {
+                id: 3,
+                title: "Mughal Star Jaali",
+                image: "jaaliworks/jaali3.png",
+                badge: "Heritage",
+                description: "Authentic Mughal-era star pattern jaali inspired by historical palaces and monuments. Features complex interlocking stars and geometric precision that showcases centuries-old architectural mastery. A statement piece for heritage and luxury properties.",
+                features: ["Authentic Mughal design", "Complex star patterns", "Historical accuracy", "Museum-quality craftsmanship", "Heritage preservation"]
+            },
+            {
+                id: 4,
+                title: "Islamic Arabesque Jaali",
+                image: "jaaliworks/jaali4.png",
+                badge: "Sacred",
+                description: "Sacred Islamic arabesque patterns featuring flowing curves and intricate calligraphic elements. This jaali design brings spiritual elegance and cultural depth to mosques, prayer rooms, and Islamic architecture with its mesmerizing complexity.",
+                features: ["Islamic arabesque design", "Flowing curve patterns", "Spiritual aesthetics", "Calligraphic elements", "Mosque-grade quality"]
+            },
+            {
+                id: 5,
+                title: "Contemporary Lattice Screen",
+                image: "jaaliworks/jaali5.png",
+                badge: "Modern",
+                description: "Modern interpretation of traditional jaali with clean lines and minimalist geometry. Perfect for contemporary homes and commercial spaces seeking to blend traditional craftsmanship with modern architectural language. Creates stunning visual interest.",
+                features: ["Contemporary design", "Minimalist geometry", "Modern aesthetic", "Versatile applications", "Architectural statement"]
+            },
+            {
+                id: 6,
+                title: "Peacock Feather Jaali",
+                image: "jaaliworks/jaali6.png",
+                badge: "Artistic",
+                description: "Stunning peacock feather inspired jaali with graceful curves and natural flowing forms. Each feather is carved to perfection, creating an artistic masterpiece that celebrates nature's beauty. Perfect for luxury villas and boutique hotels.",
+                features: ["Peacock feather design", "Natural flowing forms", "Artistic excellence", "Luxury statement piece", "Unique pattern work"]
+            },
+            {
+                id: 7,
+                title: "Jaipur Jali Screen",
+                image: "jaaliworks/jaali7.png",
+                badge: "Royal",
+                description: "Royal Rajasthani jaali design from Jaipur's palatial architecture. Features elaborate patterns that were once exclusive to royal palaces. This design brings regal sophistication and historical grandeur to any space with its intricate detailing.",
+                features: ["Royal Rajasthani design", "Palace-inspired patterns", "Elaborate detailing", "Regal sophistication", "Historical significance"]
+            },
+            {
+                id: 8,
+                title: "Honeycomb Lattice Jaali",
+                image: "jaaliworks/jaali8.png",
+                badge: "Classic",
+                description: "Nature-inspired honeycomb pattern jaali with perfect hexagonal symmetry. This timeless design offers optimal light diffusion and air circulation while maintaining structural strength. Ideal for both traditional and contemporary settings.",
+                features: ["Honeycomb pattern", "Perfect hexagonal symmetry", "Optimal light diffusion", "Strong structure", "Timeless versatility"]
+            }
+        ];
+
+        const whatsappNumber = "1234567890";
+        let currentProduct = null;
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map((product, index) => `
+                <div class="product-card" style="animation-delay: ${index * 0.1}s; transform: translateY(30px);" onclick="openModal(${product.id})">
+                    <div class="product-image-wrapper">
+                        <span class="premium-badge">${product.badge}</span>
+                        <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'320\\'%3E%3Crect fill=\\'%23f8fafc\\' width=\\'400\\' height=\\'320\\'/%3E%3Ctext fill=\\'%23c9a961\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' font-family=\\'Playfair Display, serif\\' font-size=\\'24\\'%3EJaali Works%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-preview">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="view-details-btn">
+                                View Details
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <div class="whatsapp-btn" onclick="event.stopPropagation(); contactWhatsAppDirect(${product.id})">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            observeCards();
+        }
+
+        function observeCards() {
+            const cards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        }
+
+        function openModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            document.getElementById('modalImage').src = currentProduct.image;
+            document.getElementById('modalTitle').textContent = currentProduct.title;
+            document.getElementById('modalDescription').textContent = currentProduct.description;
+            
+            const featuresHtml = currentProduct.features.map(feature => `<li>${feature}</li>`).join('');
+            document.getElementById('modalFeatures').innerHTML = featuresHtml;
+
+            const modal = document.getElementById('productModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentProduct = null;
+        }
+
+        function contactWhatsApp() {
+            if (currentProduct) {
+                const message = `Hi! I'm interested in the *${currentProduct.title}* from your Jaali Works Collection.\n\nCould you please provide:\n• Pricing & quotation\n• Custom design options\n• Installation details\n• Material specifications\n• Completion timeline\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        function contactWhatsAppDirect(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const message = `Hi! I'm interested in the *${product.title}* from your Jaali Works Collection.\n\nCould you please provide:\n• Pricing & quotation\n• Custom design options\n• Installation details\n• Material specifications\n• Completion timeline\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Enhanced card interactions with smooth 3D tilt effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach((card) => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * 8;
+                    const rotateY = ((centerX - x) / centerX) * 8;
+                    
+                    this.style.transform = `translateY(-20px) scale(1.03) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Smooth scroll reveal with stagger
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const fadeInObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Animate section header
+            const sectionHeader = document.querySelector('.section-header');
+            if (sectionHeader) {
+                sectionHeader.style.opacity = '0';
+                sectionHeader.style.transform = 'translateY(30px)';
+                sectionHeader.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                fadeInObserver.observe(sectionHeader);
+            }
+
+            // Enhanced ripple effect for buttons
+            const buttons = document.querySelectorAll('.view-details-btn, .modal-whatsapp, .whatsapp-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.6);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: rippleEffect 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 700);
+                });
+            });
+
+            // Add ripple animation
+            if (!document.querySelector('#rippleAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'rippleAnimation';
+                style.textContent = `
+                    @keyframes rippleEffect {
+                        to {
+                            transform: scale(4.5);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            console.log('✨ Enhanced Premium Jaali Works Collection Loaded');
+            console.log('🎨 Features: Glassmorphism, Smooth 3D animations, Enhanced modal transitions');
+        });
+
+        // Initialize
+        renderProducts();
+    </script>
+</body>
+</html>

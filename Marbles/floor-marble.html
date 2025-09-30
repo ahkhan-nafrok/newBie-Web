@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor Marble Collection - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <div class="back-navigation">
+                <a href="backcategories.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Categories</span>
+                </a>
+            </div>
+
+            <div class="section-header">
+                <p class="section-subtitle">Premium Flooring Solutions</p>
+                <h1 class="section-title">Floor Marble Collection</h1>
+                <p class="section-description">
+                    Elevate your interiors with our exclusive collection of premium floor marble. Each piece is carefully selected for its unique veining, exceptional durability, and timeless beauty. Transform your spaces with flooring that combines luxury, strength, and natural elegance.
+                </p>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-body">
+                <span class="modal-badge">Premium Collection</span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+                <h3 class="features-title">Key Features</h3>
+                <ul class="modal-features" id="modalFeatures"></ul>
+                <button class="modal-whatsapp" onclick="contactWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Inquire on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Italian Carrara White",
+                image: "Floor/house-floor2.png",
+                badge: "Premium",
+                description: "Luxurious Italian Carrara white marble with distinctive gray veining. Renowned for its timeless elegance and exceptional quality, this premium stone brings sophistication to any space. Perfect for high-traffic areas with superior durability and classic appeal.",
+                features: ["Italian Botticino marble", "Fine delicate veining", "Warm beige tones", "Dimensions: 24\" x 24\" x 3/4\"", "Timeless classic appeal"]
+            },
+             {
+                id: 2,
+                title: "Statuario Venato Marble",
+                image: "Floor/house-floor3.png",
+                badge: "Luxury",
+                description: "Exquisite Statuario marble featuring dramatic bold veining on pristine white background. This luxurious stone is perfect for creating stunning statement floors that captivate and inspire. A masterpiece of natural artistry.",
+                features: ["Dramatic bold veining", "Museum-grade Statuario quality", "Polished & honed finishes", "Dimensions: 24\" x 24\" x 3/4\"", "Limited availability"]
+             },
+            {
+                id: 3,
+                title: "Emperador Dark Marble",
+                image: "Floor/Temple-floor3.png",
+                badge: "Classic",
+                description: "Rich chocolate brown marble with elegant white and gold veining. Creates warm, sophisticated interiors with its deep, luxurious tones. Perfect for creating dramatic contrasts and adding depth to any space.",
+                features: ["Rich dark brown color", "Golden & white veining", "Excellent durability", "Dimensions: 18\" x 18\" x 3/4\"", "Heat resistant"]
+            },
+            {
+                id: 4,
+                title: "Calacatta Gold Marble",
+                image: "Floor/Temple-floor2.png",
+                badge: "Exclusive",
+                description: "Premium Calacatta marble with luxurious gold and gray veining on pure white base. One of the most sought-after marbles in the world, perfect for creating opulent, high-end interiors that make a lasting impression.",
+                features: ["Rare Calacatta variety", "Gold & gray dramatic veining", "Book-matched patterns available", "Dimensions: 24\" x 24\" x 3/4\"", "Premium grade selection"]
+            },
+            {
+                id: 5,
+                title: "Crema Marfil Beige",
+                image: "Floor/Temple-floor1.png",
+                badge: "Popular",
+                description: "Warm beige marble with subtle veining and consistent color. Ideal for creating bright, inviting spaces with a soft, neutral palette. Extremely versatile and complements any interior design style.",
+                features: ["Warm beige tones", "Subtle natural veining", "Consistent coloring", "Dimensions: 12\" x 24\" x 3/4\"", "Easy maintenance"]
+            },
+            {
+                id: 6,
+                title: "Black Marquina Marble",
+                image: "Floor/Temple-floor4.png",
+                badge: "Bold",
+                description: "Striking jet black marble with distinctive white veining. Creates bold, contemporary statements in modern interiors. Perfect for dramatic contrasts and sophisticated design schemes that demand attention.",
+                features: ["Deep black color", "Striking white veins", "High contrast aesthetic", "Dimensions: 24\" x 24\" x 3/4\"", "Scratch resistant"]
+            },
+            {
+                id: 7,
+                title: "Verde Guatemala Marble",
+                image: "Floor/house-floor4.png",
+                badge: "Unique",
+                description: "Stunning green marble with swirling patterns and white veining. A rare and exotic choice that brings natural beauty and uniqueness to any space. Perfect for those seeking distinctive, nature-inspired interiors.",
+                features: ["Rare green marble", "Swirling natural patterns", "White vein accents", "Dimensions: 18\" x 18\" x 3/4\"", "Statement piece quality"]
+            },
+            {
+                id: 8,
+                title: "Botticino Classico Marble",
+                image: "Floor/house-floor5.png",
+                badge: "Traditional",
+                description: "Classic Italian beige marble with fine, delicate veining. Known for its timeless beauty and warm undertones. Perfect for traditional and transitional spaces seeking understated elegance and lasting appeal.",
+                features: ["Authentic Italian Carrara marble", "Natural gray veining patterns", "High polish finish available", "Dimensions: 24\" x 24\" x 3/4\"", "Suitable for residential & commercial"]
+            },
+           
+        ];
+
+        const whatsappNumber = "1234567890";
+        let currentProduct = null;
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map((product, index) => `
+                <div class="product-card" style="animation-delay: ${index * 0.1}s; transform: translateY(30px);" onclick="openModal(${product.id})">
+                    <div class="product-image-wrapper">
+                        <span class="premium-badge">${product.badge}</span>
+                        <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'320\\'%3E%3Crect fill=\\'%23f8fafc\\' width=\\'400\\' height=\\'320\\'/%3E%3Ctext fill=\\'%23c9a961\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' font-family=\\'Playfair Display, serif\\' font-size=\\'24\\'%3EFloor Marble%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-preview">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="view-details-btn">
+                                View Details
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <div class="whatsapp-btn" onclick="event.stopPropagation(); contactWhatsAppDirect(${product.id})">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            observeCards();
+        }
+
+        function observeCards() {
+            const cards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        }
+
+        function openModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            document.getElementById('modalImage').src = currentProduct.image;
+            document.getElementById('modalTitle').textContent = currentProduct.title;
+            document.getElementById('modalDescription').textContent = currentProduct.description;
+            
+            const featuresHtml = currentProduct.features.map(feature => `<li>${feature}</li>`).join('');
+            document.getElementById('modalFeatures').innerHTML = featuresHtml;
+
+            const modal = document.getElementById('productModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentProduct = null;
+        }
+
+        function contactWhatsApp() {
+            if (currentProduct) {
+                const message = `Hi! I'm interested in the *${currentProduct.title}* from your Floor Marble Collection.\n\nCould you please provide:\n• Pricing per sq ft\n• Availability & stock\n• Bulk order discounts\n• Installation services\n• Delivery timeline\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        function contactWhatsAppDirect(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const message = `Hi! I'm interested in the *${product.title}* from your Floor Marble Collection.\n\nCould you please provide:\n• Pricing per sq ft\n• Availability & stock\n• Bulk order discounts\n• Installation services\n• Delivery timeline\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Enhanced card interactions with smooth 3D tilt effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach((card) => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * 8;
+                    const rotateY = ((centerX - x) / centerX) * 8;
+                    
+                    this.style.transform = `translateY(-20px) scale(1.03) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Smooth scroll reveal with stagger
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const fadeInObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Animate section header
+            const sectionHeader = document.querySelector('.section-header');
+            if (sectionHeader) {
+                sectionHeader.style.opacity = '0';
+                sectionHeader.style.transform = 'translateY(30px)';
+                sectionHeader.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                fadeInObserver.observe(sectionHeader);
+            }
+
+            // Enhanced ripple effect for buttons
+            const buttons = document.querySelectorAll('.view-details-btn, .modal-whatsapp, .whatsapp-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.6);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: rippleEffect 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 700);
+                });
+            });
+
+            // Add ripple animation
+            if (!document.querySelector('#rippleAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'rippleAnimation';
+                style.textContent = `
+                    @keyframes rippleEffect {
+                        to {
+                            transform: scale(4.5);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            console.log('✨ Enhanced Premium Floor Marble Collection Loaded');
+            console.log('🎨 Features: Glassmorphism, Smooth 3D animations, Enhanced modal transitions');
+        });
+
+        // Initialize
+        renderProducts();
+    </script>
+</body>
+</html>
+            

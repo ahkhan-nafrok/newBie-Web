@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Section - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --royal-gold: #D4AF37;
+            --royal-brown: #4A2C1D;
+            --dark-brown: #2D1B13;
+            --medium-brown: #5D3A29;
+            --light-brown: #8B5A3C;
+            --cream: #F7F3E9;
+            --warm-white: #FEFAF5;
+            --gold-accent: #E6C547;
+            --bronze: #8C6914;
+            --text-light: #B8A390;
+            --text-dark: #2D1B13;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--royal-brown) 40%, var(--medium-brown) 100%);
+            color: var(--cream);
+            padding: 4rem 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .footer-top {
+            position: relative;
+            z-index: 2;
+            padding-bottom: 3rem;
+        }
+
+        .footer-brand {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+
+        .footer-brand::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: var(--royal-gold);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--royal-gold), var(--bronze));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--cream);
+            letter-spacing: 1px;
+        }
+
+        .logo-text .highlight {
+            color: var(--royal-gold);
+        }
+
+        .footer-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--royal-gold);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--royal-gold);
+            border-radius: 1px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            line-height: 1.7;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--royal-gold);
+            transform: translateX(4px);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            padding: 0.8rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-contact-item:hover {
+            color: var(--royal-gold);
+            transform: translateX(3px);
+        }
+
+        .footer-contact-item i {
+            color: var(--royal-gold);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .footer-contact-item span {
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .social-section {
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .social-link:hover {
+            background: var(--royal-gold);
+            border-color: var(--royal-gold);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-bottom {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--royal-gold);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--royal-gold);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--royal-gold), var(--bronze));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            font-size: 1rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        @media (max-width: 991px) {
+            .footer-bottom-content {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .footer {
+                padding: 3rem 0 0;
+            }
+            
+            .social-links {
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-text">AIZAZ MARBLE <span class="highlight">TRADERS</span></div>
+                    </div>
+                    <p class="footer-tagline">Transforming spaces with premium natural stones and timeless craftsmanship</p>
+                </div>
+                
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Our Collections</h3>
+                        <a href="#categories">Home Mandir Collections</a>
+                        <a href="#categories">Temple Mandir Designs</a>
+                        <a href="#categories">Premium Floor Marble</a>
+                        <a href="#categories">Handcrafted Artifacts</a>
+                        <a href="#categories">Jaali Work (2D/3D)</a>
+                        <a href="#categories">Precious Inlay Work</a>
+                        <a href="#gallery">Custom Projects</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <a href="#about">About Our Legacy</a>
+                        <a href="#gallery">Project Gallery</a>
+                        <a href="#gallery">Video Showcase</a>
+                        <a href="#contact">Custom Quotes</a>
+                        <a href="#">Quality Assurance</a>
+                        <a href="#">Export Services</a>
+                        <a href="#">Installation Support</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Contact</h3>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@aizazmarble.com</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Marble District<br>Industrial Area, Mumbai - 400001</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Sat: 9:00 AM - 7:00 PM<br>Sunday: By Appointment</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section social-section">
+                        <h3>Follow Us</h3>
+                        <p>Stay connected for latest collections and exclusive designs</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" title="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="social-link" title="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Aizaz Marble Traders. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Quality Guarantee</a>
+                        <a href="#">Shipping Information</a>
+                        <a href="#">Return Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Contact item click-to-copy functionality
+            const contactItems = document.querySelectorAll('.footer-contact-item');
+            contactItems.forEach(item => {
+                const span = item.querySelector('span');
+                if (span && (span.textContent.includes('+91') || span.textContent.includes('@'))) {
+                    item.style.cursor = 'pointer';
+                    item.title = 'Click to copy';
+                    
+                    item.addEventListener('click', function() {
+                        const text = span.textContent.replace(/\n/g, ' ').trim();
+                        
+                        if (navigator.clipboard) {
+                            navigator.clipboard.writeText(text).then(() => {
+                                showCopyFeedback(this);
+                            }).catch(() => {
+                                console.log('Copy failed');
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Show copy feedback
+            function showCopyFeedback(element) {
+                const span = element.querySelector('span');
+                const originalText = span.innerHTML;
+                const originalColor = element.style.color;
+                
+                element.style.color = 'var(--royal-gold)';
+                span.innerHTML = '<span>Copied!</span>';
+                
+                setTimeout(() => {
+                    element.style.color = originalColor;
+                    span.innerHTML = originalText;
+                }, 1500);
+            }
+
+            // Scroll to top functionality
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            if (scrollTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 300) {
+                        scrollTopBtn.classList.add('visible');
+                    } else {
+                        scrollTopBtn.classList.remove('visible');
+                    }
+                });
+
+                scrollTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Social links interaction
+            const socialLinks = document.querySelectorAll('.social-link');
+            socialLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const platform = this.title || 'social media';
+                    console.log(`${platform} link clicked`);
+                    
+                    // Add click animation
+                    this.style.transform = 'translateY(-3px) scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-3px) scale(1)';
+                    }, 150);
+                });
+            });
+
+            // Footer links navigation
+            const footerLinks = document.querySelectorAll('.footer-section a, .footer-links a');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        
+                        if (window.parent !== window) {
+                            window.parent.postMessage({
+                                type: 'scrollToSection',
+                                sectionId: targetId
+                            }, '*');
+                        } else {
+                            const target = document.getElementById(targetId);
+                            if (target) {
+                                const headerHeight = 80;
+                                const targetPosition = target.offsetTop - headerHeight;
+                                
+                                window.scrollTo({
+                                    top: targetPosition,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Animate footer sections on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -30px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Setup initial animation states
+            const footerSections = document.querySelectorAll('.footer-section');
+            footerSections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(section);
+            });
+
+            const footerBrand = document.querySelector('.footer-brand');
+            if (footerBrand) {
+                footerBrand.style.opacity = '0';
+                footerBrand.style.transform = 'translateY(20px)';
+                footerBrand.style.transition = 'all 0.8s ease';
+                observer.observe(footerBrand);
+            }
+
+            // Enhanced keyboard navigation
+            const allFooterLinks = document.querySelectorAll('.footer a, .footer button');
+            allFooterLinks.forEach(link => {
+                link.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        this.click();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

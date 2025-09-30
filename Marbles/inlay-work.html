@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inlay Works Collection - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <div class="back-navigation">
+                <a href="backcategories.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Categories</span>
+                </a>
+            </div>
+
+            <div class="section-header">
+                <p class="section-subtitle">Artisan Craftsmanship</p>
+                <h1 class="section-title">Inlay Works Collection</h1>
+                <p class="section-description">
+                    Experience the pinnacle of marble artistry with our exquisite inlay works. Each piece is a testament to centuries-old craftsmanship, where precious stones are meticulously hand-set into marble to create breathtaking patterns and designs that transform spaces into living art galleries.
+                </p>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-body">
+                <span class="modal-badge">Premium Collection</span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+                <h3 class="features-title">Key Features</h3>
+                <ul class="modal-features" id="modalFeatures"></ul>
+                <button class="modal-whatsapp" onclick="contactWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Inquire on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Taj Mahal Inspired Floral Inlay",
+                image: "Inly-works/inly1.png",
+                badge: "Masterpiece",
+                description: "Magnificent floral inlay inspired by the iconic Taj Mahal. Features intricate pietra dura work with semi-precious stones including lapis lazuli, malachite, carnelian, and mother of pearl. A timeless masterpiece that brings royal elegance to any space.",
+                features: ["Authentic pietra dura technique", "Semi-precious stone inlay", "Hand-crafted by master artisans", "Customizable size & design", "Museum-quality finish"]
+            },
+            {
+                id: 2,
+                title: "Geometric Pattern Inlay Panel",
+                image: "Inly-works/inly2.png",
+                badge: "Contemporary",
+                description: "Modern geometric inlay featuring precision-cut marble and stone pieces in mesmerizing patterns. Perfect for contemporary interiors seeking a blend of traditional craftsmanship and modern aesthetics. Creates stunning focal points in any room.",
+                features: ["Contemporary geometric design", "Precision laser-cut stones", "Multi-colored marble combinations", "Perfect symmetry guaranteed", "Ideal for feature walls"]
+            },
+            {
+                id: 3,
+                title: "Peacock Feather Inlay Tabletop",
+                image: "Inly-works/inly3.png",
+                badge: "Artistic",
+                description: "Stunning peacock feather design executed in vibrant semi-precious stones. Each feather is meticulously crafted with turquoise, lapis, malachite, and jasper, creating a spectacular display of colors and craftsmanship. Perfect for luxury tabletops and decorative panels.",
+                features: ["Vibrant peacock feather motif", "Multi-stone color palette", "Highly detailed craftsmanship", "Suitable for tables & panels", "UV resistant stones"]
+            },
+            {
+                id: 4,
+                title: "Mughal Garden Border Inlay",
+                image: "Inly-works/inly4.png",
+                badge: "Heritage",
+                description: "Exquisite border design inspired by Mughal gardens, featuring intricate floral vines and leaves. Crafted with precious stones in traditional colors, this heritage design adds regal sophistication to floors, walls, and architectural elements.",
+                features: ["Traditional Mughal patterns", "Intricate vine & leaf details", "Heritage color combinations", "Ideal for borders & frames", "Handcrafted excellence"]
+            },
+            {
+                id: 5,
+                title: "Lotus Medallion Inlay",
+                image: "Inly-works/inly6.png",
+                badge: "Sacred",
+                description: "Sacred lotus design in full bloom, crafted with meticulous attention to spiritual symbolism. Features delicate petals inlaid with mother of pearl, coral, and jade. Brings divine beauty and auspicious energy to prayer rooms and meditation spaces.",
+                features: ["Sacred lotus symbolism", "Mother of pearl accents", "Spiritual design elements", "Center medallion format", "Perfect for sacred spaces"]
+            },
+            {
+                id: 6,
+                title: "Art Deco Sunburst Inlay",
+                image: "Inly-works/inly7.png",
+                badge: "Luxury",
+                description: "Bold Art Deco sunburst pattern featuring radiating lines in contrasting marble and brass inlay. This striking design combines 1920s glamour with modern luxury, creating dramatic visual impact perfect for statement floors and walls.",
+                features: ["Art Deco inspired design", "Brass & marble combination", "Bold radiating pattern", "High contrast aesthetic", "Statement piece quality"]
+            },
+            {
+                id: 7,
+                title: "Floral Basket Inlay Panel",
+                image: "Inly-works/inly8.png",
+                badge: "Classic",
+                description: "Charming floral basket design overflowing with roses, lilies, and foliage. Each flower petal is individually crafted and inlaid with colored marbles and semi-precious stones. A classic design that never goes out of style.",
+                features: ["Detailed floral arrangement", "Multiple flower varieties", "Colored marble inlay", "Traditional basket motif", "Timeless elegance"]
+            },
+            {
+                id: 8,
+                title: "Persian Arabesque Inlay",
+                image: "Inly-works/inly9.png",
+                badge: "Exotic",
+                description: "Intricate Persian arabesque patterns featuring flowing curves and intertwined motifs. Created with precious stones in jewel tones, this exotic design brings Middle Eastern sophistication and artistic complexity to any interior.",
+                features: ["Authentic Persian patterns", "Flowing arabesque design", "Jewel-toned stones", "Complex interlocking motifs", "Cultural heritage piece"]
+            }
+        ];
+
+        const whatsappNumber = "1234567890";
+        let currentProduct = null;
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map((product, index) => `
+                <div class="product-card" style="animation-delay: ${index * 0.1}s; transform: translateY(30px);" onclick="openModal(${product.id})">
+                    <div class="product-image-wrapper">
+                        <span class="premium-badge">${product.badge}</span>
+                        <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'320\\'%3E%3Crect fill=\\'%23f8fafc\\' width=\\'400\\' height=\\'320\\'/%3E%3Ctext fill=\\'%23c9a961\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' font-family=\\'Playfair Display, serif\\' font-size=\\'24\\'%3EInlay Works%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-preview">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="view-details-btn">
+                                View Details
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <div class="whatsapp-btn" onclick="event.stopPropagation(); contactWhatsAppDirect(${product.id})">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            observeCards();
+        }
+
+        function observeCards() {
+            const cards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        }
+
+        function openModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            document.getElementById('modalImage').src = currentProduct.image;
+            document.getElementById('modalTitle').textContent = currentProduct.title;
+            document.getElementById('modalDescription').textContent = currentProduct.description;
+            
+            const featuresHtml = currentProduct.features.map(feature => `<li>${feature}</li>`).join('');
+            document.getElementById('modalFeatures').innerHTML = featuresHtml;
+
+            const modal = document.getElementById('productModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentProduct = null;
+        }
+
+        function contactWhatsApp() {
+            if (currentProduct) {
+                const message = `Hi! I'm interested in the *${currentProduct.title}* from your Inlay Works Collection.\n\nCould you please provide:\n• Pricing & quotation\n• Customization options\n• Stone selection available\n• Completion timeline\n• Portfolio samples\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        function contactWhatsAppDirect(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const message = `Hi! I'm interested in the *${product.title}* from your Inlay Works Collection.\n\nCould you please provide:\n• Pricing & quotation\n• Customization options\n• Stone selection available\n• Completion timeline\n• Portfolio samples\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Enhanced card interactions with smooth 3D tilt effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach((card) => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * 8;
+                    const rotateY = ((centerX - x) / centerX) * 8;
+                    
+                    this.style.transform = `translateY(-20px) scale(1.03) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Smooth scroll reveal with stagger
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const fadeInObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Animate section header
+            const sectionHeader = document.querySelector('.section-header');
+            if (sectionHeader) {
+                sectionHeader.style.opacity = '0';
+                sectionHeader.style.transform = 'translateY(30px)';
+                sectionHeader.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                fadeInObserver.observe(sectionHeader);
+            }
+
+            // Enhanced ripple effect for buttons
+            const buttons = document.querySelectorAll('.view-details-btn, .modal-whatsapp, .whatsapp-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.6);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: rippleEffect 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 700);
+                });
+            });
+
+            // Add ripple animation
+            if (!document.querySelector('#rippleAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'rippleAnimation';
+                style.textContent = `
+                    @keyframes rippleEffect {
+                        to {
+                            transform: scale(4.5);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            console.log('✨ Enhanced Premium Inlay Works Collection Loaded');
+            console.log('🎨 Features: Glassmorphism, Smooth 3D animations, Enhanced modal transitions');
+        });
+
+        // Initialize
+        renderProducts();
+    </script>
+</body>
+</html>

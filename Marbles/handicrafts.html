@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handicrafts Collection - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <div class="back-navigation">
+                <a href="backcategories.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Categories</span>
+                </a>
+            </div>
+
+            <div class="section-header">
+                <p class="section-subtitle">Artisan Creations</p>
+                <h1 class="section-title">Handicrafts Collection</h1>
+                <p class="section-description">
+                    Explore our curated collection of exquisite marble handicrafts, where traditional artistry meets functional beauty. Each piece is handcrafted by skilled artisans, showcasing intricate details, timeless designs, and the natural elegance of premium marble. Perfect for home decor, gifting, and adding refined sophistication to any space.
+                </p>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-body">
+                <span class="modal-badge">Premium Collection</span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+                <h3 class="features-title">Key Features</h3>
+                <ul class="modal-features" id="modalFeatures"></ul>
+                <button class="modal-whatsapp" onclick="contactWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Inquire on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Marble Fruit Bowl with Inlay",
+                image: "HandiCrafts/hand3.png",
+                badge: "Elegant",
+                description: "Stunning decorative fruit bowl carved from pristine white marble with semi-precious stone inlay work. Features intricate floral patterns around the rim and a polished finish. Perfect centerpiece for dining tables, adding both functionality and artistic beauty to your home.",
+                features: ["Premium white marble", "Semi-precious stone inlay", "Hand-carved floral patterns", "Diameter: 12 inches", "Food-safe polished finish"]
+            },
+            {
+                id: 2,
+                title: "Decorative Marble Vase",
+                image: "HandiCrafts/hand1.png",
+                badge: "Classic",
+                description: "Elegant marble vase with hand-carved relief work and traditional motifs. The perfect vessel for fresh or dried flowers, this piece combines functionality with ornamental beauty. Its substantial weight and smooth finish make it a sophisticated addition to any interior.",
+                features: ["Hand-carved relief designs", "Traditional motif patterns", "Height: 10 inches", "Stable weighted base", "Multi-purpose use"]
+            },
+            {
+                id: 3,
+                title: "Marble Coaster Set",
+                image: "HandiCrafts/hand2.png",
+                badge: "Practical",
+                description: "Premium set of six marble coasters with gold-veined patterns and cork backing. Each coaster is individually polished and features unique natural veining. Protects surfaces while adding a touch of luxury to your coffee table or dining experience.",
+                features: ["Set of 6 coasters", "Natural gold veining", "Cork backing protection", "Diameter: 4 inches each", "Heat & moisture resistant"]
+            },
+            {
+                id: 4,
+                title: "Elephant Statue Inlay Work",
+                image: "HandiCrafts/hand4.png",
+                badge: "Artistic",
+                description: "Majestic marble elephant statue adorned with colorful inlay work featuring turquoise, coral, and lapis lazuli. Symbolizes strength, wisdom, and good fortune. This handcrafted masterpiece showcases exceptional artistry and makes a powerful decorative statement.",
+                features: ["Handcrafted elephant design", "Colorful stone inlay", "Symbol of prosperity", "Height: 8 inches", "Intricate detailing"]
+            },
+            {
+                id: 5,
+                title: "Marble Jewelry Box",
+                image: "HandiCrafts/hand5.png",
+                badge: "Luxury",
+                description: "Exquisite jewelry box with pietra dura inlay featuring delicate floral designs. Lined interior with velvet compartments for safe storage. The lid features semi-precious stone work in traditional Mughal patterns. A treasured keepsake for precious items.",
+                features: ["Pietra dura inlay work", "Velvet-lined interior", "Multiple compartments", "Dimensions: 6\" x 4\" x 3\"", "Lockable with key"]
+            },
+            {
+                id: 6,
+                title: "Marble Serving Tray",
+                image: "HandiCrafts/hand6.png",
+                badge: "Functional",
+                description: "Sophisticated serving tray crafted from premium marble with brass handles. Perfect for serving drinks, snacks, or as a decorative display piece. The natural stone patterns ensure each tray is unique, combining practicality with timeless elegance.",
+                features: ["Premium marble construction", "Brass handle accents", "Anti-slip surface", "Dimensions: 16\" x 10\"", "Easy to clean"]
+            },
+            {
+                id: 7,
+                title: "Marble Candle Holders Set",
+                image: "HandiCrafts/hand7.png",
+                badge: "Ambient",
+                description: "Set of three graduated marble candle holders with carved bases. Creates a stunning centerpiece when lit, casting beautiful shadows through the natural stone. Perfect for creating ambiance during dinner parties or meditation spaces.",
+                features: ["Set of 3 holders", "Graduated heights", "Carved decorative bases", "Fits standard candles", "Stable & safe design"]
+            },
+            {
+                id: 8,
+                title: "Taj Mahal Miniature Replica",
+                image: "HandiCrafts/hand8.png",
+                badge: "Souvenir",
+                description: "Meticulously crafted miniature Taj Mahal replica in white marble with detailed inlay work. Features accurate architectural details including domes, minarets, and pietra dura floral patterns. A perfect souvenir or gift representing India's architectural heritage.",
+                features: ["Authentic architectural details", "Hand-carved precision", "Inlay work patterns", "Height: 6 inches", "Includes wooden base"]
+            },
+             {
+                id: 9,
+                title: "Taj Mahal Miniature Replica",
+                image: "HandiCrafts/hand9.png",
+                badge: "Souvenir",
+                description: "Meticulously crafted miniature Taj Mahal replica in white marble with detailed inlay work. Features accurate architectural details including domes, minarets, and pietra dura floral patterns. A perfect souvenir or gift representing India's architectural heritage.",
+                features: ["Authentic architectural details", "Hand-carved precision", "Inlay work patterns", "Height: 6 inches", "Includes wooden base"]
+            }, {
+                id: 10,
+                title: "Taj Mahal Miniature Replica",
+                image: "HandiCrafts/hand10.png",
+                badge: "Souvenir",
+                description: "Meticulously crafted miniature Taj Mahal replica in white marble with detailed inlay work. Features accurate architectural details including domes, minarets, and pietra dura floral patterns. A perfect souvenir or gift representing India's architectural heritage.",
+                features: ["Authentic architectural details", "Hand-carved precision", "Inlay work patterns", "Height: 6 inches", "Includes wooden base"]
+            }
+        ];
+
+        const whatsappNumber = "1234567890";
+        let currentProduct = null;
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map((product, index) => `
+                <div class="product-card" style="animation-delay: ${index * 0.1}s; transform: translateY(30px);" onclick="openModal(${product.id})">
+                    <div class="product-image-wrapper">
+                        <span class="premium-badge">${product.badge}</span>
+                        <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'320\\'%3E%3Crect fill=\\'%23f8fafc\\' width=\\'400\\' height=\\'320\\'/%3E%3Ctext fill=\\'%23c9a961\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' font-family=\\'Playfair Display, serif\\' font-size=\\'24\\'%3EHandicrafts%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-preview">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="view-details-btn">
+                                View Details
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <div class="whatsapp-btn" onclick="event.stopPropagation(); contactWhatsAppDirect(${product.id})">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            observeCards();
+        }
+
+        function observeCards() {
+            const cards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        }
+
+        function openModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            document.getElementById('modalImage').src = currentProduct.image;
+            document.getElementById('modalTitle').textContent = currentProduct.title;
+            document.getElementById('modalDescription').textContent = currentProduct.description;
+            
+            const featuresHtml = currentProduct.features.map(feature => `<li>${feature}</li>`).join('');
+            document.getElementById('modalFeatures').innerHTML = featuresHtml;
+
+            const modal = document.getElementById('productModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentProduct = null;
+        }
+
+        function contactWhatsApp() {
+            if (currentProduct) {
+                const message = `Hi! I'm interested in the *${currentProduct.title}* from your Handicrafts Collection.\n\nCould you please provide:\n• Pricing details\n• Availability\n• Bulk order options\n• Shipping information\n• Gift packaging available?\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        function contactWhatsAppDirect(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const message = `Hi! I'm interested in the *${product.title}* from your Handicrafts Collection.\n\nCould you please provide:\n• Pricing details\n• Availability\n• Bulk order options\n• Shipping information\n• Gift packaging available?\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Enhanced card interactions with smooth 3D tilt effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach((card) => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * 8;
+                    const rotateY = ((centerX - x) / centerX) * 8;
+                    
+                    this.style.transform = `translateY(-20px) scale(1.03) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Smooth scroll reveal with stagger
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const fadeInObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Animate section header
+            const sectionHeader = document.querySelector('.section-header');
+            if (sectionHeader) {
+                sectionHeader.style.opacity = '0';
+                sectionHeader.style.transform = 'translateY(30px)';
+                sectionHeader.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                fadeInObserver.observe(sectionHeader);
+            }
+
+            // Enhanced ripple effect for buttons
+            const buttons = document.querySelectorAll('.view-details-btn, .modal-whatsapp, .whatsapp-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.6);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: rippleEffect 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 700);
+                });
+            });
+
+            // Add ripple animation
+            if (!document.querySelector('#rippleAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'rippleAnimation';
+                style.textContent = `
+                    @keyframes rippleEffect {
+                        to {
+                            transform: scale(4.5);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            console.log('✨ Enhanced Premium Handicrafts Collection Loaded');
+            console.log('🎨 Features: Glassmorphism, Smooth 3D animations, Enhanced modal transitions');
+        });
+
+        // Initialize
+        renderProducts();
+    </script>
+</body>
+</html>

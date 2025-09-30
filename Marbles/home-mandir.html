@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Mandir Collection - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <div class="back-navigation">
+                <a href="backcategories.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Categories</span>
+                </a>
+            </div>
+
+            <div class="section-header">
+                <p class="section-subtitle">Sacred Masterpieces</p>
+                <h1 class="section-title">Home Mandir Collection</h1>
+                <p class="section-description">
+                    Discover our exquisite range of handcrafted marble mandirs, each piece representing generations of expertise. Transform your home into a sacred sanctuary with divine craftsmanship that combines traditional artistry with timeless elegance.
+                </p>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-body">
+                <span class="modal-badge">Premium Collection</span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+                <h3 class="features-title">Key Features</h3>
+                <ul class="modal-features" id="modalFeatures"></ul>
+                <button class="modal-whatsapp" onclick="contactWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Inquire on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Classic White Marble Mandir",
+                image: "homemandir/homemandir1.png",
+                badge: "Premium",
+                description: "Exquisite white marble mandir with intricate hand-carved details. Features traditional jali work and ornate pillars, perfect for daily worship and meditation. This masterpiece combines sacred geometry with divine craftsmanship to create the ultimate spiritual centerpiece for your home.",
+                features: ["Premium Makrana white marble", "Hand-carved traditional motifs", "Intricate jali screening", "Dimensions: 48\" H x 36\" W x 18\" D", "Complete setup included"]
+            },
+            {
+                id: 2,
+                title: "Royal Dome Mandir",
+                image: "homemandir/homemandir2.png",
+                badge: "Heritage",
+                description: "Magnificent domed marble temple featuring sacred geometry and divine craftsmanship. The perfect centerpiece for your prayer room with intricate detailing and elegant proportions that inspire devotion.",
+                features: ["Elegant dome architecture", "Sacred geometry patterns", "Premium marble construction", "Dimensions: 60\" H x 42\" W x 20\" D", "LED lighting compatible"]
+            },
+            {
+                id: 3,
+                title: "Compact Pooja Mandir",
+                image: "homemandir/homemandir3.png",
+                badge: "Luxury",
+                description: "Space-efficient design without compromising on elegance. Ideal for modern apartments and smaller prayer spaces. Every inch is meticulously crafted to maximize beauty in compact dimensions.",
+                features: ["Space-saving design", "Traditional carved details", "Easy wall mounting", "Dimensions: 36\" H x 24\" W x 12\" D", "Multiple storage shelves"]
+            },
+            {
+                id: 4,
+                title: "Luxury Temple Design",
+                image: "homemandir/homemandir4.png",
+                badge: "Masterpiece",
+                description: "Grand marble mandir with multiple deities space. Features elaborate stone inlay work and premium finishing that rivals historical temples. A true statement piece for the devoted.",
+                features: ["Multi-deity arrangement", "Precious stone inlay", "Ornate pillars and arches", "Dimensions: 72\" H x 48\" W x 24\" D", "Custom deity placement"]
+            },
+            {
+                id: 5,
+                title: "Traditional Carved Mandir",
+                image: "homemandir/homemandir5.png",
+                badge: "Artisan",
+                description: "Heritage-style marble temple with authentic traditional carvings passed down through generations of artisans. Each pattern tells a story of devotion and artistic excellence.",
+                features: ["Heritage design patterns", "Master artisan crafted", "Authentic jali work", "Dimensions: 54\" H x 38\" W x 18\" D", "Customizable elements"]
+            },
+            {
+                id: 6,
+                title: "Modern Minimalist Mandir",
+                image: "homemandir/homemandir6.png",
+                badge: "Contemporary",
+                description: "Contemporary design blending modern aesthetics with traditional spirituality. Clean lines with subtle elegance create a serene space perfect for meditation and daily prayers.",
+                features: ["Modern minimalist design", "Clean architectural lines", "Premium white marble", "Dimensions: 42\" H x 30\" W x 15\" D", "Easy maintenance"]
+            },
+            {
+                id: 7,
+                title: "Elegant Arch Mandir",
+                image: "homemandir/homemandir7.png",
+                badge: "Contemporary",
+                description: "Sophisticated design featuring graceful arches and contemporary styling. Perfect blend of traditional values and modern living spaces.",
+                features: ["Graceful arch design", "Contemporary styling", "Premium white marble", "Dimensions: 45\" H x 32\" W x 16\" D", "Integrated lighting"]
+            },
+            {
+                id: 8,
+                title: "Grand Temple Mandir",
+                image: "homemandir/homemandir8.png",
+                badge: "Luxury",
+                description: "Magnificent temple-style mandir with elaborate detailing and spacious design. Creates an authentic temple atmosphere in your home with majestic presence.",
+                features: ["Temple-style architecture", "Elaborate carved details", "Spacious design", "Dimensions: 48\" H x 36\" W x 18\" D", "Premium finish"]
+            }
+        ];
+
+        const whatsappNumber = "1234567890";
+        let currentProduct = null;
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map((product, index) => `
+                <div class="product-card" style="animation-delay: ${index * 0.1}s; transform: translateY(30px);" onclick="openModal(${product.id})">
+                    <div class="product-image-wrapper">
+                        <span class="premium-badge">${product.badge}</span>
+                        <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'320\\'%3E%3Crect fill=\\'%23f8fafc\\' width=\\'400\\' height=\\'320\\'/%3E%3Ctext fill=\\'%23c9a961\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' font-family=\\'Playfair Display, serif\\' font-size=\\'24\\'%3EHome Mandir%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-preview">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="view-details-btn">
+                                View Details
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <div class="whatsapp-btn" onclick="event.stopPropagation(); contactWhatsAppDirect(${product.id})">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            observeCards();
+        }
+
+        function observeCards() {
+            const cards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        }
+
+        function openModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            document.getElementById('modalImage').src = currentProduct.image;
+            document.getElementById('modalTitle').textContent = currentProduct.title;
+            document.getElementById('modalDescription').textContent = currentProduct.description;
+            
+            const featuresHtml = currentProduct.features.map(feature => `<li>${feature}</li>`).join('');
+            document.getElementById('modalFeatures').innerHTML = featuresHtml;
+
+            const modal = document.getElementById('productModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentProduct = null;
+        }
+
+        function contactWhatsApp() {
+            if (currentProduct) {
+                const message = `Hi! I'm interested in the *${currentProduct.title}* from your Home Mandir Collection.\n\nCould you please provide:\n• Pricing details\n• Availability\n• Customization options\n• Installation information\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        function contactWhatsAppDirect(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const message = `Hi! I'm interested in the *${product.title}* from your Home Mandir Collection.\n\nCould you please provide:\n• Pricing details\n• Availability\n• Customization options\n• Installation information\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Enhanced card interactions with smooth 3D tilt effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach((card) => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * 8;
+                    const rotateY = ((centerX - x) / centerX) * 8;
+                    
+                    this.style.transform = `translateY(-20px) scale(1.03) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Smooth scroll reveal with stagger
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const fadeInObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Animate section header
+            const sectionHeader = document.querySelector('.section-header');
+            if (sectionHeader) {
+                sectionHeader.style.opacity = '0';
+                sectionHeader.style.transform = 'translateY(30px)';
+                sectionHeader.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                fadeInObserver.observe(sectionHeader);
+            }
+
+            // Enhanced ripple effect for buttons
+            const buttons = document.querySelectorAll('.view-details-btn, .modal-whatsapp, .whatsapp-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.6);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: rippleEffect 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 700);
+                });
+            });
+
+            // Add ripple animation
+            if (!document.querySelector('#rippleAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'rippleAnimation';
+                style.textContent = `
+                    @keyframes rippleEffect {
+                        to {
+                            transform: scale(4.5);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            console.log('✨ Enhanced Premium Home Mandir Collection Loaded');
+            console.log('🎨 Features: Glassmorphism, Smooth 3D animations, Enhanced modal transitions');
+        });
+
+        // Initialize
+        renderProducts();
+    </script>
+</body>
+</html>
