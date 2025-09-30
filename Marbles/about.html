@@ -171,7 +171,7 @@ body {
 }
 
 .about-img:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
 .about-text h3 {
@@ -211,80 +211,6 @@ body {
     font-size: 1rem;
 }
 
-.about-features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 4rem;
-}
-
-.feature-item {
-    text-align: center;
-    padding: 3rem 2rem;
-    background: var(--warm-white);
-    border-radius: 20px;
-    transition: all 0.4s ease;
-    border: 1px solid var(--border-light);
-    position: relative;
-    overflow: hidden;
-}
-
-.feature-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, var(--royal-gold), var(--dark-gold));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.feature-item:hover::before {
-    opacity: 0.03;
-}
-
-.feature-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 
-        0 25px 50px -12px rgba(0, 0, 0, 0.15),
-        0 0 0 1px rgba(201, 169, 97, 0.2);
-}
-
-.feature-icon {
-    font-size: 3rem;
-    color: var(--royal-gold);
-    margin-bottom: 1.5rem;
-    position: relative;
-    z-index: 1;
-    transition: all 0.3s ease;
-}
-
-.feature-item:hover .feature-icon {
-    color: var(--dark-gold);
-    transform: scale(1.1);
-}
-
-.feature-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.375rem;
-    color: var(--deep-navy);
-    margin-bottom: 1rem;
-    font-weight: 600;
-    position: relative;
-    z-index: 1;
-}
-
-.feature-desc {
-    color: var(--text-light);
-    font-size: 0.9375rem;
-    font-family: 'Source Sans Pro', sans-serif;
-    line-height: 1.7;
-    position: relative;
-    z-index: 1;
-}
-
 /* Stats Section */
 .stats-grid {
     display: grid;
@@ -321,170 +247,340 @@ body {
 @media (max-width: 1024px) {
     .about-content {
         grid-template-columns: 1fr;
-        gap: 4rem;
+        gap: 3rem;
     }
 
     .section-title {
-        font-size: 3rem;
+        font-size: 2.75rem;
+    }
+    
+    .about-img {
+        height: 400px;
     }
 }
 
 @media (max-width: 768px) {
-    .section-title {
-        font-size: 2.5rem;
+    .section {
+        padding: 3rem 0;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 1rem;
     }
 
-    .section {
-        padding: 5rem 0;
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+    }
+    
+    .section-description {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+    }
+    
+    .about-content {
+        gap: 2rem;
     }
 
     .about-text h3 {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.3;
+    }
+    
+    .about-text p {
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+    }
+    
+    .heritage-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .heritage-badge i {
+        font-size: 0.875rem;
+        margin-right: 0.375rem;
+    }
+    
+    .about-image {
+        border-radius: 16px;
+    }
+
+    .about-img {
+        height: 280px;
     }
 
     .about-features {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-top: 2.5rem;
+    }
+    
+    .feature-item {
+        padding: 1.75rem 1.25rem;
+        border-radius: 16px;
+    }
+    
+    .feature-icon {
+        font-size: 2.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    .feature-title {
+        font-size: 1.125rem;
+        margin-bottom: 0.625rem;
+    }
+    
+    .feature-desc {
+        font-size: 0.8125rem;
+        line-height: 1.5;
     }
 
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+        padding: 1.75rem 1rem;
+        border-radius: 16px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+        margin-top: 0.375rem;
     }
 }
 
 @media (max-width: 576px) {
-    .section-title {
-        font-size: 2rem;
+    .section {
+        padding: 2rem 0;
+    }
+    
+    .container {
+        padding: 0 0.875rem;
+    }
+    
+    .section-header {
+        margin-bottom: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.6875rem;
+        letter-spacing: 1.2px;
+        margin-bottom: 0.75rem;
+    }
+    
+    .section-subtitle::after {
+        width: 30px;
+        bottom: -6px;
     }
 
-    .container {
-        padding: 0 1rem;
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.875rem;
+    }
+    
+    .section-description {
+        font-size: 0.8125rem;
+        line-height: 1.5;
+    }
+    
+    .about-content {
+        gap: 1.5rem;
+    }
+
+    .about-text h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    .about-text p {
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+    
+    .heritage-badge {
+        padding: 0.4rem 0.875rem;
+        font-size: 0.6875rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .heritage-badge i {
+        font-size: 0.75rem;
+    }
+    
+    .about-image {
+        border-radius: 12px;
+    }
+
+    .about-img {
+        height: 220px;
+    }
+
+    .about-features {
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .feature-item {
+        padding: 1.5rem 1rem;
+        border-radius: 12px;
+    }
+    
+    .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 0.875rem;
+    }
+    
+    .feature-title {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .feature-desc {
+        font-size: 0.75rem;
+        line-height: 1.4;
     }
 
     .stats-grid {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-top: 2rem;
+        padding: 1.5rem 0.875rem;
+        border-radius: 12px;
+    }
+    
+    .stat-item {
+        padding: 0.5rem 0;
+    }
+    
+    .stat-number {
+        font-size: 1.75rem;
+    }
+    
+    .stat-label {
+        font-size: 0.6875rem;
+        letter-spacing: 0.5px;
+    }
+}
+
+@media (max-width: 400px) {
+    .section-title {
+        font-size: 1.375rem;
+    }
+    
+    .section-description {
+        font-size: 0.75rem;
+    }
+    
+    .about-text h3 {
+        font-size: 1.125rem;
+    }
+    
+    .about-text p {
+        font-size: 0.75rem;
+    }
+    
+    .about-img {
+        height: 200px;
+    }
+    
+    .feature-icon {
+        font-size: 1.75rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
     }
 }
 </style>
 </head>
 <body>
-    <section class="section about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-subtitle">About Aizaz Marble Traders</p>
-                <h2 class="section-title">Four Decades of Stone Mastery</h2>
-                <p class="section-description">
-                    For over 40 years, we've been transforming spaces with premium marble and granite. 
-                    From sacred home mandirs to magnificent Jain temples, we bring your vision to life with unmatched craftsmanship.
+   <section class="section about" id="about">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-subtitle">About Aizaz Marble</p>
+            <h2 class="section-title">40+ Years of Craftsmanship</h2>
+            <p class="section-description">
+                Elevating spaces with premium marble & granite — from serene home mandirs to grand Jain temples.
+            </p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text">
+                <div class="heritage-badge">
+                    <i class="fas fa-crown"></i>
+                    40+ Years Legacy
+                </div>
+
+                <h3>Trusted. Timeless. Handcrafted.</h3>
+
+                <p>
+                    Born from a family passion, Aizaz Marble is now a name trusted across generations. We turn stone into stories.
+                </p>
+
+                <p>
+                    From intricate mandirs and temples to elegant flooring, every project reflects our commitment to detail and devotion.
+                </p>
+
+                <p>
+                    With expert Jaali work and inlays, we bring natural stone to life — beautifully and meaningfully.
+                </p>
+
+                <p>
+                    Thousands of spaces transformed. One legacy of excellence.
                 </p>
             </div>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <div class="heritage-badge">
-                        <i class="fas fa-crown"></i>
-                        40+ Years Heritage Business
-                    </div>
-                    
-                    <h3>A Legacy Built on Trust & Excellence</h3>
-                    
-                    <p>What started as a family passion four decades ago has grown into one of the most trusted names in marble and granite trading. We're not just suppliers – we're craftsmen who understand that every piece of stone has a story to tell.</p>
-                    
-                    <p>Our specialty lies in creating beautiful home mandirs and stunning Jain temples that inspire devotion and peace. We also excel in premium floor marbles that transform any space into something extraordinary. But what truly sets us apart is our intricate Jaali work with detailed inlay designs that showcase the true artistry of natural stone.</p>
-                    
-                    <p>Over the years, we've completed thousands of projects, each one treated with the same care and attention as if it were for our own family. From sourcing the finest stones to delivering perfectly finished products, we handle every step with expertise passed down through generations.</p>
-                    
-                    <p>Whether you're looking to create a sacred space at home, design a magnificent temple, or enhance your floors with premium marble, we have the experience and skill to make it happen beautifully.</p>
-                </div>
-                
-                <div class="about-image">
-                    <img src="founders.png" alt="Founders of Aizaz Marble Traders showcasing traditional craftsmanship" class="about-img">
-                </div>
-            </div>
 
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">40+</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">1000+</span>
-                    <span class="stat-label">Projects Completed</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">Mandirs Crafted</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Client Satisfaction</span>
-                </div>
-            </div>
-            
-            <div class="about-features">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-place-of-worship"></i>
-                    </div>
-                    <h4 class="feature-title">Home Mandirs & Temples</h4>
-                    <p class="feature-desc">Handcrafted sacred spaces with intricate carvings and premium marble that create the perfect atmosphere for worship and meditation</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h4 class="feature-title">Premium Floor Marbles</h4>
-                    <p class="feature-desc">Stunning floor solutions in various patterns, colors, and finishes that add elegance and value to residential and commercial spaces</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h4 class="feature-title">Detailed Inlay Work</h4>
-                    <p class="feature-desc">Masterful Jaali patterns and intricate inlay designs that showcase traditional artistry with modern precision and attention to detail</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h4 class="feature-title">Generation Expertise</h4>
-                    <p class="feature-desc">Four decades of family knowledge and skills passed down through generations, ensuring authentic craftsmanship in every project</p>
-                </div>
+            <div class="about-image">
+                <img src="founders.png" alt="Aizaz Marble Founders" class="about-img">
             </div>
         </div>
-    </section>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">40+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1000+</span>
+                <span class="stat-label">Projects Done</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Mandirs Made</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Client Satisfaction</span>
+            </div>
+        </div>
+    </div>
+</section>
+
 
     <script>
-        // Enhanced About section functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Smooth reveal animations
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Initialize animated elements with staggered timing
-    const animatedElements = document.querySelectorAll('.about-text, .about-image, .feature-item, .stat-item');
-    animatedElements.forEach((element, index) => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(40px)';
-        element.style.transition = `all 0.8s ease ${index * 0.1}s`;
-        observer.observe(element);
-    });
-
-    // Counter animation for statistics
+        document.addEventListener('DOMContentLoaded', function() {
+    const statsGrid = document.querySelector('.stats-grid');
+    
     function animateCounter(element, start, end, duration, suffix = '') {
         let startTime = null;
         
@@ -492,8 +588,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (startTime === null) startTime = currentTime;
             const timeElapsed = currentTime - startTime;
             const progress = Math.min(timeElapsed / duration, 1);
-            
-            // Easing function for smooth animation
             const easedProgress = 1 - Math.pow(1 - progress, 3);
             const currentValue = Math.floor(start + (end - start) * easedProgress);
             
@@ -507,7 +601,6 @@ document.addEventListener('DOMContentLoaded', function() {
         requestAnimationFrame(animation);
     }
 
-    // Trigger counter animations when stats come into view
     const statsObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -537,169 +630,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, { threshold: 0.5 });
 
-    const statsGrid = document.querySelector('.stats-grid');
     if (statsGrid) {
         statsObserver.observe(statsGrid);
-    }
-
-    // Enhanced hover effects for feature items
-    const featureItems = document.querySelectorAll('.feature-item');
-    featureItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            // Create floating particle effect
-            createFloatingParticles(this);
-        });
-    });
-
-    function createFloatingParticles(element) {
-        for (let i = 0; i < 3; i++) {
-            const particle = document.createElement('div');
-            particle.style.cssText = `
-                position: absolute;
-                width: 4px;
-                height: 4px;
-                background: var(--royal-gold);
-                border-radius: 50%;
-                pointer-events: none;
-                opacity: 0.8;
-                top: ${Math.random() * 100}%;
-                left: ${Math.random() * 100}%;
-                animation: floatUp 2s ease-out forwards;
-            `;
-            
-            element.appendChild(particle);
-            
-            setTimeout(() => particle.remove(), 2000);
-        }
-    }
-
-    // Add floating animation to CSS
-    if (!document.querySelector('#floatingStyles')) {
-        const style = document.createElement('style');
-        style.id = 'floatingStyles';
-        style.textContent = `
-            @keyframes floatUp {
-                0% {
-                    transform: translateY(0) scale(1);
-                    opacity: 0.8;
-                }
-                100% {
-                    transform: translateY(-30px) scale(0);
-                    opacity: 0;
-                }
-            }
-            
-            .feature-item {
-                position: relative;
-                overflow: hidden;
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    // Parallax effect for background elements
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const aboutSection = document.querySelector('.about');
-        
-        if (aboutSection && isInViewport(aboutSection)) {
-            const rate = scrolled * -0.3;
-            aboutSection.style.backgroundPosition = `center ${rate}px`;
-        }
-    });
-
-    function isInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top < window.innerHeight &&
-            rect.bottom > 0
-        );
-    }
-
-    // Loading animation for about image
-    const aboutImg = document.querySelector('.about-img');
-    if (aboutImg) {
-        aboutImg.addEventListener('load', function() {
-            this.style.opacity = '1';
-            this.classList.add('loaded');
-        });
-        
-        aboutImg.addEventListener('error', function() {
-            this.style.background = 'linear-gradient(135deg, var(--cream), var(--soft-gray))';
-            this.alt = 'Aizaz Marble Traders - Craftsmen at work';
-        });
-    }
-
-    // Typewriter effect for section title (optional)
-    function typeWriter(element, text, speed = 100) {
-        let i = 0;
-        element.textContent = '';
-        
-        function typing() {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-                setTimeout(typing, speed);
-            }
-        }
-        typing();
-    }
-
-    // Heritage badge animation
-    const heritageBadge = document.querySelector('.heritage-badge');
-    if (heritageBadge) {
-        const badgeObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'badgeSlideIn 0.8s ease-out';
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        badgeObserver.observe(heritageBadge);
-    }
-
-    // Add badge animation to CSS
-    if (!document.querySelector('#badgeStyles')) {
-        const badgeStyle = document.createElement('style');
-        badgeStyle.id = 'badgeStyles';
-        badgeStyle.textContent = `
-            @keyframes badgeSlideIn {
-                0% {
-                    transform: translateX(-100px) rotate(-10deg);
-                    opacity: 0;
-                }
-                100% {
-                    transform: translateX(0) rotate(0deg);
-                    opacity: 1;
-                }
-            }
-        `;
-        document.head.appendChild(badgeStyle);
-    }
-
-    // Add subtle breathing animation to feature icons
-    const featureIcons = document.querySelectorAll('.feature-icon');
-    featureIcons.forEach((icon, index) => {
-        icon.style.animationDelay = `${index * 0.5}s`;
-        icon.classList.add('breathing');
-    });
-
-    // Add breathing animation to CSS
-    if (!document.querySelector('#breathingStyles')) {
-        const breathingStyle = document.createElement('style');
-        breathingStyle.id = 'breathingStyles';
-        breathingStyle.textContent = `
-            @keyframes breathe {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-            }
-            
-            .breathing {
-                animation: breathe 3s ease-in-out infinite;
-            }
-        `;
-        document.head.appendChild(breathingStyle);
     }
 });
     </script>
