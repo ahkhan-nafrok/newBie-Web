@@ -4,19 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wango — The Mango Club</title>
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* =====================
-       Color palette inspired by provided logo
-       Primary Mango Yellow:  #FFC400
-       Deep Green (bg):       #0c6b5a
-       Olive Green (accent):  #7aa04a
-       Soft Orange (accent):  #ff9a2e
-       Light Cream (cards):   #fff7ea
-       =====================*/
-
     :root{
       --mango: #FFC400;
       --deep:  #0c6b5a;
@@ -27,9 +17,9 @@
       --glass: rgba(255,255,255,0.06);
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
-    body{background:linear-gradient(180deg,var(--deep),#055b4d);color:#fff;-webkit-font-smoothing:antialiased}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+    body{background:linear-gradient(180deg,var(--deep),#055b4d);color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
     /* ========== LOADER ========== */
     .loader-overlay {
@@ -46,454 +36,864 @@
       z-index: 9999;
       transition: opacity 0.5s ease;
     }
-    .loader-overlay img {
-  width: 100px; /* adjust size as needed */
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%; /* makes logo round */
-  border: 2px solid #fff; /* outline for clean look */
-}
+    
     .loader-overlay.fade-out {
       opacity: 0;
       pointer-events: none;
     }
 
-
-
-    .mango-loader {
-      position: relative;
-      width: 80px;
-      height: 80px;
-      margin-bottom: 24px;
-    }
-
-    .mango-slice {
-      position: absolute;
-      width: 100%;
-      height: 100%;
+    .loader-logo {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
       border-radius: 50%;
-      background: linear-gradient(45deg, var(--orange), var(--mango));
-      animation: mangoSpin 2s ease-in-out infinite;
-      opacity: 0.8;
+      border: 3px solid var(--mango);
+      margin-bottom: 24px;
+      animation: pulse 2s ease-in-out infinite;
     }
 
-    .mango-slice:nth-child(1) { animation-delay: 0s; }
-    .mango-slice:nth-child(2) { animation-delay: 0.3s; }
-    .mango-slice:nth-child(3) { animation-delay: 0.6s; }
-
-    @keyframes mangoSpin {
-      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-      50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.05); opacity: 1; }
     }
 
     .loader-text {
       font-family: 'Playfair Display', serif;
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 700;
       color: var(--mango);
       text-align: center;
-      opacity: 0;
-      animation: fadeInText 1s ease 0.5s forwards;
+      margin-bottom: 8px;
     }
 
     .loader-subtext {
       font-size: 14px;
       color: rgba(255,255,255,0.8);
-      margin-top: 8px;
-      opacity: 0;
-      animation: fadeInText 1s ease 0.8s forwards;
-    }
-
-    @keyframes fadeInText {
-      to { opacity: 1; }
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     /* ========== HEADER / NAV ========== */
-    header{position:fixed;left:0;right:0;top:0;z-index:60;padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{display:flex;align-items:center;gap:8px}
+    header{
+      position:fixed;
+      left:0;
+      right:0;
+      top:0;
+      z-index:60;
+      padding:20px 6vw;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      transition: all 0.3s ease;
+    }
+    
+    header.scrolled {
+      background: rgba(12, 107, 90, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 16px 6vw;
+    }
 
-        .logo img {
-  width: 80px; /* adjust size as needed */
-  height: 60px;
-  object-fit: cover;
- /* makes logo round */
-  /* outline for clean look */
-}
-    .brand h1{font-family:Playfair Display, serif;margin:0;font-size:20px;letter-spacing:1px}
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{color:rgba(255,255,255,.9);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;transition:background 0.3s ease}
-    nav a:hover{background:var(--glass);backdrop-filter:blur(4px)}
-    .cta{background:var(--mango);color:#083224;padding:10px 14px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.18);transition:transform 0.2s ease}
-    .cta:hover{transform:translateY(-2px)}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+    
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
 
-    /* Mobile nav */
-    .hamburger{display:none;width:42px;height:42px;border-radius:10px;background:rgba(0,0,0,0.18);align-items:center;justify-content:center;border:none;color:white;font-size:18px;cursor:pointer}
+    .logo img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid var(--mango);
+    }
+    
+    .brand-info h1{
+      font-family:'Playfair Display', serif;
+      margin:0;
+      font-size:24px;
+      letter-spacing:1px;
+      color: var(--mango);
+    }
+    
+    .brand-info .subtitle {
+      font-size:12px;
+      color:rgba(255,255,255,0.8);
+      margin-top:2px;
+    }
+
+    nav{
+      display:flex;
+      gap:24px;
+      align-items:center;
+    }
+    
+    nav a{
+      color:rgba(255,255,255,.9);
+      text-decoration:none;
+      padding:10px 16px;
+      border-radius:8px;
+      font-weight:600;
+      font-size:15px;
+      transition:all 0.3s ease;
+      position:relative;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 80%;
+      height: 2px;
+      background: var(--mango);
+      transition: transform 0.3s ease;
+    }
+    
+    nav a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+    
+    nav a:hover{
+      color: var(--mango);
+    }
+    
+    .cta{
+      background:var(--mango);
+      color:#083224;
+      padding:12px 24px;
+      border-radius:12px;
+      font-weight:700;
+      box-shadow:0 6px 18px rgba(255,196,0,0.3);
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+      border:none;
+      cursor:pointer;
+      font-size:15px;
+    }
+    
+    .cta:hover{
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(255,196,0,0.4);
+    }
+
+    .hamburger{
+      display:none;
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.1);
+      align-items:center;
+      justify-content:center;
+      border:none;
+      color:white;
+      font-size:24px;
+      cursor:pointer;
+      transition:background 0.3s ease;
+    }
+    
+    .hamburger:hover {
+      background:rgba(255,255,255,0.15);
+    }
 
     /* ========== HERO ========== */
-    .hero{min-height:88vh;padding:100px 6vw 60px;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center}
-    .hero .intro{max-width:720px}
-    .kicker{display:inline-block;background:rgba(255,255,255,.06);padding:6px 12px;border-radius:999px;font-weight:600;color:var(--cream);letter-spacing:0.6px}
-    .title{font-family:Playfair Display, serif;font-size:58px;line-height:1.02;margin:18px 0}
-    .lead{font-size:18px;color:rgba(255,255,255,.92);margin-bottom:22px}
-    .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{padding:12px 18px;border-radius:12px;font-weight:700;border:none;cursor:pointer;transition:all 0.3s ease}
-    .btn.primary{background:var(--mango);color:#083224}
-    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,196,0,0.3)}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.08);color:#fff}
-    .btn.ghost:hover{background:rgba(255,255,255,0.05)}
+    .hero{
+      min-height:100vh;
+      padding:140px 6vw 80px;
+      display:grid;
+      grid-template-columns:1fr 480px;
+      gap:60px;
+      align-items:center;
+      max-width:1400px;
+      margin:0 auto;
+    }
+    
+    .hero .intro{
+      max-width:680px;
+    }
+    
+    .kicker{
+      display:inline-block;
+      background:rgba(255,196,0,0.15);
+      padding:8px 20px;
+      border-radius:999px;
+      font-weight:600;
+      color:var(--mango);
+      letter-spacing:1px;
+      font-size:14px;
+      text-transform:uppercase;
+      margin-bottom:20px;
+      border:1px solid rgba(255,196,0,0.3);
+    }
+    
+    .title{
+      font-family:'Playfair Display', serif;
+      font-size:56px;
+      line-height:1.1;
+      margin:0 0 24px 0;
+      color:#fff;
+    }
+    
+    .lead{
+      font-size:18px;
+      color:rgba(255,255,255,.88);
+      margin-bottom:32px;
+      line-height:1.7;
+    }
+    
+    .hero .actions{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:40px;
+    }
+    
+    .btn{
+      padding:14px 32px;
+      border-radius:12px;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      transition:all 0.3s ease;
+      font-size:16px;
+      font-family:inherit;
+    }
+    
+    .btn.primary{
+      background:var(--mango);
+      color:#083224;
+    }
+    
+    .btn.primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 25px rgba(255,196,0,0.4);
+    }
+    
+    .btn.ghost{
+      background:transparent;
+      border:2px solid rgba(255,255,255,.3);
+      color:#fff;
+    }
+    
+    .btn.ghost:hover{
+      background:rgba(255,255,255,0.1);
+      border-color:rgba(255,255,255,0.5);
+    }
 
-    /* Right: card with overlayed hero image */
-    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:18px;border-radius:18px;box-shadow:0 12px 40px rgba(3,23,17,0.55);display:flex;flex-direction:column;gap:12px}
-    .hero-card .img{height:320px;border-radius:12px;background-size:cover;background-position:center;position:relative;overflow:hidden}
-    .hero-card .img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(12,107,90,0.08), rgba(0,0,0,0.38))}
-    .hero-card .meta{display:flex;justify-content:space-between;align-items:center}
+    .hero-address {
+      background:rgba(255,255,255,0.08);
+      padding:20px 24px;
+      border-radius:12px;
+      border-left:4px solid var(--mango);
+    }
+    
+    .hero-address strong {
+      color:var(--mango);
+      display:block;
+      margin-bottom:8px;
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    
+    .hero-address p {
+      color:rgba(255,255,255,0.9);
+      line-height:1.6;
+      margin:0;
+    }
+
+    .hero-card{
+      background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      padding:20px;
+      border-radius:20px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.4);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+    
+    .hero-card .img{
+      height:400px;
+      border-radius:16px;
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      overflow:hidden;
+      margin-bottom:20px;
+    }
+    
+    .hero-card .img::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(12,107,90,0.1), rgba(0,0,0,0.5));
+    }
+    
+    .hero-card .meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    
+    .hero-card .meta > div {
+      font-size:14px;
+    }
+    
+    .hero-card .meta > div:first-child {
+      font-weight:700;
+      color:var(--mango);
+    }
+    
+    .hero-card .meta > div:last-child {
+      color:rgba(255,255,255,0.85);
+    }
 
     /* ========== SECTIONS ========== */
-    section{padding:64px 6vw}
-    .container{max-width:1200px;margin:0 auto}
+    section{
+      padding:100px 6vw;
+      max-width:1400px;
+      margin:0 auto;
+    }
+    
+    .section-header {
+      text-align:center;
+      margin-bottom:60px;
+    }
+    
+    .section-title {
+      font-family:'Playfair Display',serif;
+      font-size:42px;
+      margin:0 0 16px 0;
+      color:#fff;
+    }
+    
+    .section-subtitle {
+      color:rgba(255,255,255,0.85);
+      font-size:18px;
+      max-width:600px;
+      margin:0 auto;
+      line-height:1.6;
+    }
 
     /* About */
-    .about{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center}
-    .card{background:var(--cream);color:var(--deep);padding:18px;border-radius:14px}
+    .about{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:start;
+    }
+    
+    .about-content h3 {
+      font-family:'Playfair Display',serif;
+      font-size:36px;
+      margin:0 0 24px 0;
+    }
+    
+    .about-content p {
+      color:rgba(255,255,255,0.9);
+      font-size:17px;
+      line-height:1.7;
+      margin-bottom:32px;
+    }
+    
+    .features-grid {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:20px;
+    }
+    
+    .card{
+      background:var(--cream);
+      color:var(--deep);
+      padding:28px;
+      border-radius:16px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.15);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 12px 32px rgba(0,0,0,0.2);
+    }
+    
+    .card h4 {
+      margin:0 0 12px 0;
+      font-size:20px;
+      color:var(--deep);
+    }
+    
+    .card p, .card ul {
+      margin:0;
+      line-height:1.6;
+      color:var(--muted);
+    }
+    
+    .card ul {
+      padding-left:20px;
+      margin-top:12px;
+    }
+    
+    .card ul li {
+      margin:8px 0;
+    }
 
     /* Gallery */
-    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    .gallery-item{position:relative;border-radius:10px;overflow:hidden;min-height:160px;background-size:cover;background-position:center;cursor:pointer;transition:transform .28s ease, box-shadow .28s ease}
-    .gallery-item:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,14,10,0.45)}
-    .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(12,107,90,0.18), rgba(0,0,0,0.28));display:flex;align-items:flex-end;padding:12px;color:#fff;font-weight:700;backdrop-filter:blur(2px)}
-/* Exclusive page */
-.exclusive {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 1200px;   /* controls overall width */
-  margin: 0 auto;      /* centers the section */
-  padding: 20px;
-}
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:24px;
+    }
+    
+    .gallery-item{
+      position:relative;
+      border-radius:16px;
+      overflow:hidden;
+      aspect-ratio:4/3;
+      background-size:cover;
+      background-position:center;
+      cursor:pointer;
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    
+    .gallery-item:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    }
+    
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(12,107,90,0.2), rgba(0,0,0,0.6));
+      display:flex;
+      align-items:flex-end;
+      padding:20px;
+      color:#fff;
+      font-weight:700;
+      font-size:18px;
+      backdrop-filter:blur(2px);
+      transition:background 0.3s ease;
+    }
+    
+    .gallery-item:hover .overlay {
+      background:linear-gradient(180deg, rgba(255,196,0,0.3), rgba(0,0,0,0.7));
+    }
 
-.exclusive .list {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;      /* allows wrapping on smaller screens */
-  justify-content: center; /* centers tiles inside */
-}
+    /* Exclusive */
+    .exclusive-list {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:32px;
+    }
 
-.tile {
-  background: rgba(255, 255, 255, 0.08);
-  padding: 20px;
-  border-radius: 14px;
-  min-width: 260px;   /* wider tiles */
-  flex: 1 1 300px;    /* makes tiles responsive */
-  max-width: 350px;   /* prevents them from being too wide */
-  transition: transform 0.2s ease, background 0.2s ease;
-}
+    .tile {
+      background:rgba(255, 255, 255, 0.08);
+      padding:32px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.1);
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .tile::before {
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:4px;
+      background:linear-gradient(90deg, var(--mango), var(--orange));
+      transform:scaleX(0);
+      transition:transform 0.3s ease;
+    }
 
-.tile:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.12);
-}
+    .tile:hover {
+      transform:translateY(-8px);
+      background:rgba(255, 255, 255, 0.12);
+      box-shadow:0 12px 32px rgba(0,0,0,0.3);
+    }
+    
+    .tile:hover::before {
+      transform:scaleX(1);
+    }
+    
+    .tile h4 {
+      margin:0 0 12px 0;
+      font-size:22px;
+      color:var(--mango);
+    }
+    
+    .tile p {
+      margin:0;
+      color:rgba(255,255,255,0.85);
+      line-height:1.6;
+    }
 
-    /* ========== CONTACT FORM - FIXED RESPONSIVENESS ========== */
+    /* Contact */
     .contact-section {
-      padding: 64px 6vw;
+      padding:100px 6vw;
     }
 
     .contact-container {
-      max-width: 800px;
-      margin: 0 auto;
+      max-width:900px;
+      margin:0 auto;
     }
 
     form.contact {
-      background: var(--cream);
-      color: var(--deep);
-      padding: 32px;
-      border-radius: 18px;
-      box-shadow: 0 12px 40px rgba(3,23,17,0.15);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      align-items: start;
+      background:var(--cream);
+      color:var(--deep);
+      padding:48px;
+      border-radius:20px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.2);
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
     }
 
     .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
 
     .form-group.full-width {
-      grid-column: 1 / -1;
+      grid-column:1 / -1;
     }
 
     .form-label {
-      font-weight: 600;
-      color: var(--deep);
-      font-size: 14px;
+      font-weight:600;
+      color:var(--deep);
+      font-size:15px;
     }
 
     input, textarea, select {
-      padding: 14px 16px;
-      border-radius: 10px;
-      border: 2px solid rgba(12,107,90,0.1);
-      outline: none;
-      font-size: 15px;
-      font-family: inherit;
-      transition: all 0.3s ease;
-      background: #fff;
+      padding:16px 18px;
+      border-radius:12px;
+      border:2px solid rgba(12,107,90,0.15);
+      outline:none;
+      font-size:15px;
+      font-family:inherit;
+      transition:all 0.3s ease;
+      background:#fff;
     }
 
     input:focus, textarea:focus, select:focus {
-      border-color: var(--mango);
-      box-shadow: 0 0 0 3px rgba(255,196,0,0.1);
+      border-color:var(--mango);
+      box-shadow:0 0 0 4px rgba(255,196,0,0.15);
     }
 
     textarea {
-      min-height: 120px;
-      resize: vertical;
+      min-height:140px;
+      resize:vertical;
     }
 
     .submit {
-      grid-column: 1 / -1;
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 8px;
+      grid-column:1 / -1;
+      display:flex;
+      justify-content:center;
+      margin-top:16px;
     }
 
     .btn.submit-btn {
-      padding: 14px 32px;
-      font-size: 16px;
-      min-width: 140px;
+      padding:16px 48px;
+      font-size:17px;
+      min-width:200px;
     }
 
-    /* ========== FOOTER - FIXED RESPONSIVENESS ========== */
+    /* Footer */
     footer {
-      padding: 48px 6vw 32px;
-      background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05));
-      border-top: 1px solid rgba(255,255,255,0.08);
+      padding:60px 6vw 40px;
+      background:linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.1));
+      border-top:1px solid rgba(255,255,255,0.1);
     }
 
     .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 32px;
-      align-items: start;
+      max-width:1400px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:48px;
+      align-items:start;
     }
 
     .footer-info h4 {
-      margin: 0 0 12px 0;
-      font-family: 'Playfair Display', serif;
-      color: var(--mango);
-      font-size: 20px;
+      margin:0 0 16px 0;
+      font-family:'Playfair Display', serif;
+      color:var(--mango);
+      font-size:24px;
     }
 
     .footer-address {
-      color: rgba(255,255,255,0.85);
-      line-height: 1.5;
-      margin-bottom: 16px;
+      color:rgba(255,255,255,0.85);
+      line-height:1.7;
+      margin-bottom:20px;
+      font-size:15px;
     }
 
     .footer-hours {
-      color: rgba(255,255,255,0.75);
-      font-size: 14px;
+      color:rgba(255,255,255,0.75);
+      font-size:15px;
+    }
+
+    .footer-hours strong {
+      color:var(--mango);
     }
 
     .footer-social {
-      text-align: right;
+      text-align:right;
     }
 
     .social {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 16px;
-      justify-content: flex-end;
+      display:flex;
+      gap:16px;
+      margin-bottom:20px;
+      justify-content:flex-end;
+      flex-wrap:wrap;
     }
 
     .social a {
-      color: rgba(255,255,255,0.8);
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      background: rgba(255,255,255,0.05);
+      color:rgba(255,255,255,0.8);
+      text-decoration:none;
+      padding:10px 20px;
+      border-radius:10px;
+      transition:all 0.3s ease;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.1);
+      font-size:14px;
+      font-weight:600;
     }
 
     .social a:hover {
-      background: var(--mango);
-      color: var(--deep);
-      transform: translateY(-2px);
+      background:var(--mango);
+      color:var(--deep);
+      transform:translateY(-2px);
+      box-shadow:0 6px 16px rgba(255,196,0,0.3);
     }
 
     .footer-copyright {
-      color: rgba(255,255,255,0.6);
-      font-size: 13px;
+      color:rgba(255,255,255,0.6);
+      font-size:14px;
     }
 
     /* Modal */
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:90;backdrop-filter:blur(4px)}
-    .modal .frame{width:min(960px,96vw);background:#fff;color:#0b3c33;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-    .modal .frame img{width:100%;display:block}
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.9);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      backdrop-filter:blur(8px);
+      padding:20px;
+    }
+    
+    .modal .frame{
+      width:min(1200px,95vw);
+      background:#fff;
+      color:#0b3c33;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 30px 80px rgba(0,0,0,0.5);
+      animation:modalFadeIn 0.3s ease;
+    }
+    
+    @keyframes modalFadeIn {
+      from { transform:scale(0.9); opacity:0; }
+      to { transform:scale(1); opacity:1; }
+    }
+    
+    .modal .frame img{
+      width:100%;
+      display:block;
+    }
 
-    /* ========== RESPONSIVE DESIGN ========== */
-    @media (max-width: 1024px) {
-      .hero, .about {
-        grid-template-columns: 1fr;
-        gap: 32px;
+    /* Animations */
+    .fade-up {
+      opacity:0;
+      transform:translateY(30px);
+      animation:fadeUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity:1;
+        transform:translateY(0);
       }
-      
-      .hero-card {
-        order: -1;
+    }
+
+    html {
+      scroll-behavior:smooth;
+    }
+
+    .btn.loading {
+      position:relative;
+      color:transparent;
+    }
+
+    .btn.loading::after {
+      content:'';
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:20px;
+      height:20px;
+      margin:-10px 0 0 -10px;
+      border:2px solid currentColor;
+      border-radius:50%;
+      border-right-color:transparent;
+      animation:spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform:rotate(360deg); }
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1200px) {
+      .hero {
+        grid-template-columns:1fr 420px;
+        gap:48px;
+        padding:120px 5vw 60px;
       }
       
       .title {
-        font-size: 48px;
+        font-size:48px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero, .about, .footer-content {
+        grid-template-columns:1fr;
+        gap:48px;
+      }
+      
+      .hero-card {
+        max-width:600px;
+        margin:0 auto;
+      }
+      
+      .footer-social {
+        text-align:center;
+      }
+      
+      .social {
+        justify-content:center;
       }
     }
 
     @media (max-width: 980px) {
       nav {
-        display: none;
+        display:none;
       }
       
       .hamburger {
-        display: flex;
+        display:flex;
       }
       
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        text-align: center;
-      }
-      
-      .footer-social {
-        text-align: center;
-      }
-      
-      .social {
-        justify-content: center;
+      section {
+        padding:80px 5vw;
       }
     }
 
     @media (max-width: 768px) {
       header {
-        padding: 16px 20px;
+        padding:16px 5vw;
+      }
+      
+      .logo img {
+        width:50px;
+        height:50px;
+      }
+      
+      .brand-info h1 {
+        font-size:20px;
       }
       
       .hero {
-        padding: 80px 4vw 40px;
+        padding:100px 5vw 60px;
+        min-height:auto;
       }
       
-      section {
-        padding: 48px 4vw;
+      .title {
+        font-size:40px;
+      }
+      
+      .lead {
+        font-size:16px;
+      }
+      
+      .section-title {
+        font-size:36px;
       }
       
       form.contact {
-        grid-template-columns: 1fr;
-        padding: 24px;
-        gap: 16px;
+        grid-template-columns:1fr;
+        padding:32px;
+        gap:20px;
       }
       
       .form-group.full-width {
-        grid-column: 1;
+        grid-column:1;
       }
       
       .submit {
-        grid-column: 1;
-        justify-content: center;
+        grid-column:1;
       }
       
-      .exclusive .list {
-        flex-direction: column;
-      }
-      
-      .tile {
-        min-width: auto;
+      .exclusive-list {
+        grid-template-columns:1fr;
       }
     }
 
     @media (max-width: 560px) {
       .title {
-        font-size: 36px;
+        font-size:32px;
       }
       
-      .lead {
-        font-size: 16px;
+      .section-title {
+        font-size:28px;
       }
       
       .gallery-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
       }
       
       .hero .actions {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction:column;
+        align-items:stretch;
       }
       
       .btn {
-        text-align: center;
+        text-align:center;
       }
       
-      .brand h1 {
-        font-size: 18px;
+      form.contact {
+        padding:24px;
       }
       
-      .logo .mark {
-        width: 48px;
-        height: 32px;
+      .hero-card .img {
+        height:300px;
       }
       
       footer {
-        padding: 32px 4vw 24px;
+        padding:48px 5vw 32px;
       }
-    }
-
-    /* ========== ANIMATIONS ========== */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s ease forwards;
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      
+      .loader-logo {
+        width:100px;
+        height:100px;
       }
-    }
-
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Loading state for buttons */
-    .btn.loading {
-      position: relative;
-      color: transparent;
-    }
-
-    .btn.loading::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 20px;
-      height: 20px;
-      margin: -10px 0 0 -10px;
-      border: 2px solid currentColor;
-      border-radius: 50%;
-      border-right-color: transparent;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+      
+      .loader-text {
+        font-size:24px;
+      }
     }
   </style>
 </head>
@@ -501,24 +901,19 @@
 
 <!-- Loader -->
 <div class="loader-overlay" id="loader">
-  <div class="mango-loader">
-
-  </div>
-  <div class="loader-text">
-   <img src="wango-.png" alt="">
-    <div class="loader-subtext">The Mango Club</div>
-  </div>
+  <img src="wango-.png" alt="Wango Logo" class="loader-logo">
+  <div class="loader-text">Wango</div>
+  <div class="loader-subtext">The Mango Club</div>
 </div>
 
-<header>
+<header id="header">
   <div class="brand">
     <div class="logo">
-      <img src="wango-.png" alt="">
-      <div style="font-size:12px;color:rgba(255,255,255,0.8);margin-top:4px">The Mango Club • HAL 3rd Stage</div>
-      <div>
-        
-        
-      </div>
+      <img src="wango-.png" alt="Wango Logo">
+    </div>
+    <div class="brand-info">
+      <h1>Wango</h1>
+      <div class="subtitle">The Mango Club • HAL 3rd Stage</div>
     </div>
   </div>
 
@@ -543,50 +938,56 @@
       <p class="lead">Fresh Alphonso, creamy shakes, mango cheesecakes and delightful seasonal creations. Small-batch, handcrafted mango treats served with love at HAL 3rd Stage.</p>
       <div class="actions">
         <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a Table</button>
-        <button class="btn ghost" onclick="openGallery()">Explore Gallery</button>
+        <button class="btn ghost" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">Explore Gallery</button>
       </div>
 
-      <div style="margin-top:20px;color:rgba(255,255,255,0.88)">
-        <strong>Address:</strong> 1673, 9th Main Road, HAL 3rd Stage, New Thippasandra, Bengaluru
+      <div class="hero-address">
+        <strong>Visit Us</strong>
+        <p>1673, 9th Main Road, HAL 3rd Stage<br>New Thippasandra, Bengaluru, Karnataka 560075</p>
       </div>
     </div>
 
     <aside class="hero-card fade-up" style="animation-delay:.15s">
-      <div class="img" id="heroImg" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nopN0kC3YO3XQY6K4DqjlkjdicAIrN1kLVRPWhvRauM7iYaqxQyCetXiEuslw3Ml8kY2EVDdXFWd68LMPZxdLsOjp6XgXnWjXIZCFrMGtkv5yWbBibdeaLDxX_wtnPDCF3ofqjtWgScXcZQ=s1360-w1360-h1020-rw')"></div>
+      <div class="img" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nopN0kC3YO3XQY6K4DqjlkjdicAIrN1kLVRPWhvRauM7iYaqxQyCetXiEuslw3Ml8kY2EVDdXFWd68LMPZxdLsOjp6XgXnWjXIZCFrMGtkv5yWbBibdeaLDxX_wtnPDCF3ofqjtWgScXcZQ=s1360-w1360-h1020-rw')"></div>
       <div class="meta">
-        <div style="font-weight:700">Chef's Pick: Alphonso Mousse</div>
-        <div style="opacity:.85">Open • 11:00 AM — 10:30 PM</div>
+        <div>Chef's Pick: Alphonso Mousse</div>
+        <div>Open • 11:00 AM — 10:30 PM</div>
       </div>
     </aside>
   </section>
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="container about">
-      <div>
-        <h3 style="margin-top:0;font-family:Playfair Display,serif;font-size:32px">About Wango — The Mango Club</h3>
-        <p style="color:rgba(255,255,255,0.9);font-size:17px;line-height:1.6">Wango started with one idea: celebrate the mango. Sourcing the ripest Alphonso and pairing it with modern desserts, we make mango treats that feel nostalgic and new at the same time. Our menu rotates seasonally to bring you the best textures and flavours.</p>
+    <div class="section-header">
+      <h3 class="section-title">About Wango — The Mango Club</h3>
+      <p class="section-subtitle">Celebrating the king of fruits with passion, creativity, and authentic flavors</p>
+    </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:24px">
+    <div class="about">
+      <div class="about-content">
+        <p>Wango started with one idea: celebrate the mango. Sourcing the ripest Alphonso and pairing it with modern desserts, we make mango treats that feel nostalgic and new at the same time. Our menu rotates seasonally to bring you the best textures and flavours.</p>
+
+        <div class="features-grid">
           <div class="card">
-            <strong>Fresh Ingredients</strong>
-            <p style="margin:8px 0 0">Local farms • Handpicked daily • No artificial preservatives</p>
+            <h4>Fresh Ingredients</h4>
+            <p>Local farms • Handpicked daily • No artificial preservatives. We source directly from trusted farms to ensure every mango meets our quality standards.</p>
           </div>
           <div class="card">
-            <strong>Crafted Desserts</strong>
-            <p style="margin:8px 0 0">Shakes, puddings, cheesecakes & seasonal specials</p>
+            <h4>Crafted Desserts</h4>
+            <p>Shakes, puddings, cheesecakes & seasonal specials. Each creation is meticulously crafted to highlight the natural sweetness and texture of premium mangoes.</p>
           </div>
         </div>
       </div>
 
       <div>
         <div class="card">
-          <h4 style="margin:0 0 12px">Open Kitchen Experience</h4>
-          <p style="margin:0 0 16px">Get a seat at our counter and watch the mango magic happen. Great for dates and small gatherings.</p>
-          <ul style="margin:0;padding-left:18px">
+          <h4>Open Kitchen Experience</h4>
+          <p>Get a seat at our counter and watch the mango magic happen. Great for dates and small gatherings.</p>
+          <ul>
             <li>Private tasting platters</li>
             <li>Seasonal menus</li>
             <li>Catering for events</li>
+            <li>Custom dessert orders</li>
           </ul>
         </div>
       </div>
@@ -595,56 +996,58 @@
 
   <!-- GALLERY -->
   <section id="gallery">
-    <div class="container">
-      <h3 style="font-family:Playfair Display,serif;font-size:32px">Gallery</h3>
-      <p style="color:rgba(255,255,255,0.9)">A few mango moments — click to enlarge.</p>
+    <div class="section-header">
+      <h3 class="section-title">Gallery</h3>
+      <p class="section-subtitle">A few mango moments — click to enlarge and savor the visual feast</p>
+    </div>
 
-      <div class="gallery-grid" id="galleryGrid">
-        <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrlTDvHg7J4vP8UjeUtpybySbqAzldGIqK8Psp7wizOw9y1mjCyMMCzKR2y3kNoCKx5j7jtOZW3NFHMCecu8i-xfrEiZ34X48oz0svyPcbjPyDoaxwAR9UEv12ja-X7uMO25G6ywq-TZVLU=s1360-w1360-h1020-rw">
-          <div class="overlay">Alphonso Mousse</div>
-        </div>
-        <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nojt2_4MMfMkfMs2Q6Zb1VAE60AuDABUA4UsazBdvpVwFSXlBdYzlkOCNuwDMmWegX-BP_-akaHv3pg5mi1gJvgOSwMMOWLf96SQBzd0ObQStEXd7-hBFavoM5mHWG-2XGRnLsxnCR7bEqj=s1360-w1360-h1020-rw" style="background-image:url('https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=60')">
-          <div class="overlay">Mango Shake</div>
-        </div>
-        <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr3FVR7Pr3WsnUlG0q29AZA34gyCHJUrNOXsMOTZFcey81aBK0zYc7vjb0q0bWf5J0SCle3X4xd-T0MIvqPW9J2J_-RiVOUQCmcc2I5wjQGiB0Gei9thFyrTL2buVLhX6vFjel1HnVfQBqv=s1360-w1360-h1020-rw" style="background-image:url('https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?auto=format&fit=crop&w=800&q=60')">
-          <div class="overlay">Mango Cheesecake</div>
-        </div>
-        <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrnVvGjZJ6348SZto5Au7-k4DmcA422TSQ3Xtx3db0Gud-FQwcrQ6GRIUvtzDbyopri4K_3o3OkOrBkXkkP2jKkTokaL6FB9EkRfWN1Ok63YqX9dTsB3bipTYgBjw6Y7JmBGFNwPtg1k_st=s1360-w1360-h1020-rw">
-          <div class="overlay">Seasonal Falooda</div>
-        </div>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrlTDvHg7J4vP8UjeUtpybySbqAzldGIqK8Psp7wizOw9y1mjCyMMCzKR2y3kNoCKx5j7jtOZW3NFHMCecu8i-xfrEiZ34X48oz0svyPcbjPyDoaxwAR9UEv12ja-X7uMO25G6ywq-TZVLU=s1360-w1360-h1020-rw" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrlTDvHg7J4vP8UjeUtpybySbqAzldGIqK8Psp7wizOw9y1mjCyMMCzKR2y3kNoCKx5j7jtOZW3NFHMCecu8i-xfrEiZ34X48oz0svyPcbjPyDoaxwAR9UEv12ja-X7uMO25G6ywq-TZVLU=s1360-w1360-h1020-rw')">
+        <div class="overlay">Alphonso Mousse</div>
+      </div>
+      <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nojt2_4MMfMkfMs2Q6Zb1VAE60AuDABUA4UsazBdvpVwFSXlBdYzlkOCNuwDMmWegX-BP_-akaHv3pg5mi1gJvgOSwMMOWLf96SQBzd0ObQStEXd7-hBFavoM5mHWG-2XGRnLsxnCR7bEqj=s1360-w1360-h1020-rw" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nojt2_4MMfMkfMs2Q6Zb1VAE60AuDABUA4UsazBdvpVwFSXlBdYzlkOCNuwDMmWegX-BP_-akaHv3pg5mi1gJvgOSwMMOWLf96SQBzd0ObQStEXd7-hBFavoM5mHWG-2XGRnLsxnCR7bEqj=s1360-w1360-h1020-rw')">
+        <div class="overlay">Mango Shake</div>
+      </div>
+      <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr3FVR7Pr3WsnUlG0q29AZA34gyCHJUrNOXsMOTZFcey81aBK0zYc7vjb0q0bWf5J0SCle3X4xd-T0MIvqPW9J2J_-RiVOUQCmcc2I5wjQGiB0Gei9thFyrTL2buVLhX6vFjel1HnVfQBqv=s1360-w1360-h1020-rw" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr3FVR7Pr3WsnUlG0q29AZA34gyCHJUrNOXsMOTZFcey81aBK0zYc7vjb0q0bWf5J0SCle3X4xd-T0MIvqPW9J2J_-RiVOUQCmcc2I5wjQGiB0Gei9thFyrTL2buVLhX6vFjel1HnVfQBqv=s1360-w1360-h1020-rw')">
+        <div class="overlay">Mango Cheesecake</div>
+      </div>
+      <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrnVvGjZJ6348SZto5Au7-k4DmcA422TSQ3Xtx3db0Gud-FQwcrQ6GRIUvtzDbyopri4K_3o3OkOrBkXkkP2jKkTokaL6FB9EkRfWN1Ok63YqX9dTsB3bipTYgBjw6Y7JmBGFNwPtg1k_st=s1360-w1360-h1020-rw" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrnVvGjZJ6348SZto5Au7-k4DmcA422TSQ3Xtx3db0Gud-FQwcrQ6GRIUvtzDbyopri4K_3o3OkOrBkXkkP2jKkTokaL6FB9EkRfWN1Ok63YqX9dTsB3bipTYgBjw6Y7JmBGFNwPtg1k_st=s1360-w1360-h1020-rw')">
+        <div class="overlay">Seasonal Falooda</div>
       </div>
     </div>
   </section>
 
-  <!-- EXCLUSIVE PAGE -->
+  <!-- EXCLUSIVE -->
   <section id="exclusive">
-    <div class="container exclusive">
-      <h3 style="font-family:Playfair Display,serif;font-size:32px">Exclusive — Limited Edition</h3>
-      <p style="color:rgba(255,255,255,0.9)">Specials that run for a short time only. Reserve or pre-order.</p>
+    <div class="section-header">
+      <h3 class="section-title">Exclusive — Limited Edition</h3>
+      <p class="section-subtitle">Specials that run for a short time only. Reserve or pre-order to experience these unique creations</p>
+    </div>
 
-      <div class="list">
-        <div class="tile">
-          <h4 style="margin:0 0 8px">Alphonso Sky Parfait</h4>
-          <p style="margin:0;opacity:0.9">Layers of mango gel, croquant, and saffron cream.</p>
-        </div>
-        <div class="tile">
-          <h4 style="margin:0 0 8px">Smoky Mango Tart</h4>
-          <p style="margin:0;opacity:0.9">Stone-grilled mango with burnt sugar crumb.</p>
-        </div>
-        <div class="tile">
-          <h4 style="margin:0 0 8px">Mango & Rosemary Sorbet</h4>
-          <p style="margin:0;opacity:0.9">Refreshing palate-cleanser with herbal notes.</p>
-        </div>
+    <div class="exclusive-list">
+      <div class="tile">
+        <h4>Alphonso Sky Parfait</h4>
+        <p>Layers of mango gel, croquant, and saffron cream. A delicate balance of textures that melts on your tongue.</p>
+      </div>
+      <div class="tile">
+        <h4>Smoky Mango Tart</h4>
+        <p>Stone-grilled mango with burnt sugar crumb. An unexpected twist on traditional mango desserts with bold flavors.</p>
+      </div>
+      <div class="tile">
+        <h4>Mango & Rosemary Sorbet</h4>
+        <p>Refreshing palate-cleanser with herbal notes. Perfect for those who love innovative flavor combinations.</p>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact" class="contact-section">
-    <div class="contact-container">
-      <h3 style="font-family:Playfair Display,serif;font-size:32px;text-align:center;margin-bottom:8px">Contact & Reservations</h3>
-      <p style="color:rgba(255,255,255,0.9);text-align:center;margin-bottom:40px">Reach us for bookings, catering and collaborations.</p>
+    <div class="section-header">
+      <h3 class="section-title">Contact & Reservations</h3>
+      <p class="section-subtitle">Reach us for bookings, catering and collaborations. We'd love to hear from you!</p>
+    </div>
 
+    <div class="contact-container">
       <form class="contact" id="contactForm" onsubmit="return submitForm(event)">
         <div class="form-group">
           <label class="form-label">Full Name *</label>
@@ -688,7 +1091,7 @@
 <!-- Modal for gallery -->
 <div class="modal" id="modal">
   <div class="frame">
-    <img src="" alt="enlarged" id="modalImg">
+    <img src="" alt="Gallery Image" id="modalImg">
   </div>
 </div>
 
@@ -726,34 +1129,51 @@ window.addEventListener('load', () => {
     setTimeout(() => {
       document.getElementById('loader').style.display = 'none';
     }, 500);
-  }, 1500); // Show loader for 1.5 seconds minimum
+  }, 1500);
 });
 
 // Set current year
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Header scroll effect
+const header = document.getElementById('header');
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (scrollTop > 100) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+  
+  if (scrollTop > lastScrollTop && scrollTop > 300) {
+    header.style.transform = 'translateY(-100%)';
+  } else {
+    header.style.transform = 'translateY(0)';
+  }
+  
+  lastScrollTop = scrollTop;
+});
+
 // Mobile menu toggle
 const menuBtn = document.getElementById('menuBtn');
 menuBtn.addEventListener('click', () => {
-  alert('Mobile menu: you can wire a slide-out here. For demo, navigation links are on the header for large screens.');
+  alert('Mobile menu: Navigation will be implemented here. On desktop, use the header links.');
 });
 
-// Gallery interactions
-function openGallery() {
-  document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
-}
-
-const items = document.querySelectorAll('.gallery-item');
+// Gallery modal
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modalImg');
+const galleryItems = document.querySelectorAll('.gallery-item');
 
-items.forEach(item => {
+galleryItems.forEach(item => {
   item.addEventListener('click', () => {
-    const src = item.dataset.src || '';
+    const src = item.dataset.src;
     if(src) { 
       modalImg.src = src; 
       modal.style.display = 'flex';
-      // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden';
     }
   });
@@ -762,79 +1182,50 @@ items.forEach(item => {
 modal.addEventListener('click', () => { 
   modal.style.display = 'none'; 
   modalImg.src = '';
-  // Re-enable body scroll when modal is closed
   document.body.style.overflow = 'auto';
 });
 
-// Contact form with improved UX
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.style.display === 'flex') {
+    modal.style.display = 'none';
+    modalImg.src = '';
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// Contact form
 function submitForm(e) {
   e.preventDefault();
   const form = e.target;
   const submitBtn = form.querySelector('.submit-btn');
   const formData = Object.fromEntries(new FormData(form).entries());
   
-  // Validation
   if(!formData.name || !formData.email || !formData.message) {
     alert('Please fill in all required fields.');
     return false;
   }
   
-  // Email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if(!emailRegex.test(formData.email)) {
     alert('Please enter a valid email address.');
     return false;
   }
   
-  // Show loading state
   submitBtn.classList.add('loading');
   submitBtn.disabled = true;
-  const originalText = submitBtn.textContent;
-  submitBtn.textContent = 'Sending...';
   
-  // Simulate API call
   setTimeout(() => {
-    // Success feedback
     alert(`Thank you ${formData.name}! We've received your message and will get back to you within 24 hours.`);
-    
-    // Reset form and button
     form.reset();
     submitBtn.classList.remove('loading');
     submitBtn.disabled = false;
-    submitBtn.textContent = originalText;
-    
-    // Optional: Show success message in UI instead of alert
-    // You can replace this with a toast notification or inline message
   }, 1500);
   
   return false;
 }
 
-// Smooth reveal animations for elements
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-up');
-      observer.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
-
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', () => {
-  const animateElements = document.querySelectorAll('.gallery-item, .tile, .card');
-  animateElements.forEach((el, index) => {
-    el.style.animationDelay = `${index * 0.1}s`;
-    observer.observe(el);
-  });
-});
-
-// Smooth scroll for navigation links
+// Smooth scroll for navigation
 document.querySelectorAll('nav a[href^="#"]').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -850,103 +1241,42 @@ document.querySelectorAll('nav a[href^="#"]').forEach(link => {
   });
 });
 
-// Order button functionality
+// Order button
 document.getElementById('orderBtn').addEventListener('click', () => {
-  // You can integrate with food delivery APIs or redirect to ordering platform
-  alert('Redirecting to our ordering platform... (This would integrate with Zomato/Swiggy/etc in production)');
+  alert('Redirecting to our ordering platform... (Integration with Zomato/Swiggy coming soon)');
 });
 
-// Add scroll effect to header
-let lastScrollTop = 0;
-const header = document.querySelector('header');
+// Intersection Observer for animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
 
-window.addEventListener('scroll', () => {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  
-  if (scrollTop > 100) {
-    header.style.background = 'rgba(12, 107, 90, 0.95)';
-    header.style.backdropFilter = 'blur(10px)';
-    header.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
-  } else {
-    header.style.background = 'transparent';
-    header.style.backdropFilter = 'none';
-    header.style.borderBottom = 'none';
-  }
-  
-  // Hide header on scroll down, show on scroll up
-  if (scrollTop > lastScrollTop && scrollTop > 200) {
-    header.style.transform = 'translateY(-100%)';
-  } else {
-    header.style.transform = 'translateY(0)';
-  }
-  
-  lastScrollTop = scrollTop;
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.card, .tile, .gallery-item').forEach((el, index) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+  observer.observe(el);
 });
-
-// Add header transition
-header.style.transition = 'all 0.3s ease';
 
 // Preload critical images
 const criticalImages = [
-  'https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=1400&q=80',
-  'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=60',
-  'https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?auto=format&fit=crop&w=800&q=60'
+  'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nopN0kC3YO3XQY6K4DqjlkjdicAIrN1kLVRPWhvRauM7iYaqxQyCetXiEuslw3Ml8kY2EVDdXFWd68LMPZxdLsOjp6XgXnWjXIZCFrMGtkv5yWbBibdeaLDxX_wtnPDCF3ofqjtWgScXcZQ=s1360-w1360-h1020-rw'
 ];
 
 criticalImages.forEach(src => {
   const img = new Image();
   img.src = src;
 });
-
-// Error handling for images
-document.querySelectorAll('img, [style*="background-image"]').forEach(element => {
-  if (element.tagName === 'IMG') {
-    element.addEventListener('error', () => {
-      element.style.display = 'none';
-      console.log('Failed to load image:', element.src);
-    });
-  }
-});
-
-// Add keyboard navigation support
-document.addEventListener('keydown', (e) => {
-  // Close modal on Escape key
-  if (e.key === 'Escape' && modal.style.display === 'flex') {
-    modal.style.display = 'none';
-    modalImg.src = '';
-    document.body.style.overflow = 'auto';
-  }
-});
-
-// Performance optimization: Lazy load gallery images
-const lazyLoadOptions = {
-  threshold: 0.1,
-  rootMargin: '50px'
-};
-
-const lazyImageObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const img = entry.target;
-      const src = img.dataset.src;
-      if (src && !img.dataset.loaded) {
-        const tempImg = new Image();
-        tempImg.onload = () => {
-          img.style.backgroundImage = `url(${src})`;
-          img.dataset.loaded = 'true';
-        };
-        tempImg.src = src;
-        lazyImageObserver.unobserve(img);
-      }
-    }
-  });
-}, lazyLoadOptions);
-
-// Initialize lazy loading for gallery items
-document.querySelectorAll('.gallery-item[data-src]').forEach(item => {
-  lazyImageObserver.observe(item);
-});
-
 </script>
 
 </body>
