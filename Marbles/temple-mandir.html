@@ -5,7 +5,263 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jain Mandirs & Temples - Aizaz Marble Traders</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="product.css">
+    <style>
+        /* Image viewer styles */
+        .modal-image {
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-image:hover {
+            transform: scale(1.02);
+        }
+
+        .image-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-viewer.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .viewer-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .viewer-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .viewer-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .viewer-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .viewer-close i {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .viewer-back {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .viewer-back:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .viewer-back i,
+        .viewer-back span {
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .viewer-info {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .viewer-info h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .viewer-info p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.8;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .zoom-controls {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 10px;
+            z-index: 10001;
+        }
+
+        .zoom-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .zoom-btn i {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .viewer-image.zoomed {
+            cursor: grab;
+            max-width: none;
+            max-height: none;
+        }
+
+        .viewer-image.zoomed:active {
+            cursor: grabbing;
+        }
+
+        .click-hint {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(201, 169, 97, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        .modal-image-wrapper {
+            position: relative;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .viewer-back {
+                left: 20px;
+                padding: 10px 20px;
+            }
+
+            .viewer-close {
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .zoom-controls {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .viewer-info {
+                bottom: 20px;
+                padding: 12px 24px;
+            }
+
+            .viewer-info h3 {
+                font-size: 18px;
+            }
+
+            .viewer-info p {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
     <section class="hero-section">
@@ -29,12 +285,19 @@
         </div>
     </section>
 
+    <!-- Product Modal -->
     <div class="modal" id="productModal">
         <div class="modal-content">
             <div class="modal-close" onclick="closeModal()">
                 <i class="fas fa-times"></i>
             </div>
-            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-image-wrapper">
+                <div class="click-hint" id="clickHint">
+                    <i class="fas fa-search-plus"></i>
+                    <span>Click to view full image</span>
+                </div>
+                <img src="" alt="" class="modal-image" id="modalImage" onclick="openImageViewer()">
+            </div>
             <div class="modal-body">
                 <span class="modal-badge">Premium Collection</span>
                 <h2 class="modal-title" id="modalTitle"></h2>
@@ -45,6 +308,35 @@
                     <i class="fab fa-whatsapp"></i>
                     <span>Inquire on WhatsApp</span>
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer -->
+    <div class="image-viewer" id="imageViewer">
+        <div class="viewer-back" onclick="closeImageViewer()">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Details</span>
+        </div>
+        <div class="viewer-close" onclick="closeImageViewer()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="viewer-container" id="viewerContainer">
+            <img src="" alt="" class="viewer-image" id="viewerImage">
+        </div>
+        <div class="viewer-info">
+            <h3 id="viewerTitle"></h3>
+            <p>Click and drag to move • Scroll to zoom</p>
+        </div>
+        <div class="zoom-controls">
+            <div class="zoom-btn" onclick="zoomIn()">
+                <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="zoom-btn" onclick="zoomOut()">
+                <i class="fas fa-search-minus"></i>
+            </div>
+            <div class="zoom-btn" onclick="resetZoom()">
+                <i class="fas fa-expand"></i>
             </div>
         </div>
     </div>
@@ -111,6 +403,9 @@
 
         const whatsappNumber = "1234567890";
         let currentProduct = null;
+        let zoomLevel = 1;
+        let isDragging = false;
+        let startX, startY, scrollLeft, scrollTop;
 
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
@@ -167,13 +462,114 @@
             const modal = document.getElementById('productModal');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                const hint = document.getElementById('clickHint');
+                if (hint) {
+                    hint.style.animation = 'fadeOut 0.5s ease forwards';
+                    setTimeout(() => hint.style.display = 'none', 500);
+                }
+            }, 3000);
         }
 
         function closeModal() {
             const modal = document.getElementById('productModal');
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            
+            const hint = document.getElementById('clickHint');
+            if (hint) {
+                hint.style.display = 'flex';
+                hint.style.animation = 'pulse 2s infinite';
+            }
+            
             currentProduct = null;
+        }
+
+        function openImageViewer() {
+            if (!currentProduct) return;
+
+            const viewer = document.getElementById('imageViewer');
+            const viewerImage = document.getElementById('viewerImage');
+            const viewerTitle = document.getElementById('viewerTitle');
+
+            viewerImage.src = currentProduct.image;
+            viewerTitle.textContent = currentProduct.title;
+            
+            viewer.style.display = 'flex';
+            setTimeout(() => viewer.classList.add('active'), 10);
+
+            zoomLevel = 1;
+            viewerImage.style.transform = `scale(${zoomLevel})`;
+            viewerImage.classList.remove('zoomed');
+
+            setupImageDrag();
+        }
+
+        function closeImageViewer() {
+            const viewer = document.getElementById('imageViewer');
+            viewer.classList.remove('active');
+            setTimeout(() => viewer.style.display = 'none', 300);
+        }
+
+        function zoomIn() {
+            const viewerImage = document.getElementById('viewerImage');
+            if (zoomLevel < 3) {
+                zoomLevel += 0.5;
+                viewerImage.style.transform = `scale(${zoomLevel})`;
+                if (zoomLevel > 1) viewerImage.classList.add('zoomed');
+            }
+        }
+
+        function zoomOut() {
+            const viewerImage = document.getElementById('viewerImage');
+            if (zoomLevel > 0.5) {
+                zoomLevel -= 0.5;
+                viewerImage.style.transform = `scale(${zoomLevel})`;
+                if (zoomLevel <= 1) viewerImage.classList.remove('zoomed');
+            }
+        }
+
+        function resetZoom() {
+            const viewerImage = document.getElementById('viewerImage');
+            zoomLevel = 1;
+            viewerImage.style.transform = `scale(${zoomLevel})`;
+            viewerImage.style.left = '0';
+            viewerImage.style.top = '0';
+            viewerImage.classList.remove('zoomed');
+        }
+
+        function setupImageDrag() {
+            const viewerImage = document.getElementById('viewerImage');
+            const container = document.getElementById('viewerContainer');
+
+            viewerImage.addEventListener('mousedown', (e) => {
+                if (zoomLevel > 1) {
+                    isDragging = true;
+                    startX = e.pageX - viewerImage.offsetLeft;
+                    startY = e.pageY - viewerImage.offsetTop;
+                }
+            });
+
+            document.addEventListener('mouseup', () => isDragging = false);
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                
+                const x = e.pageX - startX;
+                const y = e.pageY - startY;
+                
+                viewerImage.style.position = 'relative';
+                viewerImage.style.left = `${x}px`;
+                viewerImage.style.top = `${y}px`;
+            });
+
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                if (e.deltaY < 0) zoomIn();
+                else zoomOut();
+            });
         }
 
         function contactWhatsApp() {
@@ -191,17 +587,24 @@
             }
         }
 
-        // Close modal on outside click
         document.getElementById('productModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
+        document.getElementById('imageViewer').addEventListener('click', function(e) {
+            if (e.target === this) closeImageViewer();
         });
 
-        // Enhanced card interactions with smooth 3D tilt effect
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (document.getElementById('imageViewer').classList.contains('active')) {
+                    closeImageViewer();
+                } else {
+                    closeModal();
+                }
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.product-card');
             
@@ -225,7 +628,6 @@
                 });
             });
 
-            // Smooth scroll reveal with stagger
             const observerOptions = {
                 threshold: 0.15,
                 rootMargin: '0px 0px -80px 0px'
@@ -240,7 +642,6 @@
                 });
             }, observerOptions);
 
-            // Animate section header
             const sectionHeader = document.querySelector('.section-header');
             if (sectionHeader) {
                 sectionHeader.style.opacity = '0';
@@ -249,7 +650,6 @@
                 fadeInObserver.observe(sectionHeader);
             }
 
-            // Enhanced ripple effect for buttons
             const buttons = document.querySelectorAll('.view-details-btn, .modal-whatsapp, .whatsapp-btn');
             buttons.forEach(button => {
                 button.addEventListener('click', function(e) {
@@ -280,7 +680,6 @@
                 });
             });
 
-            // Add ripple animation
             if (!document.querySelector('#rippleAnimation')) {
                 const style = document.createElement('style');
                 style.id = 'rippleAnimation';
@@ -295,11 +694,10 @@
                 document.head.appendChild(style);
             }
 
-            console.log('✨ Enhanced Premium Jain Mandirs & Temples Collection Loaded');
-            console.log('🎨 Features: Glassmorphism, Smooth 3D animations, Enhanced modal transitions');
+            console.log('✨ Enhanced Premium Jain Mandirs & Temples Collection with Image Viewer Loaded');
+            console.log('🎨 Features: Glassmorphism, Image Viewer, Zoom Controls, Drag to Move');
         });
 
-        // Initialize
         renderProducts();
     </script>
 </body>
