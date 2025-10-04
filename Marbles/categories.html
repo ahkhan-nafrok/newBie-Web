@@ -194,11 +194,22 @@
     </div>
 
     <script>
-document.addEventListener('DOMContentLoaded', function() {
+// Replace the existing script in categories.html with this:
+
+// Use a longer delay to ensure DOM is fully ready
+setTimeout(function() {
     const wrapper = document.querySelector('.aizaz-categories-wrapper');
-    if (!wrapper) return;
+    if (!wrapper) {
+        console.error('❌ Categories wrapper not found');
+        return;
+    }
 
     const categoryCards = wrapper.querySelectorAll('.category-card');
+    
+    if (categoryCards.length === 0) {
+        console.error('❌ No category cards found');
+        return;
+    }
     
     categoryCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -226,6 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const url = categoryUrls[category];
             if (url) {
+                console.log('🔗 Navigating to:', url);
                 window.location.href = url;
             }
         });
@@ -265,6 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const url = categoryUrls[category];
                 if (url) {
+                    console.log('🔗 Touch navigating to:', url);
                     window.location.href = url;
                 }
             }
@@ -272,7 +285,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     console.log('✨ Aizaz Marble Traders - Categories Component Loaded Successfully');
-});
+    console.log('📦 Found', categoryCards.length, 'category cards');
+}, 500); // Increased delay to 500ms
     </script>
 </body>
 </html>
