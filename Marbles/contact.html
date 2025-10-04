@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Section - Aizaz Marble Traders</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-   <style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+   <style>@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 :root {
     --royal-gold: #D4A574;
@@ -21,6 +21,7 @@
     --rich-burgundy: #722F37;
     --light-gold: #F4E4BC;
     --dark-gold: #B8860B;
+    --whatsapp-green: #25D366;
 }
 
 * {
@@ -30,7 +31,7 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
     background: var(--warm-white);
     color: var(--text-dark);
     line-height: 1.6;
@@ -55,29 +56,31 @@ body {
 
 .section-subtitle {
     color: var(--royal-gold);
-    font-size: 0.9rem;
-    font-weight: 400;
-    letter-spacing: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 4px;
     text-transform: uppercase;
     margin-bottom: 1rem;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
-    font-weight: 400;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 600;
     color: var(--deep-navy);
     margin-bottom: 1.5rem;
+    letter-spacing: -1px;
 }
 
 .section-description {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-light);
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
     line-height: 1.8;
-    font-family: 'Crimson Text', serif;
+    font-family: 'Lora', serif;
+    font-weight: 400;
 }
 
 /* Contact Section */
@@ -93,53 +96,120 @@ body {
 
 .contact-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
 
 .contact-item {
     background: white;
-    padding: 2rem;
-    border-radius: 20px;
+    padding: 2.5rem;
+    border-radius: 24px;
     text-align: center;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    border-top: 4px solid var(--royal-gold);
-    border: 1px solid rgba(212, 165, 116, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid rgba(212, 165, 116, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--royal-gold), var(--accent-brown));
 }
 
 .contact-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(212, 165, 116, 0.2);
+    border-color: var(--royal-gold);
 }
 
 .contact-icon {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: var(--royal-gold);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .contact-item h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--deep-navy);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
 }
 
 .contact-item p {
     color: var(--text-light);
-    font-family: 'Crimson Text', serif;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.contact-item p a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.contact-item p a:hover {
+    color: var(--royal-gold);
+}
+
+.whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--whatsapp-green) !important;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.whatsapp-link i {
+    font-size: 1.2rem;
+}
+
+.whatsapp-link:hover {
+    color: #128C7E !important;
 }
 
 .contact-form {
     background: white;
-    padding: 3rem;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-    max-width: 800px;
+    padding: 3.5rem;
+    border-radius: 24px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.1);
+    max-width: 850px;
     margin: 0 auto;
-    border: 1px solid rgba(212, 165, 116, 0.1);
+    border: 2px solid rgba(212, 165, 116, 0.15);
+}
+
+.form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--deep-navy);
+    margin-bottom: 0.5rem;
+    text-align: center;
+    letter-spacing: -1px;
+}
+
+.form-subtitle {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 2.5rem;
 }
 
 .form-group {
@@ -149,27 +219,30 @@ body {
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
     color: var(--deep-navy);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 1rem;
-    border: 2px solid rgba(212, 165, 116, 0.2);
-    border-radius: 10px;
-    font-family: 'Crimson Text', serif;
-    font-size: 0.95rem;
+    padding: 1.1rem 1.3rem;
+    border: 2px solid rgba(212, 165, 116, 0.25);
+    border-radius: 12px;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
     transition: all 0.3s ease;
+    background: #FAFAF9;
 }
 
 .form-group input:focus,
@@ -177,33 +250,35 @@ body {
 .form-group select:focus {
     outline: none;
     border-color: var(--royal-gold);
-    box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.12);
+    background: white;
 }
 
 .form-group textarea {
-    height: 120px;
+    height: 140px;
     resize: vertical;
 }
 
 .submit-btn {
     background: linear-gradient(135deg, var(--royal-gold), var(--accent-brown));
     color: white;
-    padding: 1rem 3rem;
+    padding: 1.2rem 3.5rem;
     border: none;
-    border-radius: 50px;
-    font-weight: 500;
+    border-radius: 60px;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     font-size: 0.9rem;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
     width: 100%;
+    box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
 }
 
 .submit-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 20px 40px rgba(212, 165, 116, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 25px 50px rgba(212, 165, 116, 0.5);
 }
 
 .submit-btn:disabled {
@@ -215,6 +290,10 @@ body {
 @media (max-width: 991px) {
     .form-row {
         grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 2.8rem;
     }
 }
 
@@ -228,13 +307,21 @@ body {
     }
 
     .contact-form {
-        padding: 2rem;
+        padding: 2.5rem;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 576px) {
     .section-title {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
+    }
+    
+    .form-title {
+        font-size: 2rem;
     }
 }</style>
 </head>
@@ -254,10 +341,14 @@ body {
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
+                            <i class="fas fa-phone-alt"></i>
                         </div>
                         <h4>Phone</h4>
-                        <p>+91 98765 43210<br>+91 87654 32109</p>
+                        <p><a href="tel:+917300008825">+91 73000 08825</a></p>
+                        <p class="whatsapp-link">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/917300008825" target="_blank">WhatsApp Available</a>
+                        </p>
                     </div>
                     
                     <div class="contact-item">
@@ -265,7 +356,8 @@ body {
                             <i class="fas fa-envelope"></i>
                         </div>
                         <h4>Email</h4>
-                        <p>info@aizazmarble.com<br>sales@aizazmarble.com</p>
+                        <p><a href="mailto:info@aizazmarble.com">info@aizazmarble.com</a></p>
+                        <p><a href="mailto:sales@aizazmarble.com">sales@aizazmarble.com</a></p>
                     </div>
                     
                     <div class="contact-item">
@@ -273,7 +365,7 @@ body {
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <h4>Address</h4>
-                        <p>123 Marble District<br>Industrial Area, Mumbai</p>
+                        <p>Opposite to Moti Mahal,<br>Near Bus Stand<br>Makrana, Rajasthan 341505</p>
                     </div>
                     
                     <div class="contact-item">
@@ -281,12 +373,13 @@ body {
                             <i class="fas fa-clock"></i>
                         </div>
                         <h4>Business Hours</h4>
-                        <p>Mon-Sat: 9:00 AM - 7:00 PM<br>Sunday: By Appointment</p>
+                        <p>Monday - Saturday<br>9:00 AM - 7:00 PM<br>Sunday: By Appointment</p>
                     </div>
                 </div>
                 
                 <div class="contact-form">
-                    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--deep-navy); margin-bottom: 2rem; text-align: center;">Request a Quote</h3>
+                    <h3 class="form-title">Request a Quote</h3>
+                    <p class="form-subtitle">Share your project details and we'll get back to you within 24 hours</p>
                     
                     <form id="contactForm">
                         <div class="form-row">
@@ -338,9 +431,7 @@ body {
     </section>
 
     <script>
-        // Contact section functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -355,7 +446,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Initialize contact items with staggered animation
     const contactItems = document.querySelectorAll('.contact-item');
     contactItems.forEach((item, index) => {
         item.style.opacity = '0';
@@ -364,7 +454,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(item);
     });
 
-    // Initialize contact form
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.style.opacity = '0';
@@ -373,13 +462,11 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(contactForm);
     }
 
-    // Form submission handling
     const form = document.getElementById('contactForm');
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form data
             const formData = new FormData(this);
             const firstName = formData.get('firstName');
             const lastName = formData.get('lastName');
@@ -388,61 +475,45 @@ document.addEventListener('DOMContentLoaded', function() {
             const category = formData.get('category');
             const message = formData.get('message');
             
-            // Basic validation
             if (!validateForm(firstName, lastName, email, phone, category, message)) {
                 return;
             }
             
-            // Show loading state
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Submitting...';
             submitBtn.disabled = true;
-            
-            // Add loading animation
             submitBtn.style.background = 'linear-gradient(135deg, #999, #666)';
             
-            // Simulate form submission (replace with actual form submission logic)
             setTimeout(() => {
-                // Success feedback
                 showSuccessMessage(`Thank you ${firstName}! Your quote request for ${category.replace('-', ' ')} has been submitted successfully. Our team will contact you within 24 hours.`);
-                
-                // Reset form
                 this.reset();
                 resetFormStyles();
-                
-                // Reset button
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 submitBtn.style.background = 'linear-gradient(135deg, var(--royal-gold), var(--accent-brown))';
-                
             }, 2000);
         });
     }
 
-    // Form validation
     function validateForm(firstName, lastName, email, phone, category, message) {
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             showError('Please enter a valid email address.');
             return false;
         }
         
-        // Phone validation (basic)
         const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
         if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
             showError('Please enter a valid phone number.');
             return false;
         }
         
-        // Category validation
         if (!category) {
             showError('Please select a project category.');
             return false;
         }
         
-        // Message length validation
         if (message.length < 10) {
             showError('Please provide more details about your project (minimum 10 characters).');
             return false;
@@ -451,31 +522,20 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-    // Show error message
     function showError(message) {
         const errorDiv = document.querySelector('.error-message') || createErrorMessage();
         errorDiv.textContent = message;
         errorDiv.style.display = 'block';
-        
-        // Auto-hide after 5 seconds
-        setTimeout(() => {
-            errorDiv.style.display = 'none';
-        }, 5000);
+        setTimeout(() => { errorDiv.style.display = 'none'; }, 5000);
     }
 
-    // Show success message
     function showSuccessMessage(message) {
         const successDiv = document.querySelector('.success-message') || createSuccessMessage();
         successDiv.textContent = message;
         successDiv.style.display = 'block';
-        
-        // Auto-hide after 8 seconds
-        setTimeout(() => {
-            successDiv.style.display = 'none';
-        }, 8000);
+        setTimeout(() => { successDiv.style.display = 'none'; }, 8000);
     }
 
-    // Create error message element
     function createErrorMessage() {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'error-message';
@@ -484,20 +544,17 @@ document.addEventListener('DOMContentLoaded', function() {
             background: #fee;
             color: #c33;
             padding: 1rem;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-bottom: 1rem;
             border-left: 4px solid #c33;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
         `;
-        
         const form = document.getElementById('contactForm');
         form.insertBefore(errorDiv, form.firstChild);
-        
         return errorDiv;
     }
 
-    // Create success message element
     function createSuccessMessage() {
         const successDiv = document.createElement('div');
         successDiv.className = 'success-message';
@@ -506,38 +563,34 @@ document.addEventListener('DOMContentLoaded', function() {
             background: #efe;
             color: #363;
             padding: 1rem;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-bottom: 1rem;
             border-left: 4px solid #363;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
         `;
-        
         const form = document.getElementById('contactForm');
         form.insertBefore(successDiv, form.firstChild);
-        
         return successDiv;
     }
 
-    // Reset form styles
     function resetFormStyles() {
         const inputs = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
         inputs.forEach(input => {
-            input.style.borderColor = 'rgba(212, 165, 116, 0.2)';
+            input.style.borderColor = 'rgba(212, 165, 116, 0.25)';
         });
     }
 
-    // Enhanced form field interactions
     const formFields = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
     formFields.forEach(field => {
         field.addEventListener('focus', function() {
             this.style.borderColor = 'var(--royal-gold)';
-            this.style.boxShadow = '0 0 0 3px rgba(212, 165, 116, 0.1)';
+            this.style.boxShadow = '0 0 0 4px rgba(212, 165, 116, 0.12)';
         });
         
         field.addEventListener('blur', function() {
             if (this.value.trim() === '') {
-                this.style.borderColor = 'rgba(212, 165, 116, 0.2)';
+                this.style.borderColor = 'rgba(212, 165, 116, 0.25)';
                 this.style.boxShadow = 'none';
             } else {
                 this.style.borderColor = '#4CAF50';
@@ -546,7 +599,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         field.addEventListener('input', function() {
-            // Real-time validation feedback
             if (this.type === 'email' && this.value.length > 0) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (emailRegex.test(this.value)) {
@@ -558,20 +610,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Contact item hover effects
     contactItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-15px) scale(1.02)';
-            this.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.15)';
+            this.style.transform = 'translateY(-15px)';
         });
         
         item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.05)';
+            this.style.transform = 'translateY(0)';
         });
     });
 
-    // Add click-to-copy functionality for contact info
     const phoneElements = document.querySelectorAll('.contact-item p');
     phoneElements.forEach(element => {
         if (element.textContent.includes('+91') || element.textContent.includes('@')) {
@@ -581,21 +629,14 @@ document.addEventListener('DOMContentLoaded', function() {
             element.addEventListener('click', function() {
                 const text = this.textContent.replace(/\n/g, ' ').trim();
                 navigator.clipboard.writeText(text).then(() => {
-                    // Show temporary feedback
                     const originalText = this.innerHTML;
                     this.innerHTML = '<span style="color: var(--royal-gold);">Copied!</span>';
-                    
-                    setTimeout(() => {
-                        this.innerHTML = originalText;
-                    }, 1500);
-                }).catch(() => {
-                    console.log('Copy failed');
-                });
+                    setTimeout(() => { this.innerHTML = originalText; }, 1500);
+                }).catch(() => { console.log('Copy failed'); });
             });
         }
     });
 
-    // Initialize section header animation
     const sectionHeader = document.querySelector('.section-header');
     if (sectionHeader) {
         sectionHeader.style.opacity = '0';
@@ -604,7 +645,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(sectionHeader);
     }
 
-    // Character counter for textarea
     const messageTextarea = document.getElementById('message');
     if (messageTextarea) {
         const counterDiv = document.createElement('div');
@@ -614,7 +654,7 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 0.8rem;
             color: var(--text-light);
             margin-top: 0.5rem;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
         `;
         
         messageTextarea.parentNode.appendChild(counterDiv);
@@ -629,23 +669,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 counterDiv.style.color = 'var(--text-light)';
             }
             
-            // Enforce max length
             if (length > 500) {
                 this.value = this.value.substring(0, 500);
                 counterDiv.textContent = '500/500 characters (max reached)';
             }
         });
-    }
-
-    // Auto-resize textarea
-    if (messageTextarea) {
+        
         messageTextarea.addEventListener('input', function() {
             this.style.height = 'auto';
             this.style.height = Math.min(this.scrollHeight, 200) + 'px';
         });
     }
 
-    // Form field animations on scroll
     const formGroups = document.querySelectorAll('.form-group');
     formGroups.forEach((group, index) => {
         group.style.opacity = '0';
@@ -663,51 +698,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         formObserver.observe(group);
     });
-
-    // Add loading dots animation for submit button
-    function addLoadingAnimation(button) {
-        const loadingDots = document.createElement('span');
-        loadingDots.className = 'loading-dots';
-        loadingDots.innerHTML = '<span>.</span><span>.</span><span>.</span>';
-        
-        // Add CSS for loading animation
-        if (!document.querySelector('#loadingStyles')) {
-            const loadingStyle = document.createElement('style');
-            loadingStyle.id = 'loadingStyles';
-            loadingStyle.textContent = `
-                .loading-dots span {
-                    animation: loadingDots 1.4s infinite ease-in-out both;
-                    display: inline-block;
-                    margin: 0 2px;
-                }
-                
-                .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
-                .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
-                
-                @keyframes loadingDots {
-                    0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
-                    40% { transform: scale(1); opacity: 1; }
-                }
-            `;
-            document.head.appendChild(loadingStyle);
-        }
-        
-        return loadingDots;
-    }
-
-    // Initialize contact section observer
-    const contactSection = document.querySelector('.contact');
-    if (contactSection) {
-        const sectionObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    document.body.classList.add('contact-section-visible');
-                }
-            });
-        }, { threshold: 0.2 });
-        
-        sectionObserver.observe(contactSection);
-    }
 });
     </script>
 </body>
