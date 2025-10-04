@@ -6,6 +6,260 @@
     <title>Home Mandir Collection - Aizaz Marble Traders</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="product.css">
+    <style>
+        /* Additional styles for image viewer */
+        .modal-image {
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-image:hover {
+            transform: scale(1.02);
+        }
+
+        .image-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-viewer.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .viewer-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .viewer-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .viewer-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .viewer-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .viewer-close i {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .viewer-back {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .viewer-back:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .viewer-back i,
+        .viewer-back span {
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .viewer-info {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .viewer-info h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .viewer-info p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.8;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Zoom controls */
+        .zoom-controls {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 10px;
+            z-index: 10001;
+        }
+
+        .zoom-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .zoom-btn i {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .viewer-image.zoomed {
+            cursor: grab;
+            max-width: none;
+            max-height: none;
+        }
+
+        .viewer-image.zoomed:active {
+            cursor: grabbing;
+        }
+
+        /* Click hint animation */
+        .click-hint {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(201, 169, 97, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        .modal-image-wrapper {
+            position: relative;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .viewer-back {
+                left: 20px;
+                padding: 10px 20px;
+            }
+
+            .viewer-close {
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .zoom-controls {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .viewer-info {
+                bottom: 20px;
+                padding: 12px 24px;
+            }
+
+            .viewer-info h3 {
+                font-size: 18px;
+            }
+
+            .viewer-info p {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
     <section class="hero-section">
@@ -29,12 +283,19 @@
         </div>
     </section>
 
+    <!-- Product Modal -->
     <div class="modal" id="productModal">
         <div class="modal-content">
             <div class="modal-close" onclick="closeModal()">
                 <i class="fas fa-times"></i>
             </div>
-            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-image-wrapper">
+                <div class="click-hint" id="clickHint">
+                    <i class="fas fa-search-plus"></i>
+                    <span>Click to view full image</span>
+                </div>
+                <img src="" alt="" class="modal-image" id="modalImage" onclick="openImageViewer()">
+            </div>
             <div class="modal-body">
                 <span class="modal-badge">Premium Collection</span>
                 <h2 class="modal-title" id="modalTitle"></h2>
@@ -49,10 +310,39 @@
         </div>
     </div>
 
+    <!-- Image Viewer -->
+    <div class="image-viewer" id="imageViewer">
+        <div class="viewer-back" onclick="closeImageViewer()">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Details</span>
+        </div>
+        <div class="viewer-close" onclick="closeImageViewer()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="viewer-container" id="viewerContainer">
+            <img src="" alt="" class="viewer-image" id="viewerImage">
+        </div>
+        <div class="viewer-info">
+            <h3 id="viewerTitle"></h3>
+            <p>Click and drag to move • Scroll to zoom</p>
+        </div>
+        <div class="zoom-controls">
+            <div class="zoom-btn" onclick="zoomIn()">
+                <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="zoom-btn" onclick="zoomOut()">
+                <i class="fas fa-search-minus"></i>
+            </div>
+            <div class="zoom-btn" onclick="resetZoom()">
+                <i class="fas fa-expand"></i>
+            </div>
+        </div>
+    </div>
+
     <script>
         const products = [
             {
-                id: 1,
+                id: 1, 
                 title: "Classic White Marble Mandir",
                 image: "homemandir/homemandir1.png",
                 badge: "Premium",
@@ -60,6 +350,7 @@
                 features: ["Premium Makrana white marble", "Hand-carved traditional motifs", "Intricate jali screening", "Dimensions: 48\" H x 36\" W x 18\" D", "Complete setup included"]
             },
             {
+                
                 id: 2,
                 title: "Royal Dome Mandir",
                 image: "homemandir/homemandir2.png",
@@ -70,7 +361,7 @@
             {
                 id: 3,
                 title: "Compact Pooja Mandir",
-                image: "homemandir/homemandir3.png",
+                image: "homemandir/homemandir8.png",
                 badge: "Luxury",
                 description: "Space-efficient design without compromising on elegance. Ideal for modern apartments and smaller prayer spaces. Every inch is meticulously crafted to maximize beauty in compact dimensions.",
                 features: ["Space-saving design", "Traditional carved details", "Easy wall mounting", "Dimensions: 36\" H x 24\" W x 12\" D", "Multiple storage shelves"]
@@ -78,7 +369,7 @@
             {
                 id: 4,
                 title: "Luxury Temple Design",
-                image: "homemandir/homemandir4.png",
+                image: "homemandir/homemandir5.png",
                 badge: "Masterpiece",
                 description: "Grand marble mandir with multiple deities space. Features elaborate stone inlay work and premium finishing that rivals historical temples. A true statement piece for the devoted.",
                 features: ["Multi-deity arrangement", "Precious stone inlay", "Ornate pillars and arches", "Dimensions: 72\" H x 48\" W x 24\" D", "Custom deity placement"]
@@ -86,7 +377,7 @@
             {
                 id: 5,
                 title: "Traditional Carved Mandir",
-                image: "homemandir/homemandir5.png",
+                image: "homemandir/homemandir4.png",
                 badge: "Artisan",
                 description: "Heritage-style marble temple with authentic traditional carvings passed down through generations of artisans. Each pattern tells a story of devotion and artistic excellence.",
                 features: ["Heritage design patterns", "Master artisan crafted", "Authentic jali work", "Dimensions: 54\" H x 38\" W x 18\" D", "Customizable elements"]
@@ -110,15 +401,170 @@
             {
                 id: 8,
                 title: "Grand Temple Mandir",
-                image: "homemandir/homemandir8.png",
+                image: "homemandir/homemandir3.png",
                 badge: "Luxury",
                 description: "Magnificent temple-style mandir with elaborate detailing and spacious design. Creates an authentic temple atmosphere in your home with majestic presence.",
                 features: ["Temple-style architecture", "Elaborate carved details", "Spacious design", "Dimensions: 48\" H x 36\" W x 18\" D", "Premium finish"]
-            }
+            },{
+    id: 9,
+    title: "Marble Dome Majesty",
+    image: "homemandir/homemandir9.png",
+    badge: "Royal",
+    description: "A breathtaking marble temple crowned with a royal dome and intricate lattice work. Designed for homes seeking grandeur and devotion in equal measure.",
+    features: ["Hand-carved dome top", "Polished marble finish", "Elegant lattice detailing", "Dimensions: 62\" H x 40\" W x 20\" D", "LED-ready altar space"]
+},
+{
+    id: 10,
+    title: "Compact Wall Mandir",
+    image: "homemandir/homemandir10.png",
+    badge: "Modern",
+    description: "Designed for wall mounting, this mandir blends functionality with beauty. Perfect for apartments and minimal interiors seeking divine energy.",
+    features: ["Wall-mount design", "Space-efficient layout", "Smooth marble polish", "Dimensions: 30\" H x 22\" W x 10\" D", "Includes diya shelf"]
+},
+{
+    id: 11,
+    title: "Lotus Bliss Mandir",
+    image: "homemandir/homemandir11.png",
+    badge: "Divine",
+    description: "Inspired by the sacred lotus flower, symbolizing purity and enlightenment. A soothing centerpiece that radiates peace in every corner.",
+    features: ["Lotus-inspired carvings", "High-grade white marble", "Soft rounded edges", "Dimensions: 44\" H x 30\" W x 14\" D", "Easy to assemble"]
+},
+{
+    id: 12,
+    title: "Golden Inlay Temple",
+    image: "homemandir/homemandir12.png",
+    badge: "Luxury",
+    description: "An opulent mandir with gold-toned marble inlays and detailed motifs. Crafted for devotees who cherish both divinity and opulence.",
+    features: ["Gold marble inlay", "Intricate craftsmanship", "Royal design aesthetics", "Dimensions: 60\" H x 42\" W x 22\" D", "LED-lit backdrop"]
+},
+{
+    id: 13,
+    title: "Heritage Haveli Mandir",
+    image: "homemandir/homemandir13.png",
+    badge: "Heritage",
+    description: "Inspired by royal havelis of Rajasthan, featuring pillar carvings and traditional jaali panels that embody Indian architectural elegance.",
+    features: ["Haveli-style arches", "Traditional jaali panels", "Premium Makrana marble", "Dimensions: 66\" H x 44\" W x 24\" D", "Customizable ornamentation"]
+},
+{
+    id: 14,
+    title: "Sacred Serenity Mandir",
+    image: "homemandir/homemandir14.png",
+    badge: "Minimal",
+    description: "A serene, clutter-free mandir design that enhances calmness in meditation spaces. Simple yet spiritually elevating.",
+    features: ["Minimalist structure", "Smooth matte finish", "Subtle lighting provision", "Dimensions: 40\" H x 28\" W x 14\" D", "Lightweight marble blend"]
+},
+{
+    id: 15,
+    title: "Twin Pillar Temple",
+    image: "homemandir/homemandir15.png",
+    badge: "Classic",
+    description: "Traditional mandir supported by twin hand-carved pillars with beautiful floral motifs. A timeless piece for traditional interiors.",
+    features: ["Twin carved pillars", "Floral pattern detailing", "Classic temple base", "Dimensions: 56\" H x 38\" W x 18\" D", "Custom storage below"]
+},
+{
+    id: 16,
+    title: "Celestial Marble Mandir",
+    image: "homemandir/homemandir16.png",
+    badge: "Spiritual",
+    description: "Symbolizing divine light, this temple features star-engraved patterns and ethereal craftsmanship that elevates every prayer moment.",
+    features: ["Celestial star engravings", "Polished marble texture", "Soft lighting compatible", "Dimensions: 50\" H x 36\" W x 16\" D", "Easy-clean surface"]
+},
+{
+    id: 17,
+    title: "Marble Arch Heritage Temple",
+    image: "homemandir/homemandir17.png",
+    badge: "Artisan",
+    description: "Combines the heritage charm of carved arches with the grace of artisan workmanship, creating a spiritual marvel for your pooja space.",
+    features: ["Carved heritage arches", "Premium finish", "Wide deity shelf", "Dimensions: 58\" H x 40\" W x 18\" D", "Handcrafted details"]
+},
+{
+    id: 18,
+    title: "Golden Dome Mandir",
+    image: "homemandir/homemandir18.png",
+    badge: "Royal",
+    description: "A resplendent temple with a golden dome finish and hand-polished marble texture, symbolizing prosperity and devotion.",
+    features: ["Golden dome accent", "High-shine polish", "Elegant carvings", "Dimensions: 64\" H x 42\" W x 22\" D", "LED-ready altar"]
+},
+{
+    id: 19,
+    title: "Marble Serenity Corner Mandir",
+    image: "homemandir/homemandir19.png",
+    badge: "Compact",
+    description: "A corner-fit temple design ideal for homes with limited space yet full devotion. Smooth marble finish with subtle detailing.",
+    features: ["Corner-fit design", "Compact and elegant", "Polished marble", "Dimensions: 36\" H x 24\" W x 12\" D", "Lightweight structure"]
+},
+{
+    id: 20,
+    title: "Royal Palace Mandir",
+    image: "homemandir/homemandir20.png",
+    badge: "Majestic",
+    description: "Inspired by palace architecture with dome tops and ornate carvings. Crafted to bring grandeur and reverence together.",
+    features: ["Palace-style design", "Ornate marble carvings", "Spacious deity area", "Dimensions: 70\" H x 46\" W x 24\" D", "Golden edge highlights"]
+},
+{
+    id: 21,
+    title: "Crystal Glow Mandir",
+    image: "homemandir/homemandir21.png",
+    badge: "Modern",
+    description: "Features crystal-inspired LED lighting integrated within the marble framework, blending spirituality with a modern glow.",
+    features: ["Crystal-effect lighting", "Smooth marble texture", "Modern symmetrical design", "Dimensions: 48\" H x 34\" W x 16\" D", "Remote-controlled lighting"]
+},
+{
+    id: 22,
+    title: "Ancestral Heritage Temple",
+    image: "homemandir/homemandir22.png",
+    badge: "Cultural",
+    description: "A temple that echoes ancestral craftsmanship with historic Indian artistry, celebrating faith passed through generations.",
+    features: ["Heritage carvings", "Rustic marble finish", "Traditional pillar layout", "Dimensions: 60\" H x 42\" W x 20\" D", "Authentic design heritage"]
+},
+{
+    id: 23,
+    title: "Floating Shelf Mandir",
+    image: "homemandir/homemandir23.png",
+    badge: "Minimal",
+    description: "Floating-style marble mandir that brings serenity without taking up floor space — perfect for modern compact homes.",
+    features: ["Floating design", "Hidden wall mount", "Polished white marble", "Dimensions: 32\" H x 24\" W x 10\" D", "Hidden LED option"]
+},
+{
+    id: 24,
+    title: "Sacred Archway Temple",
+    image: "homemandir/homemandir24.png",
+    badge: "Classic",
+    description: "Adorned with sacred arches and intricate motifs, this temple’s architecture captures the divine essence of devotion.",
+    features: ["Sacred arch carvings", "Traditional jali work", "Smooth marble polish", "Dimensions: 55\" H x 38\" W x 18\" D", "Customizable finish"]
+},
+{
+    id: 25,
+    title: "Divine Harmony Mandir",
+    image: "homemandir/homemandir25.png",
+    badge: "Contemporary",
+    description: "Balances traditional elegance with contemporary geometry. A perfect spiritual statement for modern interiors.",
+    features: ["Geometric design", "Premium marble texture", "Balanced proportions", "Dimensions: 48\" H x 34\" W x 15\" D", "Backlit backdrop"]
+},
+{
+    id: 26,
+    title: "Temple of Light",
+    image: "homemandir/homemandir26.jpg",
+    badge: "Luxury",
+    description: "Elegant marble mandir featuring translucent panels that glow softly when lit — symbolizing divine light and purity.",
+    features: ["Translucent marble panels", "Backlit illumination", "Refined craftsmanship", "Dimensions: 50\" H x 36\" W x 18\" D", "Premium polish"]
+},
+{
+    id: 27,
+    title: "Heritage Dome Sanctuary",
+    image: "homemandir/homemandir28.jpg",
+    badge: "Grand",
+    description: "A grand sanctuary mandir crowned with domes and royal carvings — a true blend of devotion and architecture.",
+    features: ["Grand dome design", "Heritage carved panels", "Polished Makrana marble", "Dimensions: 72\" H x 50\" W x 26\" D", "Optional deity arrangement"]
+}
+
         ];
 
         const whatsappNumber = "1234567890";
         let currentProduct = null;
+        let zoomLevel = 1;
+        let isDragging = false;
+        let startX, startY, scrollLeft, scrollTop;
 
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
@@ -175,13 +621,135 @@
             const modal = document.getElementById('productModal');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Show click hint briefly
+            setTimeout(() => {
+                const hint = document.getElementById('clickHint');
+                if (hint) {
+                    hint.style.animation = 'fadeOut 0.5s ease forwards';
+                    setTimeout(() => {
+                        hint.style.display = 'none';
+                    }, 500);
+                }
+            }, 3000);
         }
 
         function closeModal() {
             const modal = document.getElementById('productModal');
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            
+            // Reset click hint for next time
+            const hint = document.getElementById('clickHint');
+            if (hint) {
+                hint.style.display = 'flex';
+                hint.style.animation = 'pulse 2s infinite';
+            }
+            
             currentProduct = null;
+        }
+
+        // New Image Viewer Functions
+        function openImageViewer() {
+            if (!currentProduct) return;
+
+            const viewer = document.getElementById('imageViewer');
+            const viewerImage = document.getElementById('viewerImage');
+            const viewerTitle = document.getElementById('viewerTitle');
+
+            viewerImage.src = currentProduct.image;
+            viewerTitle.textContent = currentProduct.title;
+            
+            viewer.style.display = 'flex';
+            setTimeout(() => {
+                viewer.classList.add('active');
+            }, 10);
+
+            // Reset zoom
+            zoomLevel = 1;
+            viewerImage.style.transform = `scale(${zoomLevel})`;
+            viewerImage.classList.remove('zoomed');
+
+            // Add image drag functionality
+            setupImageDrag();
+        }
+
+        function closeImageViewer() {
+            const viewer = document.getElementById('imageViewer');
+            viewer.classList.remove('active');
+            setTimeout(() => {
+                viewer.style.display = 'none';
+            }, 300);
+        }
+
+        function zoomIn() {
+            const viewerImage = document.getElementById('viewerImage');
+            if (zoomLevel < 3) {
+                zoomLevel += 0.5;
+                viewerImage.style.transform = `scale(${zoomLevel})`;
+                if (zoomLevel > 1) {
+                    viewerImage.classList.add('zoomed');
+                }
+            }
+        }
+
+        function zoomOut() {
+            const viewerImage = document.getElementById('viewerImage');
+            if (zoomLevel > 0.5) {
+                zoomLevel -= 0.5;
+                viewerImage.style.transform = `scale(${zoomLevel})`;
+                if (zoomLevel <= 1) {
+                    viewerImage.classList.remove('zoomed');
+                }
+            }
+        }
+
+        function resetZoom() {
+            const viewerImage = document.getElementById('viewerImage');
+            zoomLevel = 1;
+            viewerImage.style.transform = `scale(${zoomLevel})`;
+            viewerImage.style.left = '0';
+            viewerImage.style.top = '0';
+            viewerImage.classList.remove('zoomed');
+        }
+
+        function setupImageDrag() {
+            const viewerImage = document.getElementById('viewerImage');
+            const container = document.getElementById('viewerContainer');
+
+            viewerImage.addEventListener('mousedown', (e) => {
+                if (zoomLevel > 1) {
+                    isDragging = true;
+                    startX = e.pageX - viewerImage.offsetLeft;
+                    startY = e.pageY - viewerImage.offsetTop;
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                
+                const x = e.pageX - startX;
+                const y = e.pageY - startY;
+                
+                viewerImage.style.position = 'relative';
+                viewerImage.style.left = `${x}px`;
+                viewerImage.style.top = `${y}px`;
+            });
+
+            // Mouse wheel zoom
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                if (e.deltaY < 0) {
+                    zoomIn();
+                } else {
+                    zoomOut();
+                }
+            });
         }
 
         function contactWhatsApp() {
@@ -204,10 +772,31 @@
             if (e.target === this) closeModal();
         });
 
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
+        // Close image viewer on outside click
+        document.getElementById('imageViewer').addEventListener('click', function(e) {
+            if (e.target === this) closeImageViewer();
         });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (document.getElementById('imageViewer').classList.contains('active')) {
+                    closeImageViewer();
+                } else {
+                    closeModal();
+                }
+            }
+        });
+
+        // Add fadeOut animation style
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
 
         // Enhanced card interactions with smooth 3D tilt effect
         document.addEventListener('DOMContentLoaded', function() {
@@ -303,8 +892,8 @@
                 document.head.appendChild(style);
             }
 
-            console.log('✨ Enhanced Premium Home Mandir Collection Loaded');
-            console.log('🎨 Features: Glassmorphism, Smooth 3D animations, Enhanced modal transitions');
+            console.log('✨ Enhanced Premium Home Mandir Collection with Image Viewer Loaded');
+            console.log('🎨 Features: Glassmorphism, Image Viewer, Zoom Controls, Drag to Move');
         });
 
         // Initialize
