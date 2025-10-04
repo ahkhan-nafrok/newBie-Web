@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Footer Section - Aizaz Marble Traders</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
@@ -155,12 +155,17 @@
         .footer-section h3::after {
             content: '';
             position: absolute;
-            bottom: -6px;
+            bottom: -8px;
             left: 0;
-            width: 30px;
+            width: 40px;
             height: 2px;
             background: var(--royal-gold);
             border-radius: 1px;
+        }
+        
+        .social-section h3::after {
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .footer-section p,
@@ -220,20 +225,28 @@
         }
 
         .social-link {
-            width: 45px;
-            height: 45px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 2px solid rgba(212, 175, 55, 0.4);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-decoration: none;
-            color: var(--text-light);
-            font-size: 1.1rem;
+            color: var(--royal-gold);
+            font-size: 1.4rem;
             position: relative;
             overflow: hidden;
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .social-link::before {
@@ -254,9 +267,9 @@
         .social-link:hover {
             background: var(--royal-gold);
             border-color: var(--royal-gold);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            color: var(--dark-brown);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
         }
 
         .footer-bottom {
@@ -443,28 +456,7 @@
                             <span>Mon-Sat: 9:00 AM - 7:00 PM<br>Sunday: By Appointment</span>
                         </div>
                     </div>
-                    
-                    <div class="footer-section social-section">
-                        <h3>Follow Us</h3>
-                        <p>Stay connected for latest collections and exclusive designs</p>
-                        <div class="social-links">
-                            <a href="#" class="social-link" title="Instagram">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="social-link" title="Facebook">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="#" class="social-link" title="LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="#" class="social-link" title="WhatsApp">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                            <a href="#" class="social-link" title="YouTube">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
+           
                 </div>
             </div>
         </div>
@@ -477,8 +469,6 @@
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Service</a>
                         <a href="#">Quality Guarantee</a>
-                        <a href="#">Shipping Information</a>
-                        <a href="#">Return Policy</a>
                     </div>
                 </div>
             </div>
