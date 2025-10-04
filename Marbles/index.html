@@ -28,7 +28,27 @@
       overflow-x: hidden;
     }
     html { scroll-behavior: smooth; }
+ .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--royal-gold) !important;
+      letter-spacing: 2px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
 
+    .logo:active .logo-text {
+      transform: scale(0.98);
+    }
+
+    .logo-text::after {
+      display: block;
+      width: 40%;
+      height: 3px;
+      margin-top: 4px;
+      border-radius: 2px;
+    }
     /* Loader */
     .page-loader {
       position: fixed; inset: 0;
@@ -37,15 +57,14 @@
       z-index: 9999;
     }
     .loader-logo {
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--royal-gold);
-      font-family: 'Cormorant Garamond', serif;
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
-      0%,100% { transform: scale(1) }
-      50% { transform: scale(1.1) }
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
     }
     body.loaded .page-loader { opacity: 0; pointer-events: none; transition: 0.5s; }
     .site-wrapper { opacity: 0; transition: opacity 0.5s ease; }
@@ -55,7 +74,9 @@
 <body>
   <!-- Loader -->
   <div class="page-loader">
-    <div class="loader-logo">AM</div>
+    <img src="azizas-logo.png" alt="Loading..." class="loader-logo" />
+     <div class="logo-text">AIZAZ MARBLES</div>
+ 
   </div>
 
   <!-- Wrapper -->
