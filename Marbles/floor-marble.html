@@ -343,90 +343,187 @@
 
     <script>
         const products = [
-            {
-                id: 1,
-                title: "Italian Carrara White",
-                image: "Floor/house-floor2.png",
-                badge: "Premium",
-                description: "Luxurious Italian Carrara white marble with distinctive gray veining. Renowned for its timeless elegance and exceptional quality, this premium stone brings sophistication to any space. Perfect for high-traffic areas with superior durability and classic appeal.",
-                features: ["Italian Botticino marble", "Fine delicate veining", "Warm beige tones", "Dimensions: 24\" x 24\" x 3/4\"", "Timeless classic appeal"]
-            },
-             {
-                id: 2,
-                title: "Statuario Venato Marble",
-                image: "Floor/house-floor3.png",
-                badge: "Luxury",
-                description: "Exquisite Statuario marble featuring dramatic bold veining on pristine white background. This luxurious stone is perfect for creating stunning statement floors that captivate and inspire. A masterpiece of natural artistry.",
-                features: ["Dramatic bold veining", "Museum-grade Statuario quality", "Polished & honed finishes", "Dimensions: 24\" x 24\" x 3/4\"", "Limited availability"]
-             },
-            {
-                id: 3,
-                title: "Botticino Classico Marble",
-    image: "Floor/floormarble1.png",
-    badge: "Traditional",
-    description: "Classic Italian beige marble with fine, delicate veining. Known for its timeless beauty and warm undertones. Perfect for traditional and transitional spaces seeking understated elegance and lasting appeal.",
-    features: ["Authentic Italian Carrara marble", "Natural gray veining patterns", "High polish finish available", "Dimensions: 24\" x 24\" x 3/4\"", "Suitable for residential & commercial"]
-},
-            {
-                id: 4,
-              title: "Makrana Pure White Marble",
-    image: "Floor/floormarble2.png",
-    badge: "Heritage",
-    description: "Legendary white marble sourced from Makrana, Rajasthan — used in the Taj Mahal. Its pure white hue and dense texture make it ideal for luxurious interiors and heritage homes.",
-    features: ["100% Makrana origin", "Brilliant white tone", "Scratch-resistant surface", "Available in slabs & tiles", "Perfect for temples & living spaces"]
-},
-            {
-                id: 5,
-                 title: "Black Marquina Marble",
-    image: "Floor/floormarble3.png",
-    badge: "Luxury",
-    description: "Deep black marble with striking white veining that creates a bold, dramatic effect. A symbol of power and luxury for modern interiors and statement floors.",
-    features: ["Spanish origin marble", "High contrast white veining", "Mirror polish finish", "Dimensions: 24\" x 24\" x 3/4\"", "Ideal for feature walls & floors"]
-},
-            {
-                id: 6,
-                title: "Crema Marfil Marble",
-    image: "Floor/floormarble4.png",
-    badge: "Elegant",
-    description: "Soft cream-colored marble from Spain that exudes sophistication. Its subtle veins and warm tone make it a favorite for luxury flooring and countertops.",
-    features: ["Spanish premium marble", "Subtle beige and ivory tones", "Durable & easy to maintain", "Available in multiple finishes", "Perfect for halls & bathrooms"]
-},
-            {
-                id: 7,
-                title: "Verde Guatemala Marble",
-                image: "Floor/house-floor4.png",
-                badge: "Unique",
-                description: "Stunning green marble with swirling patterns and white veining. A rare and exotic choice that brings natural beauty and uniqueness to any space. Perfect for those seeking distinctive, nature-inspired interiors.",
-                features: ["Rare green marble", "Swirling natural patterns", "White vein accents", "Dimensions: 18\" x 18\" x 3/4\"", "Statement piece quality"]
-            },
-            {
-                id: 8,
-                title: "Botticino Classico Marble",
-                image: "Floor/house-floor5.png",
-                badge: "Traditional",
-                description: "Classic Italian beige marble with fine, delicate veining. Known for its timeless beauty and warm undertones. Perfect for traditional and transitional spaces seeking understated elegance and lasting appeal.",
-                features: ["Authentic Italian Carrara marble", "Natural gray veining patterns", "High polish finish available", "Dimensions: 24\" x 24\" x 3/4\"", "Suitable for residential & commercial"]
-            },
-             {
-    id: 9,
-     title: "Rainforest Brown Marble",
-    image: "Floor/floormarble5.png",
-    badge: "Exotic",
-    description: "A stunning natural marble resembling tree branches in earthy tones of brown and gold. Brings nature’s essence indoors for a rustic yet rich look.",
-    features: ["Unique tree-like pattern", "Polished & brushed finish", "Dense, durable structure", "Dimensions: 24\" x 24\"", "Ideal for accent flooring & walls"]
-},
-{
-    id: 10,
-    title: "Italian Statuario Marble",
-    image: "Floor/floormarble6.png",
-    badge: "Premium",
-    description: "World-renowned Italian Statuario marble with striking grey veins on a pure white background. Known for its opulent appearance in high-end projects.",
-    features: ["Imported from Carrara, Italy", "Dramatic grey veining", "Glossy polished surface", "Available in slabs & tiles", "Luxury interior applications"]
-}
+            
+    {
+        id: 1,
+        title: "Makrana White",
+        image: "Floor/floor1.png",
+        badge: "Premium",
+        description: "Luxurious Makrana white marble with distinctive gray veining. Renowned for its timeless elegance and exceptional quality, this premium stone brings sophistication to any space. Perfect for high-traffic areas with superior durability and classic appeal.",
+        features: ["Makrana marble", "Fine delicate veining", "Warm beige tones", "Dimensions: 24\" x 24\" x 3/4\"", "Timeless classic appeal"]
+    },
+    {
+        id: 2,
+        title: "Makrana Pure White Marble",
+        image: "Floor/floor2.png",
+        badge: "Luxury",
+        description: "Makrana marble featuring dramatic bold veining on a pristine white background. This luxurious stone is perfect for creating stunning statement floors that captivate and inspire. A masterpiece of natural artistry.",
+        features: ["Dramatic bold veining", "Museum-grade Statuario quality", "Polished & honed finishes", "Dimensions: 24\" x 24\" x 3/4\"", "Limited availability"]
+    },
+    {
+        id: 3,
+        title: "Makrana albeta Marble",
+        image: "Floor/floor3.png",
+        badge: "Traditional",
+        description: "Makrana alberta marble with fine, delicate veining. Known for its timeless beauty and warm undertones. Perfect for traditional and transitional spaces seeking understated elegance and lasting appeal.",
+        features: ["Authentic Italian Carrara marble", "Natural gray veining patterns", "High polish finish available", "Dimensions: 24\" x 24\" x 3/4\"", "Suitable for residential & commercial"]
+    },
+    {
+        id: 4,
+        title: "Makrana Kumari White Marble",
+        image: "Floor/floor4.png",
+        badge: "Heritage",
+        description: "Legendary white marble sourced from Makrana, Rajasthan — used in the Taj Mahal. Its pure white hue and dense texture make it ideal for luxurious interiors and heritage homes.",
+        features: ["100% Makrana origin", "Brilliant white tone", "Scratch-resistant surface", "Available in slabs & tiles", "Perfect for temples & living spaces"]
+    },
+    {
+        id: 5,
+        title: "Makrana Kumari Marble",
+        image: "Floor/floor5.png",
+        badge: "Luxury",
+        description: "Deep black marble with striking white veining that creates a bold, dramatic effect. A symbol of power and luxury for modern interiors and statement floors.",
+        features: ["Spanish origin marble", "High contrast white veining", "Mirror polish finish", "Dimensions: 24\" x 24\" x 3/4\"", "Ideal for feature walls & floors"]
+    },
+    {
+        id: 6,
+        title: "Makrana albeta",
+        image: "Floor/floor6.png",
+        badge: "Elegant",
+        description: "Soft cream-colored marble from Spain that exudes sophistication. Its subtle veins and warm tone make it a favorite for luxury flooring and countertops.",
+        features: ["Spanish premium marble", "Subtle beige and ivory tones", "Durable & easy to maintain", "Available in multiple finishes", "Perfect for halls & bathrooms"]
+    },
+    {
+        id: 7,
+        title: "Makrana exclusive albeta",
+        image: "Floor/floor7.png",
+        badge: "Unique",
+        description: "Stunning green marble with swirling patterns and white veining. A rare and exotic choice that brings natural beauty and uniqueness to any space. Perfect for those seeking distinctive, nature-inspired interiors.",
+        features: ["Rare green marble", "Swirling natural patterns", "White vein accents", "Dimensions: 18\" x 18\" x 3/4\"", "Statement piece quality"]
+    },
+    {
+        id: 8,
+        title: "Emperador Dark Marble",
+        image: "Floor/floor8.png",
+        badge: "Classic",
+        description: "Rich dark brown marble with light beige veining, offering timeless warmth and sophistication. Popular in luxury villas and hotels.",
+        features: ["Spanish Emperador stone", "Polished surface", "Natural brown texture", "Available in slabs & tiles", "Perfect for elegant interiors"]
+    },
+    {
+        id: 9,
+        title: "Rainforest Brown Marble",
+        image: "Floor/floor9.png",
+        badge: "Exotic",
+        description: "A stunning natural marble resembling tree branches in earthy tones of brown and gold. Brings nature’s essence indoors for a rustic yet rich look.",
+        features: ["Unique tree-like pattern", "Polished & brushed finish", "Dense, durable structure", "Dimensions: 24\" x 24\"", "Ideal for accent flooring & walls"]
+    },
+    {
+        id: 10,
+        title: "Italian Statuario Marble",
+        image: "Floor/floor10.png",
+        badge: "Premium",
+        description: "World-renowned Italian Statuario marble with striking grey veins on a pure white background. Known for its opulent appearance in high-end projects.",
+        features: ["Imported from Carrara, Italy", "Dramatic grey veining", "Glossy polished surface", "Available in slabs & tiles", "Luxury interior applications"]
+    },
+    {
+        id: 11,
+        title: "Travertine Beige Marble",
+        image: "Floor/floor11.png",
+        badge: "Natural",
+        description: "Soft beige marble with linear natural patterns. Its organic look adds earthy warmth and elegance to contemporary homes.",
+        features: ["Travertine texture", "Matte finish", "Non-slip surface", "Eco-friendly", "Ideal for outdoor patios & walls"]
+    },
+    {
+        id: 12,
+        title: "Onyx Honey Marble",
+        image: "Floor/floor12.png",
+        badge: "Opulent",
+        description: "Golden onyx marble with translucent beauty that glows under light. Perfect for luxurious interiors and artistic installations.",
+        features: ["Translucent stone", "Honey gold shades", "Light passes through surface", "Polished finish", "Best for backlit panels & walls"]
+    },
+    {
+        id: 13,
+        title: "Rosso Levanto Marble",
+        image: "Floor/floor13.png",
+        badge: "Bold",
+        description: "Deep red marble with white veining, adding a regal and dramatic touch to interiors.",
+        features: ["Italian origin", "Rich red tones", "High-gloss finish", "Durable surface", "Perfect for accent flooring"]
+    },
+    {
+        id: 14,
+        title: "Grey William Marble",
+        image: "Floor/floor14.png",
+        badge: "Modern",
+        description: "Soft grey marble with fine white veining. Ideal for minimalist and modern interiors.",
+        features: ["Neutral grey tone", "Smooth matte surface", "Scratch-resistant", "Available in tiles", "Perfect for living rooms & offices"]
+    },
+    {
+        id: 15,
+        title: "Golden Portoro Marble",
+        image: "Floor/floor15.png",
+        badge: "Royal",
+        description: "Magnificent black marble with golden streaks that exude luxury and grandeur.",
+        features: ["Italian black marble", "Golden veins", "High polish finish", "Used in royal projects", "Ideal for luxury lobbies"]
+    },
+    {
+        id: 16,
+        title: "Pink Onyx Marble",
+        image: "Floor/floor16.png",
+        badge: "Rare",
+        description: "Soft pink onyx marble offering a subtle romantic charm with a delicate glow.",
+        features: ["Translucent pink tones", "Smooth polished surface", "Backlight compatible", "Imported stone", "Great for vanities & décor"]
+    },
+    {
+        id: 17,
+        title: "Blue Savoy Marble",
+        image: "Floor/floor17.png",
+        badge: "Exclusive",
+        description: "Rare blue-gray marble with elegant soft veining. Perfect for ultra-modern and artistic spaces.",
+        features: ["Cool blue hue", "Smooth texture", "European quarry", "Limited edition", "Perfect for luxury bathrooms"]
+    },
+    {
+        id: 18,
+        title: "Fossil Brown Marble",
+        image: "Floor/floor18.png",
+        badge: "Earthy",
+        description: "Rich brown marble embedded with natural fossil patterns, bringing history and artistry together.",
+        features: ["Unique fossil imprints", "Natural brown shade", "Antique finish", "Hard and dense stone", "Perfect for rustic interiors"]
+    },
+    {
+        id: 19,
+        title: "Pearl White Marble",
+        image: "Floor/floor19.png",
+        badge: "Refined",
+        description: "Elegant pearl-toned white marble with a subtle shimmer. Adds class and brightness to every space.",
+        features: ["Fine-grained marble", "Glossy finish", "Light reflective", "Premium durability", "Ideal for bedrooms & halls"]
+    },
+    {
+        id: 20,
+        title: "Ocean Blue Marble",
+        image: "Floor/floor20.png",
+        badge: "Exotic",
+        description: "Wave-like blue marble reminiscent of ocean currents. A perfect blend of calmness and energy.",
+        features: ["Natural blue patterns", "Imported quality", "Gloss & matte options", "Water-resistant", "Perfect for bathrooms & spas"]
+    },
+    {
+        id: 21,
+        title: "Sahara Noir Marble",
+        image: "Floor/floor21.png",
+        badge: "Designer",
+        description: "Striking black marble with golden diagonal veins. Perfect for dramatic and modern interiors.",
+        features: ["Luxury Italian stone", "Gold linear patterns", "Mirror-polish finish", "Exclusive availability", "Ideal for feature walls"]
+    },
+    {
+        id: 22,
+        title: "Calacatta Oro Marble",
+        image: "Floor/floor22.png",
+        badge: "Ultra Premium",
+        description: "Magnificent white marble with rich golden and grey veining. One of the most luxurious marbles for elite interiors.",
+        features: ["Italian Calacatta origin", "Golden grey veins", "High gloss surface", "Used in luxury villas & hotels", "Top-tier premium quality"]
+    }
+];
 
 
-        ];
-
+   
         const whatsappNumber = "1234567890";
         let currentProduct = null;
         let zoomLevel = 1;
