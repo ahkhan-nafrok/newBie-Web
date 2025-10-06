@@ -630,6 +630,7 @@ body {
     overflow: hidden;
     animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) 1.2s both;
 }
+
 .modal-whatsapp::before {
     content: '';
     position: absolute;
