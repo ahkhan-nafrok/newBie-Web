@@ -465,7 +465,7 @@ body {
 
 .modal-image {
     width: 100%;
-    height: 450px;
+    height: 420px;
     object-fit: cover;
     border-radius: 32px 32px 0 0;
     transition: transform 0.6s ease;
@@ -487,20 +487,20 @@ body {
 }
 
 .modal-body {
-    padding: 3rem;
+    padding: 1.5rem 2rem 2rem;
 }
 
 .modal-badge {
     display: inline-block;
     background: linear-gradient(135deg, var(--royal-gold), var(--dark-gold));
     color: white;
-    padding: 0.5rem 1.25rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 16px;
+    font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 1.5rem;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.75rem;
     animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
 }
 
@@ -517,50 +517,55 @@ body {
 
 .modal-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.75rem;
+    font-size: 1.75rem;
     color: var(--deep-navy);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 1.25;
     animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
 }
 
 .modal-description {
     color: var(--text-light);
-    font-size: 1.125rem;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
     font-family: 'Source Sans Pro', sans-serif;
     animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .features-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     color: var(--deep-navy);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     font-weight: 600;
     animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
 }
 
 .modal-features {
     list-style: none;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     display: grid;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .modal-features li {
-    padding: 1rem 1.5rem;
-    padding-left: 3rem;
+    padding: 0.65rem 1rem;
+    padding-left: 2.25rem;
     position: relative;
     color: var(--text-light);
     background: var(--soft-gray);
-    border-radius: 12px;
+    border-radius: 8px;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: 'Source Sans Pro', sans-serif;
-    font-size: 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.4;
     opacity: 0;
     transform: translateX(-20px);
     animation: slideInLeftStagger 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -581,41 +586,43 @@ body {
 
 .modal-features li:hover {
     background: var(--light-gold);
-    transform: translateX(12px) scale(1.02);
-    box-shadow: 0 4px 15px rgba(201, 169, 97, 0.2);
+    transform: translateX(8px) scale(1.01);
+    box-shadow: 0 3px 12px rgba(201, 169, 97, 0.2);
 }
 
 .modal-features li::before {
     content: '';
     position: absolute;
-    left: 1.25rem;
+    left: 0.85rem;
     top: 50%;
     transform: translateY(-50%);
-    width: 14px;
-    height: 14px;
+    width: 10px;
+    height: 10px;
     background: linear-gradient(135deg, var(--royal-gold), var(--dark-gold));
     border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(201, 169, 97, 0.3);
+    box-shadow: 0 2px 6px rgba(201, 169, 97, 0.3);
     transition: all 0.3s ease;
 }
 
 .modal-features li:hover::before {
-    transform: translateY(-50%) scale(1.3);
-    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.5);
+    transform: translateY(-50%) scale(1.2);
+    box-shadow: 0 3px 10px rgba(201, 169, 97, 0.5);
 }
 
 .modal-whatsapp {
     background: #25D366;
     color: white;
-    padding: 1.25rem 2.5rem;
+    padding: 0.85rem 2rem;
     border: none;
-    border-radius: 50px;
+    border-radius: 30px;
     font-weight: 600;
-    font-size: 1.0625rem;
+    font-size: 0.9375rem;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.5px;
@@ -623,7 +630,6 @@ body {
     overflow: hidden;
     animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) 1.2s both;
 }
-
 .modal-whatsapp::before {
     content: '';
     position: absolute;
