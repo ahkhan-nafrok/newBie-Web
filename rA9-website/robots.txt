@@ -1,5 +1,17 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private/
 
-Sitemap: https://ahkhan.online/sitemap.xml
+Sitemap: https://www.ahkhan.online/sitemap.xml
+Sitemap: https://www.ahkhan.online/image-sitemap.xml
 
+# Crawl Delay
+Crawl-delay: 1
+
+# Specific Bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
