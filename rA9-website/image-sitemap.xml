@@ -21,6 +21,10 @@
       <image:caption>AIxBot humanoid assistant robot developed by A H Khan at AIxRobo for automation and human-robot interaction</image:caption>
       <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
     </image:image>
+           <image:image>
+      <image:loc>https://www.ahkhan.online/llmsroi.png</image:loc>
+      <image:title>ROI in LLMs Research Paper</image:title>
+    </image:image>
     <!-- Add more images as needed -->
   </url>
 </urlset>
