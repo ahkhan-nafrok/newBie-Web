@@ -312,15 +312,15 @@
       z-index: 2;
     }
 
-    .profile-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 24px;
-      filter: saturate(0.9) contrast(1.05) brightness(1.05);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  filter: saturate(0.9) contrast(1.05) brightness(1.05);
+  opacity: 1;  /* Changed from 0 to 1 */
+  transition: opacity 0.3s ease;
+}
 
     .profile-image.loaded {
       opacity: 1;
@@ -1284,3 +1284,4 @@
         grid-template-columns: 1fr;
       }
     }
+
