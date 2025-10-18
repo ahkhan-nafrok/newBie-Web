@@ -37,47 +37,56 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- CATEGORY PAGES -->
-  
-  <!-- Floor Marble -->
-  <url>
-    <loc>https://www.aizazmarbles.in/floor-marble</loc>
-    <lastmod>2025-10-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+ <!--  CATEGORY PAGES  -->
 
-  <!-- Italian Marble -->
-  <url>
-    <loc>https://www.aizazmarbles.in/italian-marble</loc>
-    <lastmod>2025-10-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+<!--  Home Mandir  -->
+<url>
+  <loc>https://www.aizazmarbles.in/home-mandir</loc>
+  <lastmod>2025-10-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
 
-  <!-- Indian Marble -->
-  <url>
-    <loc>https://www.aizazmarbles.in/indian-marble</loc>
-    <lastmod>2025-10-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+<!--  Temple Mandir  -->
+<url>
+  <loc>https://www.aizazmarbles.in/temple-mandir</loc>
+  <lastmod>2025-10-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
 
-  <!-- Granite -->
-  <url>
-    <loc>https://www.aizazmarbles.in/granite</loc>
-    <lastmod>2025-10-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+<!--  Floor Marble  -->
+<url>
+  <loc>https://www.aizazmarbles.in/floor-marble</loc>
+  <lastmod>2025-10-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
 
-  <!-- Mandir Marble -->
-  <url>
-    <loc>https://www.aizazmarbles.in/mandir-marble</loc>
-    <lastmod>2025-10-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+<!--  Handicrafts  -->
+<url>
+  <loc>https://www.aizazmarbles.in/handicrafts</loc>
+  <lastmod>2025-10-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<!--  Jaali Work  -->
+<url>
+  <loc>https://www.aizazmarbles.in/jaali-work</loc>
+  <lastmod>2025-10-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<!--  Inlay Work  -->
+<url>
+  <loc>https://www.aizazmarbles.in/inlay-work</loc>
+  <lastmod>2025-10-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
 
   <!-- PRODUCT PAGES -->
   
