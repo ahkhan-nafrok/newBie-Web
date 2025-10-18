@@ -280,6 +280,34 @@ body {
     transform: translateY(-4px);
     box-shadow: 0 25px 50px rgba(212, 165, 116, 0.5);
 }
+.phone-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.phone-entry {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+.phone-entry:nth-child(1) { animation-delay: 0.3s; }
+.phone-entry:nth-child(2) { animation-delay: 0.6s; }
+.phone-entry:nth-child(3) { animation-delay: 0.9s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .submit-btn:disabled {
     opacity: 0.6;
@@ -339,17 +367,36 @@ body {
             
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <h4>Phone</h4>
-                        <p><a href="tel:+917300008825">+91 73000 08825</a></p>
-                        <p class="whatsapp-link">
-                            <i class="fab fa-whatsapp"></i>
-                            <a href="https://wa.me/917300008825" target="_blank">WhatsApp Available</a>
-                        </p>
-                    </div>
+                   <div class="contact-item phone-item">
+  <div class="contact-icon">
+      <i class="fas fa-phone-alt"></i>
+  </div>
+  <h4>Phone</h4>
+  
+  <div class="phone-list">
+      <div class="phone-entry">
+          <p><a href="tel:9829051786">H M IBRAHIM - 9829051786</a></p>
+          <a class="whatsapp-link" href="https://wa.me/919829051786" target="_blank">
+              <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+      </div>
+
+      <div class="phone-entry">
+          <p><a href="tel:9983777786">AIZAZ KHAN - 9983777786</a></p>
+          <a class="whatsapp-link" href="https://wa.me/919983777786" target="_blank">
+              <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+      </div>
+
+      <div class="phone-entry">
+          <p><a href="tel:7300008825">AIYAZ KHAN - 7300008825</a></p>
+          <a class="whatsapp-link" href="https://wa.me/917300008825" target="_blank">
+              <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+      </div>
+  </div>
+</div>
+
                     
                     <div class="contact-item">
                         <div class="contact-icon">
