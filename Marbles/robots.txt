@@ -1,0 +1,114 @@
+# Robots.txt for Aizaz Marbles
+# https://www.aizazmarbles.in/robots.txt
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+Allow: /floor-marble
+Allow: /italian-marble
+Allow: /granite
+Allow: /mandir-marble
+Allow: /gallery
+Allow: /about
+Allow: /contact
+Allow: /blog
+
+# Disallow private/admin areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+Disallow: /cgi-bin/
+Disallow: /*.json$
+Disallow: /api/
+Disallow: /test/
+Disallow: /_/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+
+# Allow CSS and JS files for proper rendering
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+
+# Sitemap location (IMPORTANT!)
+Sitemap: https://www.aizazmarbles.in/sitemap.xml
+
+# Crawl delay for politeness (optional)
+Crawl-delay: 1
+
+# Google Bot - Full Access
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing Bot - Full Access
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yahoo Slurp
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Yandex (Russian search engine)
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+# Baidu (Chinese search engine)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Facebook Bot (for link previews)
+User-agent: Facebot
+Allow: /
+
+# Twitter Bot (for card previews)
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn Bot
+User-agent: LinkedInBot
+Allow: /
+
+# WhatsApp Bot (for link previews)
+User-agent: WhatsApp
+Allow: /
+
+# Block aggressive crawlers (optional - only if you have issues)
+User-agent: AhrefsBot
+Crawl-delay: 5
+
+User-agent: SemrushBot
+Crawl-delay: 5
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Crawl-delay: 5
+
+# Block bad bots
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: PetalBot
+Crawl-delay: 10
