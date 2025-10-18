@@ -15,7 +15,7 @@
 
   <!-- About Page -->
   <url>
-    <loc>https://www.aizazmarbles.in/about</loc>
+    <loc>https://www.aizazmarbles.in/about.html</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -23,7 +23,7 @@
 
   <!-- Contact Page -->
   <url>
-    <loc>https://www.aizazmarbles.in/contact</loc>
+    <loc>https://www.aizazmarbles.in/contact.html</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -31,13 +31,13 @@
 
   <!-- Gallery -->
   <url>
-    <loc>https://www.aizazmarbles.in/gallery</loc>
+    <loc>https://www.aizazmarbles.in/gallery.html</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
- <!--  CATEGORY PAGES  -->
+
 <!--  CATEGORY PAGES  -->
 
 <!--  Home Mandir  -->
@@ -90,9 +90,9 @@
 
 
 
-  <!-- PRODUCT PAGES -->
+  <!--
   
-  <!-- Italian Marble Products -->
+  <!-- 
   <url>
     <loc>https://www.aizazmarbles.in/products/statuario-marble</loc>
     <lastmod>2025-10-18</lastmod>
@@ -114,7 +114,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Granite Products -->
+  <!-- Granite Products
   <url>
     <loc>https://www.aizazmarbles.in/products/black-galaxy-granite</loc>
     <lastmod>2025-10-18</lastmod>
@@ -131,7 +131,7 @@
 
   <!-- BLOG SECTION -->
   
-  <!-- Blog Homepage -->
+  <!-- Blog Homepage
   <url>
     <loc>https://www.aizazmarbles.in/blog</loc>
     <lastmod>2025-10-18</lastmod>
@@ -139,7 +139,7 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- Blog Posts -->
+  <!-- Blog Posts 
   <url>
     <loc>https://www.aizazmarbles.in/blog/top-italian-marble-types</loc>
     <lastmod>2025-10-18</lastmod>
@@ -175,7 +175,7 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- SERVICE PAGES -->
+  <!-- SERVICE PAGES 
   
   <url>
     <loc>https://www.aizazmarbles.in/services/marble-installation</loc>
@@ -198,9 +198,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- ADDITIONAL PAGES -->
-  
-  <!-- FAQ -->
+ 
   <url>
     <loc>https://www.aizazmarbles.in/faq</loc>
     <lastmod>2025-10-18</lastmod>
@@ -208,7 +206,7 @@
     <priority>0.5</priority>
   </url>
 
-  <!-- Privacy Policy -->
+  <!-- Privacy Policy 
   <url>
     <loc>https://www.aizazmarbles.in/privacy-policy</loc>
     <lastmod>2025-10-18</lastmod>
@@ -216,7 +214,7 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- Terms -->
+  <!-- Terms
   <url>
     <loc>https://www.aizazmarbles.in/terms</loc>
     <lastmod>2025-10-18</lastmod>
@@ -224,7 +222,7 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- Testimonials -->
+  <!-- Testimonials 
   <url>
     <loc>https://www.aizazmarbles.in/testimonials</loc>
     <lastmod>2025-10-18</lastmod>
@@ -232,12 +230,13 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- Projects -->
+  <!-- Projects 
   <url>
     <loc>https://www.aizazmarbles.in/projects</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+        -->
 
 </urlset>
