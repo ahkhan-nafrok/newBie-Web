@@ -38,10 +38,11 @@
   </url>
 
  <!--  CATEGORY PAGES  -->
+<!--  CATEGORY PAGES  -->
 
 <!--  Home Mandir  -->
 <url>
-  <loc>https://www.aizazmarbles.in/home-mandir</loc>
+  <loc>https://www.aizazmarbles.in/home-mandir.html</loc>
   <lastmod>2025-10-18</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>
@@ -49,7 +50,7 @@
 
 <!--  Temple Mandir  -->
 <url>
-  <loc>https://www.aizazmarbles.in/temple-mandir</loc>
+  <loc>https://www.aizazmarbles.in/temple-mandir.html</loc>
   <lastmod>2025-10-18</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>
@@ -57,7 +58,7 @@
 
 <!--  Floor Marble  -->
 <url>
-  <loc>https://www.aizazmarbles.in/floor-marble</loc>
+  <loc>https://www.aizazmarbles.in/floor-marble.html</loc>
   <lastmod>2025-10-18</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>
@@ -65,7 +66,7 @@
 
 <!--  Handicrafts  -->
 <url>
-  <loc>https://www.aizazmarbles.in/handicrafts</loc>
+  <loc>https://www.aizazmarbles.in/handicrafts.html</loc>
   <lastmod>2025-10-18</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>
@@ -73,7 +74,7 @@
 
 <!--  Jaali Work  -->
 <url>
-  <loc>https://www.aizazmarbles.in/jaali-work</loc>
+  <loc>https://www.aizazmarbles.in/jaali-work.html</loc>
   <lastmod>2025-10-18</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>
@@ -81,11 +82,12 @@
 
 <!--  Inlay Work  -->
 <url>
-  <loc>https://www.aizazmarbles.in/inlay-work</loc>
+  <loc>https://www.aizazmarbles.in/inlay-work.html</loc>
   <lastmod>2025-10-18</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>
 </url>
+
 
 
   <!-- PRODUCT PAGES -->
