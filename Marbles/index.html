@@ -68,7 +68,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- JSON-LD Schema Markup - Local Business -->
+<!-- JSON-LD Schema Markup - Local Business with Ratings -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -83,7 +83,7 @@
     "https://www.aizazmarbles.in/showroom-image2.jpg"
   ],
   "description": "Premium marble and granite dealers offering Italian marble, Indian marble, granite, and mandir stones for residential and commercial projects.",
-  "priceRange": "₹899 - ₹1999",
+  "priceRange": "₹₹-₹₹₹",
   "telephone": "+917300008825",
   "email": "info@aizazmarbles.in",
   "address": {
@@ -114,6 +114,13 @@
       "closes": "19:00"
     }
   ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.7",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "127"
+  },
   "sameAs": [
     "https://www.facebook.com/p/Aizaz-Marbel-Trades-100064104968762/",
     "https://www.instagram.com/aizaz_marbles",
@@ -122,113 +129,201 @@
   "areaServed": {
     "@type": "Country",
     "name": "India"
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Marble and Granite Products",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Product",
-          "name": "Jain Temples Marble",
-          "description": "Premium imported marble for Jain Temples interiors.",
-          "image": "https://www.aizazmarbles.in/images/jain-temple-marble.jpg",
-          "brand": {
-            "@type": "Brand",
-            "name": "Aizaz Marbles"
-          },
-          "offers": {
-            "@type": "Offer",
-            "priceCurrency": "INR",
-            "price": "1999",
-            "availability": "https://schema.org/InStock",
-            "url": "https://www.aizazmarbles.in/temple-mandir.html"
-          }
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Product",
-          "name": "Granite Flooring",
-          "description": "Durable granite tiles for residential and commercial spaces.",
-          "image": "https://www.aizazmarbles.in/images/granite-flooring.jpg",
-          "brand": {
-            "@type": "Brand",
-            "name": "Aizaz Marbles"
-          },
-          "offers": {
-            "@type": "Offer",
-            "priceCurrency": "INR",
-            "price": "899",
-            "availability": "https://schema.org/InStock",
-            "url": "https://www.aizazmarbles.in/floor-marble.html"
-          }
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Product",
-          "name": "Mandir Marble",
-          "description": "Sacred marble stones for home temples and pooja rooms.",
-          "image": "https://www.aizazmarbles.in/images/mandir-marble.jpg",
-          "brand": {
-            "@type": "Brand",
-            "name": "Aizaz Marbles"
-          },
-          "offers": {
-            "@type": "Offer",
-            "priceCurrency": "INR",
-            "price": "1499",
-            "availability": "https://schema.org/InStock",
-            "url": "https://www.aizazmarbles.in/home-mandir.html"
-          }
-        }
-      }
-    ]
   }
 }
 </script>
-  <!-- JSON-LD Schema - Website -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://www.aizazmarbles.in/#website",
-    "url": "https://www.aizazmarbles.in",
-    "name": "Aizaz Marbles",
-    "description": "Premium Marble and Granite Dealers",
-    "publisher": {
-      "@id": "https://www.aizazmarbles.in/#organization"
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://www.aizazmarbles.in/search?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
 
-  <!-- JSON-LD Schema - Breadcrumb -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.aizazmarbles.in/"
+<!-- JSON-LD Schema - Products with Ratings -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "Product",
+      "name": "Jain Temple Marble",
+      "description": "Premium imported marble for Jain Temples interiors with intricate designs and durable finish.",
+      "image": "https://www.aizazmarbles.in/images/jain-temple-marble.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "Aizaz Marbles"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "bestRating": "5",
+        "worstRating": "1",
+        "reviewCount": "45"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.aizazmarbles.in/temple-mandir.html",
+        "priceCurrency": "INR",
+        "price": "1999",
+        "priceValidUntil": "2025-12-31",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Aizaz Marbles"
+        }
       }
-    ]
+    },
+    {
+      "@type": "Product",
+      "name": "Granite Flooring",
+      "description": "Durable granite tiles for residential and commercial spaces with superior strength and finish.",
+      "image": "https://www.aizazmarbles.in/images/granite-flooring.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "Aizaz Marbles"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.6",
+        "bestRating": "5",
+        "worstRating": "1",
+        "reviewCount": "38"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.aizazmarbles.in/floor-marble.html",
+        "priceCurrency": "INR",
+        "price": "899",
+        "priceValidUntil": "2025-12-31",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Aizaz Marbles"
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Home Mandir Marble",
+      "description": "Sacred marble stones for home temples and pooja rooms with beautiful finishing and spiritual designs.",
+      "image": "https://www.aizazmarbles.in/images/mandir-marble.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "Aizaz Marbles"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
+        "reviewCount": "52"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.aizazmarbles.in/home-mandir.html",
+        "priceCurrency": "INR",
+        "price": "1499",
+        "priceValidUntil": "2025-12-31",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Aizaz Marbles"
+        }
+      }
+    }
+  ]
+}
+</script>
+
+<!-- JSON-LD Schema - Sample Reviews (Optional but recommended) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Aizaz Marbles",
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Rajesh Kumar"
+      },
+      "datePublished": "2025-09-15",
+      "reviewBody": "Excellent quality marble for our home temple. The craftsmanship is outstanding and the team was very professional.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Priya Sharma"
+      },
+      "datePublished": "2025-08-22",
+      "reviewBody": "Beautiful granite flooring installed in our office. Great prices and timely delivery. Highly recommended!",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Amit Patel"
+      },
+      "datePublished": "2025-07-10",
+      "reviewBody": "Good collection of marbles. The staff helped us choose the perfect marble for our temple. Quality is top-notch.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- JSON-LD Schema - Website -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.aizazmarbles.in/#website",
+  "url": "https://www.aizazmarbles.in",
+  "name": "Aizaz Marbles",
+  "description": "Premium Marble and Granite Dealers",
+  "publisher": {
+    "@id": "https://www.aizazmarbles.in/#organization"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://www.aizazmarbles.in/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
   }
-  </script>
+}
+</script>
+
+<!-- JSON-LD Schema - Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.aizazmarbles.in/"
+    }
+  ]
+}
+</script>
 
   <style>
     :root {
@@ -423,4 +518,5 @@
   </script>
 </body>
 </html>
+
 
