@@ -382,6 +382,87 @@
     body.loaded .page-loader { opacity: 0; pointer-events: none; transition: 0.5s; }
     .site-wrapper { opacity: 0; transition: opacity 0.5s ease; }
     body.loaded .site-wrapper { opacity: 1; }
+
+    /* WhatsApp Floating Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  z-index: 9998;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-float:active {
+  transform: scale(0.95);
+}
+
+.whatsapp-float i {
+  color: white;
+  font-size: 32px;
+}
+
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 2px solid #25D366;
+  border-radius: 50%;
+  opacity: 0;
+  animation: whatsapp-pulse 2s infinite;
+}
+
+@keyframes whatsapp-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    width: 55px;
+    height: 55px;
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .whatsapp-float i {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    left: 15px;
+  }
+  
+  .whatsapp-float i {
+    font-size: 26px;
+  }
+}
   </style>
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
@@ -417,7 +498,16 @@
     <!-- Footer Component -->
     <footer id="footerComponent" role="contentinfo"></footer>
   </div>
-
+<a 
+  href="https://wa.me/917300008825?text=Hello%20Aizaz%20Marbles,%20I%20would%20like%20to%20inquire%20about%20your%20marble%20and%20granite%20products." 
+  class="whatsapp-float" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  aria-label="Contact us on WhatsApp"
+  title="Chat with us on WhatsApp"
+>
+  <i class="fab fa-whatsapp"></i>
+</a>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
@@ -509,6 +599,7 @@
   </script>
 </body>
 </html>
+
 
 
 
