@@ -1,0 +1,112 @@
+<style>
+    /* Contact Section */
+    .contact {
+        padding: 8rem 5%;
+        background: #fafafa;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        margin-bottom: 4rem;
+    }
+
+    .contact-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 2rem;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #666666;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        background: #ffffff;
+        border: 1px solid #e5e5e5;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 300;
+        color: #000000;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #000000;
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+    }
+
+    .submit-button {
+        width: 100%;
+        padding: 1rem 3rem;
+        background: #000000;
+        color: #ffffff;
+        border: 2px solid #000000;
+        font-family: inherit;
+        font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+
+    .submit-button:hover {
+        background: #ffffff;
+        color: #000000;
+    }
+</style>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-container">
+        <form onsubmit="handleContactSubmit(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required placeholder="John Doe">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" required placeholder="Tell us about your project..."></textarea>
+            </div>
+            <button type="submit" class="submit-button">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<script>
+    // Form submission
+    function handleContactSubmit(event) {
+        event.preventDefault();
+        alert('Thank you for your message! We will get back to you soon.');
+        event.target.reset();
+    }
+    
+    console.log('Contact section loaded');
+</script>

@@ -1,0 +1,121 @@
+<style>
+    /* Hero Section */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8rem 5% 5rem;
+        text-align: center;
+        background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Optimized Geometric Grid Pattern - Smooth Wave Effect */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(0,0,0,0.12) 49px, rgba(0,0,0,0.12) 50px),
+            repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(0,0,0,0.12) 49px, rgba(0,0,0,0.12) 50px);
+        background-size: 50px 50px;
+        mask-image: linear-gradient(to bottom, 
+            transparent 0%,
+            rgba(0,0,0,0.05) 5%,
+            rgba(0,0,0,0.15) 10%,
+            rgba(0,0,0,0.25) 15%,
+            rgba(0,0,0,0.4) 20%,
+            rgba(0,0,0,0.55) 25%,
+            rgba(0,0,0,0.7) 30%,
+            rgba(0,0,0,0.85) 35%,
+            rgba(0,0,0,1) 40%,
+            rgba(0,0,0,1) 60%,
+            rgba(0,0,0,0.85) 65%,
+            rgba(0,0,0,0.7) 70%,
+            rgba(0,0,0,0.55) 75%,
+            rgba(0,0,0,0.4) 80%,
+            rgba(0,0,0,0.25) 85%,
+            rgba(0,0,0,0.15) 90%,
+            rgba(0,0,0,0.05) 95%,
+            transparent 100%);
+        mask-size: 100% 350%;
+        mask-position: 0% 100%;
+        animation: wave-breathe 8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        will-change: mask-position;
+        z-index: 1;
+    }
+
+    @keyframes wave-breathe {
+        0%, 100% {
+            mask-position: 0% 100%;
+            opacity: 0.9;
+        }
+        50% {
+            mask-position: 0% -100%;
+            opacity: 1;
+        }
+    }
+
+    .hero-content {
+        max-width: 800px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+    }
+
+    .hero p {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: #666666;
+        font-weight: 300;
+        margin-bottom: 3rem;
+        letter-spacing: 0.02em;
+    }
+
+    .cta-button {
+        display: inline-flex;
+        align-items: center;
+        padding: 1rem 3rem;
+        background: #000000;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        border: 2px solid #000000;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-button:hover {
+        background: #ffffff;
+        color: #000000;
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>We Build Websites for  Your Business</h1>
+        <p>Simple, professional websites that help you grow your business online</p>
+        <a href="#contact" class="cta-button">Get Started</a>
+    </div>
+</section>
+
+<script>
+    // Hero section specific JavaScript (if needed in future)
+    console.log('Hero section loaded');
+</script>

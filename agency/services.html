@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 5%;
+            background: #fafafa;
+            perspective: 1000px;
+        }
+
+        .services .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 4rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .service-card {
+            background: #ffffff;
+            padding: 3rem 2rem;
+            border: 1px solid #e5e5e5;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .service-card:hover {
+            border-color: #000000;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.08),
+                0 10px 20px rgba(0, 0, 0, 0.05);
+            transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1.5rem;
+            stroke: #000000;
+            stroke-width: 1.5;
+            fill: none;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .service-card:hover .service-icon {
+            transform: translateZ(20px) scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            color: #000000;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .service-card:hover h3 {
+            transform: translateZ(15px);
+        }
+
+        .service-description {
+            color: #666666;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .service-card:hover .service-description {
+            transform: translateZ(10px);
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f0f0f0;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .service-card:hover .service-features {
+            transform: translateZ(5px);
+        }
+
+        .service-features li {
+            font-size: 0.85rem;
+            color: #888888;
+            line-height: 1.8;
+            padding-left: 1.2rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-features li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #cccccc;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card:hover {
+                transform: translateY(-8px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">What We Do</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+                <h3>Website Design & Development</h3>
+                <p class="service-description">Custom websites built from scratch to match your business needs and brand identity</p>
+                <ul class="service-features">
+                    <li>Responsive across all devices</li>
+                    <li>Modern, clean aesthetics</li>
+                    <li>Fast loading performance</li>
+                    <li>Intuitive user experience</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+                <h3>E-Commerce Solutions</h3>
+                <p class="service-description">Sell your products online with easy-to-manage online stores that your customers will love</p>
+                <ul class="service-features">
+                    <li>Secure payment integration</li>
+                    <li>Inventory management</li>
+                    <li>Customer order tracking</li>
+                    <li>Mobile-friendly checkout</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <h3>Website Maintenance</h3>
+                <p class="service-description">Keep your website running smoothly with regular updates and quick fixes when you need them</p>
+                <ul class="service-features">
+                    <li>Security updates & patches</li>
+                    <li>Content updates on demand</li>
+                    <li>Performance monitoring</li>
+                    <li>24/7 technical support</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <h3>SEO</h3>
+                <p class="service-description">Make your website rank higher in Google and enhance your online presence greatly</p>
+                <ul class="service-features">
+                    <li>Keyword research & strategy</li>
+                    <li>On-page optimization</li>
+                    <li>Technical SEO audits</li>
+                    <li>Performance analytics</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Services section specific JavaScript
+        console.log('Services section loaded successfully');
+        console.log('Number of service cards:', document.querySelectorAll('.service-card').length);
+        
+        // Add 3D tilt effect based on mouse position
+        const cards = document.querySelectorAll('.service-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+            });
+        });
+        
+        // Add subtle animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe service cards with a slight delay to ensure DOM is ready
+        setTimeout(() => {
+            const serviceCards = document.querySelectorAll('.service-card');
+            console.log('Found service cards for animation:', serviceCards.length);
+            serviceCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        }, 100);
+    </script>
+</body>
+</html>

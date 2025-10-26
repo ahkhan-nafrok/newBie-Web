@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Clients Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #ffffff;
+        }
+
+        /* Clients Section - Premium Infinite Scroll */
+        .clients {
+            padding: 8rem 0;
+            background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
+            border-top: 1px solid #e5e5e5;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .clients::before,
+        .clients::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .clients::before {
+            left: 0;
+            background: linear-gradient(to right, #fafafa 0%, transparent 100%);
+        }
+
+        .clients::after {
+            right: 0;
+            background: linear-gradient(to left, #ffffff 0%, transparent 100%);
+        }
+
+        .clients-title {
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #888888;
+            margin-bottom: 5rem;
+        }
+
+        .clients-slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .clients-track {
+            display: flex;
+            width: fit-content;
+            animation: scroll 50s linear infinite;
+            will-change: transform;
+        }
+
+        .clients-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-260px * 10));
+            }
+        }
+
+        .client-logo {
+            flex-shrink: 0;
+            width: 260px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(100%) brightness(0) opacity(0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0%) brightness(1) opacity(1);
+            transform: scale(1.08);
+        }
+
+        .client-logo svg {
+            max-width: 160px;
+            height: auto;
+            transition: transform 0.4s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .clients {
+                padding: 5rem 0;
+            }
+
+            .clients-title {
+                margin-bottom: 3.5rem;
+                font-size: 0.65rem;
+            }
+
+            .client-logo {
+                width: 200px;
+                height: 100px;
+            }
+
+            .client-logo svg {
+                max-width: 120px;
+            }
+
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-200px * 10));
+                }
+            }
+
+            .clients::before,
+            .clients::after {
+                width: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .client-logo {
+                width: 160px;
+            }
+
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-160px * 10));
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Clients Section -->
+    <section class="clients">
+        <div class="clients-title">Trusted By Industry Leaders</div>
+        <div class="clients-slider">
+            <div class="clients-track">
+                <!-- Client 1: TechVision -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <path d="M30 15H40V45H30V15Z M45 15H70V22H52V26H68V33H52V38H70V45H45V15Z M75 15H105V22H92V45H82V22H75V15Z" fill="#000000"/>
+                        <rect x="110" y="15" width="10" height="30" fill="#000000"/>
+                        <circle cx="115" cy="22" r="8" stroke="#000000" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+
+                <!-- Client 2: NexusGroup -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <path d="M35 20L50 45H40L35 35L30 45H20L35 20Z" fill="#000000"/>
+                        <circle cx="80" cy="32" r="13" stroke="#000000" stroke-width="3" fill="none"/>
+                        <rect x="105" y="20" width="25" height="25" rx="3" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <!-- Client 3: Quantum Labs -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <circle cx="40" cy="30" r="12" fill="#000000"/>
+                        <circle cx="60" cy="30" r="12" fill="#000000" opacity="0.6"/>
+                        <circle cx="80" cy="30" r="12" fill="#000000" opacity="0.3"/>
+                        <path d="M100 20H130V25H115V27H128V32H115V35H130V40H100V20Z" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <!-- Client 4: Stellar Dynamics -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <polygon points="50,18 58,35 42,35" fill="#000000"/>
+                        <polygon points="50,42 58,25 42,25" fill="#000000" opacity="0.5"/>
+                        <rect x="75" y="20" width="4" height="20" fill="#000000"/>
+                        <rect x="85" y="20" width="4" height="20" fill="#000000"/>
+                        <rect x="95" y="20" width="4" height="20" fill="#000000"/>
+                        <rect x="105" y="20" width="4" height="20" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <!-- Client 5: Horizon Media -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <rect x="30" y="25" width="35" height="3" fill="#000000"/>
+                        <rect x="30" y="32" width="35" height="3" fill="#000000"/>
+                        <path d="M80 20V40L95 30L80 20Z" fill="#000000"/>
+                        <circle cx="115" cy="30" r="10" stroke="#000000" stroke-width="2.5" fill="none"/>
+                    </svg>
+                </div>
+
+                <!-- Client 6: Vertex Systems -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <path d="M40 40L50 20L60 40H40Z" fill="#000000"/>
+                        <path d="M65 40L75 20L85 40H65Z" fill="#000000" opacity="0.6"/>
+                        <rect x="95" y="20" width="30" height="20" rx="2" stroke="#000000" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+
+                <!-- Client 7: Apex Innovations -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <path d="M45 38L55 22L65 38L55 28L45 38Z" fill="#000000"/>
+                        <circle cx="85" cy="30" r="11" fill="#000000"/>
+                        <circle cx="85" cy="30" r="6" fill="#ffffff"/>
+                        <rect x="105" y="22" width="20" height="16" fill="#000000"/>
+                        <polygon points="115,22 125,22 120,16" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <!-- Client 8: CoreLogic -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <rect x="35" y="23" width="18" height="18" rx="2" fill="#000000"/>
+                        <rect x="58" y="23" width="18" height="18" rx="2" fill="#000000" opacity="0.6"/>
+                        <rect x="81" y="23" width="18" height="18" rx="2" fill="#000000" opacity="0.3"/>
+                        <circle cx="115" cy="32" r="9" stroke="#000000" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+
+                <!-- Client 9: Fusion Digital -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <ellipse cx="50" cy="30" rx="15" ry="10" fill="#000000"/>
+                        <ellipse cx="50" cy="30" rx="10" ry="15" fill="#000000" opacity="0.4"/>
+                        <path d="M80 20H95V25H85V27H93V32H85V40H80V20Z" fill="#000000"/>
+                        <rect x="105" y="20" width="20" height="20" rx="10" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <!-- Client 10: Zenith Partners -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <path d="M40 20H60L50 35H65V40H35V35L45 20H40V20Z" fill="#000000"/>
+                        <polygon points="85,20 95,30 85,40 75,30" fill="#000000"/>
+                        <polygon points="100,20 110,30 100,40 90,30" fill="#000000" opacity="0.5"/>
+                        <rect x="120" y="23" width="8" height="14" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <!-- Duplicate set for seamless infinite loop -->
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <path d="M30 15H40V45H30V15Z M45 15H70V22H52V26H68V33H52V38H70V45H45V15Z M75 15H105V22H92V45H82V22H75V15Z" fill="#000000"/>
+                        <rect x="110" y="15" width="10" height="30" fill="#000000"/>
+                        <circle cx="115" cy="22" r="8" stroke="#000000" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <path d="M35 20L50 45H40L35 35L30 45H20L35 20Z" fill="#000000"/>
+                        <circle cx="80" cy="32" r="13" stroke="#000000" stroke-width="3" fill="none"/>
+                        <rect x="105" y="20" width="25" height="25" rx="3" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <circle cx="40" cy="30" r="12" fill="#000000"/>
+                        <circle cx="60" cy="30" r="12" fill="#000000" opacity="0.6"/>
+                        <circle cx="80" cy="30" r="12" fill="#000000" opacity="0.3"/>
+                        <path d="M100 20H130V25H115V27H128V32H115V35H130V40H100V20Z" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <polygon points="50,18 58,35 42,35" fill="#000000"/>
+                        <polygon points="50,42 58,25 42,25" fill="#000000" opacity="0.5"/>
+                        <rect x="75" y="20" width="4" height="20" fill="#000000"/>
+                        <rect x="85" y="20" width="4" height="20" fill="#000000"/>
+                        <rect x="95" y="20" width="4" height="20" fill="#000000"/>
+                        <rect x="105" y="20" width="4" height="20" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <rect x="30" y="25" width="35" height="3" fill="#000000"/>
+                        <rect x="30" y="32" width="35" height="3" fill="#000000"/>
+                        <path d="M80 20V40L95 30L80 20Z" fill="#000000"/>
+                        <circle cx="115" cy="30" r="10" stroke="#000000" stroke-width="2.5" fill="none"/>
+                    </svg>
+                </div>
+
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <path d="M40 40L50 20L60 40H40Z" fill="#000000"/>
+                        <path d="M65 40L75 20L85 40H65Z" fill="#000000" opacity="0.6"/>
+                        <rect x="95" y="20" width="30" height="20" rx="2" stroke="#000000" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <path d="M45 38L55 22L65 38L55 28L45 38Z" fill="#000000"/>
+                        <circle cx="85" cy="30" r="11" fill="#000000"/>
+                        <circle cx="85" cy="30" r="6" fill="#ffffff"/>
+                        <rect x="105" y="22" width="20" height="16" fill="#000000"/>
+                        <polygon points="115,22 125,22 120,16" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <rect x="35" y="23" width="18" height="18" rx="2" fill="#000000"/>
+                        <rect x="58" y="23" width="18" height="18" rx="2" fill="#000000" opacity="0.6"/>
+                        <rect x="81" y="23" width="18" height="18" rx="2" fill="#000000" opacity="0.3"/>
+                        <circle cx="115" cy="32" r="9" stroke="#000000" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <ellipse cx="50" cy="30" rx="15" ry="10" fill="#000000"/>
+                        <ellipse cx="50" cy="30" rx="10" ry="15" fill="#000000" opacity="0.4"/>
+                        <path d="M80 20H95V25H85V27H93V32H85V40H80V20Z" fill="#000000"/>
+                        <rect x="105" y="20" width="20" height="20" rx="10" fill="#000000"/>
+                    </svg>
+                </div>
+
+                <div class="client-logo">
+                    <svg width="160" height="60" viewBox="0 0 160 60" fill="none">
+                        <path d="M40 20H60L50 35H65V40H35V35L45 20H40V20Z" fill="#000000"/>
+                        <polygon points="85,20 95,30 85,40 75,30" fill="#000000"/>
+                        <polygon points="100,20 110,30 100,40 90,30" fill="#000000" opacity="0.5"/>
+                        <rect x="120" y="23" width="8" height="14" fill="#000000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        console.log('Premium Clients Section loaded successfully');
+        console.log('Total client logos (including duplicates):', document.querySelectorAll('.client-logo').length);
+        
+        // Enhanced performance with reduced motion for accessibility
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelector('.clients-track').style.animation = 'none';
+        }
+    </script>
+</body>
+</html>
