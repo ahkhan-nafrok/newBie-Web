@@ -17,18 +17,18 @@
 
         /* Why Choose Us */
         .why-us {
-            padding: 10rem 5%;
-            background: #ffffff;
+            padding: 8rem 5%;
+            background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
         }
 
         .section-header {
-            max-width: 800px;
-            margin: 0 auto 6rem;
+            max-width: 700px;
+            margin: 0 auto 5rem;
             text-align: center;
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2rem, 4vw, 2.75rem);
             font-weight: 300;
             letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
@@ -36,64 +36,71 @@
         }
 
         .section-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #666666;
             font-weight: 300;
             line-height: 1.8;
-            max-width: 600px;
+            max-width: 550px;
             margin: 0 auto;
         }
 
         .why-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 5rem 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .why-item {
-            text-align: center;
-            padding: 2rem 1.5rem;
+            background: #ffffff;
+            padding: 3rem 2.5rem;
+            border-radius: 4px;
+            border: 1px solid #f0f0f0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .why-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+            border-color: #e5e5e5;
         }
 
         .why-number {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 200;
-            color: #f0f0f0;
-            margin-bottom: 2rem;
+            color: #f5f5f5;
+            margin-bottom: 1.5rem;
             line-height: 1;
         }
 
         .why-item h3 {
             font-size: 1.5rem;
             font-weight: 400;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.25rem;
             color: #000000;
         }
 
         .why-description {
             color: #666666;
             font-size: 1rem;
-            line-height: 1.9;
+            line-height: 1.8;
             margin-bottom: 2rem;
         }
 
         .why-details {
             list-style: none;
-            text-align: left;
-            max-width: 280px;
-            margin: 0 auto;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid #f5f5f5;
         }
 
         .why-details li {
             font-size: 0.9rem;
             color: #888888;
-            line-height: 2;
-            padding-left: 1.5rem;
+            line-height: 2.2;
+            padding-left: 1.75rem;
             position: relative;
         }
 
@@ -103,24 +110,57 @@
             left: 0;
             color: #d0d0d0;
             font-size: 0.85rem;
+            font-weight: 600;
         }
 
+        /* Tablet */
+        @media (max-width: 968px) {
+            .why-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2.5rem;
+            }
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
             .why-us {
                 padding: 6rem 5%;
             }
 
             .section-header {
-                margin-bottom: 4rem;
+                margin-bottom: 3.5rem;
             }
 
             .why-grid {
                 grid-template-columns: 1fr;
-                gap: 4rem;
+                gap: 2rem;
+            }
+
+            .why-item {
+                padding: 2.5rem 2rem;
             }
 
             .why-number {
                 font-size: 3rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .why-item h3 {
+                font-size: 1.35rem;
+            }
+
+            .why-description {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .why-us {
+                padding: 5rem 4%;
+            }
+
+            .why-item {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
@@ -136,73 +176,37 @@
         <div class="why-grid">
             <div class="why-item">
                 <div class="why-number">01</div>
-                <h3>Straightforward Process</h3>
-                <p class="why-description">We speak your language, not tech jargon. Every phase of your project is clearly explained, and you'll always know what's happening next.</p>
+                <h3>Clear & Transparent</h3>
+                <p class="why-description">No tech jargon, no hidden fees. We communicate in plain language and provide upfront pricing so you always know exactly what you're getting and what it costs.</p>
                 <ul class="why-details">
                     <li>Regular progress updates</li>
-                    <li>Clear communication channels</li>
-                    <li>Milestone-based approach</li>
-                    <li>Your feedback shapes the result</li>
+                    <li>Detailed project quotes</li>
+                    <li>No surprise charges</li>
+                    <li>Clear communication always</li>
                 </ul>
             </div>
             
             <div class="why-item">
                 <div class="why-number">02</div>
-                <h3>Transparent Pricing</h3>
-                <p class="why-description">You'll know the complete cost before we start. Everything is laid out clearly with no unexpected bills or last-minute additions.</p>
+                <h3>Fast & Reliable</h3>
+                <p class="why-description">Launch your online presence without unnecessary delays. We deliver on time with streamlined processes, ensuring you can focus on growing your business.</p>
                 <ul class="why-details">
-                    <li>Detailed project quotes</li>
-                    <li>No surprise charges</li>
-                    <li>Flexible payment plans</li>
-                    <li>Value for every dollar</li>
+                    <li>Realistic deadlines we meet</li>
+                    <li>Quick revision turnaround</li>
+                    <li>Efficient workflows</li>
+                    <li>Same-day support available</li>
                 </ul>
             </div>
             
             <div class="why-item">
                 <div class="why-number">03</div>
-                <h3>Efficient Turnaround</h3>
-                <p class="why-description">We respect your timeline. Launch your online presence without unnecessary delays, so you can focus on what matters most—growing your business.</p>
+                <h3>Built for Results</h3>
+                <p class="why-description">Beautiful design that actually drives conversions. We create scalable, user-focused websites with ongoing support to help your business grow and evolve.</p>
                 <ul class="why-details">
-                    <li>Realistic deadlines we meet</li>
-                    <li>Streamlined workflows</li>
-                    <li>Quick revisions process</li>
-                    <li>Same-day support available</li>
-                </ul>
-            </div>
-
-            <div class="why-item">
-                <div class="why-number">04</div>
-                <h3>Built for Growth</h3>
-                <p class="why-description">Your website should evolve with your business. We create scalable solutions that adapt to your changing needs without requiring a complete rebuild.</p>
-                <ul class="why-details">
+                    <li>Conversion-optimized design</li>
                     <li>Expandable architecture</li>
-                    <li>Easy content management</li>
-                    <li>Future-proof technology</li>
-                    <li>Seamless feature additions</li>
-                </ul>
-            </div>
-
-            <div class="why-item">
-                <div class="why-number">05</div>
-                <h3>Ongoing Partnership</h3>
-                <p class="why-description">We don't disappear after launch. Consider us part of your team, ready to help whenever you need updates, improvements, or technical guidance.</p>
-                <ul class="why-details">
                     <li>Post-launch support included</li>
-                    <li>Training and documentation</li>
-                    <li>Maintenance plans available</li>
-                    <li>Long-term relationship focus</li>
-                </ul>
-            </div>
-
-            <div class="why-item">
-                <div class="why-number">06</div>
-                <h3>Results-Focused Design</h3>
-                <p class="why-description">Beautiful design means nothing without results. We create websites that not only look great but actually drive conversions and achieve your business goals.</p>
-                <ul class="why-details">
-                    <li>Conversion-optimized layouts</li>
-                    <li>User experience research</li>
-                    <li>Performance tracking setup</li>
-                    <li>Data-driven improvements</li>
+                    <li>Long-term partnership focus</li>
                 </ul>
             </div>
         </div>
