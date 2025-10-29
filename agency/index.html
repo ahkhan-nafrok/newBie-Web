@@ -3,249 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional web solutions delivered fast, transparent, and built to convert your visitors into customers">
+    <meta name="theme-color" content="#000000">
     <title>Web Agency - Simple Websites for Your Business</title>
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    
+    <!-- Critical CSS -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
+            background:#fff;
+            color:#000;
+            line-height:1.6;
+            font-weight:300;
+            overflow-x:hidden;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
-            background: #ffffff;
-            color: #000000;
-            line-height: 1.6;
-            font-weight: 300;
+        /* Top Benefits Slider - Optimized */
+        .benefits-slider-container{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            background:#000;
+            padding:.75rem 0;
+            z-index:999;
+            overflow:hidden;
+            transform:translateZ(0);
         }
 
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e5e5e5;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: all 0.3s ease;
+        .benefits-slider{
+            display:flex;
+            animation:slide 25s linear infinite;
+            will-change:transform;
         }
 
-        .navbar.scrolled {
-            padding: 1rem 5%;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        .benefits-track{
+            display:flex;
+            gap:4rem;
+            padding:0 2rem;
+            flex-shrink:0;
         }
 
-        .logo {
-            font-size: 1.1rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: #000000;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
+        .benefit-slide{
+            display:flex;
+            align-items:center;
+            gap:.6rem;
+            font-size:.8rem;
+            color:#fff;
+            white-space:nowrap;
+            letter-spacing:.05em;
         }
 
-        .logo:hover {
-            opacity: 0.7;
+        .benefit-slide::before{
+            content:'✓';
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:16px;
+            height:16px;
+            background:#fff;
+            color:#000;
+            border-radius:50%;
+            font-size:.65rem;
+            font-weight:600;
+            flex-shrink:0;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-            align-items: center;
+        @keyframes slide{
+            0%{transform:translate3d(0,0,0)}
+            100%{transform:translate3d(-50%,0,0)}
         }
 
-        .nav-links a {
-            color: #000000;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 300;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
+        /* Navbar - Optimized & Compact */
+        .navbar{
+            position:fixed;
+            top:45px;
+            left:0;
+            right:0;
+            background:rgba(255,255,255,.98);
+            backdrop-filter:blur(10px);
+            -webkit-backdrop-filter:blur(10px);
+            border-bottom:1px solid #e5e5e5;
+            padding:.8rem 5%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            z-index:998;
+            transition:padding .3s cubic-bezier(.4,0,.2,1),box-shadow .3s cubic-bezier(.4,0,.2,1);
+            transform:translateZ(0);
         }
 
-        .nav-links a:hover {
-            color: #666666;
+        .navbar.scrolled{
+            padding:.6rem 5%;
+            box-shadow:0 2px 20px rgba(0,0,0,.05);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #000000;
-            transition: width 0.3s ease;
+        .logo{
+            font-size:.95rem;
+            font-weight:500;
+            letter-spacing:.15em;
+            text-transform:uppercase;
+            color:#000;
+            cursor:pointer;
+            transition:opacity .3s ease;
+            user-select:none;
+        }
+
+        .logo:hover{opacity:.7}
+
+        .nav-links{
+            display:flex;
+            gap:2rem;
+            list-style:none;
+            align-items:center;
+        }
+
+        .nav-links a{
+            color:#000;
+            text-decoration:none;
+            font-size:.8rem;
+            font-weight:400;
+            letter-spacing:.08em;
+            text-transform:uppercase;
+            transition:color .3s ease;
+            position:relative;
+            padding:.4rem 0;
+        }
+
+        .nav-links a:hover{color:#666}
+
+        .nav-links a::after{
+            content:'';
+            position:absolute;
+            bottom:0;
+            left:0;
+            width:0;
+            height:1px;
+            background:#000;
+            transition:width .3s cubic-bezier(.4,0,.2,1);
         }
 
         .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
+        .nav-links a.active::after{width:100%}
+
+        /* Modern Mobile Menu Button */
+        .mobile-toggle{
+            display:none;
+            width:40px;
+            height:40px;
+            border-radius:8px;
+            background:rgba(0,0,0,.03);
+            border:1px solid rgba(0,0,0,.08);
+            cursor:pointer;
+            position:relative;
+            z-index:1001;
+            transition:all .3s cubic-bezier(.4,0,.2,1);
+            align-items:center;
+            justify-content:center;
         }
 
-        .mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
+        .mobile-toggle:hover{
+            background:rgba(0,0,0,.06);
+            border-color:rgba(0,0,0,.15);
         }
 
-        .mobile-toggle span {
-            width: 25px;
-            height: 2px;
-            background: #000000;
-            transition: all 0.3s ease;
-            transform-origin: center;
+        .mobile-toggle:active{
+            transform:scale(.95);
         }
 
-        .mobile-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
+        .mobile-toggle-inner{
+            position:relative;
+            width:20px;
+            height:14px;
         }
 
-        .mobile-toggle.active span:nth-child(2) {
-            opacity: 0;
+        .mobile-toggle span{
+            position:absolute;
+            width:100%;
+            height:2px;
+            background:#000;
+            border-radius:2px;
+            transition:all .3s cubic-bezier(.4,0,.2,1);
+            left:0;
         }
 
-        .mobile-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+        .mobile-toggle span:nth-child(1){
+            top:0;
         }
 
-        /* Footer */
-        .footer {
-            padding: 4rem 5% 2rem;
-            background: #ffffff;
-            border-top: 1px solid #e5e5e5;
+        .mobile-toggle span:nth-child(2){
+            top:6px;
         }
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto 3rem;
+        .mobile-toggle span:nth-child(3){
+            top:12px;
         }
 
-        .footer-section h4 {
-            font-size: 0.75rem;
-            font-weight: 400;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
+        .mobile-toggle.active{
+            background:rgba(0,0,0,.08);
+            border-color:rgba(0,0,0,.2);
+        }
+
+        .mobile-toggle.active span:nth-child(1){
+            top:6px;
+            transform:rotate(45deg);
+        }
+
+        .mobile-toggle.active span:nth-child(2){
+            opacity:0;
+            transform:translateX(10px);
+        }
+
+        .mobile-toggle.active span:nth-child(3){
+            top:6px;
+            transform:rotate(-45deg);
+        }
+
+        .main-content{margin-top:90px}
+
+        .loading{
+            min-height:50vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#999;
+            font-size:.9rem;
+            letter-spacing:.1em;
+        }
+
+        /* Footer - Optimized */
+        .footer{
+            padding:4rem 5% 2rem;
+            background:#fff;
+            border-top:1px solid #e5e5e5;
+        }
+
+        .footer-content{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:3rem;
+            max-width:1200px;
+            margin:0 auto 3rem;
+        }
+
+        .footer-section h4{
+            font-size:.75rem;
+            font-weight:400;
+            letter-spacing:.2em;
+            text-transform:uppercase;
+            margin-bottom:1rem;
         }
 
         .footer-section p,
-        .footer-section a {
-            color: #666666;
-            font-size: 0.9rem;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
+        .footer-section a{
+            color:#666;
+            font-size:.9rem;
+            text-decoration:none;
+            display:block;
+            margin-bottom:.5rem;
+            transition:color .3s ease;
         }
 
-        .footer-section a:hover {
-            color: #000000;
+        .footer-section a:hover{color:#000}
+
+        .footer-bottom{
+            text-align:center;
+            padding-top:2rem;
+            border-top:1px solid #e5e5e5;
+            color:#666;
+            font-size:.85rem;
         }
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #e5e5e5;
-            color: #666666;
-            font-size: 0.85rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mobile-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 2rem 5%;
-                gap: 1.5rem;
-                border-bottom: 1px solid #e5e5e5;
-                transform: translateY(-120%);
-                opacity: 0;
-                transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-                pointer-events: none;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: all;
-            }
-
-            .nav-links a {
-                font-size: 0.95rem;
-                text-align: center;
-                padding: 0.75rem 0;
-            }
-
-            .nav-links a::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        /* Section spacing for fixed navbar */
         #hero-section,
         #clients-section,
         #services-section,
         #why-us-section,
-        #contact-section {
-            scroll-margin-top: 80px;
+        #contact-section{scroll-margin-top:105px}
+
+        /* Mobile Optimizations */
+        @media (max-width:768px){
+            .mobile-toggle{display:flex}
+            
+            .nav-links{
+                position:fixed;
+                top:85px;
+                left:0;
+                right:0;
+                background:rgba(255,255,255,.98);
+                backdrop-filter:blur(10px);
+                -webkit-backdrop-filter:blur(10px);
+                flex-direction:column;
+                padding:1.5rem 5%;
+                gap:1rem;
+                border-bottom:1px solid #e5e5e5;
+                transform:translateY(-120%);
+                opacity:0;
+                transition:all .4s cubic-bezier(.23,1,.32,1);
+                pointer-events:none;
+                box-shadow:0 10px 30px rgba(0,0,0,.1);
+            }
+
+            .nav-links.active{
+                transform:translateY(0);
+                opacity:1;
+                pointer-events:all;
+            }
+
+            .nav-links a{
+                font-size:.85rem;
+                text-align:center;
+                padding:.6rem 0;
+            }
+
+            .nav-links a::after{
+                left:50%;
+                transform:translateX(-50%);
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion:reduce){
+            *,*::before,*::after{
+                animation-duration:.01ms!important;
+                animation-iteration-count:1!important;
+                transition-duration:.01ms!important;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo" onclick="scrollToTop()">Agency</div>
-        <div class="mobile-toggle" id="mobileToggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+    <!-- Top Benefits Slider -->
+    <div class="benefits-slider-container">
+        <div class="benefits-slider" aria-label="Benefits slider">
+            <div class="benefits-track">
+                <div class="benefit-slide">Launch in 2-3 Weeks</div>
+                <div class="benefit-slide">No Hidden Costs</div>
+                <div class="benefit-slide">Ongoing Support</div>
+                <div class="benefit-slide">Launch in 2-3 Weeks</div>
+                <div class="benefit-slide">No Hidden Costs</div>
+                <div class="benefit-slide">Ongoing Support</div>
+            </div>
+            <div class="benefits-track" aria-hidden="true">
+                <div class="benefit-slide">Launch in 2-3 Weeks</div>
+                <div class="benefit-slide">No Hidden Costs</div>
+                <div class="benefit-slide">Ongoing Support</div>
+                <div class="benefit-slide">Launch in 2-3 Weeks</div>
+                <div class="benefit-slide">No Hidden Costs</div>
+                <div class="benefit-slide">Ongoing Support</div>
+            </div>
+            <div class="benefits-track" aria-hidden="true">
+                <div class="benefit-slide">Launch in 2-3 Weeks</div>
+                <div class="benefit-slide">No Hidden Costs</div>
+                <div class="benefit-slide">Ongoing Support</div>
+                <div class="benefit-slide">Launch in 2-3 Weeks</div>
+                <div class="benefit-slide">No Hidden Costs</div>
+                <div class="benefit-slide">Ongoing Support</div>
+            </div>
         </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#hero-section" data-section="hero-section">Home</a></li>
-            <li><a href="#services-section" data-section="services-section">Services</a></li>
-            <li><a href="#why-us-section" data-section="why-us-section">Why Us</a></li>
-            <li><a href="#contact-section" data-section="contact-section">Contact</a></li>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo" onclick="scrollToTop()" role="button" tabindex="0" aria-label="Go to top">NAFROK</div>
+        <button class="mobile-toggle" id="mobileToggle" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+            <div class="mobile-toggle-inner">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        <ul class="nav-links" id="navLinks" role="menubar">
+            <li role="none"><a href="#hero-section" data-section="hero-section" role="menuitem">Home</a></li>
+            <li role="none"><a href="#services-section" data-section="services-section" role="menuitem">Services</a></li>
+            <li role="none"><a href="#why-us-section" data-section="why-us-section" role="menuitem">Why Us</a></li>
+            <li role="none"><a href="#contact-section" data-section="contact-section" role="menuitem">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Include Sections -->
-    <div id="hero-section"></div>
-    <div id="clients-section"></div>
-    <div id="services-section"></div>
-    <div id="why-us-section"></div>
-    <div id="contact-section"></div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <section id="hero-section" class="loading" aria-label="Hero section">Loading...</section>
+        <section id="clients-section" aria-label="Clients section"></section>
+        <section id="services-section" aria-label="Services section"></section>
+        <section id="why-us-section" aria-label="Why choose us section"></section>
+        <section id="contact-section" aria-label="Contact section"></section>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Agency</h4>
@@ -268,179 +420,214 @@
         </div>
     </footer>
 
+    <!-- Optimized JavaScript - Deferred -->
     <script>
-        // Mobile menu toggle with animation
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const mobileToggle = document.getElementById('mobileToggle');
-            navLinks.classList.toggle('active');
-            mobileToggle.classList.toggle('active');
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const navLinks = document.getElementById('navLinks');
-            const mobileToggle = document.getElementById('mobileToggle');
-            const navbar = document.querySelector('.navbar');
+        // Optimized with IIFE and early returns
+        (function() {
+            'use strict';
             
-            if (!navbar.contains(e.target) && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                mobileToggle.classList.remove('active');
-            }
-        });
+            // Cache DOM elements
+            const DOM = {
+                slider: document.querySelector('.benefits-slider'),
+                navLinks: document.getElementById('navLinks'),
+                mobileToggle: document.getElementById('mobileToggle'),
+                navbar: document.querySelector('.navbar'),
+                allNavLinks: document.querySelectorAll('.nav-links a')
+            };
 
-        // Smooth scrolling with offset for fixed navbar
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            // Slider pause/play optimization
+            if (DOM.slider) {
+                DOM.slider.addEventListener('mouseenter', () => DOM.slider.style.animationPlayState = 'paused', { passive: true });
+                DOM.slider.addEventListener('mouseleave', () => DOM.slider.style.animationPlayState = 'running', { passive: true });
+            }
+
+            // Mobile menu toggle
+            window.toggleMenu = function() {
+                const isActive = DOM.navLinks.classList.toggle('active');
+                DOM.mobileToggle.classList.toggle('active');
+                DOM.mobileToggle.setAttribute('aria-expanded', isActive);
+            };
+
+            // Close menu on outside click
+            document.addEventListener('click', (e) => {
+                if (!DOM.navbar.contains(e.target) && DOM.navLinks.classList.contains('active')) {
+                    DOM.navLinks.classList.remove('active');
+                    DOM.mobileToggle.classList.remove('active');
+                    DOM.mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+            }, { passive: true });
+
+            // Optimized smooth scrolling with event delegation
+            document.addEventListener('click', (e) => {
+                const anchor = e.target.closest('a[href^="#"]');
+                if (!anchor) return;
+                
                 e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
+                const targetId = anchor.getAttribute('href').slice(1);
                 const target = document.getElementById(targetId);
                 
                 if (target) {
-                    // Close mobile menu
-                    const navLinks = document.getElementById('navLinks');
-                    const mobileToggle = document.getElementById('mobileToggle');
-                    navLinks.classList.remove('active');
-                    mobileToggle.classList.remove('active');
+                    DOM.navLinks.classList.remove('active');
+                    DOM.mobileToggle.classList.remove('active');
+                    DOM.mobileToggle.setAttribute('aria-expanded', 'false');
                     
-                    // Smooth scroll
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Update active state
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     updateActiveLink(targetId);
                 }
             });
-        });
 
-        // Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
+            // Scroll to top
+            window.scrollToTop = function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
 
-        // Navbar scroll effect with throttling
-        let lastScroll = 0;
-        let ticking = false;
+            // Throttled scroll handler with RAF
+            let scrollTicking = false;
+            let lastScroll = 0;
 
-        function updateNavbar() {
-            const navbar = document.querySelector('.navbar');
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            lastScroll = currentScroll;
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(updateNavbar);
-                ticking = true;
-            }
-            
-            // Update active link on scroll
-            updateActiveLinkOnScroll();
-        });
-
-        // Update active link based on scroll position
-        function updateActiveLinkOnScroll() {
-            const sections = document.querySelectorAll('[id$="-section"]');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.offsetHeight;
+            function handleScroll() {
+                const currentScroll = window.pageYOffset;
                 
-                if (window.pageYOffset >= sectionTop && 
-                    window.pageYOffset < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
+                // Navbar effect (only if scroll changed significantly)
+                if (Math.abs(currentScroll - lastScroll) > 10) {
+                    DOM.navbar.classList.toggle('scrolled', currentScroll > 50);
+                    lastScroll = currentScroll;
                 }
-            });
+                
+                // Active link update
+                updateActiveLinkOnScroll();
+                scrollTicking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!scrollTicking) {
+                    requestAnimationFrame(handleScroll);
+                    scrollTicking = true;
+                }
+            }, { passive: true });
+
+            // Update active link on scroll - optimized
+            const sections = Array.from(document.querySelectorAll('[id$="-section"]'));
             
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-section') === current) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Update active link manually
-        function updateActiveLink(targetId) {
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-section') === targetId) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Function to load HTML sections
-        function loadSection(url, elementId) {
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+            function updateActiveLinkOnScroll() {
+                const scrollPos = window.pageYOffset + 150;
+                
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const section = sections[i];
+                    if (section.offsetTop <= scrollPos) {
+                        const currentId = section.id;
+                        DOM.allNavLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('data-section') === currentId);
+                        });
+                        break;
                     }
-                    return response.text();
-                })
-                .then(html => {
+                }
+            }
+
+            // Manual active link update
+            function updateActiveLink(targetId) {
+                DOM.allNavLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('data-section') === targetId);
+                });
+            }
+
+            // Optimized section loading with fetch cache
+            const loadedSections = new Set();
+            
+            async function loadSection(url, elementId) {
+                if (loadedSections.has(elementId)) return;
+                
+                try {
+                    const response = await fetch(url, { 
+                        cache: 'force-cache',
+                        priority: elementId === 'hero-section' ? 'high' : 'low'
+                    });
+                    
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    
+                    const html = await response.text();
                     const element = document.getElementById(elementId);
+                    
                     if (element) {
                         element.innerHTML = html;
-                        console.log(`Loaded: ${url}`);
+                        element.classList.remove('loading');
+                        loadedSections.add(elementId);
+                        
+                        // Execute scripts efficiently
+                        const scripts = element.querySelectorAll('script');
+                        scripts.forEach(oldScript => {
+                            const newScript = document.createElement('script');
+                            Array.from(oldScript.attributes).forEach(attr => 
+                                newScript.setAttribute(attr.name, attr.value)
+                            );
+                            newScript.textContent = oldScript.textContent;
+                            oldScript.replaceWith(newScript);
+                        });
                     }
-                })
-                .catch(error => {
-                    console.error(`Error loading ${url}:`, error);
-                });
-        }
-
-        // Load all sections when page loads
-        window.addEventListener('DOMContentLoaded', () => {
-            loadSection('herosection.html', 'hero-section');
-            loadSection('clients.html', 'clients-section');
-            loadSection('services.html', 'services-section');
-            loadSection('whyus.html', 'why-us-section');
-            loadSection('contact.html', 'contact-section');
-            
-            // Initial active link check after a short delay to let sections load
-            setTimeout(() => {
-                updateActiveLinkOnScroll();
-            }, 500);
-        });
-        
-        // Form submission handler (for contact section)
-        window.handleContactSubmit = function(event) {
-            event.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            event.target.reset();
-        };
-
-        // Handle escape key to close mobile menu
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const navLinks = document.getElementById('navLinks');
-                const mobileToggle = document.getElementById('mobileToggle');
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    mobileToggle.classList.remove('active');
-                    document.body.style.overflow = '';
+                } catch (error) {
+                    console.error(`Load error (${url}):`, error);
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                        element.innerHTML = '<div class="loading">Failed to load content</div>';
+                    }
                 }
             }
-        });
+
+            // Prioritized section loading with Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        const fileMap = {
+                            'clients-section': 'clients.html',
+                            'services-section': 'services.html',
+                            'why-us-section': 'whyus.html',
+                            'contact-section': 'contact.html'
+                        };
+                        
+                        if (fileMap[id]) {
+                            loadSection(fileMap[id], id);
+                            observer.unobserve(entry.target);
+                        }
+                    }
+                });
+            }, { rootMargin: '100px' });
+
+            // Load sections on DOMContentLoaded
+            document.addEventListener('DOMContentLoaded', () => {
+                // Load hero immediately (critical)
+                loadSection('herosection.html', 'hero-section').then(() => {
+                    setTimeout(updateActiveLinkOnScroll, 100);
+                    
+                    // Lazy load other sections on viewport intersection
+                    sections.slice(1).forEach(section => observer.observe(section));
+                });
+            });
+
+            // Global form handler
+            window.handleContactSubmit = function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                e.target.reset();
+            };
+
+            // ESC key handler
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && DOM.navLinks.classList.contains('active')) {
+                    DOM.navLinks.classList.remove('active');
+                    DOM.mobileToggle.classList.remove('active');
+                    DOM.mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Keyboard navigation for logo
+            document.querySelector('.logo').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    scrollToTop();
+                }
+            });
+        })();
     </script>
 </body>
 </html>
