@@ -553,14 +553,19 @@
                         element.classList.remove('loading');
                         loadedSections.add(elementId);
                         
-                        // Execute scripts efficiently
+                      // Execute scripts efficiently - wrap in IIFE to prevent scope conflicts
                         const scripts = element.querySelectorAll('script');
                         scripts.forEach(oldScript => {
                             const newScript = document.createElement('script');
                             Array.from(oldScript.attributes).forEach(attr => 
                                 newScript.setAttribute(attr.name, attr.value)
                             );
-                            newScript.textContent = oldScript.textContent;
+                            // Wrap inline scripts in IIFE to avoid variable conflicts
+                            if (oldScript.textContent && !oldScript.src) {
+                                newScript.textContent = `(function(){${oldScript.textContent}})();`;
+                            } else {
+                                newScript.textContent = oldScript.textContent;
+                            }
                             oldScript.replaceWith(newScript);
                         });
                     }
