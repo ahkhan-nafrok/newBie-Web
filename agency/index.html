@@ -422,6 +422,9 @@
 
     <!-- Optimized JavaScript - Deferred -->
     <script>
+        // SITE VERSION - Update this when you make changes to force cache refresh
+        const SITE_VERSION = '2.0.0';
+        
         // Optimized with IIFE and early returns
         (function() {
             'use strict';
@@ -531,51 +534,77 @@
                 });
             }
 
-            // Optimized section loading with fetch cache
+            // Optimized section loading with smart caching strategy
             const loadedSections = new Set();
+            const sectionCache = new Map();
             
             async function loadSection(url, elementId) {
                 if (loadedSections.has(elementId)) return;
                 
+                // Build versioned URL for cache busting
+                const versionedUrl = `${url}?v=${SITE_VERSION}`;
+                
                 try {
-                    const response = await fetch(url, { 
-                        cache: 'force-cache',
+                    // Check memory cache first (for instant repeat loads in same session)
+                    if (sectionCache.has(elementId)) {
+                        renderSection(elementId, sectionCache.get(elementId));
+                        return;
+                    }
+                    
+                    // Smart cache strategy:
+                    // - Hero section: Check for updates (no-cache) for critical first impression
+                    // - Other sections: Use stale-while-revalidate for speed + freshness balance
+                    const cacheStrategy = elementId === 'hero-section' 
+                        ? 'no-cache'  // Always fresh for hero
+                        : 'default';  // Browser-managed caching for others
+                    
+                    const response = await fetch(versionedUrl, { 
+                        cache: cacheStrategy,
                         priority: elementId === 'hero-section' ? 'high' : 'low'
                     });
                     
                     if (!response.ok) throw new Error(`HTTP ${response.status}`);
                     
                     const html = await response.text();
-                    const element = document.getElementById(elementId);
                     
-                    if (element) {
-                        element.innerHTML = html;
-                        element.classList.remove('loading');
-                        loadedSections.add(elementId);
-                        
-                      // Execute scripts efficiently - wrap in IIFE to prevent scope conflicts
-                        const scripts = element.querySelectorAll('script');
-                        scripts.forEach(oldScript => {
-                            const newScript = document.createElement('script');
-                            Array.from(oldScript.attributes).forEach(attr => 
-                                newScript.setAttribute(attr.name, attr.value)
-                            );
-                            // Wrap inline scripts in IIFE to avoid variable conflicts
-                            if (oldScript.textContent && !oldScript.src) {
-                                newScript.textContent = `(function(){${oldScript.textContent}})();`;
-                            } else {
-                                newScript.textContent = oldScript.textContent;
-                            }
-                            oldScript.replaceWith(newScript);
-                        });
-                    }
+                    // Store in memory cache for instant subsequent access
+                    sectionCache.set(elementId, html);
+                    
+                    renderSection(elementId, html);
+                    
                 } catch (error) {
                     console.error(`Load error (${url}):`, error);
                     const element = document.getElementById(elementId);
                     if (element) {
-                        element.innerHTML = '<div class="loading">Failed to load content</div>';
+                        element.innerHTML = '<div class="loading">Failed to load content. Please refresh the page.</div>';
                     }
                 }
+            }
+            
+            // Separate render function for cleaner code
+            function renderSection(elementId, html) {
+                const element = document.getElementById(elementId);
+                if (!element) return;
+                
+                element.innerHTML = html;
+                element.classList.remove('loading');
+                loadedSections.add(elementId);
+                
+                // Execute scripts efficiently - wrap in IIFE to prevent scope conflicts
+                const scripts = element.querySelectorAll('script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    Array.from(oldScript.attributes).forEach(attr => 
+                        newScript.setAttribute(attr.name, attr.value)
+                    );
+                    // Wrap inline scripts in IIFE to avoid variable conflicts
+                    if (oldScript.textContent && !oldScript.src) {
+                        newScript.textContent = `(function(){${oldScript.textContent}})();`;
+                    } else {
+                        newScript.textContent = oldScript.textContent;
+                    }
+                    oldScript.replaceWith(newScript);
+                });
             }
 
             // Prioritized section loading with Intersection Observer
