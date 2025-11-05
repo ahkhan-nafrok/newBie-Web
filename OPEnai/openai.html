@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI - Company Overview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 100px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0);
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        /* Animated background grid */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Gradient orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #10b981, transparent);
+            top: -250px;
+            left: -250px;
+        }
+
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #3b82f6, transparent);
+            bottom: -300px;
+            right: -300px;
+            animation-delay: 7s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #8b5cf6, transparent);
+            top: 50%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -100px) scale(1.1); }
+            66% { transform: translate(-100px, 100px) scale(0.9); }
+        }
+
+        /* Tech lines decoration */
+        .tech-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+
+        .tech-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            height: 1px;
+            width: 100%;
+            animation: scanLine 8s linear infinite;
+        }
+
+        .tech-line:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .tech-line:nth-child(2) { top: 50%; animation-delay: 2s; }
+        .tech-line:nth-child(3) { top: 80%; animation-delay: 4s; }
+
+        @keyframes scanLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Opening Slide with Electric Effects */
+        .opening {
+            background: #0a0a0a;
+        }
+
+        .logo-container {
+            margin-bottom: 60px;
+            position: relative;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .logo-text {
+            font-size: 130px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #10b981 50%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -5px;
+            position: relative;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+            filter: drop-shadow(0 0 30px rgba(16, 185, 129, 0.5));
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Electric Effect */
+        .electric-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .lightning {
+            position: absolute;
+            width: 3px;
+            height: 100px;
+            background: linear-gradient(180deg, #10b981, #3b82f6, transparent);
+            box-shadow: 0 0 20px #10b981, 0 0 40px #3b82f6;
+            animation: lightning 2s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .lightning:nth-child(1) {
+            top: -20%;
+            left: 20%;
+            animation-delay: 0s;
+            transform: rotate(20deg);
+        }
+
+        .lightning:nth-child(2) {
+            top: -20%;
+            right: 20%;
+            animation-delay: 0.7s;
+            transform: rotate(-20deg);
+        }
+
+        .lightning:nth-child(3) {
+            bottom: -20%;
+            left: 30%;
+            animation-delay: 1.4s;
+            transform: rotate(160deg);
+        }
+
+        .lightning:nth-child(4) {
+            bottom: -20%;
+            right: 30%;
+            animation-delay: 2.1s;
+            transform: rotate(200deg);
+        }
+
+        @keyframes lightning {
+            0%, 100% { opacity: 0; height: 0; }
+            10% { opacity: 1; height: 150px; }
+            15% { opacity: 0.8; }
+            20% { opacity: 1; height: 200px; }
+            30% { opacity: 0; height: 250px; }
+        }
+
+        /* Energy particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+            animation: particleFloat 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .particle:nth-child(5) {
+            top: 30%;
+            left: 10%;
+            animation-delay: 0.5s;
+        }
+
+        .particle:nth-child(6) {
+            top: 50%;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+
+        .particle:nth-child(7) {
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 2.5s;
+        }
+
+        .particle:nth-child(8) {
+            bottom: 40%;
+            right: 15%;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(0); }
+            50% { opacity: 1; transform: translateY(-100px) scale(1.5); }
+        }
+
+        .opening h1 {
+            font-size: 64px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .opening .subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: #888;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .opening .tagline {
+            font-size: 28px;
+            font-weight: 400;
+            color: #10b981;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        /* Content wrapper for all content slides */
+        .content-wrapper {
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .slide-header {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .slide-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #10b981;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .slide-title {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -3px;
+            background: linear-gradient(90deg, #fff 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide-subtitle {
+            font-size: 18px;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* Beginning Slide - Timeline with Visual Enhancements */
+        .timeline-bg-effects {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-code {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: rgba(16, 185, 129, 0.3);
+            animation: codeFloat 15s linear infinite;
+        }
+
+        .floating-code:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-code:nth-child(2) {
+            top: 30%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .floating-code:nth-child(3) {
+            bottom: 20%;
+            left: 8%;
+            animation-delay: 6s;
+        }
+
+        @keyframes codeFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) rotate(10deg);
+            }
+        }
+
+        .circuit-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+            animation: circuitPulse 3s ease-in-out infinite;
+        }
+
+        .circuit-line:nth-child(4) {
+            top: 25%;
+            left: 0;
+            width: 30%;
+            animation-delay: 0s;
+        }
+
+        .circuit-line:nth-child(5) {
+            top: 60%;
+            right: 0;
+            width: 40%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes circuitPulse {
+            0%, 100% {
+                opacity: 0.2;
+                filter: blur(0px);
+            }
+            50% {
+                opacity: 0.8;
+                filter: blur(2px);
+            }
+        }
+
+        /* Animated decorative elements for timeline slide */
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            animation: circleExpand 4s ease-in-out infinite;
+        }
+
+        .deco-circle.large {
+            width: 300px;
+            height: 300px;
+            top: 15%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .deco-circle.medium {
+            width: 200px;
+            height: 200px;
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 1.5s;
+        }
+
+        .deco-circle.small {
+            width: 120px;
+            height: 120px;
+            top: 50%;
+            right: 8%;
+            animation-delay: 3s;
+        }
+
+        @keyframes circleExpand {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.6;
+            }
+        }
+
+        /* Floating brain/AI icon */
+        .floating-icon {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            top: 20%;
+            right: 12%;
+            animation: iconBounce 6s ease-in-out infinite;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 30px rgba(16, 185, 129, 0.4));
+        }
+
+        @keyframes iconBounce {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-20px) rotate(-5deg);
+            }
+        }
+
+        /* Connecting dots animation */
+        .connection-dots {
+            position: absolute;
+            right: 15%;
+        }
+
+        .dot-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.8);
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        .dot-node:nth-child(1) {
+            top: 25%;
+            right: 20%;
+            animation-delay: 0s;
+        }
+
+        .dot-node:nth-child(2) {
+            top: 35%;
+            right: 10%;
+            animation-delay: 0.5s;
+        }
+
+        .dot-node:nth-child(3) {
+            top: 45%;
+            right: 25%;
+            animation-delay: 1s;
+        }
+
+        .dot-node:nth-child(4) {
+            top: 55%;
+            right: 15%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* Animated connection lines between dots */
+        .connection-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            animation: lineFlow 3s linear infinite;
+            opacity: 0.4;
+        }
+
+        .connection-line:nth-child(5) {
+            top: 30%;
+            right: 10%;
+            width: 150px;
+            transform: rotate(-20deg);
+        }
+
+        .connection-line:nth-child(6) {
+            top: 50%;
+            right: 15%;
+            width: 120px;
+            transform: rotate(15deg);
+            animation-delay: 1.5s;
+        }
+
+        @keyframes lineFlow {
+            0% {
+                opacity: 0.2;
+                filter: blur(0px);
+            }
+            50% {
+                opacity: 0.6;
+                filter: blur(1px);
+            }
+            100% {
+                opacity: 0.2;
+                filter: blur(0px);
+            }
+        }
+
+        /* Hexagon pattern */
+        .hex-pattern {
+            position: absolute;
+            bottom: 15%;
+            right: 20%;
+            width: 200px;
+            height: 200px;
+            opacity: 0.2;
+            animation: hexRotate 20s linear infinite;
+        }
+
+        @keyframes hexRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .timeline-container {
+            position: relative;
+            padding-left: 50px;
+            width: 100%;
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 15px;
+            top: 0;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(180deg, #10b981, #3b82f6);
+            animation: lineGrow 1.5s ease 0.5s forwards;
+        }
+
+        @keyframes lineGrow {
+            to { height: 100%; }
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInTimeline 0.8s ease forwards;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.7s; }
+        .timeline-item:nth-child(2) { animation-delay: 1s; }
+        .timeline-item:nth-child(3) { animation-delay: 1.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 1.6s; }
+
+        @keyframes slideInTimeline {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -43px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: #10b981;
+            border-radius: 50%;
+            border: 3px solid #0a0a0a;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+            }
+            50% { 
+                transform: scale(1.2);
+                box-shadow: 0 0 30px rgba(16, 185, 129, 1);
+            }
+        }
+
+        .timeline-year {
+            font-size: 16px;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border-left: 3px solid #10b981;
+        }
+
+        /* ChatGPT Hero Slide with Logo */
+        .chatgpt-hero {
+            background: #0a0a0a;
+        }
+
+        .chatgpt-icon {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            animation: iconFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px rgba(16, 185, 129, 0.6));
+        }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        .chatgpt-logo {
+            font-size: 140px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -4px;
+            animation: logoBreath 3s ease-in-out infinite;
+            margin-bottom: 80px;
+        }
+
+        @keyframes logoBreath {
+            0%, 100% { 
+                transform: scale(1);
+                filter: drop-shadow(0 0 30px rgba(16, 185, 129, 0.3));
+            }
+            50% { 
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 50px rgba(16, 185, 129, 0.6));
+            }
+        }
+
+        .milestones-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .milestone-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: cardSlideUp 0.8s ease forwards;
+        }
+
+        .milestone-card:nth-child(1) { animation-delay: 0.2s; }
+        .milestone-card:nth-child(2) { animation-delay: 0.4s; }
+        .milestone-card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes cardSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .milestone-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            transform: scaleX(0);
+            transition: transform 0.5s;
+        }
+
+        .milestone-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: rgba(16, 185, 129, 0.6);
+            background: rgba(16, 185, 129, 0.05);
+            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.2);
+        }
+
+        .milestone-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .milestone-number {
+            font-size: 72px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .milestone-text {
+            font-size: 18px;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* People Grid - 3 People Only */
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            width: 100%;
+        }
+
+        .person-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .person-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .person-card:hover::before {
+            left: 100%;
+        }
+
+        .person-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(16, 185, 129, 0.6);
+            background: rgba(16, 185, 129, 0.05);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+        }
+
+        .person-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid rgba(16, 185, 129, 0.3);
+            transition: all 0.4s;
+            object-fit: cover;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+        }
+
+        .person-card:hover .person-avatar {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+            border-color: rgba(16, 185, 129, 0.8);
+        }
+
+        .person-name {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .person-role {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Products Grid - 3 Products Only */
+        .products-wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 24px;
+            padding: 45px 35px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .product-card:hover::after {
+            opacity: 1;
+            transform: translate(-25%, -25%);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .product-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            display: block;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.4s;
+            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.5));
+        }
+
+        .product-card:hover .product-logo {
+            transform: scale(1.15) rotate(5deg);
+            filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.8));
+        }
+
+        .product-name {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #3b82f6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-desc {
+            font-size: 16px;
+            color: #bbb;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Channels Grid with Microsoft Focus */
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .channel-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 24px;
+            padding: 45px 35px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+        }
+
+        .channel-card.microsoft {
+            grid-column: span 1;
+            border-color: rgba(0, 120, 212, 0.3);
+        }
+
+        .channel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #10b981, #3b82f6);
+            transform: scaleY(0);
+            transition: transform 0.5s;
+        }
+
+        .channel-card.microsoft::before {
+            background: linear-gradient(180deg, #0078d4, #00bcf2);
+        }
+
+        .channel-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .channel-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.2);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .channel-card.microsoft:hover {
+            border-color: rgba(0, 120, 212, 0.8);
+            box-shadow: 0 25px 50px rgba(0, 120, 212, 0.3);
+            background: rgba(0, 120, 212, 0.05);
+        }
+
+        .channel-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 25px;
+            display: block;
+            transition: transform 0.4s;
+            filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.4));
+        }
+
+        .channel-card.microsoft .channel-logo {
+            width: 100px;
+            height: 100px;
+            filter: drop-shadow(0 0 20px rgba(0, 120, 212, 0.6));
+        }
+
+        .channel-card:hover .channel-logo {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .channel-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #10b981;
+        }
+
+        .channel-card.microsoft .channel-title {
+            color: #0078d4;
+        }
+
+        .channel-desc {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        /* Stats Grid Below Channels */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 20px;
+            padding: 35px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: statSlideUp 0.8s ease forwards;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.2s; }
+        .stat-card:nth-child(2) { animation-delay: 0.4s; }
+        .stat-card:nth-child(3) { animation-delay: 0.6s; }
+        .stat-card:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes statSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            transform: scaleX(0);
+            transition: transform 0.5s;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.03);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.15);
+        }
+
+        .stat-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .stat-card:nth-child(1) .stat-icon { animation-delay: 0s; }
+        .stat-card:nth-child(2) .stat-icon { animation-delay: 1s; }
+        .stat-card:nth-child(3) .stat-icon { animation-delay: 2s; }
+
+        .stat-label {
+            font-size: 14px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 12px;
+        }
+
+        .stat-value {
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.2;
+        }
+
+        .stat-subtext {
+            font-size: 13px;
+            color: #999;
+            line-height: 1.4;
+        }
+
+        /* SWOT Grid - All in One Slide */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .swot-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px 30px;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: swotReveal 0.6s ease forwards;
+        }
+
+        .swot-card:nth-child(1) { animation-delay: 0.1s; }
+        .swot-card:nth-child(2) { animation-delay: 0.2s; }
+        .swot-card:nth-child(3) { animation-delay: 0.3s; }
+        .swot-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes swotReveal {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .swot-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            transition: transform 0.4s;
+            transform: scaleX(0);
+        }
+
+        .swot-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .swot-card.strengths {
+            border-top: 4px solid #10b981;
+        }
+
+        .swot-card.strengths::after {
+            background: #10b981;
+        }
+
+        .swot-card.strengths:hover {
+            border-color: #10b981;
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.25);
+            background: rgba(16, 185, 129, 0.05);
+            transform: translateY(-8px);
+        }
+
+        .swot-card.weaknesses {
+            border-top: 4px solid #ef4444;
+        }
+
+        .swot-card.weaknesses::after {
+            background: #ef4444;
+        }
+
+        .swot-card.weaknesses:hover {
+            border-color: #ef4444;
+            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.25);
+            background: rgba(239, 68, 68, 0.05);
+            transform: translateY(-8px);
+        }
+
+        .swot-card.opportunities {
+            border-top: 4px solid #3b82f6;
+        }
+
+        .swot-card.opportunities::after {
+            background: #3b82f6;
+        }
+
+        .swot-card.opportunities:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.25);
+            background: rgba(59, 130, 246, 0.05);
+            transform: translateY(-8px);
+        }
+
+        .swot-card.threats {
+            border-top: 4px solid #f59e0b;
+        }
+
+        .swot-card.threats::after {
+            background: #f59e0b;
+        }
+
+        .swot-card.threats:hover {
+            border-color: #f59e0b;
+            box-shadow: 0 20px 60px rgba(245, 158, 11, 0.25);
+            background: rgba(245, 158, 11, 0.05);
+            transform: translateY(-8px);
+        }
+
+        .swot-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .swot-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .swot-card.strengths .swot-title { color: #10b981; }
+        .swot-card.weaknesses .swot-title { color: #ef4444; }
+        .swot-card.opportunities .swot-title { color: #3b82f6; }
+        .swot-card.threats .swot-title { color: #f59e0b; }
+
+        .swot-points {
+            list-style: none;
+        }
+
+        .swot-points li {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .swot-points li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .swot-card.strengths .swot-points li:before { color: #10b981; }
+        .swot-card.weaknesses .swot-points li:before { color: #ef4444; }
+        .swot-card.opportunities .swot-points li:before { color: #3b82f6; }
+        .swot-card.threats .swot-points li:before { color: #f59e0b; }
+
+        /* Closing Slide */
+        .closing {
+            background: #0a0a0a;
+        }
+
+        .closing h2 {
+            font-size: 80px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        .closing p {
+            font-size: 28px;
+            font-weight: 300;
+            color: #888;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(16, 185, 129, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .nav-btn:hover {
+            background: rgba(16, 185, 129, 0.3);
+            border-color: #10b981;
+            transform: scale(1.15);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.95);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 60px;
+            left: 50px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            color: #10b981;
+            z-index: 100;
+            font-weight: 600;
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            transition: width 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .slide-title { font-size: 52px; }
+            .products-wrapper,
+            .people-grid,
+            .channels-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .slide { padding: 60px 40px; }
+            .slide-title { font-size: 42px; }
+            .products-wrapper,
+            .people-grid,
+            .channels-grid,
+            .swot-grid { grid-template-columns: 1fr; }
+            .milestones-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="presentation" id="presentation">
+        <div class="bg-grid"></div>
+        <div class="tech-lines">
+            <div class="tech-line"></div>
+            <div class="tech-line"></div>
+            <div class="tech-line"></div>
+        </div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+
+        <!-- Slide 1: Opening with Electric Effects -->
+        <div class="slide active opening">
+            <div class="logo-container">
+                <div class="electric-container">
+                    <div class="lightning"></div>
+                    <div class="lightning"></div>
+                    <div class="lightning"></div>
+                    <div class="lightning"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+                <div class="logo-text">OpenAI</div>
+            </div>
+            <h1>Company Overview</h1>
+            <p class="subtitle">Pioneering Safe & Beneficial Artificial General Intelligence</p>
+            <p class="tagline">Making AI Work for Everyone</p>
+        </div>
+
+        <!-- Slide 2: The Beginning with Visual Effects -->
+        <div class="slide">
+            <div class="timeline-bg-effects">
+                <div class="floating-code">{ AI: "Revolutionary" }</div>
+                <div class="floating-code">function innovate() { return future; }</div>
+                <div class="floating-code">&lt;Intelligence /&gt;</div>
+                <div class="circuit-line"></div>
+                <div class="circuit-line"></div>
+                
+                <!-- Decorative circles -->
+                <div class="deco-circle large"></div>
+                <div class="deco-circle medium"></div>
+                <div class="deco-circle small"></div>
+                
+                <!-- AI Brain Icon -->
+                <svg class="floating-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="35" stroke="#10B981" stroke-width="2" fill="none" opacity="0.5"/>
+                    <circle cx="50" cy="50" r="25" stroke="#3B82F6" stroke-width="2" fill="none" opacity="0.5"/>
+                    <circle cx="50" cy="50" r="15" fill="#10B981" opacity="0.3"/>
+                    
+                    <!-- Neural network nodes -->
+                    <circle cx="30" cy="35" r="4" fill="#10B981"/>
+                    <circle cx="70" cy="35" r="4" fill="#10B981"/>
+                    <circle cx="30" cy="65" r="4" fill="#3B82F6"/>
+                    <circle cx="70" cy="65" r="4" fill="#3B82F6"/>
+                    <circle cx="50" cy="25" r="4" fill="#10B981"/>
+                    <circle cx="50" cy="75" r="4" fill="#3B82F6"/>
+                    
+                    <!-- Connection lines -->
+                    <line x1="30" y1="35" x2="50" y2="50" stroke="#10B981" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="70" y1="35" x2="50" y2="50" stroke="#10B981" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="30" y1="65" x2="50" y2="50" stroke="#3B82F6" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="70" y1="65" x2="50" y2="50" stroke="#3B82F6" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="50" y1="25" x2="50" y2="50" stroke="#10B981" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="50" y1="75" x2="50" y2="50" stroke="#3B82F6" stroke-width="1.5" opacity="0.5"/>
+                </svg>
+                
+                <!-- Connection dots network -->
+                <div class="connection-dots">
+                    <div class="dot-node"></div>
+                    <div class="dot-node"></div>
+                    <div class="dot-node"></div>
+                    <div class="dot-node"></div>
+                    <div class="connection-line"></div>
+                    <div class="connection-line"></div>
+                </div>
+                
+                <!-- Hexagon pattern -->
+                <svg class="hex-pattern" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" stroke="#10B981" stroke-width="2" fill="none"/>
+                    <polygon points="50,15 80,32.5 80,67.5 50,85 20,67.5 20,32.5" stroke="#3B82F6" stroke-width="1.5" fill="none" opacity="0.6"/>
+                    <polygon points="50,25 70,37.5 70,62.5 50,75 30,62.5 30,37.5" stroke="#8B5CF6" stroke-width="1" fill="none" opacity="0.4"/>
+                    <circle cx="50" cy="50" r="5" fill="#10B981" opacity="0.8"/>
+                </svg>
+            </div>
+            <div class="content-wrapper">
+                <div class="slide-header">
+                    <div class="slide-number">01 / FOUNDATION</div>
+                    <h2 class="slide-title">The Beginning</h2>
+                    <p class="slide-subtitle">How OpenAI Started</p>
+                </div>
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">December 2015</div>
+                        <div class="timeline-content">Founded in San Francisco as a non-profit AI research laboratory</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2019</div>
+                        <div class="timeline-content">Transitioned to "capped-profit" model to secure necessary funding</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2019</div>
+                        <div class="timeline-content">Microsoft invested $1 billion, establishing strategic partnership</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">Mission</div>
+                        <div class="timeline-content">Ensure artificial general intelligence benefits all of humanity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: ChatGPT Hero with Icon -->
+        <div class="slide chatgpt-hero">
+            <svg class="chatgpt-icon" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M37.5324 16.8707C37.9808 15.5241 38.1363 14.0974 37.9886 12.6859C37.8409 11.2744 37.3934 9.91076 36.676 8.68622C35.6126 6.83404 33.9882 5.3676 32.0373 4.4985C30.0864 3.62941 27.9098 3.40259 25.8215 3.85078C24.8796 2.7893 23.7219 1.94125 22.4257 1.36341C21.1295 0.785575 19.7249 0.491269 18.3058 0.500197C16.1708 0.495044 14.0893 1.16803 12.3614 2.42214C10.6335 3.67624 9.34853 5.44666 8.6917 7.47815C7.30085 7.76286 5.98686 8.3414 4.8377 9.17505C3.68854 10.0087 2.73073 11.0782 2.02839 12.312C0.956464 14.1591 0.498905 16.2988 0.721698 18.4228C0.944492 20.5467 1.83612 22.5449 3.268 24.1293C2.81966 25.4759 2.66413 26.9026 2.81182 28.3141C2.95951 29.7256 3.40701 31.0892 4.12437 32.3138C5.18791 34.1659 6.8123 35.6322 8.76321 36.5013C10.7141 37.3704 12.8907 37.5973 14.9789 37.1492C15.9208 38.2107 17.0786 39.0587 18.3747 39.6366C19.6709 40.2144 21.0755 40.5087 22.4946 40.4998C24.6307 40.5054 26.7133 39.8321 28.4418 38.5772C30.1704 37.3223 31.4556 35.5506 32.1119 33.5179C33.5027 33.2332 34.8167 32.6547 35.9659 31.821C37.115 30.9874 38.0728 29.9178 38.7752 28.684C39.8458 26.8371 40.3023 24.6979 40.0789 22.5748C39.8556 20.4517 38.9639 18.4544 37.5324 16.8707ZM22.4978 37.8849C20.7443 37.8874 19.0459 37.2733 17.6994 36.1501C17.7601 36.117 17.8666 36.0586 17.936 36.0161L25.9004 31.4156C26.1003 31.3019 26.2663 31.137 26.3813 30.9378C26.4964 30.7386 26.5563 30.5124 26.5549 30.2825V19.0542L29.9213 20.998C29.9389 21.0068 29.9541 21.0198 29.9656 21.0359C29.977 21.052 29.9842 21.0707 29.9867 21.0902V30.3889C29.9842 32.375 29.1946 34.2791 27.7909 35.6841C26.3872 37.0892 24.4838 37.8806 22.4978 37.8849ZM6.39227 31.0064C5.51397 29.4888 5.19742 27.7107 5.49804 25.9832C5.55718 26.0187 5.66048 26.0818 5.73461 26.1244L13.699 30.7248C13.8975 30.8408 14.1233 30.902 14.3532 30.902C14.583 30.902 14.8088 30.8408 15.0073 30.7248L24.731 25.1103V28.9979C24.7321 29.0177 24.7283 29.0376 24.7199 29.0556C24.7115 29.0736 24.6988 29.0893 24.6829 29.1012L16.6317 33.7497C14.9096 34.7416 12.8643 35.0097 10.9447 34.4954C9.02506 33.9811 7.38785 32.7263 6.39227 31.0064ZM4.29707 13.6194C5.17156 12.0998 6.55279 10.9364 8.19885 10.3327C8.19885 10.4013 8.19491 10.5228 8.19491 10.6071V19.808C8.19351 20.0378 8.25334 20.2638 8.36823 20.4629C8.48312 20.6619 8.64893 20.8267 8.84863 20.9404L18.5723 26.5542L15.206 28.4979C15.1894 28.5089 15.1703 28.5155 15.1505 28.5173C15.1307 28.5191 15.1107 28.516 15.0924 28.5082L7.04046 23.8557C5.32135 22.8601 4.06716 21.2235 3.55289 19.3046C3.03862 17.3858 3.30624 15.3413 4.29707 13.6194ZM31.955 20.0556L22.2312 14.4411L25.5976 12.4981C25.6142 12.4872 25.6333 12.4805 25.6531 12.4787C25.6729 12.4769 25.6928 12.4801 25.7111 12.4879L33.7631 17.1364C34.9967 17.849 36.0017 18.8982 36.6606 20.1613C37.3194 21.4244 37.6047 22.849 37.4832 24.2684C37.3617 25.6878 36.8382 27.0432 35.9743 28.1759C35.1103 29.3086 33.9415 30.1717 32.6047 30.6641C32.6047 30.5947 32.6047 30.4733 32.6047 30.3889V21.188C32.6066 20.9586 32.5474 20.7328 32.4332 20.5338C32.319 20.3348 32.154 20.1698 31.955 20.0556ZM35.3055 15.0128C35.2464 14.9765 35.1431 14.9142 35.069 14.8717L27.1045 10.2712C26.906 10.1554 26.6803 10.0943 26.4504 10.0943C26.2206 10.0943 25.9948 10.1554 25.7963 10.2712L16.0726 15.8858V11.9982C16.0715 11.9783 16.0753 11.9585 16.0837 11.9405C16.0921 11.9225 16.1048 11.9068 16.1207 11.8949L24.1719 7.25025C25.4053 6.53903 26.8158 6.19376 28.2383 6.25482C29.6608 6.31589 31.0364 6.78077 32.2044 7.59508C33.3723 8.40939 34.2842 9.53945 34.8334 10.8531C35.3826 12.1667 35.5464 13.6095 35.3055 15.0128ZM14.2424 21.9419L10.8752 19.9981C10.8576 19.9893 10.8423 19.9763 10.8309 19.9602C10.8195 19.9441 10.8122 19.9254 10.8098 19.9058V10.6071C10.8107 9.18295 11.2173 7.78848 11.9819 6.58696C12.7466 5.38544 13.8377 4.42659 15.1275 3.82264C16.4173 3.21869 17.8524 2.99464 19.2649 3.1767C20.6775 3.35876 22.0089 3.93941 23.1034 4.85067C23.0427 4.88379 22.937 4.94215 22.8668 4.98473L14.9024 9.58517C14.7025 9.69878 14.5366 9.86356 14.4215 10.0626C14.3065 10.2616 14.2466 10.4877 14.2479 10.7175L14.2424 21.9419ZM16.071 17.9991L20.4018 15.4978L24.7325 17.9975V22.9985L20.4018 25.4983L16.071 22.9985V17.9991Z" fill="#10B981"/>
+            </svg>
+            <div class="chatgpt-logo">ChatGPT</div>
+            <div class="milestones-grid">
+                <div class="milestone-card">
+                    <div class="milestone-number">100M+</div>
+                    <div class="milestone-text">Weekly Active Users Worldwide</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="milestone-number">Nov 2022</div>
+                    <div class="milestone-text">Launched & Became Fastest Growing App</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="milestone-number">#1</div>
+                    <div class="milestone-text">Most Recognized AI Assistant Globally</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Key People - 3 Only -->
+        <div class="slide">
+            <div class="content-wrapper">
+                <div class="slide-header">
+                    <div class="slide-number">02 / LEADERSHIP</div>
+                    <h2 class="slide-title">Key People</h2>
+                    <p class="slide-subtitle">Visionaries Behind OpenAI</p>
+                </div>
+                <div class="people-grid">
+                    <div class="person-card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Sam Altman" class="person-avatar">
+                        <div class="person-name">Sam Altman</div>
+                        <div class="person-role">CEO</div>
+                    </div>
+                    <div class="person-card">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop" alt="Greg Brockman" class="person-avatar">
+                        <div class="person-name">Greg Brockman</div>
+                        <div class="person-role">President & Co-Founder</div>
+                    </div>
+                    <div class="person-card">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop" alt="Ilya Sutskever" class="person-avatar">
+                        <div class="person-name">Ilya Sutskever</div>
+                        <div class="person-role">Co-Founder & Chief Scientist</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Products - 3 Only -->
+        <div class="slide">
+            <div class="content-wrapper">
+                <div class="slide-header">
+                    <div class="slide-number">03 / PRODUCTS</div>
+                    <h2 class="slide-title">Product Suite</h2>
+                    <p class="slide-subtitle">Transforming Industries with AI</p>
+                </div>
+                <div class="products-wrapper">
+                    <div class="product-card">
+                        <svg class="product-logo" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M37.5324 16.8707C37.9808 15.5241 38.1363 14.0974 37.9886 12.6859C37.8409 11.2744 37.3934 9.91076 36.676 8.68622C35.6126 6.83404 33.9882 5.3676 32.0373 4.4985C30.0864 3.62941 27.9098 3.40259 25.8215 3.85078C24.8796 2.7893 23.7219 1.94125 22.4257 1.36341C21.1295 0.785575 19.7249 0.491269 18.3058 0.500197C16.1708 0.495044 14.0893 1.16803 12.3614 2.42214C10.6335 3.67624 9.34853 5.44666 8.6917 7.47815C7.30085 7.76286 5.98686 8.3414 4.8377 9.17505C3.68854 10.0087 2.73073 11.0782 2.02839 12.312C0.956464 14.1591 0.498905 16.2988 0.721698 18.4228C0.944492 20.5467 1.83612 22.5449 3.268 24.1293C2.81966 25.4759 2.66413 26.9026 2.81182 28.3141C2.95951 29.7256 3.40701 31.0892 4.12437 32.3138C5.18791 34.1659 6.8123 35.6322 8.76321 36.5013C10.7141 37.3704 12.8907 37.5973 14.9789 37.1492C15.9208 38.2107 17.0786 39.0587 18.3747 39.6366C19.6709 40.2144 21.0755 40.5087 22.4946 40.4998C24.6307 40.5054 26.7133 39.8321 28.4418 38.5772C30.1704 37.3223 31.4556 35.5506 32.1119 33.5179C33.5027 33.2332 34.8167 32.6547 35.9659 31.821C37.115 30.9874 38.0728 29.9178 38.7752 28.684C39.8458 26.8371 40.3023 24.6979 40.0789 22.5748C39.8556 20.4517 38.9639 18.4544 37.5324 16.8707Z" fill="url(#gpt_gradient)"/>
+                            <defs>
+                                <linearGradient id="gpt_gradient" x1="0" y1="0" x2="40" y2="40">
+                                    <stop offset="0%" stop-color="#10B981"/>
+                                    <stop offset="50%" stop-color="#3B82F6"/>
+                                    <stop offset="100%" stop-color="#8B5CF6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="product-name">GPT-4</div>
+                        <div class="product-desc">Advanced language model with multimodal capabilities and superior reasoning power</div>
+                    </div>
+                    <div class="product-card">
+                        <svg class="product-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" rx="20" fill="url(#dalle_gradient)"/>
+                            <path d="M30 50 L50 30 L70 50 L50 70 Z" fill="white" opacity="0.9"/>
+                            <circle cx="50" cy="35" r="8" fill="white"/>
+                            <path d="M35 60 Q45 55 55 60" stroke="white" stroke-width="3" fill="none"/>
+                            <defs>
+                                <linearGradient id="dalle_gradient" x1="0" y1="0" x2="100" y2="100">
+                                    <stop offset="0%" stop-color="#F59E0B"/>
+                                    <stop offset="100%" stop-color="#EF4444"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="product-name">DALL·E</div>
+                        <div class="product-desc">AI system that creates realistic images and art from natural language descriptions</div>
+                    </div>
+                    <div class="product-card">
+                        <svg class="product-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" rx="15" fill="#1E293B"/>
+                            <text x="15" y="35" font-family="monospace" font-size="12" fill="#10B981">&lt;API</text>
+                            <text x="20" y="55" font-family="monospace" font-size="10" fill="#3B82F6">{ code }</text>
+                            <text x="15" y="75" font-family="monospace" font-size="12" fill="#10B981">/&gt;</text>
+                            <circle cx="85" cy="15" r="3" fill="#10B981"/>
+                            <circle cx="85" cy="85" r="3" fill="#3B82F6"/>
+                            <line x1="15" y1="15" x2="75" y2="15" stroke="#10B981" stroke-width="2"/>
+                            <line x1="15" y1="85" x2="75" y2="85" stroke="#3B82F6" stroke-width="2"/>
+                        </svg>
+                        <div class="product-name">OpenAI API</div>
+                        <div class="product-desc">Developer platform providing seamless access to AI models for integration</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Channels with Microsoft Focus -->
+        <div class="slide">
+            <div class="content-wrapper">
+                <div class="slide-header">
+                    <div class="slide-number">04 / DISTRIBUTION</div>
+                    <h2 class="slide-title">Channels</h2>
+                    <p class="slide-subtitle">How We Reach Users</p>
+                </div>
+                <div class="channels-grid">
+                    <div class="channel-card microsoft">
+                        <svg class="channel-logo" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#f35325" d="M0 0h11v11H0z"/>
+                            <path fill="#81bc06" d="M12 0h11v11H12z"/>
+                            <path fill="#05a6f0" d="M0 12h11v11H0z"/>
+                            <path fill="#ffba08" d="M12 12h11v11H12z"/>
+                        </svg>
+                        <div class="channel-title">Microsoft Partnership</div>
+                        <div class="channel-desc">Strategic integration with Azure, Bing, Office 365, and Microsoft's enterprise ecosystem</div>
+                    </div>
+                    <div class="channel-card">
+                        <svg class="channel-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="40" stroke="#10B981" stroke-width="3" fill="none"/>
+                            <circle cx="50" cy="50" r="30" fill="#10B981" opacity="0.2"/>
+                            <circle cx="50" cy="50" r="8" fill="#10B981"/>
+                            <line x1="50" y1="10" x2="50" y2="30" stroke="#10B981" stroke-width="3"/>
+                            <line x1="50" y1="70" x2="50" y2="90" stroke="#10B981" stroke-width="3"/>
+                            <line x1="10" y1="50" x2="30" y2="50" stroke="#10B981" stroke-width="3"/>
+                            <line x1="70" y1="50" x2="90" y2="50" stroke="#10B981" stroke-width="3"/>
+                        </svg>
+                        <div class="channel-title">API Platform</div>
+                        <div class="channel-desc">Developer APIs enabling integration into third-party applications and enterprise systems</div>
+                    </div>
+                    <div class="channel-card">
+                        <svg class="channel-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="20" width="80" height="60" rx="5" stroke="#10B981" stroke-width="3" fill="none"/>
+                            <circle cx="50" cy="50" r="15" fill="#10B981" opacity="0.3"/>
+                            <path d="M50 35 L50 65 M35 50 L65 50" stroke="#10B981" stroke-width="3"/>
+                            <circle cx="25" cy="35" r="3" fill="#10B981"/>
+                            <circle cx="75" cy="35" r="3" fill="#10B981"/>
+                        </svg>
+                        <div class="channel-title">Direct Platform</div>
+                        <div class="channel-desc">chat.openai.com provides direct access to ChatGPT for consumers and businesses worldwide</div>
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-label">Current Valuation</div>
+                        <div class="stat-value">$500B</div>
+                        <div class="stat-subtext">Latest funding round 2024</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🌍</div>
+                        <div class="stat-label">Market Size</div>
+                        <div class="stat-value">$1.3T</div>
+                        <div class="stat-subtext">AI market by 2032</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-label">Users to Date</div>
+                        <div class="stat-value">800M+</div>
+                        <div class="stat-subtext">Global registered users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💬</div>
+                        <div class="stat-label">Daily Messages</div>
+                        <div class="stat-value">3B+</div>
+                        <div class="stat-subtext">Messages sent daily</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: SWOT Analysis - All in One -->
+        <div class="slide">
+            <div class="content-wrapper">
+                <div class="slide-header">
+                    <div class="slide-number">05 / ANALYSIS</div>
+                    <h2 class="slide-title">SWOT Analysis</h2>
+                    <p class="slide-subtitle">Strategic Overview</p>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-card strengths">
+                        <div class="swot-icon">💪</div>
+                        <div class="swot-title">Strengths</div>
+                        <ul class="swot-points">
+                            <li>Industry-leading AI models (GPT-4, ChatGPT)</li>
+                            <li>Strong brand recognition & first-mover advantage</li>
+                            <li>Strategic Microsoft partnership & funding</li>
+                            <li>World-class research team & talent</li>
+                            <li>100M+ weekly active users</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card weaknesses">
+                        <div class="swot-icon">⚠️</div>
+                        <div class="swot-title">Weaknesses</div>
+                        <ul class="swot-points">
+                            <li>High computational & operational costs</li>
+                            <li>AI safety & ethical concerns</li>
+                            <li>Heavy dependency on Microsoft</li>
+                            <li>Limited monetization strategies</li>
+                            <li>Regulatory uncertainty</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card opportunities">
+                        <div class="swot-icon">🚀</div>
+                        <div class="swot-title">Opportunities</div>
+                        <ul class="swot-points">
+                            <li>Expanding enterprise AI solutions</li>
+                            <li>Specialized models for healthcare & education</li>
+                            <li>Growing global AI automation demand</li>
+                            <li>API ecosystem expansion</li>
+                            <li>AI-driven hardware integration</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card threats">
+                        <div class="swot-icon">⚡</div>
+                        <div class="swot-title">Threats</div>
+                        <ul class="swot-points">
+                            <li>Intense competition (Google, Meta, Anthropic)</li>
+                            <li>Rapid AI technology commoditization</li>
+                            <li>Increasing regulatory scrutiny</li>
+                            <li>Public concerns about job displacement</li>
+                            <li>Cybersecurity & misuse risks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Closing -->
+        <div class="slide closing">
+            <h2>Thank You</h2>
+            <p>OpenAI Company Overview 2024</p>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current">01</span> / <span id="total">08</span>
+    </div>
+
+    <div class="nav">
+        <button class="nav-btn" id="prevBtn" onclick="prevSlide()">←</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            const current = (currentSlide + 1).toString().padStart(2, '0');
+            const total = totalSlides.toString().padStart(2, '0');
+            
+            document.getElementById('current').textContent = current;
+            document.getElementById('total').textContent = total;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Click anywhere to advance
+        document.getElementById('presentation').addEventListener('click', (e) => {
+            if (!e.target.classList.contains('nav-btn') && !e.target.closest('.nav-btn')) {
+                nextSlide();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'Home') {
+                currentSlide = 0;
+                updateSlide();
+            } else if (e.key === 'End') {
+                currentSlide = totalSlides - 1;
+                updateSlide();
+            }
+        });
+
+        // Initialize
+        updateSlide();
+    </script>
+</body>
+</html>
