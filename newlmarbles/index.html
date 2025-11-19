@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <!-- Preconnect for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+
+  <!-- CRITICAL: Load fonts in HEAD before any component loads -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <title>MSP Stone International - Premium Marble & Granite Dealers</title>
+
+  <style>
+    :root {
+      --dim-gold: #C9A961;
+      --pure-black: #000000;
+      --pure-white: #FFFFFF;
+      --off-white: #F5F5F5;
+      --text-dark: #0A0A0A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--off-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    /* Loader */
+    .page-loader {
+      position: fixed; 
+      inset: 0;
+      display: flex; 
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center;
+      background: var(--pure-white);
+      z-index: 9999;
+      gap: 20px;
+    }
+    
+    .loader-logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    
+    .loader-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 8px;
+      color: var(--text-dark);
+    }
+    
+    body.loaded .page-loader { 
+      opacity: 0; 
+      pointer-events: none; 
+      transition: 0.5s; 
+    }
+    
+    .site-wrapper { 
+      opacity: 0; 
+      transition: opacity 0.5s ease; 
+    }
+    
+    body.loaded .site-wrapper { 
+      opacity: 1; 
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      z-index: 9998;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+
+    .whatsapp-float:active {
+      transform: scale(0.95);
+    }
+
+    .whatsapp-float i {
+      color: white;
+      font-size: 32px;
+    }
+
+    .whatsapp-float::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 2px solid #25D366;
+      border-radius: 50%;
+      opacity: 0;
+      animation: whatsapp-pulse 2s infinite;
+    }
+
+    @keyframes whatsapp-pulse {
+      0% {
+        transform: scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        left: 20px;
+      }
+      
+      .whatsapp-float i {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        left: 15px;
+      }
+      
+      .whatsapp-float i {
+        font-size: 26px;
+      }
+    }
+
+    /* Ensure fonts are loaded before showing content */
+    .site-wrapper {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Component containers */
+    #navbarComponent,
+    #heroComponent,
+    #aboutComponent,
+    #projectsComponent,
+    #categoriesComponent,
+    #galleryComponent,
+    #contactComponent,
+    #footerComponent {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Component spacing adjustments */
+    #projectsComponent {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    /* Remove extra spacing between About and Projects */
+    #aboutComponent + #projectsComponent {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body itemscope itemtype="https://schema.org/WebPage">
+  <!-- Loader -->
+  <div class="page-loader">
+    <img src="black-logo-chanel.webp" alt="MSP Stone International Logo - Premium Marble Dealers" class="loader-logo" />
+    <div class="loader-text">MSP STONE</div>
+  </div>
+
+  <!-- Wrapper -->
+  <div class="site-wrapper">
+    <!-- Navbar Component -->
+    <nav id="navbarComponent" role="navigation" aria-label="Main Navigation"></nav>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Component -->
+      <header id="heroComponent"></header>
+
+      <!-- About Component -->
+      <section id="aboutComponent" aria-label="About MSP Stone International"></section>
+
+      <!-- Projects Component - NEW -->
+      <section id="projectsComponent" aria-label="Featured Projects"></section>
+
+      <!-- Categories Component -->
+      <section id="categoriesComponent" aria-label="Marble and Granite Categories"></section>
+
+      <!-- Gallery Component -->
+      <section id="galleryComponent" aria-label="Product Gallery"></section>
+
+      <!-- Contact Component -->
+      <section id="contactComponent" aria-label="Contact Information"></section>
+    </main>
+
+    <!-- Footer Component -->
+    <footer id="footerComponent" role="contentinfo"></footer>
+  </div>
+
+  <!-- WhatsApp Floating Button -->
+  <a 
+    href="https://wa.me/917300008825?text=Hello%20MSP%20Stone%20International,%20I%20would%20like%20to%20inquire%20about%20your%20marble%20and%20granite%20products." 
+    class="whatsapp-float" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    aria-label="Contact us on WhatsApp"
+    title="Chat with us on WhatsApp"
+  >
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    // Wait for fonts to load before showing content
+    document.fonts.ready.then(function() {
+      console.log('✅ Fonts loaded successfully');
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Ensure fonts are loaded, then start loading components
+      setTimeout(() => {
+        document.body.classList.add("loaded");
+        loadComponents();
+      }, 1500);
+    });
+
+    async function loadComponents() {
+      const components = [
+        { name: "navbar", target: "navbarComponent" },
+        { name: "hero", target: "heroComponent" },
+        { name: "about", target: "aboutComponent" },
+        { name: "projects", target: "projectsComponent" },  // NEW
+        { name: "categories", target: "categoriesComponent" },
+        { name: "gallery", target: "galleryComponent" },
+        { name: "contact", target: "contactComponent" },
+        { name: "footer", target: "footerComponent" }
+      ];
+      
+      for (const comp of components) {
+        await loadComponent(comp.name, comp.target);
+      }
+      
+      console.log('✅ All components loaded with proper fonts');
+    }
+
+    // Enhanced load component function with font inheritance
+    async function loadComponent(name, targetId) {
+      try {
+        const htmlResp = await fetch(`${name}.html`);
+        const htmlText = await htmlResp.text();
+        
+        // Create a temporary div to parse the HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlText;
+        
+        // Get the target element
+        const targetElement = document.getElementById(targetId);
+        
+        // Extract and insert CSS styles first
+        const styles = tempDiv.querySelectorAll('style');
+        styles.forEach(style => {
+          const styleElement = document.createElement('style');
+          styleElement.innerHTML = style.innerHTML;
+          styleElement.setAttribute('data-component', name);
+          
+          // Ensure component styles inherit font family
+          styleElement.innerHTML = styleElement.innerHTML.replace(
+            /font-family:\s*'Montserrat'/gi,
+            "font-family: 'Montserrat', sans-serif"
+          );
+          
+          document.head.appendChild(styleElement);
+        });
+        
+        // Extract scripts before removing them
+        const scripts = tempDiv.querySelectorAll('script');
+        const scriptContents = Array.from(scripts).map(script => script.innerHTML);
+        
+        // Remove script and style tags from the HTML
+        scripts.forEach(script => script.remove());
+        styles.forEach(style => style.remove());
+        
+        // Also remove any font link tags from components (already loaded in head)
+        const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
+        fontLinks.forEach(link => link.remove());
+        
+        // Insert the HTML content
+        targetElement.innerHTML = tempDiv.innerHTML;
+        
+        // Wait for DOM to be ready
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Execute scripts after HTML and CSS are properly inserted
+        scriptContents.forEach(scriptContent => {
+          if (scriptContent.trim()) {
+            try {
+              const scriptElement = document.createElement('script');
+              scriptElement.innerHTML = scriptContent;
+              scriptElement.setAttribute('data-component', name);
+              document.body.appendChild(scriptElement);
+              
+              // Clean up after execution
+              setTimeout(() => {
+                if (scriptElement.parentNode) {
+                  scriptElement.parentNode.removeChild(scriptElement);
+                }
+              }, 500);
+            } catch (scriptError) {
+              console.error(`❌ Error executing script in ${name}:`, scriptError);
+            }
+          }
+        });
+        
+        console.log(`✅ ${name} component loaded with proper font inheritance`);
+        
+      } catch (err) {
+        console.error(`❌ Error loading ${name}:`, err);
+      }
+    }
+
+    // Handle smooth scroll for cross-component navigation
+    window.addEventListener('message', function(event) {
+      if (event.data.type === 'scrollToSection') {
+        const sectionId = event.data.sectionId;
+        const targetElement = document.getElementById(sectionId);
+        
+        if (targetElement) {
+          const headerHeight = 100;
+          const targetPosition = targetElement.offsetTop - headerHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

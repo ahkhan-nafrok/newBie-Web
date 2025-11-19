@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaali Works Collection - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="product.css">
+    <style>
+        /* Image viewer styles */
+        .modal-image {
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-image:hover {
+            transform: scale(1.02);
+        }
+
+        .image-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-viewer.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .viewer-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .viewer-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .viewer-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .viewer-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .viewer-close i {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .viewer-back {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .viewer-back:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .viewer-back i,
+        .viewer-back span {
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .viewer-info {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .viewer-info h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .viewer-info p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.8;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .zoom-controls {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 10px;
+            z-index: 10001;
+        }
+
+        .zoom-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .zoom-btn i {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .viewer-image.zoomed {
+            cursor: grab;
+            max-width: none;
+            max-height: none;
+        }
+
+        .viewer-image.zoomed:active {
+            cursor: grabbing;
+        }
+
+        .click-hint {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(201, 169, 97, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .modal-image-wrapper {
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .viewer-back {
+                left: 20px;
+                padding: 10px 20px;
+            }
+
+            .viewer-close {
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .zoom-controls {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .viewer-info {
+                bottom: 20px;
+                padding: 12px 24px;
+            }
+
+            .viewer-info h3 {
+                font-size: 18px;
+            }
+
+            .viewer-info p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <div class="back-navigation">
+                <a href="backcategories.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Categories</span>
+                </a>
+            </div>
+
+            <div class="section-header">
+                <p class="section-subtitle">Architectural Excellence</p>
+                <h1 class="section-title">Jaali Works Collection</h1>
+                <p class="section-description">
+                    Discover the timeless beauty of traditional marble jaali (lattice) work. Our master craftsmen create intricate perforated screens that filter light beautifully while maintaining privacy. Each jaali pattern is a tribute to Islamic and Mughal architectural heritage, perfect for adding elegance and cultural richness to modern spaces.
+                </p>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="modal-image-wrapper">
+                <div class="click-hint" id="clickHint">
+                    <i class="fas fa-search-plus"></i>
+                    <span>Click to view full image</span>
+                </div>
+                <img src="" alt="" class="modal-image" id="modalImage" onclick="openImageViewer()">
+            </div>
+            <div class="modal-body">
+                <span class="modal-badge">Premium Collection</span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+                <h3 class="features-title">Key Features</h3>
+                <ul class="modal-features" id="modalFeatures"></ul>
+                <button class="modal-whatsapp" onclick="contactWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Inquire on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer -->
+    <div class="image-viewer" id="imageViewer">
+        <div class="viewer-back" onclick="closeImageViewer()">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Details</span>
+        </div>
+        <div class="viewer-close" onclick="closeImageViewer()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="viewer-container" id="viewerContainer">
+            <img src="" alt="" class="viewer-image" id="viewerImage">
+        </div>
+        <div class="viewer-info">
+            <h3 id="viewerTitle"></h3>
+            <p>Click and drag to move • Scroll to zoom</p>
+        </div>
+        <div class="zoom-controls">
+            <div class="zoom-btn" onclick="zoomIn()">
+                <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="zoom-btn" onclick="zoomOut()">
+                <i class="fas fa-search-minus"></i>
+            </div>
+            <div class="zoom-btn" onclick="resetZoom()">
+                <i class="fas fa-expand"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Classic Geometric Jaali",
+                image: "jaaliworks/jaali1.png",
+                badge: "Traditional",
+                description: "Timeless geometric jaali featuring interlocking hexagonal patterns. This classic design filters natural light beautifully while providing privacy and ventilation. Hand-carved from premium white marble, perfect for windows, room dividers, and architectural screens.",
+                features: ["Traditional hexagonal pattern", "Hand-carved precision", "Premium white marble", "Dimensions: 36\" x 24\" x 2\"", "Light filtering design"]
+            },
+            {
+                id: 2,
+                title: "Floral Lattice Jaali Panel",
+                image: "jaaliworks/jaali2.png",
+                badge: "Elegant",
+                description: "Delicate floral jaali with intricate petal and vine motifs. Each flower is carved with remarkable detail, creating a romantic play of light and shadow. Ideal for creating an enchanting ambiance in gardens, balconies, and interior spaces.",
+                features: ["Intricate floral motifs", "Detailed petal carving", "Romantic light effects", "Custom sizing available", "Indoor & outdoor use"]
+            },
+            {
+                id: 3,
+                title: "Mughal Star Jaali",
+                image: "jaaliworks/jaali3.png",
+                badge: "Heritage",
+                description: "Authentic Mughal-era star pattern jaali inspired by historical palaces and monuments. Features complex interlocking stars and geometric precision that showcases centuries-old architectural mastery. A statement piece for heritage and luxury properties.",
+                features: ["Authentic Mughal design", "Complex star patterns", "Historical accuracy", "Museum-quality craftsmanship", "Heritage preservation"]
+            },
+            {
+                id: 4,
+                title: "Islamic Arabesque Jaali",
+                image: "jaaliworks/jaali4.png",
+                badge: "Sacred",
+                description: "Sacred Islamic arabesque patterns featuring flowing curves and intricate calligraphic elements. This jaali design brings spiritual elegance and cultural depth to mosques, prayer rooms, and Islamic architecture with its mesmerizing complexity.",
+                features: ["Islamic arabesque design", "Flowing curve patterns", "Spiritual aesthetics", "Calligraphic elements", "Mosque-grade quality"]
+            },
+            {
+                id: 5,
+                title: "Contemporary Lattice Screen",
+                image: "jaaliworks/jaali5.png",
+                badge: "Modern",
+                description: "Modern interpretation of traditional jaali with clean lines and minimalist geometry. Perfect for contemporary homes and commercial spaces seeking to blend traditional craftsmanship with modern architectural language. Creates stunning visual interest.",
+                features: ["Contemporary design", "Minimalist geometry", "Modern aesthetic", "Versatile applications", "Architectural statement"]
+            },
+            {
+                id: 6,
+                title: "Peacock Feather Jaali",
+                image: "jaaliworks/jaali6.png",
+                badge: "Artistic",
+                description: "Stunning peacock feather inspired jaali with graceful curves and natural flowing forms. Each feather is carved to perfection, creating an artistic masterpiece that celebrates nature's beauty. Perfect for luxury villas and boutique hotels.",
+                features: ["Peacock feather design", "Natural flowing forms", "Artistic excellence", "Luxury statement piece", "Unique pattern work"]
+            },
+            {
+                id: 7,
+                title: "Jaipur Jali Screen",
+                image: "jaaliworks/jaali7.png",
+                badge: "Royal",
+                description: "Royal Rajasthani jaali design from Jaipur's palatial architecture. Features elaborate patterns that were once exclusive to royal palaces. This design brings regal sophistication and historical grandeur to any space with its intricate detailing.",
+                features: ["Royal Rajasthani design", "Palace-inspired patterns", "Elaborate detailing", "Regal sophistication", "Historical significance"]
+            },
+            {
+                id: 8,
+                title: "Honeycomb Lattice Jaali",
+                image: "jaaliworks/jaali8.png",
+                badge: "Classic",
+                description: "Nature-inspired honeycomb pattern jaali with perfect hexagonal symmetry. This timeless design offers optimal light diffusion and air circulation while maintaining structural strength. Ideal for both traditional and contemporary settings.",
+                features: ["Honeycomb pattern", "Perfect hexagonal symmetry", "Optimal light diffusion", "Strong structure", "Timeless versatility"]
+            },
+            {
+    id: 9,
+    title: "Floral Blossom Jaali",
+    image: "jaaliworks/jaali9.png",
+    badge: "Artisan",
+    description: "Delicate floral jaali inspired by Mughal-era stonework. Its blooming patterns add elegance and charm to any architectural space, creating beautiful shadow effects.",
+    features: ["Mughal-inspired floral design", "Intricate handcrafted detailing", "Enhances airflow and light play", "Durable marble construction", "Perfect for partitions & balconies"]
+},
+{
+    id: 10,
+    title: "Geometric Star Jaali",
+    image: "jaaliworks/jaali10.png",
+    badge: "Contemporary",
+    description: "A modern geometric jaali design based on sacred star symmetry. Ideal for homes and commercial spaces seeking a fusion of tradition and modernity.",
+    features: ["Star symmetry geometry", "Precision laser carving", "Suits both indoor & outdoor use", "Excellent light dispersion", "Premium marble finish"]
+},
+{
+    id: 11,
+    title: "Lotus Harmony Jaali",
+    image: "jaaliworks/jaali11.png",
+    badge: "Spiritual",
+    description: "Sacred lotus-inspired jaali representing purity and harmony. Each petal is artistically carved to create an aesthetic symbol of peace and beauty.",
+    features: ["Lotus petal design", "Fine hand-carved details", "Symbol of purity & balance", "Ideal for temples & pooja spaces", "Durable and long-lasting"]
+},
+{
+    id: 12,
+    title: "Arabesque Fusion Jaali",
+    image: "jaaliworks/jaali12.png",
+    badge: "Luxury",
+    description: "Arabesque-inspired marble jaali blending Islamic geometric art with Indian architectural motifs. A luxurious design for grand interiors and facades.",
+    features: ["Arabesque geometry", "Symmetrical lattice design", "Premium polished marble", "Perfect for facades & interiors", "Adds cultural depth & style"]
+},
+{
+    id: 13,
+    title: "Peacock Feather Jaali",
+    image: "jaaliworks/jaali13.png",
+    badge: "Royal",
+    description: "Majestic peacock feather pattern symbolizing grace and divinity. This artistic jaali serves as both an ornamental and functional masterpiece.",
+    features: ["Peacock feather motif", "Royal Indian craftsmanship", "Elegant light diffusion", "Ideal for luxury homes & hotels", "Fine marble polish finish"]
+}
+
+        ];
+
+        const whatsappNumber = "+917300008825";
+        let currentProduct = null;
+        let zoomLevel = 1;
+        let isDragging = false;
+        let startX, startY, scrollLeft, scrollTop;
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map((product, index) => `
+                <div class="product-card" style="animation-delay: ${index * 0.1}s; transform: translateY(30px);" onclick="openModal(${product.id})">
+                    <div class="product-image-wrapper">
+                        <span class="premium-badge">${product.badge}</span>
+                        <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'320\\'%3E%3Crect fill=\\'%23f8fafc\\' width=\\'400\\' height=\\'320\\'/%3E%3Ctext fill=\\'%23c9a961\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' font-family=\\'Playfair Display, serif\\' font-size=\\'24\\'%3EJaali Works%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-preview">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="view-details-btn">
+                                View Details
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <div class="whatsapp-btn" onclick="event.stopPropagation(); contactWhatsAppDirect(${product.id})">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            observeCards();
+        }
+
+        function observeCards() {
+            const cards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        }
+
+        function openModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            document.getElementById('modalImage').src = currentProduct.image;
+            document.getElementById('modalTitle').textContent = currentProduct.title;
+            document.getElementById('modalDescription').textContent = currentProduct.description;
+            
+            const featuresHtml = currentProduct.features.map(feature => `<li>${feature}</li>`).join('');
+            document.getElementById('modalFeatures').innerHTML = featuresHtml;
+
+            const modal = document.getElementById('productModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                const hint = document.getElementById('clickHint');
+                if (hint) {
+                    hint.style.animation = 'fadeOut 0.5s ease forwards';
+                    setTimeout(() => {
+                        hint.style.display = 'none';
+                    }, 500);
+                }
+            }, 3000);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            const hint = document.getElementById('clickHint');
+            if (hint) {
+                hint.style.display = 'flex';
+                hint.style.animation = 'pulse 2s infinite';
+            }
+            
+            currentProduct = null;
+        }
+
+        function openImageViewer() {
+            if (!currentProduct) return;
+
+            const viewer = document.getElementById('imageViewer');
+            const viewerImage = document.getElementById('viewerImage');
+            const viewerTitle = document.getElementById('viewerTitle');
+
+            viewerImage.src = currentProduct.image;
+            viewerTitle.textContent = currentProduct.title;
+            
+            viewer.style.display = 'flex';
+            setTimeout(() => {
+                viewer.classList.add('active');
+            }, 10);
+
+            zoomLevel = 1;
+            viewerImage.style.transform = `scale(${zoomLevel})`;
+            viewerImage.classList.remove('zoomed');
+
+            setupImageDrag();
+        }
+
+        function closeImageViewer() {
+            const viewer = document.getElementById('imageViewer');
+            viewer.classList.remove('active');
+            setTimeout(() => {
+                viewer.style.display = 'none';
+            }, 300);
+        }
+
+        function zoomIn() {
+            const viewerImage = document.getElementById('viewerImage');
+            if (zoomLevel < 3) {
+                zoomLevel += 0.5;
+                viewerImage.style.transform = `scale(${zoomLevel})`;
+                if (zoomLevel > 1) {
+                    viewerImage.classList.add('zoomed');
+                }
+            }
+        }
+
+        function zoomOut() {
+            const viewerImage = document.getElementById('viewerImage');
+            if (zoomLevel > 0.5) {
+                zoomLevel -= 0.5;
+                viewerImage.style.transform = `scale(${zoomLevel})`;
+                if (zoomLevel <= 1) {
+                    viewerImage.classList.remove('zoomed');
+                }
+            }
+        }
+
+        function resetZoom() {
+            const viewerImage = document.getElementById('viewerImage');
+            zoomLevel = 1;
+            viewerImage.style.transform = `scale(${zoomLevel})`;
+            viewerImage.style.left = '0';
+            viewerImage.style.top = '0';
+            viewerImage.classList.remove('zoomed');
+        }
+
+        function setupImageDrag() {
+            const viewerImage = document.getElementById('viewerImage');
+            const container = document.getElementById('viewerContainer');
+
+            viewerImage.addEventListener('mousedown', (e) => {
+                if (zoomLevel > 1) {
+                    isDragging = true;
+                    startX = e.pageX - viewerImage.offsetLeft;
+                    startY = e.pageY - viewerImage.offsetTop;
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                
+                const x = e.pageX - startX;
+                const y = e.pageY - startY;
+                
+                viewerImage.style.position = 'relative';
+                viewerImage.style.left = `${x}px`;
+                viewerImage.style.top = `${y}px`;
+            });
+
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                if (e.deltaY < 0) {
+                    zoomIn();
+                } else {
+                    zoomOut();
+                }
+            });
+        }
+
+        function contactWhatsApp() {
+            if (currentProduct) {
+                const message = `Hi! I'm interested in the *${currentProduct.title}* from your Jaali Works Collection.\n\nCould you please provide:\n• Pricing & quotation\n• Custom design options\n• Installation details\n• Material specifications\n• Completion timeline\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        function contactWhatsAppDirect(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const message = `Hi! I'm interested in the *${product.title}* from your Jaali Works Collection.\n\nCould you please provide:\n• Pricing & quotation\n• Custom design options\n• Installation details\n• Material specifications\n• Completion timeline\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.getElementById('imageViewer').addEventListener('click', function(e) {
+            if (e.target === this) closeImageViewer();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (document.getElementById('imageViewer').classList.contains('active')) {
+                    closeImageViewer();
+                } else {
+                    closeModal();
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach((card) => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * 8;
+                    const rotateY = ((centerX - x) / centerX) * 8;
+                    
+                    this.style.transform = `translateY(-20px) scale(1.03) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const fadeInObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            const sectionHeader = document.querySelector('.section-header');
+            if (sectionHeader) {
+                sectionHeader.style.opacity = '0';
+                sectionHeader.style.transform = 'translateY(30px)';
+                sectionHeader.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                fadeInObserver.observe(sectionHeader);
+            }
+
+            const buttons = document.querySelectorAll('.view-details-btn, .modal-whatsapp, .whatsapp-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.6);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: rippleEffect 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 700);
+                });
+            });
+
+            if (!document.querySelector('#rippleAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'rippleAnimation';
+                style.textContent = `
+                    @keyframes rippleEffect {
+                        to {
+                            transform: scale(4.5);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            console.log('✨ Enhanced Jaali Works Collection with Image Viewer Loaded');
+            console.log('🎨 Features: Glassmorphism, Image Viewer, Zoom Controls, Drag to Move');
+        });
+
+        renderProducts();
+    </script>
+</body>
+</html>

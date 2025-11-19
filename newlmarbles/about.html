@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - MSP Stone International</title>
+    
+    <style>
+        :root {
+            --dim-gold: #C9A961;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --off-white: #F5F5F5;
+            --text-dark: #0A0A0A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--off-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* INFINITE SLIDER */
+        .infinite-slider-section {
+            background: var(--pure-black);
+            padding: 2rem 0;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 3px solid var(--dim-gold);
+        }
+
+        .slider-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            will-change: transform;
+        }
+
+        .slider-item {
+            flex-shrink: 0;
+            padding: 0 4rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            white-space: nowrap;
+        }
+
+        .slider-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--pure-white);
+        }
+
+        .slider-separator {
+            width: 12px;
+            height: 12px;
+            background: var(--dim-gold);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ABOUT SECTION */
+        .about-section {
+            background: var(--pure-white);
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        /* VALUES SECTION - REDUCED TOP SPACING */
+        .values-section {
+            margin-bottom: 5rem;
+            padding-top: 0;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .values-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pure-black);
+            margin-bottom: 0.8rem;
+        }
+
+        .values-subtitle {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--dim-gold);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .value-card {
+            background: var(--pure-black);
+            padding: 3rem 2.5rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--dim-gold);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .value-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+            border-color: var(--dim-gold);
+        }
+
+        .value-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--dim-gold);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pure-white);
+            margin-bottom: 1rem;
+        }
+
+        .value-description {
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+        }
+
+        /* SECTION DIVIDER */
+        .section-divider-wrapper {
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .section-divider {
+            width: 120px;
+            height: 3px;
+            background: var(--dim-gold);
+            margin: 0 auto;
+        }
+
+        /* SECTION HEADER - IMPROVED SPACING */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--dim-gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--pure-black);
+            line-height: 1.1;
+        }
+
+        /* MAIN CONTENT GRID */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+
+        /* IMAGE CONTAINER */
+        .about-image-container {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            border: 3px solid var(--pure-black);
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: var(--pure-black);
+        }
+
+        .about-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.15);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .about-image-wrapper:hover .about-image {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.08);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, 
+                rgba(0, 0, 0, 0.95) 0%, 
+                transparent 100%);
+            padding: 3rem 2.5rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .about-image-wrapper:hover .image-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .overlay-text {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--dim-gold);
+            line-height: 1.2;
+        }
+
+        /* TEXT CONTENT */
+        .about-text {
+            padding: 2rem 0;
+        }
+
+        .about-intro {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            color: var(--pure-black);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--dim-gold);
+            padding-left: 1.5rem;
+        }
+
+        .about-description {
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: var(--text-dark);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-text {
+            color: var(--dim-gold);
+            font-weight: 900;
+        }
+
+        /* STATS GRID - PREMIUM 4 COLUMN */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 3px solid var(--pure-black);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-item {
+            background: var(--pure-black);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 60%;
+            background: var(--dim-gold);
+        }
+
+        .stat-item:hover {
+            background: var(--dim-gold);
+            transform: translateY(-5px);
+        }
+
+        .stat-item:hover .stat-number,
+        .stat-item:hover .stat-label {
+            color: var(--pure-black);
+        }
+
+        .stat-number {
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: var(--pure-white);
+            line-height: 1;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dim-gold);
+            transition: all 0.3s ease;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1200px) {
+            .section-title {
+                font-size: 3.8rem;
+            }
+
+            .values-title {
+                font-size: 3rem;
+            }
+
+            .about-content {
+                gap: 4rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .about-section {
+                padding: 4rem 0;
+            }
+
+            .container {
+                padding: 0 2rem;
+            }
+
+            .values-section {
+                margin-bottom: 4rem;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-size: 3.2rem;
+            }
+
+            .values-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image-container {
+                height: 500px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .slider-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .infinite-slider-section {
+                padding: 1.5rem 0;
+            }
+
+            .slider-item {
+                padding: 0 2rem;
+            }
+
+            .slider-text {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+
+            .about-section {
+                padding: 3rem 0;
+            }
+
+            .values-section {
+                margin-bottom: 3rem;
+            }
+
+            .values-header {
+                margin-bottom: 2rem;
+            }
+
+            .values-title {
+                font-size: 2rem;
+            }
+
+            .values-subtitle {
+                font-size: 0.75rem;
+                letter-spacing: 3px;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .section-subtitle {
+                font-size: 0.7rem;
+                letter-spacing: 4px;
+            }
+
+            .about-intro {
+                font-size: 1.2rem;
+                padding-left: 1rem;
+                border-left-width: 3px;
+            }
+
+            .about-description {
+                font-size: 0.95rem;
+            }
+
+            .about-image-container {
+                height: 400px;
+            }
+
+            .overlay-text {
+                font-size: 1.8rem;
+            }
+
+            /* MOBILE STATS - 4 BOXES 2x2 GRID */
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0;
+            }
+
+            .stat-item {
+                padding: 3rem 1.5rem;
+            }
+
+            .stat-item:nth-child(1)::after,
+            .stat-item:nth-child(3)::after {
+                display: block;
+            }
+
+            .stat-item:nth-child(2)::after,
+            .stat-item:nth-child(4)::after {
+                display: none;
+            }
+
+            .stat-item:nth-child(1),
+            .stat-item:nth-child(2) {
+                border-bottom: 2px solid var(--dim-gold);
+            }
+
+            .stat-number {
+                font-size: 3.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+            }
+
+            .value-card {
+                padding: 2.5rem 2rem;
+            }
+
+            .value-number {
+                font-size: 3rem;
+            }
+
+            .value-title {
+                font-size: 1.2rem;
+            }
+
+            .value-description {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .infinite-slider-section {
+                padding: 1.2rem 0;
+            }
+
+            .slider-item {
+                padding: 0 1.5rem;
+            }
+
+            .slider-text {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+
+            .slider-separator {
+                width: 8px;
+                height: 8px;
+            }
+
+            .values-title {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                letter-spacing: 0;
+            }
+
+            .about-intro {
+                font-size: 1.1rem;
+            }
+
+            .about-description {
+                font-size: 0.9rem;
+                line-height: 1.7;
+            }
+
+            .about-image-container {
+                height: 350px;
+                border-width: 2px;
+            }
+
+            .overlay-text {
+                font-size: 1.5rem;
+                padding: 2rem 1.5rem;
+            }
+
+            /* MOBILE STATS - BETTER SPACING */
+            .stat-item {
+                padding: 2.5rem 1rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+            }
+
+            .value-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .value-number {
+                font-size: 2.5rem;
+            }
+
+            .value-title {
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* ANIMATION */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INFINITE SLIDER -->
+    <div class="infinite-slider-section">
+        <div class="slider-track">
+            <div class="slider-item">
+                <span class="slider-text">70+ Years Legacy</span>
+                <span class="slider-separator"></span>
+            </div>
+            <div class="slider-item">
+                <span class="slider-text">Premium Makrana Marble</span>
+                <span class="slider-separator"></span>
+            </div>
+            <div class="slider-item">
+                <span class="slider-text">Global Excellence</span>
+                <span class="slider-separator"></span>
+            </div>
+            <div class="slider-item">
+                <span class="slider-text">Master Craftsmen</span>
+                <span class="slider-separator"></span>
+            </div>
+            <div class="slider-item">
+                <span class="slider-text">15K+ Projects</span>
+                <span class="slider-separator"></span>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="slider-item">
+                <span class="slider-text">70+ Years Legacy</span>
+                <span class="slider-separator"></span>
+            </div>
+            <div class="slider-item">
+                <span class="slider-text">Premium Makrana Marble</span>
+                <span class="slider-separator"></span>
+            </div>
+            <div class="slider-item">
+                <span class="slider-text">Global Excellence</span>
+                <span class="slider-separator"></span>
+            </div>
+            <div class="slider-item">
+                <span class="slider-text">Master Craftsmen</span>
+                <span class="slider-separator"></span>
+            </div>
+            <div class="slider-item">
+                <span class="slider-text">15K+ Projects</span>
+                <span class="slider-separator"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <!-- VALUES SECTION - REDUCED TOP SPACING -->
+            <div class="values-section">
+                <div class="values-header">
+                    <h3 class="values-title">Our Core Values</h3>
+                    <p class="values-subtitle">What Defines Us</p>
+                </div>
+
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-number">01</div>
+                        <h4 class="value-title">Heritage</h4>
+                        <p class="value-description">
+                            Three generations of master craftsmen preserving ancient techniques while embracing innovation.
+                        </p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-number">02</div>
+                        <h4 class="value-title">Craftsmanship</h4>
+                        <p class="value-description">
+                            Meticulous attention to detail in every carving, ensuring perfection in each masterpiece.
+                        </p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-number">03</div>
+                        <h4 class="value-title">Trust</h4>
+                        <p class="value-description">
+                            Building lasting relationships through transparency, integrity, and unwavering commitment to excellence.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION DIVIDER -->
+            <div class="section-divider-wrapper">
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+                <p class="section-subtitle">Who are We?</p>
+                <h2 class="values-title">About Us</h2>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="about-content">
+                <!-- IMAGE -->
+                <div class="about-image-container">
+                    <div class="about-image-wrapper">
+                        <img src="Hero/herobg1.png" alt="MSP Stone International - Premium Marble Craftsmanship" class="about-image">
+                        <div class="image-overlay">
+                            <div class="overlay-text">30+ Years of<br>Marble Mastery</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TEXT CONTENT -->
+                <div class="about-text">
+                    <p class="about-intro">
+                        For over <span class="highlight-text">seven decades</span>, MSP Stone International has been at the forefront of premium marble craftsmanship in India.
+                    </p>
+                    <p class="about-description">
+                        Established in Makrana, Rajasthan - the birthplace of the world's finest marble - our legacy spans three generations of master artisans dedicated to transforming natural stone into timeless masterpieces.
+                    </p>
+                    <p class="about-description">
+                        From the iconic marble temples that grace homes across the globe to bespoke architectural installations, we bring together traditional craftsmanship and modern precision. Our expertise in custom mandirs, intricate jaali work, and premium flooring has earned us the trust of discerning clients worldwide.
+                    </p>
+                    <p class="about-description">
+                        With an extensive network across India and international presence in Dubai, USA, UK, Australia, and Tanzania, we continue to set the benchmark for excellence in the marble industry. Every piece that leaves our workshop carries the weight of our heritage and the promise of unparalleled quality.
+                    </p>
+                </div>
+            </div>
+
+    
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements
+            const elementsToAnimate = document.querySelectorAll(
+                '.section-header, .about-content, .stats-grid, .values-section'
+            );
+            
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Counter animation for stats
+            function animateCounter(element, target) {
+                let current = 0;
+                const increment = target / 100;
+                const duration = 2000;
+                const stepTime = duration / 100;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = target + (target === 100 ? '%' : '+');
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current) + (target === 100 ? '%' : '+');
+                    }
+                }, stepTime);
+            }
+
+            // Observe stats for counter animation
+            const statsObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumbers = entry.target.querySelectorAll('.stat-number');
+                        statNumbers.forEach(stat => {
+                            const text = stat.textContent;
+                            const isPercentage = text.includes('%');
+                            const number = parseInt(text.replace(/\D/g, ''));
+                            if (number) {
+                                stat.textContent = '0' + (isPercentage ? '%' : '+');
+                                animateCounter(stat, number);
+                            }
+                        });
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const statsGrid = document.querySelector('.stats-grid');
+            if (statsGrid) {
+                statsObserver.observe(statsGrid);
+            }
+
+            console.log('✅ Enhanced About Us section initialized');
+        });
+    </script>
+</body>
+</html>

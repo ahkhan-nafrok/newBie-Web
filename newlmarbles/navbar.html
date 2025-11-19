@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultra Premium Navbar - Stone International</title>
+  
+  <!-- Ultra Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --dim-gold: #C9A961;
+      --pure-black: #000000;
+      --pure-white: #FFFFFF;
+      --off-white: #F5F5F5;
+      --text-dark: #0A0A0A;
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--off-white);
+      color: var(--text-dark);
+      min-height: 200vh;
+    }
+
+    /* Ultra Minimal Header */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: transparent;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 2rem 0;
+    }
+    
+    .header.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px) saturate(180%);
+      padding: 1rem 0;
+      box-shadow: 0 1px 0 rgba(201, 169, 97, 0.1);
+    }
+
+    .header.scrolled .nav-link {
+      color: var(--text-dark);
+    }
+
+    .header.scrolled .logo-text {
+      color: var(--pure-black);
+    }
+
+    .header.scrolled .menu-toggle span {
+      background: var(--pure-black);
+    }
+
+    /* Dynamic Logo Image Switching */
+    .header .logo-white {
+      display: block;
+    }
+
+    .header .logo-black {
+      display: none;
+    }
+
+    .header.scrolled .logo-white {
+      display: none;
+    }
+
+    .header.scrolled .logo-black {
+      display: block;
+    }
+    
+    /* Centered Minimal Nav */
+    .nav {
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 0 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    /* Bold Elegant Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .logo-img-wrapper {
+      width: 70px;
+      height: 70px;
+      position: relative;
+      overflow: visible;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .logo:hover .logo-img {
+      transform: scale(1.05);
+    }
+    
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--pure-white);
+      letter-spacing: 8px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    /* Minimal Nav Links - Centered */
+    .nav-links {
+      display: flex;
+      gap: 4rem;
+      list-style: none;
+      align-items: center;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: var(--pure-white);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-transform: uppercase;
+      padding: 0.5rem 0;
+    }
+    
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--dim-gold);
+      transform: translateX(-50%);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .nav-link:hover {
+      color: var(--dim-gold);
+    }
+    
+    .nav-link:hover::before {
+      width: 100%;
+    }
+
+    /* Ultra Minimal Menu Toggle */
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 24px;
+      height: 18px;
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1001;
+      padding: 0;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--pure-white);
+      position: absolute;
+      left: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-toggle span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-toggle span:nth-child(2) {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 65%;
+    }
+
+    .menu-toggle span:nth-child(3) {
+      bottom: 0;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      background: var(--dim-gold);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      bottom: 50%;
+      transform: translateY(50%) rotate(-45deg);
+      background: var(--dim-gold);
+    }
+
+    /* Demo Hero Section */
+    .hero-demo {
+      height: 100vh;
+      background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .content-demo {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .nav {
+        padding: 0 3rem;
+      }
+
+      .nav-links {
+        gap: 3rem;
+      }
+
+      .nav-link {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .header {
+        padding: 1.5rem 0;
+      }
+
+      .header.scrolled {
+        padding: 1rem 0;
+      }
+
+      .nav {
+        flex-direction: row;
+        justify-content: center;
+        padding: 0 2rem;
+        position: relative;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      /* Premium Mobile Menu */
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        max-width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(30px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        padding: 4rem 2rem;
+        transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+      }
+
+      .nav-links.active li {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
+      .nav-links.active li:nth-child(2) { transition-delay: 0.15s; }
+      .nav-links.active li:nth-child(3) { transition-delay: 0.2s; }
+      .nav-links.active li:nth-child(4) { transition-delay: 0.25s; }
+      .nav-links.active li:nth-child(5) { transition-delay: 0.3s; }
+
+      .nav-link {
+        font-size: 1.8rem;
+        padding: 2rem 0;
+        width: 100%;
+        color: var(--pure-white) !important;
+        font-weight: 700;
+        letter-spacing: 4px;
+      }
+
+      .nav-link::before {
+        display: none;
+      }
+
+      .nav-link:hover {
+        color: var(--dim-gold) !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-text {
+        font-size: 1.4rem;
+        letter-spacing: 6px;
+      }
+      
+      .logo-img-wrapper {
+        width: 60px;
+        height: 60px;
+      }
+
+      .nav-link {
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .nav {
+        padding: 0 1.5rem;
+      }
+
+      .logo-text {
+        font-size: 1.1rem;
+        letter-spacing: 4px;
+      }
+      
+      .logo-img-wrapper {
+        width: 55px;
+        height: 55px;
+      }
+
+      .menu-toggle {
+        width: 22px;
+        height: 16px;
+        right: 1.5rem;
+      }
+
+      .nav-link {
+        font-size: 1.3rem;
+        padding: 1.5rem 0;
+      }
+    }
+
+    /* Menu Overlay */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      z-index: 999;
+      backdrop-filter: blur(5px);
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ultra Premium Minimal Header -->
+  <header class="header" id="header">
+    <nav class="nav">
+      <a href="#home" class="logo">
+        <div class="logo-img-wrapper">
+          <!-- White logo for transparent navbar -->
+          <img src="black.png" alt="Stone International" class="logo-img logo-white">
+          <!-- Black logo for scrolled navbar -->
+          <img src="white.png" alt="Stone International" class="logo-img logo-black">
+        </div>
+        <div class="logo-text">Stone International</div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a class="nav-link" href="#home">Home</a></li>
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#categories">Collections</a></li>
+        <li><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+
+  
+  <script>
+  (function() {
+    function initNavbar() {
+      const header = document.getElementById('header');
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const menuOverlay = document.getElementById('menuOverlay');
+      
+      if (!header || !menuToggle || !navLinks) {
+        setTimeout(initNavbar, 100);
+        return;
+      }
+
+      console.log('✅ Ultra Premium Navbar with Dynamic Logo initialized');
+
+      // Mobile menu toggle
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+      });
+
+      // Close menu on overlay click
+      menuOverlay.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+
+      // Close nav on link click
+      const allNavLinks = document.querySelectorAll('.nav-link');
+      allNavLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Close mobile menu
+          menuToggle.classList.remove('active');
+          navLinks.classList.remove('active');
+          menuOverlay.classList.remove('active');
+          document.body.style.overflow = 'auto';
+          
+          // Smooth scroll
+          const targetId = link.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            const headerHeight = 100;
+            const targetPosition = targetElement.offsetTop - headerHeight;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Scroll effect - transparent to solid with logo color change
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.scrollY;
+        
+        // Add scrolled class after hero section (adjust threshold as needed)
+        if (currentScroll > window.innerHeight * 0.3) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initNavbar);
+    } else {
+      initNavbar();
+    }
+  })();
+  </script>
+</body>
+</html>

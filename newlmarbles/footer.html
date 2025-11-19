@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bold Premium Footer - Aizaz Marbles</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dim-gold: #C9A961;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --text-dark: #0A0A0A;
+            --dark-grey: #0D0D0D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F5F5F5;
+            color: var(--text-dark);
+        }
+
+        /* BOLD FOOTER */
+        .footer {
+            background: var(--pure-black);
+            color: var(--pure-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        /* MASSIVE BRAND SECTION */
+        .footer-hero {
+            padding: 5rem 0 4rem;
+            text-align: center;
+            border-bottom: 2px solid var(--dim-gold);
+        }
+
+        .footer-logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5.5rem;
+            font-weight: 700;
+            color: var(--pure-white);
+            letter-spacing: 18px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .footer-tagline {
+            font-size: 1.1rem;
+            color: var(--dim-gold);
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* BOLD GRID LAYOUT */
+        .footer-main {
+            padding: 4rem 0 3rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pure-white);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--dim-gold);
+        }
+
+        /* ABOUT SECTION */
+        .footer-about p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        /* BOLD LINKS */
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            color: var(--dim-gold);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dim-gold);
+            transform: translateX(10px);
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            left: -15px;
+        }
+
+        /* CONTACT INFO - BOLD */
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 1rem;
+            color: var(--pure-white);
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            line-height: 1.6;
+        }
+
+        .contact-info a {
+            color: var(--pure-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 800;
+        }
+
+        .contact-info a:hover {
+            color: var(--dim-gold);
+        }
+
+        .contact-info i {
+            color: var(--dim-gold);
+            width: 22px;
+            margin-right: 0.8rem;
+            font-size: 1rem;
+        }
+
+        /* LOCATIONS SECTION - BOLD */
+        .locations-section {
+            background: var(--dark-grey);
+            padding: 3rem 0;
+            border-top: 2px solid var(--dim-gold);
+            border-bottom: 2px solid var(--dim-gold);
+        }
+
+        .locations-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .locations-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--pure-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .locations-subtitle {
+            font-size: 0.9rem;
+            color: var(--dim-gold);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1.5rem;
+        }
+
+        .location-item {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--pure-white);
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .location-item:hover {
+            background: rgba(201, 169, 97, 0.1);
+            border-color: var(--dim-gold);
+            color: var(--dim-gold);
+            transform: translateY(-3px);
+        }
+
+        /* SOCIAL SECTION - BOLD */
+        .footer-social {
+            padding: 3rem 0;
+            background: var(--pure-black);
+        }
+
+        .social-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--pure-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .social-subtitle {
+            font-size: 0.85rem;
+            color: var(--dim-gold);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--pure-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-link img {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--dim-gold);
+            background: var(--dim-gold);
+            transform: translateY(-8px) scale(1.1);
+        }
+
+        .social-link:hover img {
+            filter: brightness(0) invert(0);
+        }
+
+        /* BOTTOM BAR - BOLD */
+        .footer-bottom {
+            background: var(--dark-grey);
+            padding: 2rem 0;
+            border-top: 2px solid rgba(201, 169, 97, 0.3);
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            font-size: 0.95rem;
+            color: var(--pure-white);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            font-size: 0.95rem;
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 800;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .footer-legal a:hover {
+            color: var(--dim-gold);
+        }
+
+        /* SCROLL TO TOP */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--dim-gold);
+            color: var(--pure-black);
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            font-size: 1.3rem;
+            font-weight: 900;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(201, 169, 97, 0.5);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+
+            .locations-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 2rem;
+            }
+
+            .footer-logo-text {
+                font-size: 3rem;
+                letter-spacing: 10px;
+            }
+
+            .footer-tagline {
+                font-size: 0.85rem;
+                letter-spacing: 2px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .social-links {
+                gap: 1.5rem;
+            }
+
+            .footer-bottom-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .locations-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .locations-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .footer-logo-text {
+                font-size: 2rem;
+                letter-spacing: 6px;
+            }
+
+            .footer-tagline {
+                font-size: 0.7rem;
+                letter-spacing: 1.5px;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+            }
+
+            .social-link img {
+                width: 22px;
+                height: 22px;
+            }
+
+            .scroll-top {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <footer class="footer">
+        <!-- MASSIVE BRAND HERO -->
+        <div class="footer-hero">
+            <div class="container">
+                <div class="footer-logo-text">MSP Stone International</div>
+                <p class="footer-tagline">Crafting Timeless Elegance</p>
+            </div>
+        </div>
+
+        <!-- MAIN FOOTER CONTENT -->
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- ABOUT -->
+                    <div class="footer-column footer-about">
+                        <h4>About </h4>
+                        <p>Premium marble temple manufacturer from Makrana, Rajasthan. Serving clients worldwide with exquisite craftsmanship and timeless designs since generations.</p>
+                        <p>Specializing in custom mandirs, jaali work, and premium marble installations.</p>
+                    </div>
+                    
+                    <!-- COLLECTIONS -->
+                    <div class="footer-column">
+                        <h4>Collections</h4>
+                        <ul class="footer-links">
+                            <li><a href="#categories">Home Mandirs</a></li>
+                            <li><a href="#categories">Temple Designs</a></li>
+                            <li><a href="#categories">Premium Flooring</a></li>
+                            <li><a href="#categories">Jaali Work</a></li>
+                            <li><a href="#categories">Inlay Art</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- CONTACT -->
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-phone"></i> <a href="tel:+919829051786">+91 98290 51786</a></li>
+                            <li><i class="fas fa-phone"></i> <a href="tel:+919983777786">+91 99837 77786</a></li>
+                            <li><i class="fas fa-phone"></i> <a href="tel:+917300008825">+91 73000 08825</a></li>
+                            <li><i class="fas fa-envelope"></i> <a href="mailto:aizazmarbletraders@gmail.com">aizazmarbletraders@gmail.com</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- LOCATION -->
+                    <div class="footer-column">
+                        <h4>Visit Us</h4>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-map-marker-alt"></i> Opposite Moti Mahal<br>Near Bus Stand<br>Makrana, Rajasthan 341505</li>
+                            <li><i class="fas fa-clock"></i> Mon - Sat: 9 AM - 7 PM<br>Sunday: By Appointment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOCATIONS SECTION -->
+        <div class="locations-section">
+            <div class="container">
+                <div class="locations-header">
+                    <div class="locations-title">Global Presence</div>
+                    <div class="locations-subtitle">Marble Temples Worldwide</div>
+                </div>
+                <div class="locations-grid">
+                    <div class="location-item">Mumbai</div>
+                    <div class="location-item">Delhi</div>
+                    <div class="location-item">Bengaluru</div>
+                    <div class="location-item">Hyderabad</div>
+                    <div class="location-item">Ahmedabad</div>
+                    <div class="location-item">Surat</div>
+                    <div class="location-item">Kolkata</div>
+                    <div class="location-item">Jaipur</div>
+                    <div class="location-item">Pune</div>
+                    <div class="location-item">Dubai</div>
+                    <div class="location-item">USA</div>
+                    <div class="location-item">Australia</div>
+                    <div class="location-item">Tanzania</div>
+                    <div class="location-item">UK</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOCIAL MEDIA -->
+        <div class="footer-social">
+            <div class="container">
+                <div class="social-header">
+                    <div class="social-title">Connect With Us</div>
+                    <div class="social-subtitle">Follow Our Journey</div>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/aizaz_marbles/" class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer">
+                        <img src="instagram.png" alt="Instagram">
+                    </a>
+                    <a href="https://www.facebook.com/p/Aizaz-Marbel-Trades-100064104968762/" class="social-link" title="Facebook" target="_blank" rel="noopener noreferrer">
+                        <img src="facebook.png" alt="Facebook">
+                    </a>
+                    <a href="https://jsdl.in/DT-301JTEK31X6" class="social-link" title="Justdial" target="_blank" rel="noopener noreferrer">
+                        <img src="jsutdial.png" alt="Justdial">
+                    </a>
+                    <a href="mailto:aizazmarbletraders@gmail.com" class="social-link" title="Email" target="_blank" rel="noopener noreferrer">
+                        <img src="email.png" alt="Email">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM BAR -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p class="copyright">&copy; 2025 Marbles. All Rights Reserved.</p>
+                    <div class="footer-legal">
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Quality</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            if (scrollTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 400) {
+                        scrollTopBtn.classList.add('visible');
+                    } else {
+                        scrollTopBtn.classList.remove('visible');
+                    }
+                });
+
+                scrollTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            const footerLinks = document.querySelectorAll('.footer-links a, .footer-legal a');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        
+                        if (window.parent !== window) {
+                            window.parent.postMessage({
+                                type: 'scrollToSection',
+                                sectionId: targetId
+                            }, '*');
+                        } else {
+                            const target = document.getElementById(targetId);
+                            if (target) {
+                                const headerHeight = 100;
+                                const targetPosition = target.offsetTop - headerHeight;
+                                
+                                window.scrollTo({
+                                    top: targetPosition,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            const footerColumns = document.querySelectorAll('.footer-column');
+            footerColumns.forEach((col, index) => {
+                col.style.opacity = '0';
+                col.style.transform = 'translateY(30px)';
+                col.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
+                observer.observe(col);
+            });
+        });
+    </script>
+</body>
+</html>

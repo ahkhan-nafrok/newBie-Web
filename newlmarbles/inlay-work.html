@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inlay Works Collection - Aizaz Marble Traders</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="product.css">
+    <style>
+        /* Image viewer styles */
+        .modal-image {
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-image:hover {
+            transform: scale(1.02);
+        }
+
+        .image-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-viewer.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .viewer-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .viewer-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .viewer-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .viewer-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .viewer-close i {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .viewer-back {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .viewer-back:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .viewer-back i,
+        .viewer-back span {
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .viewer-info {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .viewer-info h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .viewer-info p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.8;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .zoom-controls {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 10px;
+            z-index: 10001;
+        }
+
+        .zoom-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .zoom-btn i {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .viewer-image.zoomed {
+            cursor: grab;
+            max-width: none;
+            max-height: none;
+        }
+
+        .viewer-image.zoomed:active {
+            cursor: grabbing;
+        }
+
+        .click-hint {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(201, 169, 97, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        .modal-image-wrapper {
+            position: relative;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .viewer-back {
+                left: 20px;
+                padding: 10px 20px;
+            }
+
+            .viewer-close {
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .zoom-controls {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .viewer-info {
+                bottom: 20px;
+                padding: 12px 24px;
+            }
+
+            .viewer-info h3 {
+                font-size: 18px;
+            }
+
+            .viewer-info p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <div class="back-navigation">
+                <a href="backcategories.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Categories</span>
+                </a>
+            </div>
+
+            <div class="section-header">
+                <p class="section-subtitle">Artisan Craftsmanship</p>
+                <h1 class="section-title">Inlay Works Collection</h1>
+                <p class="section-description">
+                    Experience the pinnacle of marble artistry with our exquisite inlay works. Each piece is a testament to centuries-old craftsmanship, where precious stones are meticulously hand-set into marble to create breathtaking patterns and designs that transform spaces into living art galleries.
+                </p>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="modal-image-wrapper">
+                <div class="click-hint" id="clickHint">
+                    <i class="fas fa-search-plus"></i>
+                    <span>Click to view full image</span>
+                </div>
+                <img src="" alt="" class="modal-image" id="modalImage" onclick="openImageViewer()">
+            </div>
+            <div class="modal-body">
+                <span class="modal-badge">Premium Collection</span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+                <h3 class="features-title">Key Features</h3>
+                <ul class="modal-features" id="modalFeatures"></ul>
+                <button class="modal-whatsapp" onclick="contactWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Inquire on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer -->
+    <div class="image-viewer" id="imageViewer">
+        <div class="viewer-back" onclick="closeImageViewer()">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Details</span>
+        </div>
+        <div class="viewer-close" onclick="closeImageViewer()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="viewer-container" id="viewerContainer">
+            <img src="" alt="" class="viewer-image" id="viewerImage">
+        </div>
+        <div class="viewer-info">
+            <h3 id="viewerTitle"></h3>
+            <p>Click and drag to move • Scroll to zoom</p>
+        </div>
+        <div class="zoom-controls">
+            <div class="zoom-btn" onclick="zoomIn()">
+                <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="zoom-btn" onclick="zoomOut()">
+                <i class="fas fa-search-minus"></i>
+            </div>
+            <div class="zoom-btn" onclick="resetZoom()">
+                <i class="fas fa-expand"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                title: "Taj Mahal Inspired Floral Inlay",
+                image: "Inly-works/inly1.png",
+                badge: "Masterpiece",
+                description: "Magnificent floral inlay inspired by the iconic Taj Mahal. Features intricate pietra dura work with semi-precious stones including lapis lazuli, malachite, carnelian, and mother of pearl. A timeless masterpiece that brings royal elegance to any space.",
+                features: ["Authentic pietra dura technique", "Semi-precious stone inlay", "Hand-crafted by master artisans", "Customizable size & design", "Museum-quality finish"]
+            },
+            {
+                id: 2,
+                title: "Geometric Pattern Inlay Panel",
+                image: "Inly-works/inly2.png",
+                badge: "Contemporary",
+                description: "Modern geometric inlay featuring precision-cut marble and stone pieces in mesmerizing patterns. Perfect for contemporary interiors seeking a blend of traditional craftsmanship and modern aesthetics. Creates stunning focal points in any room.",
+                features: ["Contemporary geometric design", "Precision laser-cut stones", "Multi-colored marble combinations", "Perfect symmetry guaranteed", "Ideal for feature walls"]
+            },
+            {
+                id: 3,
+                title: "Peacock Feather Inlay Tabletop",
+                image: "Inly-works/inly3.png",
+                badge: "Artistic",
+                description: "Stunning peacock feather design executed in vibrant semi-precious stones. Each feather is meticulously crafted with turquoise, lapis, malachite, and jasper, creating a spectacular display of colors and craftsmanship. Perfect for luxury tabletops and decorative panels.",
+                features: ["Vibrant peacock feather motif", "Multi-stone color palette", "Highly detailed craftsmanship", "Suitable for tables & panels", "UV resistant stones"]
+            },
+            {
+                id: 4,
+                title: "Mughal Garden Border Inlay",
+                image: "Inly-works/inly4.png",
+                badge: "Heritage",
+                description: "Exquisite border design inspired by Mughal gardens, featuring intricate floral vines and leaves. Crafted with precious stones in traditional colors, this heritage design adds regal sophistication to floors, walls, and architectural elements.",
+                features: ["Traditional Mughal patterns", "Intricate vine & leaf details", "Heritage color combinations", "Ideal for borders & frames", "Handcrafted excellence"]
+            },
+            {
+                id: 5,
+                title: "Lotus Medallion Inlay",
+                image: "Inly-works/inly6.png",
+                badge: "Sacred",
+                description: "Sacred lotus design in full bloom, crafted with meticulous attention to spiritual symbolism. Features delicate petals inlaid with mother of pearl, coral, and jade. Brings divine beauty and auspicious energy to prayer rooms and meditation spaces.",
+                features: ["Sacred lotus symbolism", "Mother of pearl accents", "Spiritual design elements", "Center medallion format", "Perfect for sacred spaces"]
+            },
+            {
+                id: 6,
+                title: "Art Deco Sunburst Inlay",
+                image: "Inly-works/inly7.png",
+                badge: "Luxury",
+                description: "Bold Art Deco sunburst pattern featuring radiating lines in contrasting marble and brass inlay. This striking design combines 1920s glamour with modern luxury, creating dramatic visual impact perfect for statement floors and walls.",
+                features: ["Art Deco inspired design", "Brass & marble combination", "Bold radiating pattern", "High contrast aesthetic", "Statement piece quality"]
+            },
+            {
+                id: 7,
+                title: "Floral Basket Inlay Panel",
+                image: "Inly-works/inly8.png",
+                badge: "Classic",
+                description: "Charming floral basket design overflowing with roses, lilies, and foliage. Each flower petal is individually crafted and inlaid with colored marbles and semi-precious stones. A classic design that never goes out of style.",
+                features: ["Detailed floral arrangement", "Multiple flower varieties", "Colored marble inlay", "Traditional basket motif", "Timeless elegance"]
+            },
+            {
+                id: 8,
+                title: "Persian Arabesque Inlay",
+                image: "Inly-works/inly9.png",
+                badge: "Exotic",
+                description: "Intricate Persian arabesque patterns featuring flowing curves and intertwined motifs. Created with precious stones in jewel tones, this exotic design brings Middle Eastern sophistication and artistic complexity to any interior.",
+                features: ["Authentic Persian patterns", "Flowing arabesque design", "Jewel-toned stones", "Complex interlocking motifs", "Cultural heritage piece"]
+            },
+            {
+    id: 9,
+    title: "Mughal Floral Inlay",
+    image: "Inly-works/inly10.png",
+    badge: "Royal",
+    description: "Inspired by Mughal garden artistry, this inlay design features floral vines and gemstone detailing that evoke a sense of regal beauty and timeless craftsmanship.",
+    features: ["Mughal-inspired floral motifs", "Semi-precious gemstone inlay", "Handcrafted marble surface", "Rich color contrast", "Perfect for floors & tabletops"]
+},
+{
+    id: 10,
+    title: "Italian Vine Inlay",
+    image: "Inly-works/inly11.png",
+    badge: "Classic",
+    description: "Elegant Italian vine pattern with graceful leaf curves. This subtle yet luxurious marble inlay captures the charm of European art with modern refinement.",
+    features: ["Italian vine motif", "Smooth curved patterns", "Premium polished marble", "Subtle aesthetic tone", "Ideal for modern interiors"]
+},
+{
+    id: 11,
+    title: "Rajputana Peacock Inlay",
+    image: "Inly-works/inly12.png",
+    badge: "Heritage",
+    description: "A royal Rajputana design featuring intricate peacock inlays made with lapis lazuli and mother-of-pearl. Symbolizes grace, pride, and prosperity in Indian heritage art.",
+    features: ["Peacock heritage design", "Lapis lazuli and pearl stones", "Detailed hand craftsmanship", "Rich heritage symbolism", "Perfect for luxury décor"]
+}
+
+        ];
+
+        const whatsappNumber = "+917300008825";
+        let currentProduct = null;
+        let zoomLevel = 1;
+        let isDragging = false;
+        let startX, startY, scrollLeft, scrollTop;
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map((product, index) => `
+                <div class="product-card" style="animation-delay: ${index * 0.1}s; transform: translateY(30px);" onclick="openModal(${product.id})">
+                    <div class="product-image-wrapper">
+                        <span class="premium-badge">${product.badge}</span>
+                        <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'320\\'%3E%3Crect fill=\\'%23f8fafc\\' width=\\'400\\' height=\\'320\\'/%3E%3Ctext fill=\\'%23c9a961\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' font-family=\\'Playfair Display, serif\\' font-size=\\'24\\'%3EInlay Works%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-preview">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="view-details-btn">
+                                View Details
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <div class="whatsapp-btn" onclick="event.stopPropagation(); contactWhatsAppDirect(${product.id})">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            observeCards();
+        }
+
+        function observeCards() {
+            const cards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        }
+
+        function openModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            document.getElementById('modalImage').src = currentProduct.image;
+            document.getElementById('modalTitle').textContent = currentProduct.title;
+            document.getElementById('modalDescription').textContent = currentProduct.description;
+            
+            const featuresHtml = currentProduct.features.map(feature => `<li>${feature}</li>`).join('');
+            document.getElementById('modalFeatures').innerHTML = featuresHtml;
+
+            const modal = document.getElementById('productModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                const hint = document.getElementById('clickHint');
+                if (hint) {
+                    hint.style.animation = 'fadeOut 0.5s ease forwards';
+                    setTimeout(() => hint.style.display = 'none', 500);
+                }
+            }, 3000);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            const hint = document.getElementById('clickHint');
+            if (hint) {
+                hint.style.display = 'flex';
+                hint.style.animation = 'pulse 2s infinite';
+            }
+            
+            currentProduct = null;
+        }
+
+        function openImageViewer() {
+            if (!currentProduct) return;
+
+            const viewer = document.getElementById('imageViewer');
+            const viewerImage = document.getElementById('viewerImage');
+            const viewerTitle = document.getElementById('viewerTitle');
+
+            viewerImage.src = currentProduct.image;
+            viewerTitle.textContent = currentProduct.title;
+            
+            viewer.style.display = 'flex';
+            setTimeout(() => viewer.classList.add('active'), 10);
+
+            zoomLevel = 1;
+            viewerImage.style.transform = `scale(${zoomLevel})`;
+            viewerImage.classList.remove('zoomed');
+
+            setupImageDrag();
+        }
+
+        function closeImageViewer() {
+            const viewer = document.getElementById('imageViewer');
+            viewer.classList.remove('active');
+            setTimeout(() => viewer.style.display = 'none', 300);
+        }
+
+        function zoomIn() {
+            const viewerImage = document.getElementById('viewerImage');
+            if (zoomLevel < 3) {
+                zoomLevel += 0.5;
+                viewerImage.style.transform = `scale(${zoomLevel})`;
+                if (zoomLevel > 1) viewerImage.classList.add('zoomed');
+            }
+        }
+
+        function zoomOut() {
+            const viewerImage = document.getElementById('viewerImage');
+            if (zoomLevel > 0.5) {
+                zoomLevel -= 0.5;
+                viewerImage.style.transform = `scale(${zoomLevel})`;
+                if (zoomLevel <= 1) viewerImage.classList.remove('zoomed');
+            }
+        }
+
+        function resetZoom() {
+            const viewerImage = document.getElementById('viewerImage');
+            zoomLevel = 1;
+            viewerImage.style.transform = `scale(${zoomLevel})`;
+            viewerImage.style.left = '0';
+            viewerImage.style.top = '0';
+            viewerImage.classList.remove('zoomed');
+        }
+
+        function setupImageDrag() {
+            const viewerImage = document.getElementById('viewerImage');
+            const container = document.getElementById('viewerContainer');
+
+            viewerImage.addEventListener('mousedown', (e) => {
+                if (zoomLevel > 1) {
+                    isDragging = true;
+                    startX = e.pageX - viewerImage.offsetLeft;
+                    startY = e.pageY - viewerImage.offsetTop;
+                }
+            });
+
+            document.addEventListener('mouseup', () => isDragging = false);
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                
+                const x = e.pageX - startX;
+                const y = e.pageY - startY;
+                
+                viewerImage.style.position = 'relative';
+                viewerImage.style.left = `${x}px`;
+                viewerImage.style.top = `${y}px`;
+            });
+
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                if (e.deltaY < 0) zoomIn();
+                else zoomOut();
+            });
+        }
+
+        function contactWhatsApp() {
+            if (currentProduct) {
+                const message = `Hi! I'm interested in the *${currentProduct.title}* from your Inlay Works Collection.\n\nCould you please provide:\n• Pricing & quotation\n• Customization options\n• Stone selection available\n• Completion timeline\n• Portfolio samples\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        function contactWhatsAppDirect(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const message = `Hi! I'm interested in the *${product.title}* from your Inlay Works Collection.\n\nCould you please provide:\n• Pricing & quotation\n• Customization options\n• Stone selection available\n• Completion timeline\n• Portfolio samples\n\nThank you!`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.getElementById('imageViewer').addEventListener('click', function(e) {
+            if (e.target === this) closeImageViewer();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (document.getElementById('imageViewer').classList.contains('active')) {
+                    closeImageViewer();
+                } else {
+                    closeModal();
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach((card) => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * 8;
+                    const rotateY = ((centerX - x) / centerX) * 8;
+                    
+                    this.style.transform = `translateY(-20px) scale(1.03) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const fadeInObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            const sectionHeader = document.querySelector('.section-header');
+            if (sectionHeader) {
+                sectionHeader.style.opacity = '0';
+                sectionHeader.style.transform = 'translateY(30px)';
+                sectionHeader.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                fadeInObserver.observe(sectionHeader);
+            }
+
+            const buttons = document.querySelectorAll('.view-details-btn, .modal-whatsapp, .whatsapp-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.6);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: rippleEffect 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 700);
+                });
+            });
+
+            if (!document.querySelector('#rippleAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'rippleAnimation';
+                style.textContent = `
+                    @keyframes rippleEffect {
+                        to {
+                            transform: scale(4.5);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            console.log('✨ Enhanced Premium Inlay Works Collection with Image Viewer Loaded');
+            console.log('🎨 Features: Glassmorphism, Image Viewer, Zoom Controls, Drag to Move');
+        });
+
+        renderProducts();
+    </script>
+</body>
+</html>

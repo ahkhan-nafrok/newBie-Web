@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Categories - MSP Stone International</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dim-gold: #C9A961;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --off-white: #F5F5F5;
+            --text-dark: #0A0A0A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--off-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* CATEGORIES SECTION */
+        .categories-section {
+            background: var(--pure-white);
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        /* SECTION HEADER */
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--dim-gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--pure-black);
+            line-height: 1.1;
+        }
+
+        /* CATEGORIES GRID */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        /* CATEGORY CARD - PREMIUM BOLD */
+        .category-card {
+            position: relative;
+            height: 550px;
+            background: var(--pure-black);
+            overflow: hidden;
+            border: 3px solid var(--pure-black);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--dim-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 3;
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            border-color: var(--dim-gold);
+        }
+
+        /* IMAGE CONTAINER */
+        .category-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card:hover .category-image img {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.1);
+        }
+
+        /* OVERLAY GRADIENT */
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.95) 0%,
+                rgba(0, 0, 0, 0.7) 40%,
+                transparent 100%
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 3rem 2.5rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card:hover .category-overlay {
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.98) 0%,
+                rgba(0, 0, 0, 0.85) 50%,
+                rgba(0, 0, 0, 0.4) 100%
+            );
+        }
+
+        /* NUMBER */
+        .category-number {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--dim-gold);
+            line-height: 1;
+            opacity: 0.2;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card:hover .category-number {
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        /* CONTENT */
+        .category-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pure-white);
+            margin-bottom: 0.8rem;
+            line-height: 1.2;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card:hover .category-title {
+            color: var(--dim-gold);
+            transform: translateX(8px);
+        }
+
+        .category-description {
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+        }
+
+        .category-card:hover .category-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* EXPLORE BUTTON */
+        .category-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background: var(--pure-white);
+            color: var(--pure-black);
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .category-card:hover .category-btn {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--dim-gold);
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .category-btn:hover::before {
+            left: 0;
+        }
+
+        .category-btn:hover {
+            color: var(--pure-black);
+            transform: translateY(-3px);
+        }
+
+        .category-btn i {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .category-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .section-title {
+                font-size: 3.8rem;
+            }
+
+            .categories-grid {
+                gap: 2.5rem;
+            }
+
+            .category-card {
+                height: 500px;
+            }
+
+            .category-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .categories-section {
+                padding: 4rem 0;
+            }
+
+            .container {
+                padding: 0 2rem;
+            }
+
+            .section-header {
+                margin-bottom: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 3.2rem;
+                letter-spacing: 2px;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .category-card {
+                height: 480px;
+            }
+
+            .category-title {
+                font-size: 2rem;
+            }
+
+            .category-number {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .categories-section {
+                padding: 3rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                letter-spacing: 1px;
+            }
+
+            .section-subtitle {
+                font-size: 0.7rem;
+                letter-spacing: 4px;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .category-card {
+                height: 450px;
+            }
+
+            .category-overlay {
+                padding: 2.5rem 2rem;
+            }
+
+            .category-title {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            .category-description {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .category-btn {
+                padding: 1rem 2rem;
+                font-size: 0.8rem;
+            }
+
+            .category-number {
+                font-size: 3.5rem;
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+
+            /* Show description and button by default on mobile */
+            .category-description,
+            .category-btn {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                letter-spacing: 0;
+            }
+
+            .category-card {
+                height: 400px;
+                border-width: 2px;
+            }
+
+            .category-overlay {
+                padding: 2rem 1.5rem;
+            }
+
+            .category-title {
+                font-size: 1.6rem;
+            }
+
+            .category-description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .category-btn {
+                padding: 0.9rem 1.8rem;
+                font-size: 0.75rem;
+                letter-spacing: 1.5px;
+            }
+
+            .category-number {
+                font-size: 3rem;
+            }
+        }
+
+        /* ANIMATION */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+<body>
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+                <p class="section-subtitle">Our Collections</p>
+                <h2 class="section-title">Premium Categories</h2>
+            </div>
+
+            <!-- CATEGORIES GRID -->
+            <div class="categories-grid">
+                <!-- CATEGORY 1: HOME MANDIRS -->
+                <div class="category-card" data-category="mandirs">
+                    <div class="category-image">
+                        <img src="categories/mandir.jpg" alt="Premium Home Mandirs">
+                    </div>
+                    <div class="category-overlay">
+                        <div class="category-number">01</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Home Mandirs</h3>
+                            <p class="category-description">
+                                Exquisite marble temples designed for your sacred space. Custom crafted with intricate details.
+                            </p>
+                            <button class="category-btn">
+                                Explore Collection
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 2: TEMPLE DESIGNS -->
+                <div class="category-card" data-category="temples">
+                    <div class="category-image">
+                        <img src="categories/temple.jpg" alt="Temple Architectural Designs">
+                    </div>
+                    <div class="category-overlay">
+                        <div class="category-number">02</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Temple Designs</h3>
+                            <p class="category-description">
+                                Grand architectural marvels for religious institutions. Traditional craftsmanship meets modern precision.
+                            </p>
+                            <button class="category-btn">
+                                Explore Collection
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 3: PREMIUM FLOORING -->
+                <div class="category-card" data-category="flooring">
+                    <div class="category-image">
+                        <img src="categories/flooring.jpg" alt="Premium Marble Flooring">
+                    </div>
+                    <div class="category-overlay">
+                        <div class="category-number">03</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Premium Flooring</h3>
+                            <p class="category-description">
+                                Luxurious Makrana marble flooring that transforms spaces. Timeless elegance underfoot.
+                            </p>
+                            <button class="category-btn">
+                                Explore Collection
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 4: JAALI WORK -->
+                <div class="category-card" data-category="jaali">
+                    <div class="category-image">
+                        <img src="categories/jaali.jpg" alt="Intricate Jaali Work">
+                    </div>
+                    <div class="category-overlay">
+                        <div class="category-number">04</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Jaali Work</h3>
+                            <p class="category-description">
+                                Intricate lattice patterns hand-carved by master artisans. Where light meets artistry.
+                            </p>
+                            <button class="category-btn">
+                                Explore Collection
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 5: INLAY ART -->
+                <div class="category-card" data-category="inlay">
+                    <div class="category-image">
+                        <img src="categories/inlay.jpg" alt="Marble Inlay Art">
+                    </div>
+                    <div class="category-overlay">
+                        <div class="category-number">05</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Inlay Art</h3>
+                            <p class="category-description">
+                                Precious stone inlays inspired by Mughal heritage. Every piece tells a royal story.
+                            </p>
+                            <button class="category-btn">
+                                Explore Collection
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 6: CUSTOM SCULPTURES -->
+                <div class="category-card" data-category="sculptures">
+                    <div class="category-image">
+                        <img src="categories/sculpture.jpg" alt="Custom Marble Sculptures">
+                    </div>
+                    <div class="category-overlay">
+                        <div class="category-number">06</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Custom Sculptures</h3>
+                            <p class="category-description">
+                                Bespoke marble sculptures and artistic installations. Your vision carved in stone.
+                            </p>
+                            <button class="category-btn">
+                                Explore Collection
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements
+            const header = document.querySelector('.section-header');
+            if (header) observer.observe(header);
+
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            // Category button click handlers
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            categoryButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.category-card');
+                    const category = card.getAttribute('data-category');
+                    
+                    console.log(`Opening category: ${category}`);
+                    // Add your navigation logic here
+                    // Example: window.location.href = `${category}.html`;
+                });
+            });
+
+            // Card click handler (entire card clickable)
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    console.log(`Card clicked: ${category}`);
+                    // Add your navigation logic here
+                });
+            });
+
+            console.log('✅ Premium Categories section initialized');
+        });
+    </script>
+</body>
+</html>
