@@ -1,102 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="MSP Stone International - Premium Makrana Marble & Granite Dealers with 70+ years of excellence. Custom Mandirs, Jaali Work, and Architectural Installations." />
+  <meta name="keywords" content="makrana marble, granite dealers, marble temple, custom mandir, marble flooring, jaali work, premium marble, architectural marble" />
+  <meta name="author" content="MSP Stone International" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="MSP Stone International - Premium Marble & Granite" />
+  <meta property="og:description" content="70+ years of excellence in premium marble craftsmanship" />
+  <meta property="og:type" content="website" />
   
   <!-- Preconnect for Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  
+
   <!-- DNS Prefetch -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
 
   <!-- CRITICAL: Load fonts in HEAD before any component loads -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@700;800;900&family=Space+Grotesk:wght@700&display=swap"
+    rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
-  <title>MSP Stone International - Premium Marble & Granite Dealers</title>
+  <title>MSP Stone International - Premium Marble & Granite Dealers | 70+ Years Excellence</title>
 
   <style>
+    /* ========== COLOR SYSTEM ========== */
     :root {
       --dim-gold: #C9A961;
       --pure-black: #000000;
       --pure-white: #FFFFFF;
       --off-white: #F5F5F5;
       --text-dark: #0A0A0A;
+      --whatsapp-green: #25D366;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+    /* ========== GLOBAL RESET & BASE ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background: var(--off-white);
       color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    
-    html { scroll-behavior: smooth; }
-    
-    /* Loader */
+
+    /* ========== OPTIMIZED TYPOGRAPHY CAPS ========== */
+    /* Prevent font sizes from going too large or too small */
+    h1, .hero-title, .section-title {
+      font-size: clamp(2rem, 5vw, 5.5rem) !important;
+      line-height: 1.1 !important;
+    }
+
+    h2, .section-subtitle {
+      font-size: clamp(1.8rem, 4vw, 3.5rem) !important;
+      line-height: 1.2 !important;
+    }
+
+    h3, .card-title {
+      font-size: clamp(1.1rem, 2vw, 1.6rem) !important;
+      line-height: 1.3 !important;
+    }
+
+    h4 {
+      font-size: clamp(1rem, 1.5vw, 1.3rem) !important;
+    }
+
+    p, .body-text {
+      font-size: clamp(0.85rem, 1.2vw, 1rem) !important;
+      line-height: 1.7 !important;
+    }
+
+    .small-text, .caption {
+      font-size: clamp(0.7rem, 1vw, 0.85rem) !important;
+    }
+
+    .label-text {
+      font-size: clamp(0.65rem, 0.9vw, 0.75rem) !important;
+      letter-spacing: clamp(2px, 0.3vw, 5px) !important;
+    }
+
+    /* ========== PAGE LOADER ========== */
     .page-loader {
-      position: fixed; 
+      position: fixed;
       inset: 0;
-      display: flex; 
+      display: flex;
       flex-direction: column;
-      align-items: center; 
+      align-items: center;
       justify-content: center;
       background: var(--pure-white);
       z-index: 9999;
       gap: 20px;
-    }
-    
-    .loader-logo {
-      width: 120px;
-      height: 120px;
-      object-fit: contain;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0%,100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-    }
-    
-    .loader-text {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: 8px;
-      color: var(--text-dark);
-    }
-    
-    body.loaded .page-loader { 
-      opacity: 0; 
-      pointer-events: none; 
-      transition: 0.5s; 
-    }
-    
-    .site-wrapper { 
-      opacity: 0; 
-      transition: opacity 0.5s ease; 
-    }
-    
-    body.loaded .site-wrapper { 
-      opacity: 1; 
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
 
-    /* WhatsApp Floating Button */
+    .loader-logo {
+      width: clamp(80px, 15vw, 120px);
+      height: clamp(80px, 15vw, 120px);
+      object-fit: contain;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    .loader-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-weight: 800;
+      letter-spacing: clamp(4px, 1vw, 8px);
+      color: var(--text-dark);
+    }
+
+    body.loaded .page-loader {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* ========== SITE WRAPPER ========== */
+    .site-wrapper {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    body.loaded .site-wrapper {
+      opacity: 1;
+    }
+
+    /* ========== WHATSAPP FLOATING BUTTON ========== */
     .whatsapp-float {
       position: fixed;
       bottom: 25px;
       left: 25px;
       width: 60px;
       height: 60px;
-      background: #25D366;
+      background: var(--whatsapp-green);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -104,12 +172,12 @@
       box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
       z-index: 9998;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       text-decoration: none;
     }
 
     .whatsapp-float:hover {
-      transform: scale(1.1);
+      transform: scale(1.1) translateY(-3px);
       box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
     }
 
@@ -126,7 +194,7 @@
       content: '';
       position: absolute;
       inset: -8px;
-      border: 2px solid #25D366;
+      border: 2px solid var(--whatsapp-green);
       border-radius: 50%;
       opacity: 0;
       animation: whatsapp-pulse 2s infinite;
@@ -143,8 +211,44 @@
       }
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
+    /* ========== COMPONENT CONTAINERS ========== */
+    #navbarComponent,
+    #heroComponent,
+    #aboutComponent,
+    #projectsComponent,
+    #categoriesComponent,
+    #galleryComponent,
+    #contactComponent,
+    #footerComponent {
+      font-family: 'Montserrat', sans-serif;
+      width: 100%;
+    }
+
+    /* Remove extra spacing between components */
+    #aboutComponent + #projectsComponent,
+    #projectsComponent + #categoriesComponent {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    /* ========== RESPONSIVE BREAKPOINTS ========== */
+    @media (max-width: 1400px) {
+      html {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      html {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      html {
+        font-size: 14px;
+      }
+      
       .whatsapp-float {
         width: 55px;
         height: 55px;
@@ -157,7 +261,17 @@
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
+      html {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      html {
+        font-size: 13px;
+      }
+      
       .whatsapp-float {
         width: 50px;
         height: 50px;
@@ -170,43 +284,65 @@
       }
     }
 
-    /* Ensure fonts are loaded before showing content */
-    .site-wrapper {
-      font-family: 'Montserrat', sans-serif;
+    @media (max-width: 480px) {
+      html {
+        font-size: 13px;
+      }
     }
 
-    /* Component containers */
-    #navbarComponent,
-    #heroComponent,
-    #aboutComponent,
-    #projectsComponent,
-    #categoriesComponent,
-    #galleryComponent,
-    #contactComponent,
-    #footerComponent {
-      font-family: 'Montserrat', sans-serif;
+    /* ========== PERFORMANCE OPTIMIZATIONS ========== */
+    /* Force GPU acceleration for animations */
+    .page-loader,
+    .whatsapp-float,
+    .loader-logo {
+      transform: translateZ(0);
+      will-change: transform, opacity;
     }
 
-    /* Component spacing adjustments */
-    #projectsComponent {
-      margin-top: 0;
-      padding-top: 0;
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
 
-    /* Remove extra spacing between About and Projects */
-    #aboutComponent + #projectsComponent {
-      margin-top: 0;
+    /* ========== SMOOTH SCROLL OFFSET ========== */
+    section {
+      scroll-margin-top: 100px;
+    }
+
+    /* ========== ACCESSIBILITY ========== */
+    :focus-visible {
+      outline: 3px solid var(--dim-gold);
+      outline-offset: 3px;
+    }
+
+    /* Hide focus outline for mouse users */
+    :focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    /* ========== PRINT STYLES ========== */
+    @media print {
+      .page-loader,
+      .whatsapp-float {
+        display: none !important;
+      }
     }
   </style>
 </head>
+
 <body itemscope itemtype="https://schema.org/WebPage">
-  <!-- Loader -->
-  <div class="page-loader">
-    <img src="black-logo-chanel.webp" alt="MSP Stone International Logo - Premium Marble Dealers" class="loader-logo" />
-    <div class="loader-text">MSP STONE</div>
+  <!-- Page Loader -->
+  <div class="page-loader" role="status" aria-live="polite" aria-label="Loading MSP Stone International">
+    <img src="white.png" alt="MSP Stone International Logo" class="loader-logo" />
+    <div class="loader-text" aria-hidden="true">MSP STONE</div>
   </div>
 
-  <!-- Wrapper -->
+  <!-- Site Wrapper -->
   <div class="site-wrapper">
     <!-- Navbar Component -->
     <nav id="navbarComponent" role="navigation" aria-label="Main Navigation"></nav>
@@ -219,7 +355,7 @@
       <!-- About Component -->
       <section id="aboutComponent" aria-label="About MSP Stone International"></section>
 
-      <!-- Projects Component - NEW -->
+      <!-- Projects Component -->
       <section id="projectsComponent" aria-label="Featured Projects"></section>
 
       <!-- Categories Component -->
@@ -237,98 +373,121 @@
   </div>
 
   <!-- WhatsApp Floating Button -->
-  <a 
-    href="https://wa.me/917300008825?text=Hello%20MSP%20Stone%20International,%20I%20would%20like%20to%20inquire%20about%20your%20marble%20and%20granite%20products." 
+  <a href="https://wa.me/917300008825?text=Hello%20MSP%20Stone%20International,%20I%20would%20like%20to%20inquire%20about%20your%20marble%20and%20granite%20products."
     class="whatsapp-float" 
     target="_blank" 
-    rel="noopener noreferrer"
+    rel="noopener noreferrer" 
     aria-label="Contact us on WhatsApp"
-    title="Chat with us on WhatsApp"
-  >
-    <i class="fab fa-whatsapp"></i>
+    title="Chat with us on WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
 
   <script>
-    // Wait for fonts to load before showing content
-    document.fonts.ready.then(function() {
-      console.log('✅ Fonts loaded successfully');
+    // ========== PERFORMANCE MONITORING ==========
+    const performanceMetrics = {
+      startTime: performance.now(),
+      fontsLoaded: false,
+      componentsLoaded: 0
+    };
+
+    // ========== FONT LOADING ==========
+    document.fonts.ready.then(function () {
+      performanceMetrics.fontsLoaded = true;
+      console.log('✅ Fonts loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
     });
 
+    // ========== PAGE INITIALIZATION ==========
     document.addEventListener("DOMContentLoaded", () => {
-      // Ensure fonts are loaded, then start loading components
+      // Minimum loading time for smooth experience
+      const minLoadTime = 1500;
+      const elapsedTime = performance.now() - performanceMetrics.startTime;
+      const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+
       setTimeout(() => {
         document.body.classList.add("loaded");
         loadComponents();
-      }, 1500);
+      }, remainingTime);
     });
 
+    // ========== COMPONENT LOADING SYSTEM ==========
     async function loadComponents() {
       const components = [
         { name: "navbar", target: "navbarComponent" },
         { name: "hero", target: "heroComponent" },
         { name: "about", target: "aboutComponent" },
-        { name: "projects", target: "projectsComponent" },  // NEW
+        { name: "projects", target: "projectsComponent" },
         { name: "categories", target: "categoriesComponent" },
         { name: "gallery", target: "galleryComponent" },
         { name: "contact", target: "contactComponent" },
         { name: "footer", target: "footerComponent" }
       ];
-      
+
       for (const comp of components) {
         await loadComponent(comp.name, comp.target);
+        performanceMetrics.componentsLoaded++;
       }
+
+      console.log('✅ All components loaded in', Math.round(performance.now() - performanceMetrics.startTime), 'ms');
       
-      console.log('✅ All components loaded with proper fonts');
+      // Initialize any global interactions after all components are loaded
+      initializeGlobalInteractions();
     }
 
-    // Enhanced load component function with font inheritance
+    // ========== ENHANCED COMPONENT LOADER ==========
     async function loadComponent(name, targetId) {
       try {
+        const startTime = performance.now();
+        
+        // Fetch HTML
         const htmlResp = await fetch(`${name}.html`);
         const htmlText = await htmlResp.text();
-        
-        // Create a temporary div to parse the HTML
+
+        // Parse HTML
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = htmlText;
-        
-        // Get the target element
+
+        // Get target element
         const targetElement = document.getElementById(targetId);
-        
-        // Extract and insert CSS styles first
+        if (!targetElement) {
+          console.error(`❌ Target element #${targetId} not found`);
+          return;
+        }
+
+        // Extract and insert CSS styles with font inheritance
         const styles = tempDiv.querySelectorAll('style');
         styles.forEach(style => {
           const styleElement = document.createElement('style');
           styleElement.innerHTML = style.innerHTML;
           styleElement.setAttribute('data-component', name);
-          
+
           // Ensure component styles inherit font family
           styleElement.innerHTML = styleElement.innerHTML.replace(
             /font-family:\s*'Montserrat'/gi,
             "font-family: 'Montserrat', sans-serif"
           );
-          
+
           document.head.appendChild(styleElement);
         });
-        
+
         // Extract scripts before removing them
         const scripts = tempDiv.querySelectorAll('script');
         const scriptContents = Array.from(scripts).map(script => script.innerHTML);
-        
-        // Remove script and style tags from the HTML
+
+        // Clean up parsed HTML
         scripts.forEach(script => script.remove());
         styles.forEach(style => style.remove());
         
-        // Also remove any font link tags from components (already loaded in head)
+        // Remove duplicate font links
         const fontLinks = tempDiv.querySelectorAll('link[href*="fonts.googleapis.com"]');
         fontLinks.forEach(link => link.remove());
-        
-        // Insert the HTML content
+
+        // Insert HTML content
         targetElement.innerHTML = tempDiv.innerHTML;
-        
-        // Wait for DOM to be ready
+
+        // Wait for DOM to settle
         await new Promise(resolve => setTimeout(resolve, 100));
-        
-        // Execute scripts after HTML and CSS are properly inserted
+
+        // Execute component scripts
         scriptContents.forEach(scriptContent => {
           if (scriptContent.trim()) {
             try {
@@ -336,7 +495,7 @@
               scriptElement.innerHTML = scriptContent;
               scriptElement.setAttribute('data-component', name);
               document.body.appendChild(scriptElement);
-              
+
               // Clean up after execution
               setTimeout(() => {
                 if (scriptElement.parentNode) {
@@ -348,24 +507,72 @@
             }
           }
         });
-        
-        console.log(`✅ ${name} component loaded with proper font inheritance`);
-        
+
+        const loadTime = Math.round(performance.now() - startTime);
+        console.log(`✅ ${name} loaded in ${loadTime}ms`);
+
       } catch (err) {
         console.error(`❌ Error loading ${name}:`, err);
       }
     }
 
-    // Handle smooth scroll for cross-component navigation
-    window.addEventListener('message', function(event) {
+    // ========== GLOBAL INTERACTIONS ==========
+    function initializeGlobalInteractions() {
+      // Smooth scroll for all internal links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            const headerHeight = 100;
+            const targetPosition = targetElement.offsetTop - headerHeight;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Lazy load images
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+              }
+            }
+          });
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+          imageObserver.observe(img);
+        });
+      }
+
+      console.log('✅ Global interactions initialized');
+    }
+
+    // ========== CROSS-COMPONENT MESSAGING ==========
+    window.addEventListener('message', function (event) {
       if (event.data.type === 'scrollToSection') {
         const sectionId = event.data.sectionId;
         const targetElement = document.getElementById(sectionId);
-        
+
         if (targetElement) {
           const headerHeight = 100;
           const targetPosition = targetElement.offsetTop - headerHeight;
-          
+
           window.scrollTo({
             top: targetPosition,
             behavior: 'smooth'
@@ -373,6 +580,31 @@
         }
       }
     });
+
+    // ========== ERROR HANDLING ==========
+    window.addEventListener('error', function(e) {
+      console.error('❌ Global error:', e.error);
+    });
+
+    window.addEventListener('unhandledrejection', function(e) {
+      console.error('❌ Unhandled promise rejection:', e.reason);
+    });
+
+    // ========== PERFORMANCE LOGGING ==========
+    window.addEventListener('load', function() {
+      const loadTime = Math.round(performance.now() - performanceMetrics.startTime);
+      console.log(`
+🚀 MSP STONE INTERNATIONAL - PERFORMANCE METRICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Total Load Time: ${loadTime}ms
+✅ Fonts Loaded: ${performanceMetrics.fontsLoaded ? 'Yes' : 'No'}
+✅ Components Loaded: ${performanceMetrics.componentsLoaded}/8
+✅ DOM Interactive: ${Math.round(performance.timing.domInteractive - performance.timing.navigationStart)}ms
+✅ DOM Complete: ${Math.round(performance.timing.domComplete - performance.timing.navigationStart)}ms
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      `);
+    });
   </script>
 </body>
+
 </html>
