@@ -1,4 +1,11 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - MSP Stone International</title>
+    
+    <style>
         :root {
             --dim-gold: #C9A961;
             --pure-black: #000000;
@@ -290,6 +297,84 @@
             line-height: 1.7;
         }
 
+        /* VIEW MORE BUTTON */
+        .view-more-wrapper {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin: 2rem 0 1rem;
+        }
+
+        .view-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.3rem 3.5rem;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: 3px solid var(--pure-black);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--dim-gold);
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+        }
+
+        .view-more-btn:hover::before {
+            left: 0;
+        }
+
+        .view-more-btn span,
+        .view-more-btn svg {
+            position: relative;
+            z-index: 1;
+        }
+
+        .view-more-btn:hover {
+            color: var(--pure-black);
+            border-color: var(--dim-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .view-more-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .view-more-btn:hover svg {
+            transform: translateY(3px);
+        }
+
+        .view-more-btn.active svg {
+            transform: rotate(180deg);
+        }
+
+        /* Hidden Projects */
+        .project-card.hidden {
+            display: none;
+        }
+
+        .project-card.show {
+            display: block;
+        }
+
         /* CTA SECTION */
         .cta-section {
             background: var(--pure-black);
@@ -346,14 +431,14 @@
             box-shadow: 0 15px 40px rgba(201, 169, 97, 0.3);
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE - OPTIMIZED MOBILE */
         @media (max-width: 1200px) {
             .hero-title {
                 font-size: 4.5rem;
             }
 
             .section-title {
-                font-size: 3.5rem;
+                font-size: 4.5rem;
             }
 
             .projects-grid {
@@ -367,7 +452,7 @@
             }
 
             .hero-title {
-                font-size: 3.5rem;
+                font-size: 3.8rem;
             }
 
             .stats-container {
@@ -381,11 +466,11 @@
             }
 
             .section-header {
-                margin-bottom: 3rem;
+                margin-bottom: 3.5rem;
             }
 
             .section-title {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
 
             .projects-grid {
@@ -400,47 +485,72 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 0 2rem;
+                padding: 0 1.5rem;
             }
 
             .projects-hero {
-                padding: 5rem 0 3rem;
+                padding: 4.5rem 0 3rem;
             }
 
             .hero-title {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
                 letter-spacing: 1px;
             }
 
             .hero-subtitle {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
                 letter-spacing: 4px;
+                margin-bottom: 1.2rem;
             }
 
             .hero-description {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                line-height: 1.7;
             }
 
             .stats-bar {
                 padding: 2rem 0;
+                border-width: 2px;
+            }
+
+            .stats-container {
+                padding: 0 1.5rem;
             }
 
             .stat-number {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                margin-bottom: 0.4rem;
             }
 
             .stat-text {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
                 letter-spacing: 2px;
+            }
+
+            .projects-section {
+                padding: 3.5rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
             }
 
             .section-title {
                 font-size: 2.5rem;
+                letter-spacing: 1px;
             }
 
             .section-label {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
                 letter-spacing: 4px;
+            }
+
+            .projects-grid {
+                gap: 2rem;
+            }
+
+            .project-card {
+                border-width: 2px;
             }
 
             .project-image {
@@ -448,27 +558,43 @@
             }
 
             .project-number {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.4rem;
                 top: 1rem;
                 left: 1rem;
+                border-width: 2px;
             }
 
             .project-content {
-                padding: 2rem;
+                padding: 2rem 1.5rem;
             }
 
             .project-title {
-                font-size: 1.4rem;
+                font-size: 1.25rem;
+                letter-spacing: 0.5px;
+                margin-bottom: 0.8rem;
             }
 
             .project-location {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .location-icon {
+                width: 16px;
+                height: 16px;
+            }
+
+            .project-divider {
+                width: 50px;
+                height: 2px;
+                margin: 1.2rem 0;
             }
 
             .project-description {
-                font-size: 0.9rem;
+                font-size: 0.88rem;
+                line-height: 1.65;
             }
 
             .cta-section {
@@ -481,19 +607,21 @@
             }
 
             .cta-subtitle {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                line-height: 1.6;
+                margin-bottom: 2.5rem;
             }
 
             .cta-button {
                 padding: 1.2rem 3rem;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 letter-spacing: 2px;
             }
         }
 
         @media (max-width: 576px) {
             .container {
-                padding: 0 1.5rem;
+                padding: 0 1.2rem;
             }
 
             .projects-hero {
@@ -501,84 +629,138 @@
             }
 
             .hero-title {
-                font-size: 2.2rem;
-                letter-spacing: 0;
+                font-size: 2rem;
+                letter-spacing: 0.5px;
             }
 
             .hero-subtitle {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
                 letter-spacing: 3px;
+                margin-bottom: 1rem;
             }
 
             .hero-description {
-                font-size: 0.9rem;
+                font-size: 0.88rem;
+                line-height: 1.65;
+            }
+
+            .stats-bar {
+                padding: 1.8rem 0;
             }
 
             .stats-container {
-                padding: 0 1.5rem;
+                padding: 0 1.2rem;
                 gap: 1.5rem;
             }
 
             .stat-number {
                 font-size: 2rem;
+                margin-bottom: 0.3rem;
             }
 
             .stat-text {
-                font-size: 0.65rem;
+                font-size: 0.6rem;
+                letter-spacing: 1.5px;
+            }
+
+            .projects-section {
+                padding: 3rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
             }
 
             .section-title {
                 font-size: 2rem;
+                letter-spacing: 0.5px;
+            }
+
+            .section-label {
+                font-size: 0.6rem;
+                letter-spacing: 3px;
             }
 
             .projects-grid {
-                gap: 1.5rem;
+                gap: 1.8rem;
             }
 
             .project-image {
-                height: 250px;
+                height: 240px;
             }
 
             .project-number {
                 width: 50px;
                 height: 50px;
-                font-size: 1.3rem;
-                border-width: 2px;
+                font-size: 1.25rem;
+                top: 0.8rem;
+                left: 0.8rem;
             }
 
             .project-content {
-                padding: 1.5rem;
+                padding: 1.5rem 1.2rem;
             }
 
             .project-title {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                letter-spacing: 0.3px;
+                margin-bottom: 0.7rem;
+                line-height: 1.35;
             }
 
             .project-location {
-                font-size: 0.85rem;
+                font-size: 0.82rem;
+                margin-bottom: 1rem;
+                gap: 0.4rem;
+            }
+
+            .location-icon {
+                width: 14px;
+                height: 14px;
             }
 
             .project-divider {
-                width: 50px;
+                width: 45px;
                 height: 2px;
+                margin: 1rem 0;
             }
 
             .project-description {
-                font-size: 0.85rem;
+                font-size: 0.82rem;
                 line-height: 1.6;
+            }
+
+            .cta-section {
+                padding: 3.5rem 0;
             }
 
             .cta-title {
                 font-size: 1.8rem;
+                letter-spacing: 0.5px;
             }
 
             .cta-subtitle {
-                font-size: 0.9rem;
+                font-size: 0.88rem;
+                line-height: 1.6;
+                margin-bottom: 2rem;
             }
 
             .cta-button {
-                padding: 1rem 2.5rem;
+                padding: 1.1rem 2.5rem;
                 width: 100%;
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+
+            .view-more-btn {
+                padding: 1.1rem 3rem;
+                font-size: 0.85rem;
+                letter-spacing: 2px;
+            }
+
+            .view-more-btn svg {
+                width: 18px;
+                height: 18px;
             }
         }
 
@@ -599,6 +781,8 @@
             animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
     </style>
+</head>
+<body>
 
     <!-- HERO SECTION -->
     <section class="projects-hero">
@@ -649,7 +833,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-number">01</div>
-                        <img src="projects/parliament.jpg" alt="New Parliament Building, New Delhi">
+                        <img src="assets/project2.webp" alt="New Parliament Building, New Delhi">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">New Parliament Building</h3>
@@ -670,7 +854,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-number">02</div>
-                        <img src="projects/villa.jpg" alt="Cult fit CFO Villa, Bangalore">
+                        <img src="assets/project1.webp" alt="Cult fit CFO Villa, Bangalore">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Cult fit CFO, Mr. Bishnu Hajare's Villa</h3>
@@ -688,10 +872,10 @@
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-card">
+                <div class="project-card hidden">
                     <div class="project-image">
                         <div class="project-number">03</div>
-                        <img src="projects/allure.jpg" alt="Allure Ventures">
+                        <img src="assets/project3.webp" alt="Allure Ventures">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Allure Ventures</h3>
@@ -709,10 +893,10 @@
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-card">
+                <div class="project-card hidden">
                     <div class="project-image">
                         <div class="project-number">04</div>
-                        <img src="projects/residence1.jpg" alt="Independent Resident Mr. Gaurav">
+                        <img src="assets/project3.webp" alt="Independent Resident Mr. Gaurav">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Independent Resident, Mr. Gaurav</h3>
@@ -730,10 +914,10 @@
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-card">
+                <div class="project-card hidden">
                     <div class="project-image">
                         <div class="project-number">05</div>
-                        <img src="projects/residence2.jpg" alt="Independent Resident Mr. Naveen">
+                        <img src="assets/project3.webp" alt="Independent Resident Mr. Naveen">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Independent Resident, Mr. Naveen</h3>
@@ -751,10 +935,10 @@
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-card">
+                <div class="project-card hidden">
                     <div class="project-image">
                         <div class="project-number">06</div>
-                        <img src="projects/residence3.jpg" alt="Independent Resident Mr. Avinash">
+                        <img src="assets/project3.webp" alt="Independent Resident Mr. Avinash">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Independent Resident, Mr. Avinash</h3>
@@ -769,6 +953,16 @@
                             Grand residence showcasing masterful marble work, including intricate temple carvings and premium architectural installations.
                         </p>
                     </div>
+                </div>
+
+                <!-- VIEW MORE BUTTON -->
+                <div class="view-more-wrapper">
+                    <button class="view-more-btn" id="viewMoreBtn">
+                        <span>View More Projects</span>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -788,7 +982,8 @@
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        // Wrap everything in a function that waits for DOM
+        function initializeProjects() {
             // Intersection Observer for animations
             const observerOptions = {
                 threshold: 0.1,
@@ -812,6 +1007,81 @@
                 observer.observe(card);
             });
 
-            console.log('✅ Projects page initialized - ' + projectCards.length + ' projects loaded');
-        });
+            // View More Button Functionality
+            const viewMoreBtn = document.getElementById('viewMoreBtn');
+            const hiddenProjects = document.querySelectorAll('.project-card.hidden');
+
+            console.log('🔍 Found button:', viewMoreBtn);
+            console.log('🔍 Found hidden projects:', hiddenProjects.length);
+
+            if (viewMoreBtn && hiddenProjects.length > 0) {
+                let isExpanded = false;
+
+                viewMoreBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('🔘 Button clicked! Expanded:', isExpanded);
+                    
+                    isExpanded = !isExpanded;
+                    
+                    hiddenProjects.forEach((project, index) => {
+                        if (isExpanded) {
+                            console.log('📂 Showing project', index);
+                            project.classList.remove('hidden');
+                            project.classList.add('show');
+                            setTimeout(() => {
+                                project.classList.add('animate-on-scroll');
+                                observer.observe(project);
+                            }, index * 150);
+                        } else {
+                            console.log('📁 Hiding project', index);
+                            project.classList.add('hidden');
+                            project.classList.remove('show', 'animate-on-scroll');
+                        }
+                    });
+
+                    // Update button text and state
+                    const buttonText = viewMoreBtn.querySelector('span');
+                    if (isExpanded) {
+                        buttonText.textContent = 'View Less Projects';
+                        viewMoreBtn.classList.add('active');
+                        
+                        // Smooth scroll to the third project after expansion
+                        setTimeout(() => {
+                            const allProjects = document.querySelectorAll('.project-card');
+                            const thirdProject = allProjects[2];
+                            if (thirdProject) {
+                                thirdProject.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        }, 400);
+                    } else {
+                        buttonText.textContent = 'View More Projects';
+                        viewMoreBtn.classList.remove('active');
+                        
+                        // Scroll back to view more button
+                        setTimeout(() => {
+                            viewMoreBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 100);
+                    }
+                });
+
+                console.log('✅ View More button initialized successfully');
+            } else {
+                console.warn('⚠️ View More button or hidden projects not found');
+            }
+
+            console.log('✅ Projects page optimized - ' + projectCards.length + ' projects loaded');
+        }
+
+        // Initialize immediately if DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeProjects);
+        } else {
+            // DOM is already ready, run immediately
+            initializeProjects();
+        }
+
+        // Also run after a short delay to ensure component is fully loaded
+        setTimeout(initializeProjects, 300);
     </script>
+</body>
+</html>
