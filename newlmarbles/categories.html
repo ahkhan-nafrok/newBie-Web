@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <style>
         :root {
@@ -84,6 +85,8 @@
             border: 3px solid var(--pure-black);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            text-decoration: none;
+            display: block;
         }
 
         .category-card::before {
@@ -94,14 +97,10 @@
             right: 0;
             height: 4px;
             background: var(--dim-gold);
-            transform: scaleX(0);
+            transform: scaleX(1);
             transform-origin: left;
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 3;
-        }
-
-        .category-card:hover::before {
-            transform: scaleX(1);
         }
 
         .category-card:hover {
@@ -122,13 +121,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(1.1);
+            filter: brightness(0.85);
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .category-card:hover .category-image img {
-            filter: grayscale(0%) contrast(1);
-            transform: scale(1.1);
+            filter: brightness(1);
+            transform: scale(1.08);
         }
 
         /* OVERLAY GRADIENT */
@@ -137,44 +136,45 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 100%;
+            height: 45%;
             background: linear-gradient(
                 to top,
                 rgba(0, 0, 0, 0.95) 0%,
-                rgba(0, 0, 0, 0.7) 40%,
-                transparent 100%
+                rgba(0, 0, 0, 0.7) 50%,
+                rgba(0, 0, 0, 0) 100%
             );
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 3rem 2.5rem;
+            padding: 2.5rem 2rem;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .category-card:hover .category-overlay {
+            height: 50%;
             background: linear-gradient(
                 to top,
-                rgba(0, 0, 0, 0.98) 0%,
-                rgba(0, 0, 0, 0.85) 50%,
-                rgba(0, 0, 0, 0.4) 100%
+                rgba(0, 0, 0, 0.97) 0%,
+                rgba(0, 0, 0, 0.75) 60%,
+                rgba(0, 0, 0, 0) 100%
             );
         }
 
         /* NUMBER */
         .category-number {
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: 900;
             color: var(--dim-gold);
             line-height: 1;
-            opacity: 0.2;
+            opacity: 0.15;
             position: absolute;
-            top: 2rem;
-            right: 2rem;
+            top: 1.5rem;
+            right: 1.5rem;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .category-card:hover .category-number {
-            opacity: 0.4;
+            opacity: 0.25;
             transform: scale(1.1);
         }
 
@@ -189,32 +189,22 @@
             font-weight: 900;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--pure-white);
-            margin-bottom: 0.8rem;
+            color: var(--dim-gold);
+            margin-bottom: 1rem;
             line-height: 1.2;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .category-card:hover .category-title {
-            color: var(--dim-gold);
-            transform: translateX(8px);
-        }
-
         .category-description {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 500;
             letter-spacing: 0.5px;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
             margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
-        }
-
-        .category-card:hover .category-description {
             opacity: 1;
             transform: translateY(0);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
         }
 
         /* EXPLORE BUTTON */
@@ -234,14 +224,9 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .category-card:hover .category-btn {
             opacity: 1;
             transform: translateY(0);
-            transition-delay: 0.2s;
+            pointer-events: none;
         }
 
         .category-btn::before {
@@ -256,11 +241,11 @@
             z-index: -1;
         }
 
-        .category-btn:hover::before {
+        .category-card:hover .category-btn::before {
             left: 0;
         }
 
-        .category-btn:hover {
+        .category-card:hover .category-btn {
             color: var(--pure-black);
             transform: translateY(-3px);
         }
@@ -270,7 +255,7 @@
             transition: transform 0.3s ease;
         }
 
-        .category-btn:hover i {
+        .category-card:hover .category-btn i {
             transform: translateX(5px);
         }
 
@@ -307,7 +292,7 @@
             }
 
             .section-title {
-                font-size: 3.2rem;
+                font-size: 3.5rem;
                 letter-spacing: 2px;
             }
 
@@ -317,15 +302,27 @@
             }
 
             .category-card {
-                height: 480px;
+                height: 500px;
+            }
+
+            .category-overlay {
+                height: 48%;
+            }
+
+            .category-card:hover .category-overlay {
+                height: 52%;
             }
 
             .category-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+
+            .category-description {
+                font-size: 0.95rem;
             }
 
             .category-number {
-                font-size: 4rem;
+                font-size: 3.5rem;
             }
         }
 
@@ -339,7 +336,7 @@
             }
 
             .section-title {
-                font-size: 2.5rem;
+                font-size: 3rem;
                 letter-spacing: 1px;
             }
 
@@ -354,20 +351,25 @@
             }
 
             .category-card {
-                height: 450px;
+                height: 480px;
             }
 
             .category-overlay {
-                padding: 2.5rem 2rem;
+                height: 50%;
+                padding: 2rem 1.8rem;
+            }
+
+            .category-card:hover .category-overlay {
+                height: 55%;
             }
 
             .category-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 letter-spacing: 1px;
             }
 
             .category-description {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
                 margin-bottom: 1.5rem;
             }
 
@@ -378,15 +380,8 @@
 
             .category-number {
                 font-size: 3.5rem;
-                top: 1.5rem;
-                right: 1.5rem;
-            }
-
-            /* Show description and button by default on mobile */
-            .category-description,
-            .category-btn {
-                opacity: 1;
-                transform: translateY(0);
+                top: 1.2rem;
+                right: 1.2rem;
             }
         }
 
@@ -396,26 +391,32 @@
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
                 letter-spacing: 0;
             }
 
             .category-card {
-                height: 400px;
+                height: 420px;
                 border-width: 2px;
             }
 
             .category-overlay {
-                padding: 2rem 1.5rem;
+                height: 52%;
+                padding: 1.8rem 1.5rem;
+            }
+
+            .category-card:hover .category-overlay {
+                height: 58%;
             }
 
             .category-title {
-                font-size: 1.6rem;
+                font-size: 1.7rem;
             }
 
             .category-description {
-                font-size: 0.85rem;
-                line-height: 1.5;
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin-bottom: 1.2rem;
             }
 
             .category-btn {
@@ -426,6 +427,8 @@
 
             .category-number {
                 font-size: 3rem;
+                top: 1rem;
+                right: 1rem;
             }
         }
 
@@ -459,9 +462,9 @@
             <!-- CATEGORIES GRID -->
             <div class="categories-grid">
                 <!-- CATEGORY 1: HOME MANDIRS -->
-                <div class="category-card" data-category="mandirs">
+                <a href="home-mandir.html" class="category-card" data-category="mandirs">
                     <div class="category-image">
-                        <img src="categories/mandir.jpg" alt="Premium Home Mandirs">
+                        <img src="assets/homemandir12.png" alt="Premium Home Mandirs">
                     </div>
                     <div class="category-overlay">
                         <div class="category-number">01</div>
@@ -470,78 +473,79 @@
                             <p class="category-description">
                                 Exquisite marble temples designed for your sacred space. Custom crafted with intricate details.
                             </p>
-                            <button class="category-btn">
+                            <span class="category-btn">
                                 Explore Collection
                                 <i class="fas fa-arrow-right"></i>
-                            </button>
+                            </span>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- CATEGORY 2: TEMPLE DESIGNS -->
-                <div class="category-card" data-category="temples">
+                <a href="#" class="category-card" data-category="temples">
                     <div class="category-image">
-                        <img src="categories/temple.jpg" alt="Temple Architectural Designs">
+                        <img src="assets/floor22.png" alt="Temple Architectural Designs">
                     </div>
                     <div class="category-overlay">
                         <div class="category-number">02</div>
-                        <div class="category-content">
-                            <h3 class="category-title">Temple Designs</h3>
-                            <p class="category-description">
-                                Grand architectural marvels for religious institutions. Traditional craftsmanship meets modern precision.
-                            </p>
-                            <button class="category-btn">
-                                Explore Collection
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CATEGORY 3: PREMIUM FLOORING -->
-                <div class="category-card" data-category="flooring">
-                    <div class="category-image">
-                        <img src="categories/flooring.jpg" alt="Premium Marble Flooring">
-                    </div>
-                    <div class="category-overlay">
-                        <div class="category-number">03</div>
                         <div class="category-content">
                             <h3 class="category-title">Premium Flooring</h3>
                             <p class="category-description">
                                 Luxurious Makrana marble flooring that transforms spaces. Timeless elegance underfoot.
                             </p>
-                            <button class="category-btn">
+                            </p>
+                            <span class="category-btn">
                                 Explore Collection
                                 <i class="fas fa-arrow-right"></i>
-                            </button>
+                            </span>
                         </div>
                     </div>
-                </div>
+                </a>
+
+                <!-- CATEGORY 3: PREMIUM FLOORING -->
+                <a href="#" class="category-card" data-category="flooring">
+                    <div class="category-image">
+                        <img src="assets/hand8.png" alt="Premium Marble Flooring">
+                    </div>
+                    <div class="category-overlay">
+                        <div class="category-number">03</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Sculpture & Statues</h3>
+                            <p class="category-description">
+                                Luxurious Makrana marble flooring that transforms spaces. Timeless elegance underfoot.
+                            </p>
+                            <span class="category-btn">
+                                Explore Collection
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
 
                 <!-- CATEGORY 4: JAALI WORK -->
-                <div class="category-card" data-category="jaali">
+                <a href="#" class="category-card" data-category="jaali">
                     <div class="category-image">
-                        <img src="categories/jaali.jpg" alt="Intricate Jaali Work">
+                        <img src="assets/hand10.png" alt="Intricate Jaali Work">
                     </div>
                     <div class="category-overlay">
                         <div class="category-number">04</div>
                         <div class="category-content">
-                            <h3 class="category-title">Jaali Work</h3>
+                            <h3 class="category-title">Fountain</h3>
                             <p class="category-description">
                                 Intricate lattice patterns hand-carved by master artisans. Where light meets artistry.
                             </p>
-                            <button class="category-btn">
+                            <span class="category-btn">
                                 Explore Collection
                                 <i class="fas fa-arrow-right"></i>
-                            </button>
+                            </span>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- CATEGORY 5: INLAY ART -->
-                <div class="category-card" data-category="inlay">
+                <a href="#" class="category-card" data-category="inlay">
                     <div class="category-image">
-                        <img src="categories/inlay.jpg" alt="Marble Inlay Art">
+                        <img src="assets/inly9.png" alt="Marble Inlay Art">
                     </div>
                     <div class="category-overlay">
                         <div class="category-number">05</div>
@@ -550,33 +554,33 @@
                             <p class="category-description">
                                 Precious stone inlays inspired by Mughal heritage. Every piece tells a royal story.
                             </p>
-                            <button class="category-btn">
+                            <span class="category-btn">
                                 Explore Collection
                                 <i class="fas fa-arrow-right"></i>
-                            </button>
+                            </span>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- CATEGORY 6: CUSTOM SCULPTURES -->
-                <div class="category-card" data-category="sculptures">
+                <a href="#" class="category-card" data-category="sculptures">
                     <div class="category-image">
-                        <img src="categories/sculpture.jpg" alt="Custom Marble Sculptures">
+                        <img src="assets/floor22.png" alt="Custom Marble Sculptures">
                     </div>
                     <div class="category-overlay">
                         <div class="category-number">06</div>
                         <div class="category-content">
-                            <h3 class="category-title">Custom Sculptures</h3>
+                            <h3 class="category-title">makrana marble</h3>
                             <p class="category-description">
                                 Bespoke marble sculptures and artistic installations. Your vision carved in stone.
                             </p>
-                            <button class="category-btn">
+                            <span class="category-btn">
                                 Explore Collection
                                 <i class="fas fa-arrow-right"></i>
-                            </button>
+                            </span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -608,30 +612,7 @@
                 observer.observe(card);
             });
 
-            // Category button click handlers
-            const categoryButtons = document.querySelectorAll('.category-btn');
-            categoryButtons.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const card = this.closest('.category-card');
-                    const category = card.getAttribute('data-category');
-                    
-                    console.log(`Opening category: ${category}`);
-                    // Add your navigation logic here
-                    // Example: window.location.href = `${category}.html`;
-                });
-            });
-
-            // Card click handler (entire card clickable)
-            cards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    console.log(`Card clicked: ${category}`);
-                    // Add your navigation logic here
-                });
-            });
-
-            console.log('✅ Premium Categories section initialized');
+            console.log('✅ Premium Categories section initialized - Cards now redirect on click');
         });
     </script>
 </body>
