@@ -80,15 +80,15 @@
       display: block;
     }
     
-    /* Centered Minimal Nav */
+    /* Horizontal Nav Layout */
     .nav {
       max-width: 1800px;
       margin: 0 auto;
       padding: 0 4rem;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 2rem;
+      justify-content: space-between;
     }
     
     /* Bold Elegant Logo */
@@ -98,6 +98,8 @@
       gap: 1.2rem;
       text-decoration: none;
       transition: all 0.3s ease;
+      z-index: 1001;
+      position: relative;
     }
 
     .logo-img-wrapper {
@@ -110,6 +112,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .logo-img {
@@ -133,14 +136,16 @@
       letter-spacing: 8px;
       transition: all 0.3s ease;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    /* Minimal Nav Links - Centered */
+    /* Minimal Nav Links */
     .nav-links {
       display: flex;
       gap: 4rem;
       list-style: none;
       align-items: center;
+      margin: 0;
     }
     
     .nav-link {
@@ -183,11 +188,8 @@
       border: none;
       width: 24px;
       height: 18px;
-      position: absolute;
-      right: 2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1001;
+      position: relative;
+      z-index: 1002;
       padding: 0;
     }
 
@@ -271,10 +273,7 @@
       }
 
       .nav {
-        flex-direction: row;
-        justify-content: center;
         padding: 0 2rem;
-        position: relative;
       }
       
       .menu-toggle {
@@ -376,7 +375,6 @@
       .menu-toggle {
         width: 22px;
         height: 16px;
-        right: 1.5rem;
       }
 
       .nav-link {
@@ -418,8 +416,14 @@
           <!-- Black logo for scrolled navbar -->
           <img src="white.png" alt="Stone International" class="logo-img logo-black">
         </div>
-        <div class="logo-text">Stone  International</div>
+        <div class="logo-text">Stone   International</div>
       </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
       <ul class="nav-links" id="navLinks">
         <li><a class="nav-link" href="#home">Home</a></li>
@@ -428,12 +432,6 @@
         <li><a class="nav-link" href="#gallery">Gallery</a></li>
         <li><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </nav>
   </header>
 
@@ -526,4 +524,3 @@
   </script>
 </body>
 </html>
-
