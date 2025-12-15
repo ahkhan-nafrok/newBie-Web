@@ -243,6 +243,13 @@ body {
     margin-top: 0.5rem;
     font-weight: 500;
 }
+.mine-img5{
+    height: 502px !important;
+}
+.mine-img7{
+    margin-top: -321px;
+    height: 305px !important;
+}
 
 @media (max-width: 1024px) {
     .about-content {
@@ -260,6 +267,13 @@ body {
 }
 
 @media (max-width: 768px) {
+    .mine-img5{
+        display: none !important;
+    }
+    .mine-img7{
+        margin-top: 0px;
+        height: 234px !important;
+    }
     .section {
         padding: 3rem 0;
     }
@@ -511,6 +525,53 @@ body {
         font-size: 1.5rem;
     }
 }
+
+.mines-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.mines-section h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.mines-section p {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 900px;
+  margin: 0 auto 35px auto;
+  color: #555;
+}
+
+/* Image Grid */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Desktop: 3 images per row */
+  gap: 16px;
+}
+
+.image-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .mines-section h2 {
+    font-size: 26px;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr); /* Mobile: 2 images per row */
+  }
+}
 </style>
 </head>
 <body>
@@ -575,6 +636,32 @@ body {
         </div>
     </div>
 </section>
+
+<section class="mines-section">
+    <h2>OUR MINES</h2>
+
+    <p>
+      Our Makrana Sangemarmar marble mines are located in the historic town of
+      Makrana, Rajasthan, globally renowned for producing the purest and finest
+      quality white marble. This iconic marble has been used in world-famous
+      monuments, including the Taj Mahal. Known for its exceptional strength,
+      natural shine, and timeless elegance, Makrana Sangemarmar marble is
+      carefully extracted and processed to maintain its unmatched purity and
+      durability, making it a preferred choice for luxury architecture and
+      interior spaces.
+    </p>
+
+    <div class="image-grid">
+      <img src="mine1.jpeg" alt="Makrana Marble Mine 1">
+      <img src="mine2.jpeg" alt="Makrana Marble Mine 2">
+      <img src="mine3.jpeg" alt="Makrana Marble Mine 3">
+      <img src="mine4.jpeg" alt="Makrana Marble Mine 4">
+      <img class="mine-img5" src="mine5.jpeg" alt="Makrana Marble Mine 5">
+      <img src="mine6.jpeg" alt="Makrana Marble Mine 6">
+      <img class="mine-img7" src="WhatsApp Image 2025-12-15 at 11.07.16 PM.jpeg" alt="Makrana Marble Mine 7">
+    </div>
+  </section>
+
 
 
     <script>
