@@ -1,30 +1,219 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage and Profile Images -->
   <url>
     <loc>https://www.ahkhan.online/</loc>
+    <lastmod>2025-01-15</lastmod>
+    
+    <!-- Main Profile Photos -->
     <image:image>
       <image:loc>https://www.ahkhan.online/ra9.jpg</image:loc>
-      <image:title>A H Khan Profile Photo - AI Researcher</image:title>
-      <image:caption>Professional portrait of A H Khan, AI and Robotics researcher and founder of AIxRobo</image:caption>
+      <image:title>A H Khan - AI Researcher, NAFROK & AIxRobo Founder</image:title>
+      <image:caption>Professional portrait of A H Khan (Ahmed Hussain Khan), AI and Robotics researcher, founder of NAFROK web design agency and AIxRobo robotics company in Bangalore, India</image:caption>
       <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
     </image:image>
+    
     <image:image>
       <image:loc>https://www.ahkhan.online/ra99.png</image:loc>
-      <image:title>A H Khan Professional Headshot</image:title>
-      <image:caption>A H Khan - AI researcher and robotics engineer specializing in humanoid robots and AI systems</image:caption>
+      <image:title>A H Khan Professional Portrait - NAFROK Founder</image:title>
+      <image:caption>A H Khan - AI researcher, robotics engineer, and entrepreneur. Founder of NAFROK (professional web design agency) and AIxRobo specializing in humanoid robots, autonomous drones, and machine learning systems</image:caption>
       <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
     </image:image>
+    
+    <!-- AIxRobo Projects -->
+    <image:image>
+      <image:loc>https://www.ahkhan.online/AIxRobo--1212.png</image:loc>
+      <image:title>AIxRobo Logo - AI Robotics Company by A H Khan</image:title>
+      <image:caption>AIxRobo company logo - AI robotics company founded by A H Khan developing humanoid robots and disaster management systems</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    
     <image:image>
       <image:loc>https://www.ahkhan.online/Futuristic-City-with-Robo-Ad-Photoroom.png</image:loc>
-      <image:title>AIxBot Humanoid Robot by A H Khan</image:title>
-      <image:caption>AIxBot humanoid assistant robot developed by A H Khan at AIxRobo for automation and human-robot interaction</image:caption>
+      <image:title>AIxBot Humanoid Robot - Developed by A H Khan at AIxRobo</image:title>
+      <image:caption>AIxBot humanoid assistant robot with AI-powered vision and intelligence, developed by A H Khan at AIxRobo for automation, human-robot interaction, and real-world applications in Bangalore</image:caption>
       <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
     </image:image>
-           <image:image>
+    
+    <!-- Research Publications -->
+    <image:image>
       <image:loc>https://www.ahkhan.online/llmsroi.png</image:loc>
-      <image:title>ROI in LLMs Research Paper</image:title>
+      <image:title>ROI in LLMs Research Paper by A H Khan</image:title>
+      <image:caption>Research paper cover: "ROI in LLMs - Analyzing Return on Investment Limitations in Large Language Models" by A H Khan, analyzing economic viability and deployment challenges of AI systems</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
     </image:image>
-    <!-- Add more images as needed -->
+    
+    <!-- NAFROK Portfolio Projects -->
+    <image:image>
+      <image:loc>https://www.ahkhan.online/nafrok.png</image:loc>
+      <image:title>NAFROK Website - Professional Web Design Agency by A H Khan</image:title>
+      <image:caption>NAFROK professional web design agency website, founded by A H Khan in Bangalore. Delivering custom websites with fixed pricing (₹15K-45K) and 1-3 week delivery for businesses across India</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/GTA.png</image:loc>
+      <image:title>Slate Books E-commerce - Website by NAFROK</image:title>
+      <image:caption>Slate Books next-generation e-commerce platform designed and developed by A H Khan at NAFROK. Modern online bookstore with seamless shopping experience</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/computer.png</image:loc>
+      <image:title>Computer Builder India - E-commerce Website by NAFROK</image:title>
+      <image:caption>Computer Builder India online store designed by A H Khan at NAFROK. Professional e-commerce platform for custom PC components and gaming systems</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/aizaz.png</image:loc>
+      <image:title>Aizaz Marble Traders - Business Website by NAFROK</image:title>
+      <image:caption>Aizaz Marble Traders granite and marble e-commerce website designed by A H Khan at NAFROK. Premium stone supplier business platform in Bangalore</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/interir.png</image:loc>
+      <image:title>Stanwyck Interior Design - Portfolio Website by NAFROK</image:title>
+      <image:caption>Stanwyck Interior Design premium portfolio website crafted by A H Khan at NAFROK. Elegant showcase of interior design projects with modern aesthetics</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/founder.png</image:loc>
+      <image:title>FoundersHub CA Firm - Professional Website by NAFROK</image:title>
+      <image:caption>FoundersHub Chartered Accountancy Firm professional website designed by A H Khan at NAFROK. Financial services platform with client portal and consultation booking</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/aixrobo.png</image:loc>
+      <image:title>AIxRobo Company Website - Designed by A H Khan</image:title>
+      <image:caption>AIxRobo official company website showcasing AI robotics innovations, humanoid robots, and autonomous drone systems developed by founder A H Khan</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/baobang.png</image:loc>
+      <image:title>Bao Bangalore Cafe - Restaurant Website by NAFROK</image:title>
+      <image:caption>Bao Bangalore modern cafe and restaurant website designed by A H Khan at NAFROK. Food business platform with online menu, reservations, and delivery integration</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/dofu.png</image:loc>
+      <image:title>DOFU Japanese Restaurant - Website by NAFROK</image:title>
+      <image:caption>DOFU Japanese cuisine restaurant website crafted by A H Khan at NAFROK. Authentic dining experience platform with menu showcase and online ordering</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+    </image:image>
+    
+    <!-- Favicon and Brand Assets -->
+    <image:image>
+      <image:loc>https://www.ahkhan.online/favicon_32.png</image:loc>
+      <image:title>A H Khan Portfolio Favicon 32x32</image:title>
+      <image:caption>A H Khan personal brand favicon for ahkhan.online portfolio website</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/favicon_48.png</image:loc>
+      <image:title>A H Khan Portfolio Favicon 48x48</image:title>
+      <image:caption>A H Khan personal brand favicon for ahkhan.online portfolio website</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/favicon_64.png</image:loc>
+      <image:title>A H Khan Portfolio Favicon 64x64</image:title>
+      <image:caption>A H Khan personal brand favicon for ahkhan.online portfolio website</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/apple-touch-icon.png</image:loc>
+      <image:title>A H Khan Apple Touch Icon</image:title>
+      <image:caption>A H Khan personal brand Apple touch icon for iOS devices</image:caption>
+    </image:image>
+    
   </url>
+  
+  <!-- Gallery Section - Portfolio Showcase -->
+  <url>
+    <loc>https://www.ahkhan.online/#gallery</loc>
+    <lastmod>2025-01-15</lastmod>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/nafrok.png</image:loc>
+      <image:title>NAFROK Web Design Agency Portfolio</image:title>
+      <image:caption>NAFROK professional web design agency founded by A H Khan - 30+ websites delivered with fixed pricing</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/GTA.png</image:loc>
+      <image:title>Slate Books E-commerce Platform</image:title>
+      <image:caption>Next-generation e-commerce website for Slate Books designed by NAFROK</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/computer.png</image:loc>
+      <image:title>Computer Builder India Online Store</image:title>
+      <image:caption>Custom PC components e-commerce platform by NAFROK</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/aizaz.png</image:loc>
+      <image:title>Aizaz Marble Traders Business Platform</image:title>
+      <image:caption>Granite and marble supplier website designed by NAFROK</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/interir.png</image:loc>
+      <image:title>Stanwyck Interior Design Portfolio</image:title>
+      <image:caption>Premium interior design showcase website by NAFROK</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/founder.png</image:loc>
+      <image:title>FoundersHub CA Firm Professional Site</image:title>
+      <image:caption>Chartered Accountancy firm website by NAFROK</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/aixrobo.png</image:loc>
+      <image:title>AIxRobo Company Website</image:title>
+      <image:caption>AI robotics company website showcasing humanoid robots and drones</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/baobang.png</image:loc>
+      <image:title>Bao Bangalore Restaurant Website</image:title>
+      <image:caption>Modern cafe and restaurant platform by NAFROK</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/dofu.png</image:loc>
+      <image:title>DOFU Japanese Restaurant Site</image:title>
+      <image:caption>Japanese cuisine restaurant website by NAFROK</image:caption>
+    </image:image>
+    
+  </url>
+  
+  <!-- Projects Section - Technical Portfolio -->
+  <url>
+    <loc>https://www.ahkhan.online/#projects</loc>
+    <lastmod>2025-01-15</lastmod>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/Futuristic-City-with-Robo-Ad-Photoroom.png</image:loc>
+      <image:title>AIxBot Humanoid Robot Project</image:title>
+      <image:caption>Advanced humanoid robot with AI intelligence by A H Khan</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://www.ahkhan.online/llmsroi.png</image:loc>
+      <image:title>LLM ROI Research Publication</image:title>
+      <image:caption>Academic research on Large Language Model economics by A H Khan</image:caption>
+    </image:image>
+    
+  </url>
+
 </urlset>
