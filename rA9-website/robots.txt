@@ -1,17 +1,200 @@
+# robots.txt for ahkhan.online - A H Khan Portfolio
+# AI Researcher, NAFROK & AIxRobo Founder
+# Optimized for maximum SEO visibility and Google crawling
+
+# ==============================================
+# GENERAL RULES - Allow All Content
+# ==============================================
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
+Disallow: /*.docx$
+Disallow: /temp/
+Disallow: /draft/
 
+# Allow CSS, JS, and Images for proper rendering
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.webp$
+Allow: /*.svg$
+Allow: /*.ico$
+
+# ==============================================
+# SITEMAPS - Primary Discovery Mechanism
+# ==============================================
 Sitemap: https://www.ahkhan.online/sitemap.xml
 Sitemap: https://www.ahkhan.online/image-sitemap.xml
 
-# Crawl Delay
-Crawl-delay: 1
+# ==============================================
+# MAJOR SEARCH ENGINES - Specific Rules
+# ==============================================
 
-# Specific Bots
+# Google Bot - Maximum Access
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0.5
 
+# Google Image Bot - Full Image Access
+User-agent: Googlebot-Image
+Allow: /
+Crawl-delay: 0.5
+
+# Google Mobile Bot - Mobile Optimization
+User-agent: Googlebot-Mobile
+Allow: /
+Crawl-delay: 0.5
+
+# Bing Bot - Full Access
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
+
+# Bing Image Bot
+User-agent: msnbot-media
+Allow: /
+Crawl-delay: 1
+
+# Yahoo Bot
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo Bot
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Baidu Bot (Chinese Search Engine)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Yandex Bot (Russian Search Engine)
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+# ==============================================
+# SOCIAL MEDIA CRAWLERS
+# ==============================================
+
+# Facebook Bot - For Social Sharing
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter Bot - For Card Preview
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn Bot - For Profile Integration
+User-agent: LinkedInBot
+Allow: /
+
+# Pinterest Bot
+User-agent: Pinterest
+Allow: /
+
+# Instagram Bot
+User-agent: Instagram
+Allow: /
+
+# ==============================================
+# AI/ML CRAWLERS - Allow for Training
+# ==============================================
+
+# OpenAI GPTBot
+User-agent: GPTBot
+Allow: /
+
+# Anthropic ClaudeBot
+User-agent: Claude-Web
+Allow: /
+
+# Google Bard
+User-agent: Google-Extended
+Allow: /
+
+# ==============================================
+# ARCHIVE CRAWLERS
+# ==============================================
+
+# Internet Archive Wayback Machine
+User-agent: ia_archiver
+Allow: /
+
+# Common Crawl
+User-agent: CCBot
+Allow: /
+
+# ==============================================
+# BAD BOTS - Block Malicious Crawlers
+# ==============================================
+
+# Generic Bad Bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Email Harvesters
+User-agent: EmailCollector
+Disallow: /
+
+User-agent: EmailSiphon
+Disallow: /
+
+# Content Scrapers
+User-agent: WebCopier
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: Offline Explorer
+Disallow: /
+
+# ==============================================
+# CRAWL RATE OPTIMIZATION
+# ==============================================
+# Default crawl delay for respectful bots
+Crawl-delay: 1
+
+# ==============================================
+# IMPORTANT URLS - Priority Indexing
+# ==============================================
+# These are automatically discovered via sitemap.xml
+# Homepage: https://www.ahkhan.online/
+# About: https://www.ahkhan.online/#about
+# Projects: https://www.ahkhan.online/#projects
+# Experience: https://www.ahkhan.online/#experience
+# Gallery: https://www.ahkhan.online/#gallery
+# Contact: https://www.ahkhan.online/#contact
+
+# Related Properties:
+# NAFROK: https://www.nafrok.com
+# AIxRobo: https://aixrobo.com
+
+# ==============================================
+# METADATA
+# ==============================================
+# Owner: A H Khan (Ahmed Hussain Khan)
+# Email: ahkhan.nafrok@gmail.com
+# Location: Bangalore, Karnataka, India
+# Companies: NAFROK (Web Design) & AIxRobo (AI Robotics)
+# Last Updated: 2025-01-15
+# ==============================================
