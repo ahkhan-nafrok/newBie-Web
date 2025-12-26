@@ -62,12 +62,12 @@
                 radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
             pointer-events: none;
-            z-index: 1; /* Added to ensure it stays behind content */
+            z-index: 1;
         }
 
         .footer-top {
             position: relative;
-            z-index: 3; /* Increased z-index to ensure content is above background */
+            z-index: 3;
             padding-bottom: 3rem;
         }
 
@@ -141,7 +141,7 @@
             gap: 3rem;
             margin-bottom: 3rem;
             position: relative;
-            z-index: 3; /* Increased z-index */
+            z-index: 3;
         }
 
         .footer-section h3 {
@@ -224,8 +224,8 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(212, 175, 55, 0.2);
             position: relative;
-            overflow: visible; /* Changed from hidden to visible */
-            z-index: 4; /* Increased z-index */
+            overflow: visible;
+            z-index: 4;
         }
 
         .social-section::before {
@@ -259,7 +259,7 @@
             justify-content: center;
             flex-wrap: wrap;
             position: relative;
-            z-index: 5; /* Increased z-index */
+            z-index: 5;
         }
 
         .social-link {
@@ -276,7 +276,7 @@
             position: relative;
             overflow: visible;
             padding: 0.8rem;
-            z-index: 10; /* High z-index to ensure clickability */
+            z-index: 10;
         }
 
         .social-link img {
@@ -321,19 +321,274 @@
             filter: brightness(1.4) drop-shadow(0 12px 24px rgba(234, 67, 53, 0.6)) hue-rotate(-20deg);
         }
 
-        .social-label {
-            display: block;
-            margin-top: 0.5rem;
-            font-size: 0.75rem;
-            color: var(--text-light);
-            transition: all 0.3s ease;
+        /* ================================
+           NAFROK CREDIT SECTION - PREMIUM
+           ================================ */
+        .nafrok-credit {
+            padding: 3.5rem 0 2.5rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
             position: relative;
+            z-index: 3;
+            margin-top: 2rem;
+        }
+
+        .credit-decorative-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5) 20%, rgba(212, 175, 55, 0.8) 50%, rgba(212, 175, 55, 0.5) 80%, transparent);
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+
+        .credit-decorative-line::before,
+        .credit-decorative-line::after {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--royal-gold);
+            font-size: 0.6rem;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        .credit-decorative-line::before {
+            left: 25%;
+        }
+
+        .credit-decorative-line::after {
+            right: 25%;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+        }
+
+        .credit-container {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .credit-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            position: relative;
+            display: inline-block;
+        }
+
+        .credit-label::before,
+        .credit-label::after {
+            content: '—';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--royal-gold);
+            opacity: 0.6;
+        }
+
+        .credit-label::before {
+            left: -30px;
+        }
+
+        .credit-label::after {
+            right: -30px;
+        }
+
+        .credit-brand-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+
+        .credit-brand {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 2.5rem 4rem;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 16px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .credit-brand::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                var(--royal-gold) 25%, 
+                var(--gold-accent) 50%, 
+                var(--royal-gold) 75%, 
+                transparent 100%);
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: -1;
+            filter: blur(10px);
+        }
+
+        .credit-brand:hover::before {
+            opacity: 0.6;
+            animation: borderGlow 2s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .credit-brand::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15), transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.8s ease, height 0.8s ease;
+        }
+
+        .credit-brand:hover::after {
+            width: 500px;
+            height: 500px;
+        }
+
+        .credit-brand:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(212, 175, 55, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: var(--royal-gold);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: var(--cream);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .credit-brand:hover .brand-name {
+            color: var(--royal-gold);
+            letter-spacing: 8px;
+            text-shadow: 
+                0 0 20px rgba(212, 175, 55, 0.6),
+                0 0 40px rgba(212, 175, 55, 0.4),
+                0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-style: italic;
+            letter-spacing: 1px;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+        }
+
+        .credit-brand:hover .brand-tagline {
+            color: var(--gold-accent);
+            letter-spacing: 1.5px;
+        }
+
+        .credit-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%) translateX(15px);
+            opacity: 0;
+            font-size: 2rem;
+            color: var(--royal-gold);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 2;
         }
 
-        .social-link:hover .social-label {
-            color: var(--royal-gold);
-            font-weight: 500;
+        .credit-brand:hover .credit-icon {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        /* Floating corner ornaments */
+        .credit-ornament {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .credit-ornament.top-left {
+            top: -5px;
+            left: -5px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .credit-ornament.top-right {
+            top: -5px;
+            right: -5px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .credit-ornament.bottom-left {
+            bottom: -5px;
+            left: -5px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .credit-ornament.bottom-right {
+            bottom: -5px;
+            right: -5px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .credit-brand:hover .credit-ornament {
+            border-color: var(--royal-gold);
+        }
+
+        .credit-brand:hover .credit-ornament.top-left {
+            transform: translate(-5px, -5px);
+        }
+
+        .credit-brand:hover .credit-ornament.top-right {
+            transform: translate(5px, -5px);
+        }
+
+        .credit-brand:hover .credit-ornament.bottom-left {
+            transform: translate(-5px, 5px);
+        }
+
+        .credit-brand:hover .credit-ornament.bottom-right {
+            transform: translate(5px, 5px);
         }
 
         .footer-bottom {
@@ -341,7 +596,7 @@
             padding: 1.5rem 0;
             text-align: center;
             position: relative;
-            z-index: 3; /* Increased z-index */
+            z-index: 3;
             border-top: 1px solid rgba(212, 175, 55, 0.15);
         }
 
@@ -458,8 +713,25 @@
             }
             
             .social-link {
-                font-size: 3rem;
                 padding: 0.6rem;
+            }
+
+            .credit-brand {
+                padding: 2rem 2.5rem;
+            }
+
+            .brand-name {
+                font-size: 2.2rem;
+                letter-spacing: 4px;
+            }
+
+            .brand-tagline {
+                font-size: 0.95rem;
+            }
+
+            .credit-icon {
+                right: 15px;
+                font-size: 1.5rem;
             }
         }
 
@@ -477,12 +749,44 @@
             }
             
             .social-link {
-                font-size: 2.5rem;
                 padding: 0.5rem;
             }
             
             .social-section {
                 padding: 1.2rem;
+            }
+
+            .credit-brand {
+                padding: 1.5rem 2rem;
+                border-radius: 12px;
+            }
+
+            .brand-name {
+                font-size: 1.8rem;
+                letter-spacing: 3px;
+            }
+
+            .credit-brand:hover .brand-name {
+                letter-spacing: 4px;
+            }
+
+            .brand-tagline {
+                font-size: 0.85rem;
+            }
+
+            .credit-label {
+                font-size: 0.65rem;
+                letter-spacing: 3px;
+            }
+
+            .credit-label::before,
+            .credit-label::after {
+                display: none;
+            }
+
+            .credit-ornament {
+                width: 20px;
+                height: 20px;
             }
         }
     </style>
@@ -526,15 +830,15 @@
                         <div class="footer-contact-item">
                             <i class="fas fa-phone"></i>
                             <div>
-                                <a href="tel:+919829051786">H M IBRAHIM-: 9829051786</a>
-                                <a href="tel:+919983777786">AIZAZ KHAN-: 9983777786</a>
-                                <a href="tel:+917300008825">AIYAZ KHAN-: 7300008825</a>
+                                <a href="tel:+919829051786">H M IBRAHIM: 9829051786</a>
+                                <a href="tel:+919983777786">AIZAZ KHAN: 9983777786</a>
+                                <a href="tel:+917300008825">AIYAZ KHAN: 7300008825</a>
                             </div>
                         </div>
                         <div class="footer-contact-item">
                             <i class="fas fa-envelope"></i>
                             <div>
-                                <a href="mailto:info@aizazmarble.com">aizazmarbletraders@gmail.com</a>
+                                <a href="mailto:aizazmarbletraders@gmail.com">aizazmarbletraders@gmail.com</a>
                             </div>
                         </div>
                         <div class="footer-contact-item">
@@ -560,8 +864,28 @@
                             <a href="https://jsdl.in/DT-301JTEK31X6" class="social-link" title="Justdial" target="_blank">
                                 <img src="jsutdial.png" alt="Justdial">
                             </a>
-                            <a href="mailto:info@aizazmarble.com" class="social-link" title="Email" target="_blank">
+                            <a href="mailto:aizazmarbletraders@gmail.com" class="social-link" title="Email" target="_blank">
                                 <img src="email.png" alt="Email">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NAFROK CREDIT SECTION -->
+                <div class="nafrok-credit">
+                    <div class="credit-decorative-line"></div>
+                    <div class="credit-container">
+                        <p class="credit-label">Excellence Crafted By</p>
+                        <div class="credit-brand-wrapper">
+                            <a href="https://nafrok.com" target="_blank" rel="dofollow" class="credit-brand">
+                                <span class="credit-ornament top-left"></span>
+                                <span class="credit-ornament top-right"></span>
+                                <span class="credit-ornament bottom-left"></span>
+                                <span class="credit-ornament bottom-right"></span>
+                                
+                                <span class="brand-name">NAFROK</span>
+                                <span class="brand-tagline">Digital Experiences Designed for Modern Brands</span>
+                                <span class="credit-icon">→</span>
                             </a>
                         </div>
                     </div>
@@ -724,6 +1048,15 @@
                 observer.observe(footerBrand);
             }
 
+            // Animate NAFROK credit section
+            const nafrokCredit = document.querySelector('.nafrok-credit');
+            if (nafrokCredit) {
+                nafrokCredit.style.opacity = '0';
+                nafrokCredit.style.transform = 'translateY(30px)';
+                nafrokCredit.style.transition = 'all 1s ease 0.3s';
+                observer.observe(nafrokCredit);
+            }
+
             // Enhanced keyboard navigation
             const allFooterLinks = document.querySelectorAll('.footer a, .footer button');
             allFooterLinks.forEach(link => {
@@ -737,5 +1070,3 @@
     </script>
 </body>
 </html>
-
-
